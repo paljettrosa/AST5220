@@ -3,11 +3,13 @@
 SHELL := /bin/bash
 
 # Set compiler (use =c++17 if you have this availiable)
-CC = g++ -std=c++11 
+CC = g++ -std=c++17 
 
 # Paths to GSL library
-INC  = -I/mn/stornext/u3/hansw/winther/local/include
-LIBS = -L/mn/stornext/u3/hansw/winther/local/lib -lgsl -lgslcblas
+# INC  = -I/mn/stornext/u3/hansw/winther/local/include
+# LIBS = -L/mn/stornext/u3/hansw/winther/local/lib -lgsl -lgslcblas
+INC  = -I/opt/homebrew/include
+LIBS = -L/opt/homebrew/lib -lgsl -lgslcblas
 
 #=======================================================
 # Options
