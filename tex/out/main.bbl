@@ -1,0 +1,7 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Sanderson \& Curtin(Accessed: October 2023)}]{Armadillo}
+Sanderson, D.~C. \& Curtin, D.~R. Accessed: October 2023, {Armadillo C++ Library"}, \url{https://arma.sourceforge.net/docs.html}
+
+\end{thebibliography}
