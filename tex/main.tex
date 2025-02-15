@@ -104,8 +104,9 @@
    \maketitle
 %
 %-------------------------------------------------------------------
+\section{Introduction}\label{sec: introduction}
 
-\section{Milestone I}
+\section{Milestone I}\label{sec: milestone I}
 
 %    In the \emph{nucleated instability\/} (also called core
 %    instability) hypothesis of giant planet
@@ -139,8 +140,20 @@
 % By conducting this project, I aim to investigate these discrepancies and improve our understanding of the formation of dark matter halos. By comparing the halo mass function and density profiles derived from simulations with theoretical models, we can test and refine our understanding of cosmic structure formation and dark matter's role in it.
 
 % This project will simulate different realizations of the universe, compute the dark matter halo mass function, and analyze the density profiles of halos to explore these theoretical and observational inconsistencies. Numerical simulations provide a powerful tool to investigate how well theoretical models match the real universe, guiding us toward more accurate representations of dark matter-driven structure formation.
+\colorbox{Plum}{Introduction}
 
-\subsection{Introduction}\label{subsec: I introduction}
+\begin{enumerate}
+  \item [-] Make a test function in the BackgroundCosmology class to check that the density parameters today sum up to unity.
+  \item [-] Make a plot showing that $\eta'\mathcal{H}/c=1$ for all $x$ to test $\eta$.
+  \item [-] Compute analytical expressions for the matter-radiation equality, matter-dark energy equality (see exercises), and the time when the Universe starts accelerating. These should be functions of $x$, $z$ and $t$.
+  \item [-] Compute numerical values for these times, and present them in a table.
+  \item [-] Compute numerical values for the age of the Universe today $t(x=0)$ in Gigayears, and the conformal time today $\eta(x=0)/c$.
+  \item [-] Compute analytical expressions for $\mathcal{H}'/\mathcal{H}$ and $\mathcal{H}''/\mathcal{H}$ in the radiation-, matter-, and dark energy dominated eras (see exercises).
+  \item [-] Alternatively, solve the system by setting $\Omega_{r0}$ to 1 and the rest to zero up to the matter-radiation equality, then do the same for $\Omega_m0$ up to the matter-dark energy equality, and then the same for $\Omega_{\Lambda0}$.
+  \item [-] Either way it is done, plot analytical expectations vs. numerical results for $\mathcal{H}'/\mathcal{H}$ and $\mathcal{H}''/\mathcal{H}$.
+  \item [-] Make a plot showing $a(t)$ vs. $t$ along with analytical expectations in the radiation-, matter- and dark energy dominated eras (compute these expressions the same way as for the last points).
+  \item [-] Do the neutrino stuff if time and fun. 
+\end{enumerate}
 
 \subsection{Theory}\label{subsec: I theory}
 % The scaled Hubble parameter is given by
@@ -209,9 +222,149 @@ The first and second derivatives of $\mathcal{H}$ with respect to $x$ are then \
   &= \frac{H_0^2}{2\mathcal{H}}\left(\Omega_{m0}e^{-x} + 4\Omega_{r0}e^{-2x} + 4\Omega_{\Lambda0}e^{2x}- \frac{1}{2\mathcal{H}}\frac{d\mathcal{H}}{dx}\right). \numberthis
 \end{align*}
 
+\subsubsection{Important time stamps}
+% Radiation-matter equality occured at a very high redshift, hence the dark energy component in the Friedmann equation can safely be ignored. Assuming no curvature, we thus have
+% \begin{equation}
+%   H_{rm} \approx H_0\sqrt{\Omega_{m0}e^{-3x} + \Omega_{r0}e^{-4x}},
+% \end{equation}
+% where the subscript $rm$ stands for radiation-matter equality. Furthermore, at this point in time we have
+% \begin{equation}
+%   \Omega_{r,rm} = \Omega_{m,rm} 
+%   \hspace{5pt}\Leftrightarrow\hspace{5pt} 
+%   \Omega_{r0}e^{-4x_{rm}} = \Omega_{m0}e^{-3x_{rm}} 
+%   \hspace{5pt}\Leftrightarrow\hspace{5pt}
+%   \Omega_{r0} = \Omega_{m0}e^{x_{rm}}, 
+% \end{equation}
+% which lets us express the Hubble parameter as
+At radiation-matter equality ($rm$) we have
+\begin{equation}
+    \Omega_{r,rm} = \Omega_{m,rm} 
+    \hspace{5pt}\Leftrightarrow\hspace{5pt} 
+    \Omega_{r0}e^{-4x_{rm}} = \Omega_{m0}e^{-3x_{rm}}, 
+\end{equation}
+and thus
+\begin{equation}
+  x_{rm} = \log\left(\frac{\Omega_{r0}}{\Omega_{m0}}\right).
+\end{equation}
+Using that $x = \log a$ and $z = 1/a - 1$ this gives us an expression for the redshift at $rm$:
+\begin{equation}
+  z_{rm} = \frac{\Omega_{m0}}{\Omega_{r0}} - 1.
+\end{equation}
+Furthermore, to compute the age of the universe at $rm$ we may use that
+\begin{equation}
+  t_{rm} = \int^{t_{rm}}_{0}dt = \int^{x_{rm}}_{-\infty}\frac{dt}{dx}dx = \int^{x_{rm}}_{-\infty}\frac{dx}{H},
+\end{equation}
+and that the Universe is radiation dominated before this point. This lets us ignore the matter and dark energy terms in the expression for $H$, although the former component plays an increasingly important role as we reach $t_{rm}$. \colorbox{Plum}{valid? include matter term?} Thus, we have
+\begin{equation}
+  t_{rm} = \int^{x_{rm}}_{-\infty}\frac{dx}{H_0\sqrt{\Omega_{r0}e^{-4x}}} = \frac{e^{2x_{rm}}}{2H_0\sqrt{\Omega_{r0}}} = \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2}.
+\end{equation}
+
+Following a similar logic, at matter-dark energy equality ($m\Lambda$) we have
+\begin{equation}
+  \Omega_{m0}e^{-3x_{m\Lambda}} = \Omega_{\Lambda0}
+  \hspace{5pt}\Leftrightarrow\hspace{5pt}
+  x_{m\Lambda} = \frac{1}{3}\log\left(\frac{\Omega_{m0}}{\Omega_{\Lambda0}}\right),
+\end{equation}
+and thus
+\begin{equation}
+  z_{m\Lambda} = \left(\frac{\Omega_{\Lambda0}}{\Omega_{m0}}\right)^{1/3} - 1.
+\end{equation}
+Since the Universe is matter dominated between $rm$ and $m\Lambda$ we may ignore the radiation and dark energy terms to obtain
+\begin{align*}
+  t_{m\Lambda} &= t_{rm} + \int^{x_{m\Lambda}}_{x_{rm}}\frac{dx}{H_0\sqrt{\Omega_{m0}e^{-3x}}}, 
+  \\
+  &= \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2} +\frac{2\left(e^{3x_{m\Lambda}/2} - e^{3x_{rm}/2} \right)}{3H_0\sqrt{\Omega_{m0}}}, 
+  \\
+  &= \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2} + \frac{2}{3H_0\sqrt{\Omega_{\Lambda0}}} - \frac{2\Omega_{r0}^{3/2}}{3H_0\Omega_{m0}^2},
+  \\
+  &= \frac{1}{3H_0}\left(\frac{2}{\sqrt{\Omega_{\Lambda0}}} -\frac{\Omega_{r0}^{3/2}}{2\Omega_{m0}^2}\right). \numberthis
+\end{align*}
+\colorbox{Plum}{correct?}
+
+We know that the Universe starts to accelerate after $\ddot{a}$ goes from being negative to positive. Assuming that this happens well after the radiation dominated era, the second Friedmann equation reads as 
+\begin{equation}
+  0 = - \frac{4\pi G}{3}\Big[\rho_m(x_\text{acc})- 2\rho_\Lambda(x_\text{acc})\Big]. \label{eq: equal acc time}
+\end{equation}
+Using that the density parameters at arbitrary $x$ can be written as
+\begin{align}
+  \Omega_i(x) = \frac{\Omega_{i0}}{e^{nx}H^2(x)/H_0^2},
+\end{align}
+where $n = 3$ for matter and $n=0$ for dark energy, we can rewrite eq. \eqref{eq: equal acc time} to get
+\begin{equation}
+  \Omega_{m0}e^{-3x_\text{acc}} = 2\Omega_{\Lambda0}
+  \hspace{5pt}\Leftrightarrow\hspace{5pt}
+  x_\text{acc} = \frac{1}{3}\log\left(\frac{\Omega_{m0}}{2\Omega_{\Lambda0}}\right).
+\end{equation}
+This corresponds to a redshift
+\begin{equation}
+  z_\text{acc} = \left(\frac{2\Omega_{\Lambda0}}{\Omega_{m0}}\right)^{1/3}-1.
+\end{equation}
+Obviously, $t_\text{acc}<t_{m\Lambda}$, so we can make the same approximation this time, hence
+\begin{equation}
+  t_\text{acc} = t_{rm} + \int^{x_\text{acc}}_{x_{rm}}\frac{dx}{H_0\sqrt{\Omega_{m0}e^{-3x}}} = \frac{1}{3H_0}\left(\sqrt{\frac{2}{\Omega_{\Lambda0}}} -\frac{\Omega_{r0}^{3/2}}{2\Omega_{m0}^2}\right).
+\end{equation}
+\colorbox{Plum}{maybe do this derivation more thorough}
+
+
+\subsubsection{Approximate expressions}
+To test for numerical stability and accuracy, it is essential to compute analytical expressions that can be used for comparison. In the radiation dominated era we have
+\begin{equation}
+  \mathcal{H}_r \approx H_0\sqrt{\Omega_{r0}}e^{-x},
+\end{equation}
+and thus
+\begin{align}
+  \left(\frac{d\mathcal{H}}{dx}\right)_r &= -H_0\sqrt{\Omega_{r0}}e^{-x}=-\mathcal{H}_r 
+  \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_r=-1,
+  \\
+  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_r &= H_0\sqrt{\Omega_{r0}}e^{-x}=\mathcal{H}_r
+  \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_r=1.
+\end{align}
+Similarly, we have
+% \begin{align}
+%   \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
+%   \\
+%   \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{1}{2}H_0\sqrt{\Omega_{m0}e^{-x}}=-\frac{\mathcal{H}_m}{2} 
+%   \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
+%   \\
+%   \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{1}{4}H_0\sqrt{\Omega_{m0}e^{-x}}=\frac{\mathcal{H}_m}{4}
+%   \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
+% \end{align}
+\begin{align}
+  \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
+  \\
+  \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{\mathcal{H}_m}{2} 
+  \hspace{5pt}\Leftrightarrow\hspace{10pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
+  \\
+  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{\mathcal{H}_m}{4}
+  \hspace{12pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
+\end{align}
+in the matter dominated era, and
+\begin{equation}
+  \mathcal{H}_\Lambda = \left(\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = H_0\sqrt{\Omega_{\Lambda0}}e^{x}
+\end{equation}
+in the dark energy dominated era. From the latter it is obvious that
+\begin{equation}
+  \left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = 1.
+\end{equation} 
+
+Furthermore, we can compute the expected evolution of the scale factor $a(t)$ \colorbox{Plum}{or just x?} and compare this to the numerical solution. In the different regimes we have
+\begin{align}
+  \left(\frac{da}{dt}\right)_r &\approx H_0\frac{\sqrt{\Omega_{r0}}}{a}
+  \hspace{12pt}\Rightarrow\hspace{5pt} a \propto t^{1/2},
+  \\
+  \left(\frac{da}{dt}\right)_m &\approx H_0\frac{\sqrt{\Omega_{m0}}}{a^{1/2}}
+  \hspace{9.5pt}\Rightarrow\hspace{5pt} a \propto t^{2/3},
+  \\
+  \left(\frac{da}{dt}\right)_\Lambda &\approx H_0\sqrt{\Omega_{\Lambda0}}\,a
+  \hspace{5pt}\Rightarrow\hspace{5pt} a \propto e^{H_0\sqrt{\Omega_{\Lambda0}}t},
+\end{align}
+where I have used that $\mathcal{H}=aH = \dot{a}$. \colorbox{Plum}{do more thorough?}
+
+% TODO: Derive initial condition for eta, we start in radiation dominated era, eta should be zero at x = \infty, so that C = 0, and we get eta = c/(H_0\sqrt(\Omega_R))e^x which is basically c/aH = c/Hp
+
 
 %--------------------------------------------------------------------
-\subsection{Methods}\label{subsec: I methods}
+\subsection{Implementation}\label{subsec: I methods}
 % %-------------------------------------- Two column figure (place early!)
 %    \begin{figure*}
 %    \centering
@@ -464,14 +617,14 @@ The first and second derivatives of $\mathcal{H}$ with respect to $x$ are then \
 % Cosmological N-body simulations are essential because they allow us to explore non-linear gravitational interactions and structure formation in ways that analytical methods cannot fully capture. Despite the success of analytical models like Press-Schechter, discrepancies between these theoretical predictions and observations often arise. For example, the overabundance of small halos predicted by the Press-Schechter formalism compared to what is observed in the real universe, also known as the ``missing satellite problem'', and the differences in the inner structure of halos, where simulations show more complex dynamics that deviate from simple models. \colorbox{Plum}{observations? shorten? move to intro?}
 
 
-\subsection{Results \& Discussions}\label{subsec: I results}
+\subsection{Results}\label{subsec: I results}
 % \begin{figure*}
 %   \centering
 %   \includegraphics[width=\textwidth]{hmf_candidates.pdf}
 %   \caption{HMF values calculated at $z=0$ for candidates 1, 2, 4, 7, 11 and 8 (the ``universe'' analyzed in this work), as well as for Sijing Shen. The Press-Schechter (solid line) and Sheth-Tormen (dashed line) fits are also plotted, and are the same for all realizations. In Shen's simulation, a box of size of $L=40\:\text{Mpc}$ containing $128^3$ particles was used instead.}\label{fig:hmf cand}
 % \end{figure*}
 
-\subsection{Conclusions}\label{subsec: I conclusions}
+\section{Conclusions}\label{sec: conclusions}
 
 % \begin{acknowledgements}
 %       Part of this work was supported by the German

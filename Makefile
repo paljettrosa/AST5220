@@ -3,7 +3,8 @@
 SHELL := /bin/bash
 
 # Set compiler (use =c++17 if you have this availiable)
-CC = g++ -std=c++17 
+CC = g++-14 -std=c++17 
+# CC = g++ -std=c++11 
 
 # Paths to GSL library
 # INC  = -I/mn/stornext/u3/hansw/winther/local/include

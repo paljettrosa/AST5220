@@ -34,15 +34,15 @@ int main(int argc, char **argv){
 
   // Set up and solve the background
   BackgroundCosmology cosmo(h, OmegaB, OmegaCDM, OmegaK, Neff, TCMB);
-  cosmo.solve();
+  cosmo.solve(true, true);
   cosmo.info();
   
   // Output background evolution quantities
-  cosmo.output("cosmology.txt");
+  cosmo.output("results/cosmology.txt", true, true, true, true);
 
   // Do the supernova fits. Uncomment when you are ready to run this
   // Make sure you read the comments on the top of src/SupernovaFitting.h
-  // mcmc_fit_to_supernova_data("data/supernovadata.txt", "results_supernovafitting.txt");
+  // mcmc_fit_to_supernova_data("data/supernovadata.txt", "results/results_supernovafitting.txt");
 
   // Remove when module is completed
   return 0;

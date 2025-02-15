@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  6 FEB 2025 20:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  14 FEB 2025 12:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -696,47 +696,65 @@ LaTeX Font Info:    Font shape `T1/txss/m/it' in size <9> not available
 LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
 (Font)              scaled to size 8.54997pt on input line 107.
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 10.40245pt on input line 108.
+(Font)              scaled to size 10.40245pt on input line 107.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <10.95> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 108.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 107.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 10.40245pt on input line 108.
-LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 143.
-LaTeX Font Info:    Font shape `T1/txss/m/it' in size <10> not available
-(Font)              Font shape `T1/txss/m/sl' tried instead on input line 143.
-LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
-(Font)              scaled to size 9.49997pt on input line 143.
+(Font)              scaled to size 10.40245pt on input line 107.
 
-Overfull \hbox (2.38593pt too wide) detected at line 175
+Underfull \hbox (badness 1472) in paragraph at lines 148--149
+[]\T1/txr/m/n/10 Compute an-a-lyt-i-cal ex-pres-sions for the matter-radiation
+ []
+
+LaTeX Font Info:    Font shape `T1/txss/m/n' will be
+(Font)              scaled to size 9.49997pt on input line 158.
+LaTeX Font Info:    Font shape `T1/txss/m/it' in size <10> not available
+(Font)              Font shape `T1/txss/m/sl' tried instead on input line 158.
+LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
+(Font)              scaled to size 9.49997pt on input line 158.
+
+Overfull \hbox (2.38593pt too wide) detected at line 188
 $\OML/txmi/m/it/10 H \OT1/txr/m/n/10 = \OML/txmi/m/it/10 H[][]:$  
  []
 
-(out/main.bbl)
 
-Package hyperref Warning: Suppressing link with empty target on input line 499.
+Underfull \hbox (badness 2326) in paragraph at lines 256--258
+\T1/txr/m/n/10 and that the Uni-verse is ra-di-a-tion dom-i-nated be-fore this
+ []
+
+
+Underfull \hbox (badness 4316) in paragraph at lines 256--258
+\T1/txr/m/n/10 point. This lets us ig-nore the mat-ter and dark en-ergy
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 258.
 
 [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
-] (out/main.aux
+] (out/main.bbl)
+
+Package hyperref Warning: Suppressing link with empty target on input line 652.
+
+[2] (out/main.aux
 
 Package natbib Warning: Citation `Armadillo' multiply defined.
 
 ) ) 
 Here is how much of TeX's memory you used:
- 16226 strings out of 474116
- 258573 string characters out of 5743682
- 1953187 words of memory out of 5000000
- 38318 multiletter control sequences out of 15000+600000
- 625115 words of font info for 132 fonts, out of 8000000 for 9000
+ 16267 strings out of 474116
+ 259104 string characters out of 5743682
+ 1965187 words of memory out of 5000000
+ 38326 multiletter control sequences out of 15000+600000
+ 629184 words of font info for 138 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,14n,93p,1301b,471s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (1 page, 58235 bytes).
+ 87i,14n,93p,1301b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on out/main.pdf (2 pages, 78268 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 146 PDF objects out of 1000 (max. 8388607)
+ 122 compressed objects within 2 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

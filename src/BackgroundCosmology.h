@@ -48,13 +48,14 @@ class BackgroundCosmology{
     void info() const;
 
     // Do all the solving
-    void solve();
+    void solve(bool eta = true, bool t = false, bool timing = true);
 
     // Output some results to file
-    void output(const std::string filename) const;
+    void output(const std::string filename, bool t = false, bool detadx = false, bool distances = false, bool TCMB = false) const;
 
     // Get functions that we must implement
     double eta_of_x(double x) const;
+    double detadx_of_x(double x) const;
     double t_of_x(double x) const;
     double H_of_x(double x) const;
     double Hp_of_x(double x) const;
@@ -76,9 +77,9 @@ class BackgroundCosmology{
     double get_r_of_x(double x) const;
 
     // Distance measures
+    double get_comoving_distance_of_x(double x) const;
     double get_luminosity_distance_of_x(double x) const;
     double get_angular_diameter_distance_of_x(double x) const;
-    double get_comoving_distance_of_x(double x) const;
 
 };
 
