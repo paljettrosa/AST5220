@@ -300,12 +300,13 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xsssl.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxphvro.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxsssl.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xr.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xss.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxphvr.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxss.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txmi.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxmi.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmri.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txr.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xr.vf
 INPUT out/main.bbl
 INPUT out/main.bbl
 INPUT out/main.bbl
@@ -330,10 +331,6 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txsyc.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txsyc.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txexa.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txexa.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txr.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xr.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xr.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
@@ -343,7 +340,6 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb

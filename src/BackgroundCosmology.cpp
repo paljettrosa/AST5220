@@ -120,11 +120,21 @@ double BackgroundCosmology::dHpdx_of_x(double x) const{
 double BackgroundCosmology::ddHpddx_of_x(double x) const{
   double Hp = Hp_of_x(x);
   double dHpdx = dHpdx_of_x(x);
-  double ddHpddx = pow(H0, 2)/(2.*Hp) *
-                   ((OmegaB + OmegaCDM)*exp(-x) + 
-                    4.*(OmegaR + OmegaNu)*exp(-2.*x) + 
-                    4.*OmegaLambda*exp(2.*x) -
-                    dHpdx/(2*Hp));
+  // double ddHpddx = pow(H0, 2)/(2.*Hp) *
+  //                  ((OmegaB + OmegaCDM)*exp(-x) + 
+  //                   4.*(OmegaR + OmegaNu)*exp(-2.*x) + 
+  //                   4.*OmegaLambda*exp(2.*x) -
+  //                   dHpdx/(2*Hp));
+  double ddHpddx = pow(H0, 2)/Hp *
+                   ((OmegaB + OmegaCDM)*exp(-x)/2. + 
+                    2.*(OmegaR + OmegaNu)*exp(-2.*x) + 
+                    2.*OmegaLambda*exp(2.*x) -
+                    pow(dHpdx, 2)/pow(H0, 2));
+  // double ddHpddx = H0/2. *
+  //                  (((OmegaB + OmegaCDM)*exp(-x) + 4.*(OmegaR + OmegaNu)*exp(-2.*x) + 4.*OmegaLambda*exp(2.*x)) /
+  //                   sqrt((OmegaB + OmegaCDM)*exp(-x) + (OmegaR + OmegaNu)*exp(-2.*x) + OmegaK + OmegaLambda*exp(2.*x)) -
+  //                   1./2. * pow((OmegaB + OmegaCDM)*exp(-x) + 2.*(OmegaR + OmegaNu)*exp(-2.*x) - 2.*OmegaLambda*exp(2.*x), 2) /
+  //                   pow((OmegaB + OmegaCDM)*exp(-x) + (OmegaR + OmegaNu)*exp(-2.*x) + OmegaK + OmegaLambda*exp(2.*x), 3./2.));
   return ddHpddx;
 }
 
@@ -183,7 +193,7 @@ double BackgroundCosmology::get_r_of_x(double x) const{
   if (OmegaK == 0.) {
     r = chi;
   }
-  else if (OmegaK < 0) {
+  else if (OmegaK < 0.) {
     r = chi *
         sin(sqrt(abs(OmegaK))*H0*chi/Constants.c) /
         (sqrt(abs(OmegaK))*H0*chi/Constants.c);

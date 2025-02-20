@@ -1,26 +1,24 @@
 # Fdb version 4
-["bibtex out/main"] 1739524245.32202 "out/main.aux" "out/main.bbl" "out/main" 1739533118.14147 0
+["bibtex out/main"] 1739903919.54788 "out/main.aux" "out/main.bbl" "out/main" 1739904909.3105 0
   "./aa.bst" 1728412657.75515 32101 d07be6eccf1293b463b353311acc9bc2 ""
   "./references.bib" 1730472815.10474 7691 87ffdf4cafb050de10c7651b69cd3cd1 ""
-  "out/main.aux" 1739533117.72931 2474 be606cb3bf699956f4e72fe3f408ed13 "pdflatex"
+  "out/main.aux" 1739904908.90196 2181 e26947c0449212b5bf5b43a0ddc51028 "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1739533116.57759 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1739533118.14171 0
-  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1739533116.06907 50267 a3bbbc05709c6e5763119f1b990b44ea ""
+["pdflatex"] 1739904907.70139 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1739904909.31071 0
+  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1739904905.75863 56167 68ac223d79cabcc9dcfb0ba0c37aea00 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxbss.tfm" 1136768653 952 8af6d4411025237a8a19c5fe76c48519 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxmi.tfm" 1136768653 1056 e2202af076e43d03fc17f87e104021b0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxphvb.tfm" 1136768653 4548 1ffa7e4f8cec4f54428bd6e887feff07 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxphvr.tfm" 1136768653 4748 767b775b8de19d97ba9256ce2b48e057 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxphvro.tfm" 1136768653 4964 9484ade2f7ca166fd2b0a8266351209c ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm" 1136768653 4452 0fd0a792eaab7113e4d4f1b941ff0367 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmri.tfm" 1136768653 4640 ce59980bcbe9e6236fab46d0b5212c7e ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm" 1136768653 1004 c0e991f864f31f017ea4ff9e451b76d4 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxss.tfm" 1136768653 952 9553fec7f8724dea5f23bcd5d8725907 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxsssl.tfm" 1136768653 1012 8cc6548f651cb7d6018c40ec4a405a18 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xbss.tfm" 1136768653 6700 9f7ab5807b4ea0f94f86ef51654456a0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xr.tfm" 1136768653 6716 6d25a377562601272906e3bfe6b2817a ""
@@ -46,7 +44,6 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb" 1136849748 45458 a3faba884469519614ca56ba5f6b1de1 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xbss.vf" 1136768653 2140 53a6b204134ca23b688a5eb135473f18 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xr.vf" 1136768653 2140 99e5b3a34695df6221a167ffa8b498d6 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xss.vf" 1136768653 2140 1f9dbe1be7b322ce3d2dc5796a8e88ed ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xsssl.vf" 1136768653 2148 3b03d03d82cf6e8c21b92d2903f15dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txmi.vf" 1232065820 960 cfcc9d587b40b769f64408b3ca115941 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txr.vf" 1136768653 904 e582cae2d8ae3f48a0a520440ebcdb51 ""
@@ -141,10 +138,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727209366 8221429 db52235156dd1f5fc2399dadb68c726f ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "aa.cls" 1730742293.38127 63451 828ab9062c4cddbc457195257b2bb5eb ""
-  "main.tex" 1739533116.06907 50267 a3bbbc05709c6e5763119f1b990b44ea ""
-  "out/main.aux" 1739533117.72931 2474 be606cb3bf699956f4e72fe3f408ed13 "pdflatex"
-  "out/main.bbl" 1739524245.53333 318 907e39180751223994129baf8db6fe51 "bibtex out/main"
-  "out/main.out" 1739533117.73011 971 ad97fd031b982889210f21fcffef7dd0 "pdflatex"
+  "main.tex" 1739904905.75863 56167 68ac223d79cabcc9dcfb0ba0c37aea00 ""
+  "out/main.aux" 1739904908.90196 2181 e26947c0449212b5bf5b43a0ddc51028 "pdflatex"
+  "out/main.bbl" 1739903919.7051 318 907e39180751223994129baf8db6fe51 "bibtex out/main"
+  "out/main.out" 1739904908.90286 608 e4450507108e95dcec8e73a1d17313b7 "pdflatex"
   (generated)
   "out/main.aux"
   "out/main.log"

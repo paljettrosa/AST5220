@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  14 FEB 2025 12:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  18 FEB 2025 19:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -718,43 +718,56 @@ $\OML/txmi/m/it/10 H \OT1/txr/m/n/10 = \OML/txmi/m/it/10 H[][]:$
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 256--258
-\T1/txr/m/n/10 and that the Uni-verse is ra-di-a-tion dom-i-nated be-fore this
- []
-
-
-Underfull \hbox (badness 4316) in paragraph at lines 256--258
-\T1/txr/m/n/10 point. This lets us ig-nore the mat-ter and dark en-ergy
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 258.
+Package hyperref Warning: Suppressing link with empty target on input line 259.
 
 [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
-] (out/main.bbl)
+]
+Underfull \hbox (badness 2326) in paragraph at lines 273--288
+[][][][][][][] \T1/txr/m/n/10 At radiation-
+ []
 
-Package hyperref Warning: Suppressing link with empty target on input line 652.
 
-[2] (out/main.aux
+Underfull \hbox (badness 2326) in paragraph at lines 304--306
+\T1/txr/m/n/10 and that the Uni-verse is ra-di-a-tion dom-i-nated be-fore this
+ []
+
+
+Underfull \hbox (badness 4316) in paragraph at lines 304--306
+\T1/txr/m/n/10 point. This lets us ig-nore the mat-ter and dark en-ergy
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 377.
+
+[2]
+Overfull \hbox (4.14523pt too wide) in paragraph at lines 397--411
+[][][][][][] 
+ []
+
+(out/main.bbl)
+
+Package hyperref Warning: Suppressing link with empty target on input line 747.
+
+[3] (out/main.aux
 
 Package natbib Warning: Citation `Armadillo' multiply defined.
 
 ) ) 
 Here is how much of TeX's memory you used:
- 16267 strings out of 474116
- 259104 string characters out of 5743682
- 1965187 words of memory out of 5000000
- 38326 multiletter control sequences out of 15000+600000
- 629184 words of font info for 138 fonts, out of 8000000 for 9000
+ 16273 strings out of 474116
+ 259147 string characters out of 5743682
+ 1970187 words of memory out of 5000000
+ 38324 multiletter control sequences out of 15000+600000
+ 627807 words of font info for 136 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,14n,93p,1301b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (2 pages, 78268 bytes).
+ 87i,14n,93p,1301b,501s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on out/main.pdf (3 pages, 78940 bytes).
 PDF statistics:
- 146 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 149 PDF objects out of 1000 (max. 8388607)
+ 126 compressed objects within 2 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

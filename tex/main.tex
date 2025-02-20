@@ -217,12 +217,60 @@ The first and second derivatives of $\mathcal{H}$ with respect to $x$ are then \
   \left(\frac{\Omega_{m0}e^{-x} + 4\Omega_{r0}e^{-2x} + 4\Omega_{\Lambda0}e^{2x}}{\sqrt{\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}}\right.
   \\
   &\hspace{38pt}
-  \left.+ \frac{1}{2}\frac{\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} - 2\Omega_{\Lambda0}e^{2x}}{\left(\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}\right)^{3/2}}\right),
+  \left.- \frac{1}{2}\frac{\left(\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} - 2\Omega_{\Lambda0}e^{2x}\right)^2}{\left(\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}\right)^{3/2}}\right),
   \\
-  &= \frac{H_0^2}{2\mathcal{H}}\left(\Omega_{m0}e^{-x} + 4\Omega_{r0}e^{-2x} + 4\Omega_{\Lambda0}e^{2x}- \frac{1}{2\mathcal{H}}\frac{d\mathcal{H}}{dx}\right). \numberthis
+  &= \frac{H_0^2}{\mathcal{H}}\left[\frac{1}{2}\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} + 2\Omega_{\Lambda0}e^{2x}- \frac{1}{H_0^2}\left(\frac{d\mathcal{H}}{dx}\right)^2\right]. \numberthis
 \end{align*}
 
-\subsubsection{Important time stamps}
+
+\colorbox{Plum}{Derive expression using w instead?} \\
+\colorbox{Plum}{Move to the top/bottom?} \\
+\colorbox{Plum}{Connect to derivations above?} \\
+To test for numerical stability and accuracy, it is essential to compute analytical expressions that can be used for comparison. In the radiation dominated era we have
+\begin{equation}
+  \mathcal{H}_r \approx H_0\sqrt{\Omega_{r0}}e^{-x},
+\end{equation}
+and thus
+\begin{align}
+  \left(\frac{d\mathcal{H}}{dx}\right)_r &= -H_0\sqrt{\Omega_{r0}}e^{-x}=-\mathcal{H}_r 
+  \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_r=-1,
+  \\
+  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_r &= H_0\sqrt{\Omega_{r0}}e^{-x}=\mathcal{H}_r
+  \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_r=1.
+\end{align}
+Similarly, we have
+% \begin{align}
+%   \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
+%   \\
+%   \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{1}{2}H_0\sqrt{\Omega_{m0}e^{-x}}=-\frac{\mathcal{H}_m}{2} 
+%   \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
+%   \\
+%   \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{1}{4}H_0\sqrt{\Omega_{m0}e^{-x}}=\frac{\mathcal{H}_m}{4}
+%   \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
+% \end{align}
+\begin{align}
+  \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
+  \\
+  \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{\mathcal{H}_m}{2} 
+  \hspace{5pt}\Leftrightarrow\hspace{10pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
+  \\
+  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{\mathcal{H}_m}{4}
+  \hspace{12pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
+\end{align}
+in the matter dominated era, and
+\begin{equation}
+  \mathcal{H}_\Lambda = \left(\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = H_0\sqrt{\Omega_{\Lambda0}}e^{x}
+\end{equation}
+in the dark energy dominated era. From the latter it is obvious that
+\begin{equation}
+  \left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = 1.
+\end{equation} 
+
+
+
+
+
+\colorbox{Plum}{only calculate x and z here? do it different?}
 % Radiation-matter equality occured at a very high redshift, hence the dark energy component in the Friedmann equation can safely be ignored. Assuming no curvature, we thus have
 % \begin{equation}
 %   H_{rm} \approx H_0\sqrt{\Omega_{m0}e^{-3x} + \Omega_{r0}e^{-4x}},
@@ -303,62 +351,109 @@ Obviously, $t_\text{acc}<t_{m\Lambda}$, so we can make the same approximation th
 \begin{equation}
   t_\text{acc} = t_{rm} + \int^{x_\text{acc}}_{x_{rm}}\frac{dx}{H_0\sqrt{\Omega_{m0}e^{-3x}}} = \frac{1}{3H_0}\left(\sqrt{\frac{2}{\Omega_{\Lambda0}}} -\frac{\Omega_{r0}^{3/2}}{2\Omega_{m0}^2}\right).
 \end{equation}
-\colorbox{Plum}{maybe do this derivation more thorough}
+\colorbox{Plum}{maybe do this derivation more thorough/different}
 
 
-\subsubsection{Approximate expressions}
-To test for numerical stability and accuracy, it is essential to compute analytical expressions that can be used for comparison. In the radiation dominated era we have
+
+The cosmic time is related to our time variable $x$ through
 \begin{equation}
-  \mathcal{H}_r \approx H_0\sqrt{\Omega_{r0}}e^{-x},
+  \frac{dt}{dx} = \frac{dt}{da}\frac{da}{dx} = \frac{a}{\dot{a}} = \frac{1}{H}.
 \end{equation}
-and thus
-\begin{align}
-  \left(\frac{d\mathcal{H}}{dx}\right)_r &= -H_0\sqrt{\Omega_{r0}}e^{-x}=-\mathcal{H}_r 
-  \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_r=-1,
+Thus, for a universe dominated by a single component with equation of state $w_i$ the cosmic time $t$ is given by
+\begin{equation}
+  t = \int_0^t dt' = \int_{-\infty}^{x}\frac{dx'}{H_0\sqrt{\Omega_{i0}e^{-3(1+w_i)x'}}}.
+\end{equation}
+When the Universe transitions between an era where its energy density is dominated by some component $\rho_j$ to some other component $\rho_i$, we may neglect all other components and compute an approximate expression for the cosmic time as function of $x$ by writing
+\begin{equation}
+  t_i(x) \approx t_{j,i} + \int_{x_{j,i}}^{x}\frac{dx'}{H_0\sqrt{\Omega_{i0}e^{-3(1+w_i)x'}}},
+\end{equation}
+where $x_{j,i}$ and $t_{j,i}$ correspond to their values when $\rho_j=\rho_i$. For radiation we simply have $x_{j,i}=-\infty$ and thus $t_{j,i}=0$, since the very early Universe was filled with relativistic particles, hence
+\begin{equation}
+  t_r(x) = \int_{{-\infty}}^{x}\frac{dx'}{H_0\sqrt{\Omega_{r0}e^{-4x'}}} = \frac{1}{2H_0\sqrt{\Omega_{r0}e^{-4x}}}.
+\end{equation}
+We see that radiation-matter equality occurs at
+\begin{equation}
+  t_{rm} = t_r(x_{rm}) = \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2},
+\end{equation}
+and for matter it then follows
+\begin{align*}
+  t_m(x) &\approx t_{rm} + \int_{x_{rm}}^{x}\frac{dx'}{H_0\sqrt{\Omega_{m0}e^{-3x'}}}, 
   \\
-  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_r &= H_0\sqrt{\Omega_{r0}}e^{-x}=\mathcal{H}_r
-  \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_r=1.
-\end{align}
-Similarly, we have
+  &= \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2}+\frac{2}{3H_0}\left[\frac{1}{\sqrt{\Omega_{m0}e^{-3x}}} - \frac{\Omega_{r0}^{3/2}}{H_0\Omega_{m0}^2} \right],
+  \\
+  &= \frac{1}{3H_0}\left[\frac{2}{\sqrt{\Omega_{m0}e^{-3x}}} - \frac{\Omega_{r0}^{3/2}}{2\Omega^2_{m0}} \right], \numberthis
+\end{align*}
+with matter-dark energy equality occuring at
+\begin{equation}
+  t_{m\Lambda} = \frac{1}{3H_0}\left[\frac{2}{\sqrt{\Omega_{\Lambda0}}} - \frac{\Omega_{r0}^{3/2}}{2\Omega^2_{m0}} \right]
+\end{equation}
+Lastly, for dark energy we have
+\begin{align*}
+  t_\Lambda(x) &\approx t_{m\Lambda} + \int_{x_{m\Lambda}}^{x}\frac{dx'}{H_0\sqrt{\Omega_{\Lambda0}}}, 
+  \\
+  &= \frac{1}{3H_0}\left[\frac{2}{\sqrt{\Omega_{\Lambda0}}} - \frac{\Omega_{r0}^{3/2}}{2\Omega^2_{m0}} \right] + \frac{1}{H_0\sqrt{\Omega_{\Lambda0}}}\left[x - \frac{1}{3}\log\left(\frac{\Omega_{m0}}{\Omega_{\Lambda0}}\right)\right],
+  \\
+  &= \frac{1}{H_0\sqrt{\Omega_{\Lambda0}}}\left[x+\frac{2}{3}-\frac{1}{3}\log\left(\frac{\Omega_{m0}}{\Omega_{\Lambda0}}\right)-\frac{\sqrt{\Omega_{\Lambda0}}\Omega_{r0}^{3/2}}{6\Omega^2_{m0}}\right]. \numberthis
+\end{align*}
+\colorbox{Plum}{comment that the dependencies between a and t are as expected}
+% Furthermore, we can compute the expected evolution of the scale factor $a(t)$ \colorbox{Plum}{or just x?} and compare this to the numerical solution. In the different regimes we have
 % \begin{align}
-%   \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
+%   \left(\frac{da}{dt}\right)_r &\approx H_0\frac{\sqrt{\Omega_{r0}}}{a}
+%   \hspace{12pt}\Rightarrow\hspace{5pt} a \propto t^{1/2},
 %   \\
-%   \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{1}{2}H_0\sqrt{\Omega_{m0}e^{-x}}=-\frac{\mathcal{H}_m}{2} 
-%   \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
+%   \left(\frac{da}{dt}\right)_m &\approx H_0\frac{\sqrt{\Omega_{m0}}}{a^{1/2}}
+%   \hspace{9.5pt}\Rightarrow\hspace{5pt} a \propto t^{2/3},
 %   \\
-%   \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{1}{4}H_0\sqrt{\Omega_{m0}e^{-x}}=\frac{\mathcal{H}_m}{4}
-%   \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
+%   \left(\frac{da}{dt}\right)_\Lambda &\approx H_0\sqrt{\Omega_{\Lambda0}}\,a
+%   \hspace{5pt}\Rightarrow\hspace{5pt} a \propto e^{H_0\sqrt{\Omega_{\Lambda0}}t},
 % \end{align}
-\begin{align}
-  \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
-  \\
-  \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{\mathcal{H}_m}{2} 
-  \hspace{5pt}\Leftrightarrow\hspace{10pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
-  \\
-  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{\mathcal{H}_m}{4}
-  \hspace{12pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
-\end{align}
-in the matter dominated era, and
-\begin{equation}
-  \mathcal{H}_\Lambda = \left(\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = H_0\sqrt{\Omega_{\Lambda0}}e^{x}
-\end{equation}
-in the dark energy dominated era. From the latter it is obvious that
-\begin{equation}
-  \left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = 1.
-\end{equation} 
+% where I have used that $\mathcal{H}=aH = \dot{a}$. \colorbox{Plum}{do more thorough? t as function of x instead?}
 
-Furthermore, we can compute the expected evolution of the scale factor $a(t)$ \colorbox{Plum}{or just x?} and compare this to the numerical solution. In the different regimes we have
+These approximate expressions are interesting to have when analyzing the numerical results, as they point us toward the correct solution. We can derive analogous expressions for the conformal time $\eta$, and it is straight-forward to show that since
+\begin{equation}
+  \eta_i(x) \approx \eta_{j,i} + \int_{x_{j,i}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{i0}e^{-(1+3w_i)x'}}},
+\end{equation}
+we have \colorbox{Plum}{rephrase paragraph}.
 \begin{align}
-  \left(\frac{da}{dt}\right)_r &\approx H_0\frac{\sqrt{\Omega_{r0}}}{a}
-  \hspace{12pt}\Rightarrow\hspace{5pt} a \propto t^{1/2},
+  \eta_r(x) &= \frac{c}{H_0\sqrt{\Omega_{r0}e^{-2x}}},
   \\
-  \left(\frac{da}{dt}\right)_m &\approx H_0\frac{\sqrt{\Omega_{m0}}}{a^{1/2}}
-  \hspace{9.5pt}\Rightarrow\hspace{5pt} a \propto t^{2/3},
+  \eta_m(x) &= \frac{c}{H_0}\left[\frac{2}{\sqrt{\Omega_{m0}e^{-x}}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} \right],
   \\
-  \left(\frac{da}{dt}\right)_\Lambda &\approx H_0\sqrt{\Omega_{\Lambda0}}\,a
-  \hspace{5pt}\Rightarrow\hspace{5pt} a \propto e^{H_0\sqrt{\Omega_{\Lambda0}}t},
+  \eta_\Lambda(x) &= -\frac{c}{H_0}\left[\frac{1}{\sqrt{\Omega_{\Lambda0}e^{2x}}} +\frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} - \frac{3}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} \right],
 \end{align}
-where I have used that $\mathcal{H}=aH = \dot{a}$. \colorbox{Plum}{do more thorough?}
+with the conformal equality times:
+\begin{align}
+  \eta_{rm} &= \frac{c}{H_0}\frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}},
+  \\
+  \eta_{m\Lambda} &= \frac{c}{H_0}\left[\frac{2}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}\right].
+\end{align}
+
+% \colorbox{Plum}{include this?}
+% In an era dominated by a component with equation of state $w_i$ we have
+% \begin{equation}
+%   \eta_i(x) \approx \eta_{i-1}(x_{i,\text{start}}) + \int_{x_{i,\text{start}}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{i0}e^{-(1+3w_i)x'}}},
+% \end{equation}
+% where $x_{i,\text{start}}$ denotes the value of $x$ when the Universe first became dominated by component $i$, and $\eta_{i-1}(x_{i,\text{start}})$ is the (approximate) value of the conformal time, estimated using the expression for the previously dominating component. For radiation we simply have $x_{r,\text{start}}=-\infty$ and thus $\eta(x_{r,\text{start}})=0$, hence
+% \begin{equation}
+%   \eta_r(x) = \int_{{-\infty}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{r0}}e^{-x'}} = \frac{c}{H_0\sqrt{\Omega_{r0}}e^{-x}}.
+% \end{equation}
+% For matter it then follows
+% \begin{align*}
+%   \eta_m(x) &\approx \eta_r(x_{rm}) + \int_{x_{rm}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{m0}e^{-x'}}}, 
+%   \\
+%   &= \frac{c}{H_0}\frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}+\frac{2c}{H_0}\left[\frac{1}{\sqrt{\Omega_{m0}e^{-x}}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} \right],
+%   \\
+%   &= \frac{c}{H_0}\left[\frac{2}{\sqrt{\Omega_{m0}e^{-x}}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} \right], \numberthis
+% \end{align*}
+% and for dark energy we have
+% \begin{align*}
+%   \eta_\Lambda(x) &\approx \eta_m(x_{m\Lambda}) + \int_{x_{m\Lambda}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{\Lambda0}}e^{x'}}, 
+%   \\
+%   &= \frac{c}{H_0}\left[\frac{2}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}\right] - \frac{c}{H_0}\left[\frac{1}{\sqrt{\Omega_{\Lambda0}}e^{x}} - \frac{1}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}}\right],
+%   \\
+%   &= -\frac{c}{H_0}\left[\frac{1}{\sqrt{\Omega_{\Lambda0}}e^{x}} +\frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} - \frac{3}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} \right]. \numberthis
+% \end{align*}
+
 
 % TODO: Derive initial condition for eta, we start in radiation dominated era, eta should be zero at x = \infty, so that C = 0, and we get eta = c/(H_0\sqrt(\Omega_R))e^x which is basically c/aH = c/Hp
 
