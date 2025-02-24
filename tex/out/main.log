@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  18 FEB 2025 19:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  24 FEB 2025 21:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -649,125 +649,69 @@ Package hyperref Info: Link coloring ON on input line 39.
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for T1+txss on input line 107.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 68.
+
+[1
+
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+]
+LaTeX Font Info:    Trying to load font information for T1+txss on input line 68.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/t1txss.fd
 File: t1txss.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 16.41594pt on input line 107.
+(Font)              scaled to size 16.41594pt on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <17.28> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 107.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 16.41594pt on input line 107.
-LaTeX Font Info:    Trying to load font information for OT1+txr on input line 107.
+(Font)              scaled to size 16.41594pt on input line 68.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 68.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsya on input line 107.
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 68.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsya.fd
 File: utxsya.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyb on input line 107.
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 68.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsyb.fd
 File: utxsyb.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txmia on input line 107.
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 68.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxmia.fd
 File: utxmia.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyc on input line 107.
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 68.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 13.67995pt on input line 107.
+(Font)              scaled to size 13.67995pt on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <14.4> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 107.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 13.67995pt on input line 107.
+(Font)              scaled to size 13.67995pt on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 107.
+(Font)              scaled to size 8.54997pt on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <9> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 107.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 8.54997pt on input line 107.
-LaTeX Font Info:    Font shape `T1/txss/m/it' in size <9> not available
-(Font)              Font shape `T1/txss/m/sl' tried instead on input line 107.
-LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
-(Font)              scaled to size 8.54997pt on input line 107.
+(Font)              scaled to size 8.54997pt on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 10.40245pt on input line 107.
+(Font)              scaled to size 10.40245pt on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <10.95> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 107.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 10.40245pt on input line 107.
-
-Underfull \hbox (badness 1472) in paragraph at lines 148--149
-[]\T1/txr/m/n/10 Compute an-a-lyt-i-cal ex-pres-sions for the matter-radiation
- []
-
+(Font)              scaled to size 10.40245pt on input line 68.
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 158.
+(Font)              scaled to size 9.49997pt on input line 77.
 LaTeX Font Info:    Font shape `T1/txss/m/it' in size <10> not available
-(Font)              Font shape `T1/txss/m/sl' tried instead on input line 158.
+(Font)              Font shape `T1/txss/m/sl' tried instead on input line 77.
 LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
-(Font)              scaled to size 9.49997pt on input line 158.
-
-Overfull \hbox (2.38593pt too wide) detected at line 188
-$\OML/txmi/m/it/10 H \OT1/txr/m/n/10 = \OML/txmi/m/it/10 H[][]:$  
- []
+(Font)              scaled to size 9.49997pt on input line 77.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 259.
-
-[1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
-
-
-]
-Underfull \hbox (badness 2326) in paragraph at lines 273--288
-[][][][][][][] \T1/txr/m/n/10 At radiation-
- []
-
-
-Underfull \hbox (badness 2326) in paragraph at lines 304--306
-\T1/txr/m/n/10 and that the Uni-verse is ra-di-a-tion dom-i-nated be-fore this
- []
-
-
-Underfull \hbox (badness 4316) in paragraph at lines 304--306
-\T1/txr/m/n/10 point. This lets us ig-nore the mat-ter and dark en-ergy
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 377.
-
-[2]
-Overfull \hbox (4.14523pt too wide) in paragraph at lines 397--411
-[][][][][][] 
- []
-
-(out/main.bbl)
-
-Package hyperref Warning: Suppressing link with empty target on input line 747.
-
-[3] (out/main.aux
-
-Package natbib Warning: Citation `Armadillo' multiply defined.
-
-) ) 
-Here is how much of TeX's memory you used:
- 16273 strings out of 474116
- 259147 string characters out of 5743682
- 1970187 words of memory out of 5000000
- 38324 multiletter control sequences out of 15000+600000
- 627807 words of font info for 136 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 87i,14n,93p,1301b,501s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (3 pages, 78940 bytes).
-PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
- 126 compressed objects within 2 object streams
- 54 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+Package hyperref Warning: Suppressing link with empty target on input line 110

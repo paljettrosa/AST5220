@@ -24,11 +24,19 @@ BackgroundCosmology::BackgroundCosmology(
   //=============================================================================
 
   H0 = Constants.H0_over_h*h;
-  OmegaR = 2.*pow(M_PI, 2)/30. * 
+  OmegaR = 2.0*pow(M_PI, 2)/30.0 * 
            pow(Constants.k_b*TCMB, 4)/(pow(Constants.hbar, 3)*pow(Constants.c, 5)) * 
-           8.*M_PI*Constants.G/(3.*pow(H0, 2));
-  OmegaNu = Neff * 7./8. * pow(4./11., 4./3.) * OmegaR;
-  OmegaLambda = 1. - (OmegaB + OmegaCDM) - (OmegaR + OmegaNu) - OmegaK;
+           8.0*M_PI*Constants.G/(3.0*pow(H0, 2));
+  OmegaNu = Neff * 7.0/8.0 * pow(4.0/11.0, 4.0/3.0) * OmegaR;
+  OmegaLambda = 1.0 - (OmegaB + OmegaCDM) - (OmegaR + OmegaNu) - OmegaK;
+
+  //=============================================================================
+  // Derived analytical expressions for x
+  //=============================================================================
+
+  x_rm = log((OmegaR + OmegaNu) / (OmegaB + OmegaCDM));
+  x_acc = (1.0/3.0) * log((OmegaB + OmegaCDM) / (2.0*OmegaLambda));
+  x_mLambda = (1.0/3.0) * log((OmegaB + OmegaCDM) / OmegaLambda);
 }
 
 //====================================================
@@ -38,9 +46,7 @@ BackgroundCosmology::BackgroundCosmology(
 void BackgroundCosmology::solve(bool eta, bool t, bool timing){
   ODESolver ode;
   
-  Vector x_array;
-  const int npts = 1000;
-  x_array = Utils::linspace(x_start, x_end, npts);
+  Vector x_array = Utils::linspace(x_start, x_end, npts);
 
   if (eta) {
     if (timing) Utils::StartTiming("eta");
@@ -69,13 +75,13 @@ void BackgroundCosmology::solve(bool eta, bool t, bool timing){
     // The ODE for dt/dx
     ODEFunction dtdx = [&](double x, const double *t, double *dtdx){
       double H = H_of_x(x);
-      dtdx[0] = 1/H;
+      dtdx[0] = 1.0/H;
 
       return GSL_SUCCESS;
     };
     
     double H = H_of_x(x_start);
-    Vector t_ini {1/(2.*H)};
+    Vector t_ini {1.0/(2.0*H)};
 
     ode.solve(dtdx, x_array, t_ini);
     auto t_array = ode.get_data_by_component(0);
@@ -92,9 +98,9 @@ void BackgroundCosmology::solve(bool eta, bool t, bool timing){
 
 double BackgroundCosmology::H_of_x(double x) const{
   double H = H0 * 
-             sqrt((OmegaB + OmegaCDM)*exp(-3.*x) + 
-             (OmegaR + OmegaNu)*exp(-4.*x) + 
-             OmegaK*exp(-2.*x) + 
+             sqrt((OmegaB + OmegaCDM)*exp(-3.0*x) + 
+             (OmegaR + OmegaNu)*exp(-4.0*x) + 
+             OmegaK*exp(-2.0*x) + 
              OmegaLambda);
   return H;
 }
@@ -102,67 +108,57 @@ double BackgroundCosmology::H_of_x(double x) const{
 double BackgroundCosmology::Hp_of_x(double x) const{
   double Hp = H0 * 
               sqrt((OmegaB + OmegaCDM)*exp(-x) + 
-                   (OmegaR + OmegaNu)*exp(-2.*x) + 
+                   (OmegaR + OmegaNu)*exp(-2.0*x) + 
                    OmegaK + 
-                   OmegaLambda*exp(2.*x));
+                   OmegaLambda*exp(2.0*x));
   return Hp;
 }
 
 double BackgroundCosmology::dHpdx_of_x(double x) const{
   double Hp = Hp_of_x(x);
-  double dHpdx = - pow(H0, 2)/(2.*Hp) * 
+  double dHpdx = - pow(H0, 2)/(2.0*Hp) * 
                  ((OmegaB + OmegaCDM)*exp(-x) + 
-                  2.*(OmegaR + OmegaNu)*exp(-2.*x) - 
-                  2.*OmegaLambda*exp(2.*x));
+                  2.0*(OmegaR + OmegaNu)*exp(-2.0*x) - 
+                  2.0*OmegaLambda*exp(2.0*x));
   return dHpdx;
 }
 
 double BackgroundCosmology::ddHpddx_of_x(double x) const{
   double Hp = Hp_of_x(x);
   double dHpdx = dHpdx_of_x(x);
-  // double ddHpddx = pow(H0, 2)/(2.*Hp) *
-  //                  ((OmegaB + OmegaCDM)*exp(-x) + 
-  //                   4.*(OmegaR + OmegaNu)*exp(-2.*x) + 
-  //                   4.*OmegaLambda*exp(2.*x) -
-  //                   dHpdx/(2*Hp));
   double ddHpddx = pow(H0, 2)/Hp *
-                   ((OmegaB + OmegaCDM)*exp(-x)/2. + 
-                    2.*(OmegaR + OmegaNu)*exp(-2.*x) + 
-                    2.*OmegaLambda*exp(2.*x) -
+                   ((OmegaB + OmegaCDM)*exp(-x)/2.0 + 
+                    2.0*(OmegaR + OmegaNu)*exp(-2.0*x) + 
+                    2.0*OmegaLambda*exp(2.0*x) -
                     pow(dHpdx, 2)/pow(H0, 2));
-  // double ddHpddx = H0/2. *
-  //                  (((OmegaB + OmegaCDM)*exp(-x) + 4.*(OmegaR + OmegaNu)*exp(-2.*x) + 4.*OmegaLambda*exp(2.*x)) /
-  //                   sqrt((OmegaB + OmegaCDM)*exp(-x) + (OmegaR + OmegaNu)*exp(-2.*x) + OmegaK + OmegaLambda*exp(2.*x)) -
-  //                   1./2. * pow((OmegaB + OmegaCDM)*exp(-x) + 2.*(OmegaR + OmegaNu)*exp(-2.*x) - 2.*OmegaLambda*exp(2.*x), 2) /
-  //                   pow((OmegaB + OmegaCDM)*exp(-x) + (OmegaR + OmegaNu)*exp(-2.*x) + OmegaK + OmegaLambda*exp(2.*x), 3./2.));
   return ddHpddx;
 }
 
 double BackgroundCosmology::get_OmegaB(double x) const{ 
   if(x == 0.0) return OmegaB;
   double H = H_of_x(x);
-  double OmegaB_of_x = OmegaB / (exp(3.*x) * pow(H/H0, 2));
+  double OmegaB_of_x = OmegaB / (exp(3.0*x) * pow(H/H0, 2));
   return OmegaB_of_x;
 }
 
 double BackgroundCosmology::get_OmegaR(double x) const{ 
   if(x == 0.0) return OmegaR;
   double H = H_of_x(x);
-  double OmegaR_of_x = OmegaR / (exp(4.*x) * pow(H/H0, 2));
+  double OmegaR_of_x = OmegaR / (exp(4.0*x) * pow(H/H0, 2));
   return OmegaR_of_x;
 }
 
 double BackgroundCosmology::get_OmegaNu(double x) const{ 
   if(x == 0.0) return OmegaNu;
   double H = H_of_x(x);
-  double OmegaNu_of_x = OmegaNu / (exp(4.*x) * pow(H/H0, 2));
+  double OmegaNu_of_x = OmegaNu / (exp(4.0*x) * pow(H/H0, 2));
   return OmegaNu_of_x;
 }
 
 double BackgroundCosmology::get_OmegaCDM(double x) const{ 
   if(x == 0.0) return OmegaCDM;
   double H = H_of_x(x);
-  double OmegaCDM_of_x = OmegaCDM / (exp(3.*x) * pow(H/H0, 2));
+  double OmegaCDM_of_x = OmegaCDM / (exp(3.0*x) * pow(H/H0, 2));
   return OmegaCDM_of_x;
 }
 
@@ -176,12 +172,12 @@ double BackgroundCosmology::get_OmegaLambda(double x) const{
 double BackgroundCosmology::get_OmegaK(double x) const{ 
   if(x == 0.0) return OmegaK;
   double H = H_of_x(x);
-  double OmegaK_of_x = OmegaK / (exp(2.*x) * pow(H/H0, 2));
+  double OmegaK_of_x = OmegaK / (exp(2.0*x) * pow(H/H0, 2));
   return OmegaK_of_x;
 }
 
 double BackgroundCosmology::get_comoving_distance_of_x(double x) const{
-  double eta0 = eta_of_x(0.);
+  double eta0 = eta_of_x(0.0);
   double eta = eta_of_x(x);
   double chi = eta0 - eta;
   return chi;
@@ -190,10 +186,10 @@ double BackgroundCosmology::get_comoving_distance_of_x(double x) const{
 double BackgroundCosmology::get_r_of_x(double x) const{
   double chi = get_comoving_distance_of_x(x);
   double r;
-  if (OmegaK == 0.) {
+  if (OmegaK == 0.0) {
     r = chi;
   }
-  else if (OmegaK < 0.) {
+  else if (OmegaK < 0.0) {
     r = chi *
         sin(sqrt(abs(OmegaK))*H0*chi/Constants.c) /
         (sqrt(abs(OmegaK))*H0*chi/Constants.c);
@@ -268,13 +264,39 @@ void BackgroundCosmology::info() const{
 } 
 
 //====================================================
+// Print out important values of t and eta
+//====================================================
+void BackgroundCosmology::print_times() const{
+  std::cout << "\n";
+  std::cout << "Radiation-matter equality:\n";
+  std::cout << "t:      " << t_of_x(x_rm)/Constants.kyr << " kyr\n";
+  std::cout << "eta/c:  " << eta_of_x(x_rm)/Constants.c/Constants.Myr << " Myr\n";
+  std::cout << "eta:    " << eta_of_x(x_rm)/Constants.Mpc << " Mpc\n";
+
+  std::cout << "\n";
+  std::cout << "Onset of acceleration:\n";
+  std::cout << "t:      " << t_of_x(x_acc)/Constants.Gyr << " Gyr\n";
+  std::cout << "eta/c:  " << eta_of_x(x_acc)/Constants.c/Constants.Gyr << " Gyr\n";
+  std::cout << "eta:    " << eta_of_x(x_acc)/Constants.Gpc << " Gpc\n";
+
+  std::cout << "\n";
+  std::cout << "Matter-dark energy equality:\n";
+  std::cout << "t:      " << t_of_x(x_mLambda)/Constants.Gyr << " Gyr\n";
+  std::cout << "eta/c:  " << eta_of_x(x_mLambda)/Constants.c/Constants.Gyr << " Gyr\n";
+  std::cout << "eta:    " << eta_of_x(x_mLambda)/Constants.Gpc << " Gpc\n";
+
+  std::cout << "\n";
+  std::cout << "Today:\n";
+  std::cout << "t:      " << t_of_x(0.0)/Constants.Gyr << " Gyr\n";
+  std::cout << "eta/c:  " << eta_of_x(0.0)/Constants.c/Constants.Gyr << " Gyr\n";
+  std::cout << "eta:    " << eta_of_x(0.0)/Constants.Gpc << " Gpc\n";
+}
+
+//====================================================
 // Output some data to file
 //====================================================
-void BackgroundCosmology::output(const std::string filename, bool t, bool detadx, bool distances, bool TCMB) const{
-  const double x_min = -20.0;
-  const double x_max =  5.0;
-  const int    n_pts =  100'000;
-  
+void BackgroundCosmology::output(const double x_min, const double x_max, const std::string filename, bool t, bool detadx, bool distances, bool TCMB) const{
+  const int n_pts = static_cast<int>(x_max - x_min)*100 + 1; 
   Vector x_array = Utils::linspace(x_min, x_max, n_pts);
 
   std::ofstream fp(filename.c_str());

@@ -55,236 +55,200 @@
 % 5 {} token are mandatory
  
   \abstract
-%   % context heading (optional)
-%   % {} leave it empty if necessary  
-%    {To investigate the physical nature of the `nuc\-leated instability' of
-%    proto giant planets, the stability of layers
-%    in static, radiative gas spheres is analysed on the basis of Baker's
-%    standard one-zone model.}
-%   % aims heading (mandatory)
-%    {It is shown that stability
-%    depends only upon the equations of state, the opacities and the local
-%    thermodynamic state in the layer. Stability and instability can
-%    therefore be expressed in the form of stability equations of state
-%    which are universal for a given composition.}
-%   % methods heading (mandatory)
-%    {The stability equations of state are
-%    calculated for solar composition and are displayed in the domain
-%    $-14 \leq \lg \rho / \mathrm{[g\, cm^{-3}]} \leq 0 $,
-%    $ 8.8 \leq \lg e / \mathrm{[erg\, g^{-1}]} \leq 17.7$. These displays
-%    may be
-%    used to determine the one-zone stability of layers in stellar
-%    or planetary structure models by directly reading off the value of
-%    the stability equations for the thermodynamic state of these layers,
-%    specified
-%    by state quantities as density $\rho$, temperature $T$ or
-%    specific internal energy $e$.
-%    Regions of instability in the $(\rho,e)$-plane are described
-%    and related to the underlying microphysical processes.}
-%   % results heading (mandatory)
-%    {Vibrational instability is found to be a common phenomenon
-%    at temperatures lower than the second He ionisation
-%    zone. The $\kappa$-mechanism is widespread under `cool'
-%    conditions.}
-%   % conclusions heading (optional), leave it empty if necessary 
-%    {}
 
-%    \keywords{giant planet formation --
-%                 $\kappa$-mechanism --
-%                 stability of gas spheres
-%                }
-{AIMS}
-{METHODS}
-{RESULTS}
-{}\keywords{KEYWORDS}
-
-
-  % This paper presents a cosmological N-body simulation to investigate the formation and evolution of dark matter halos across cosmic time, using a 20 Mpc simulation box with \(64^3\) particles. The simulation covers redshifts from \( z \approx 12.9 \) to \( z = 0 \), allowing for analysis of the halo mass function (HMF) and dark matter density profiles at various stages. The HMF results are fitted with the Press-Schechter and Sheth-Tormen models, with the latter providing a closer match to high-mass halos due to its consideration of ellipsoidal collapse. At \( z = 0 \), the Sheth-Tormen model predicts a number density for halos of \( \sim 10^{-2} \, h^2 \, \text{Mpc}^{-3} \) for masses around \( 10^{12} \, M_\odot \), closely matching the simulation data. Additionally, density profiles were well-represented by the Navarro-Frenk-White profile, showing “cuspy” central regions in line with theoretical predictions. Comparison with a larger simulation (40 Mpc, \(128^3\) particles) confirmed that higher volumes reduce sampling variance, especially for massive halos. This project's findings support the hierarchical model of structure formation and highlight the importance of resolution and volume in dark matter simulations.
+  {}
+  {AIMS}
+  {METHODS}
+  {RESULTS}
+  {}\keywords{KEYWORDS}
 
    \maketitle
 %
 %-------------------------------------------------------------------
 \section{Introduction}\label{sec: introduction}
+\colorbox{Plum}{mention here that we use Planck 2018} \\
+\colorbox{Plum}{mention that theory is from the website}
 
 \section{Milestone I}\label{sec: milestone I}
+The evolution of the universe is governed by the interplay between different energy components, including radiation, matter, and dark energy. Understanding how these components influence the expansion history is essential for predicting the large-scale structure of the Universe and the Cosmic Microwave Background (CMB) fluctuations. This milestone focuses on modeling the background evolution of the universe using the Friedmann equations, which describe how the Hubble parameter $H$, and thus time and distance measures, evolve with redshift. I will implement a numerical framework that takes in cosmological parameters and computes such key background quantities, and use this to fit to measurements of supernova luminosity distances. \colorbox{Plum}{word differently?} My approach involves numerically solving the Friedmann equations and interpolating the results using splines to extract meaningful physical insights.
 
-%    In the \emph{nucleated instability\/} (also called core
-%    instability) hypothesis of giant planet
-%    formation, a critical mass for static core  envelope
-%    protoplanets has been found. \citet{mizuno} determined
-%    the critical mass of the core to be about $12 \,M_\oplus$
-%    ($M_\oplus=5.975 \times 10^{27}\,\mathrm{g}$ is the Earth mass), which
-%    is independent of the outer boundary
-%    conditions and therefore independent of the location in the
-%    solar nebula. This critical value for the core mass corresponds
-%    closely to the cores of today's giant planets.
-
-%    Although no hydrodynamical study has been available many workers
-%    conjectured that a collapse or rapid contraction will ensue
-%    after accumulating the critical mass. The main motivation for
-%    this article
-%    is to investigate the stability of the static envelope at the
-%    critical mass. With this aim the local, linear stability of static
-%    radiative gas  spheres is investigated on the basis of Baker's
-%    (\citeyear{baker}) standard one-zone model. 
-
-%    Phenomena similar to the ones described above for giant planet
-%    formation have been found in hydrodynamical models concerning
-%    star formation where protostellar cores explode
-%    (Tscharnuter \citeyear{tscharnuter}, Balluch \citeyear{balluch}),
-%    whereas earlier studies found quasi-steady collapse flows. The
-%    similarities in the (micro)physics, i.e., constitutive relations of
-%    protostellar cores and protogiant planets serve as a further
-%    motivation for this study.
-
-% By conducting this project, I aim to investigate these discrepancies and improve our understanding of the formation of dark matter halos. By comparing the halo mass function and density profiles derived from simulations with theoretical models, we can test and refine our understanding of cosmic structure formation and dark matter's role in it.
-
-% This project will simulate different realizations of the universe, compute the dark matter halo mass function, and analyze the density profiles of halos to explore these theoretical and observational inconsistencies. Numerical simulations provide a powerful tool to investigate how well theoretical models match the real universe, guiding us toward more accurate representations of dark matter-driven structure formation.
-\colorbox{Plum}{Introduction}
-
-\begin{enumerate}
-  \item [-] Make a test function in the BackgroundCosmology class to check that the density parameters today sum up to unity.
-  \item [-] Make a plot showing that $\eta'\mathcal{H}/c=1$ for all $x$ to test $\eta$.
-  \item [-] Compute analytical expressions for the matter-radiation equality, matter-dark energy equality (see exercises), and the time when the Universe starts accelerating. These should be functions of $x$, $z$ and $t$.
-  \item [-] Compute numerical values for these times, and present them in a table.
-  \item [-] Compute numerical values for the age of the Universe today $t(x=0)$ in Gigayears, and the conformal time today $\eta(x=0)/c$.
-  \item [-] Compute analytical expressions for $\mathcal{H}'/\mathcal{H}$ and $\mathcal{H}''/\mathcal{H}$ in the radiation-, matter-, and dark energy dominated eras (see exercises).
-  \item [-] Alternatively, solve the system by setting $\Omega_{r0}$ to 1 and the rest to zero up to the matter-radiation equality, then do the same for $\Omega_m0$ up to the matter-dark energy equality, and then the same for $\Omega_{\Lambda0}$.
-  \item [-] Either way it is done, plot analytical expectations vs. numerical results for $\mathcal{H}'/\mathcal{H}$ and $\mathcal{H}''/\mathcal{H}$.
-  \item [-] Make a plot showing $a(t)$ vs. $t$ along with analytical expectations in the radiation-, matter- and dark energy dominated eras (compute these expressions the same way as for the last points).
-  \item [-] Do the neutrino stuff if time and fun. 
-\end{enumerate}
+By completing this milestone, the goal is to establish a robust computational framework that will serve as the foundation for later stages of the project, where I will analyze perturbations and extract information about the CMB anisotropies. The results from this milestone will therefore be essential for constraining cosmological parameters using observational data.
 
 \subsection{Theory}\label{subsec: I theory}
-% The scaled Hubble parameter is given by
-% \begin{equation}
-%   \mathcal{H} = aH 
-%   = H_0\sqrt{\left(\Omega_{b0} + \Omega_\text{CDM0}\right)a^{-1} 
-%   + \left(\Omega_{\gamma0} + \Omega_{\nu0}\right)a^{-2}
-%   + \Omega_{k0} + \Omega_{\Lambda0}a^2},
-% \end{equation}
-% or in terms of our time variable $x=\log a$:
-% \begin{equation}
-%   \mathcal{H} = H_0
-%   \sqrt{\left(\Omega_{b0} + \Omega_\text{CDM0}\right)e^{-x} 
-%   + \left(\Omega_{\gamma0} + \Omega_{\nu0}\right)e^{-2x}
-%   + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}.
-% \end{equation}
-% The first and second derivatives with respect to $x$ are then
-% \begin{align}
-%   \frac{d\mathcal{H}}{dx} &= \frac{H_0}{2}
-%   \frac{-\left(\Omega_{b0} + \Omega_\text{CDM0}\right)e^{-x} - 2\left(\Omega_{\gamma0} + \Omega_{\nu0}\right)e^{-2x} + 2\Omega_{\Lambda0}e^{2x}}
-%   {\sqrt{\left(\Omega_{b0} + \Omega_\text{CDM0}\right)e^{-x} 
-%   + \left(\Omega_{\gamma0} + \Omega_{\nu0}\right)e^{-2x}
-%   + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}},
-%   \\
-%   \frac{d^2\mathcal{H}}{dx^2} &= 
-% \end{align}
-The Hubble parameter is
+\subsubsection{Evolution of the Universe and the Hubble parameter}
+The expansion of the Universe is governed by General Relativity, with the large-scale dynamics described by the Friedmann-Lemaître-Robertson-Walker (FLRW) metric. Assuming a homogeneous and isotropic universe, the metric is given by
 \begin{equation}
-  H = H_0\sqrt{\left(\Omega_{b0} + \Omega_\text{CDM0}\right)a^{-3} 
-  + \left(\Omega_{\gamma0} + \Omega_{\nu0}\right)a^{-4}
-  + \Omega_{k0}a^{-2} + \Omega_{\Lambda0}}. \label{eq:H}
+    ds^2 = -c^2 dt^2 + a^2(t) \left[ \frac{dr^2}{1 - k r^2} + r^2 d\theta^2 + r^2 \sin^2\theta d\phi^2 \right],
 \end{equation}
-\colorbox{Plum}{TEXT}
-The scaled Hubble parameter is given by
-\begin{equation}
-  \mathcal{H} = aH, \label{eq:Hp}
-\end{equation}
-Thus, if we define $\Omega_{m0} = \Omega_{b0}+\Omega_\text{CDM0}$ and $\Omega_{r0} = \Omega_{\gamma0}+\Omega_{\nu0}$, and use our chosen time variable $x=\log a$ instead of $a$, the expressions \eqref{eq:H} and \eqref{eq:Hp} can equivalently be written as
-\begin{align}
-  H &= H_0
-  \sqrt{\Omega_{m0}e^{-3x} 
-  + \Omega_{r0}e^{-4x}
-  + \Omega_{k0}e^{-2x} + \Omega_{\Lambda0}},
-  \\
-  \mathcal{H} &= H_0
-  \sqrt{\Omega_{m0}e^{-x} 
-  + \Omega_{r0}e^{-2x}
-  + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}.
-\end{align}
-The first and second derivatives of $\mathcal{H}$ with respect to $x$ are then \colorbox{Plum}{correct expressions?}
-\begin{align*}
-  \frac{d\mathcal{H}}{dx} &= \frac{H_0}{2}
-  \frac{-\Omega_{m0}e^{-x} - 2\Omega_{r0}e^{-2x} + 2\Omega_{\Lambda0}e^{2x}}
-  {\sqrt{\Omega_{m0}e^{-x} 
-  + \Omega_{r0}e^{-2x}
-  + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}},
-  \\
-  &= -\frac{H_0^2}{2\mathcal{H}}\left(\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} - 2\Omega_{\Lambda0}e^{2x}\right), \numberthis
-  \\
-  \frac{d^2\mathcal{H}}{dx^2} &= \frac{H_0}{2}
-  \left(\frac{\Omega_{m0}e^{-x} + 4\Omega_{r0}e^{-2x} + 4\Omega_{\Lambda0}e^{2x}}{\sqrt{\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}}\right.
-  \\
-  &\hspace{38pt}
-  \left.- \frac{1}{2}\frac{\left(\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} - 2\Omega_{\Lambda0}e^{2x}\right)^2}{\left(\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}\right)^{3/2}}\right),
-  \\
-  &= \frac{H_0^2}{\mathcal{H}}\left[\frac{1}{2}\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} + 2\Omega_{\Lambda0}e^{2x}- \frac{1}{H_0^2}\left(\frac{d\mathcal{H}}{dx}\right)^2\right]. \numberthis
-\end{align*}
+where $a(t) = 1/(1+z)$ is the dimensionless scale factor, with $z$ being the cosmological redshift. The constant $k$ determines the curvature of the Universe ($k = 0$ for a flat universe, $k > 0$ for a closed universe, and $k < 0$ for an open universe). \colorbox{Plum}{explain scaling of a?}
 
+The evolution of $a(t)$ is governed by the Friedmann equation, which is derived from Einstein's field equations: \colorbox{Plum}{cite notes?}
+\begin{equation}
+    H^2 = \frac{8\pi G}{3} \sum_{i}\rho_i - \frac{k c^2}{a^2} \simeq \frac{8\pi G}{3} \sum_{i}\rho_i,
+\end{equation}
+Here, $H = \dot{a}/a$ is the Hubble parameter, and $\rho_i$ denotes the total energy density of some component (photons, baryons, etc.). In the second equality I have used that we can treat the curvature as its own component that is included in the sum, with energy density
+\begin{equation}
+  \rho_k = -\frac{3}{8\pi G}\frac{k c^2}{a^2}. \label{eq:rho k}
+\end{equation}
+It is essential to know not only how the curvature ``energy density'' scales with $a$, but the other components as well. To understand this, we start with the continuity equation for a perfect fluid, which is a very accurate description of the energy density components in the Universe on the largest scales, applied to a homogeneous and isotropic universe:
+\begin{equation}
+  \frac{d\rho}{dt} + 3H (\rho_i+ p_i) = \frac{d\rho}{dt} + \frac{3}{a}\frac{da}{dt} \rho_i(1 + w_i) = 0.
+\end{equation}
+Here, $p_i$ is the pressure of the fluid, and $w_i=p_i/\rho_i$ is the equation of state parameter, which is constant for the fluids considered in conventional cosmology. This differential equation is easily solved by separating variables and integrating, which gives us:
+\begin{equation}
+  \rho_i(a) = \rho_{i0} a^{-3(1+w_i)},
+\end{equation}
+where $\rho_{i0}$ is the present-day density.
 
-\colorbox{Plum}{Derive expression using w instead?} \\
-\colorbox{Plum}{Move to the top/bottom?} \\
-\colorbox{Plum}{Connect to derivations above?} \\
-To test for numerical stability and accuracy, it is essential to compute analytical expressions that can be used for comparison. In the radiation dominated era we have
+On universal scales, non-relativistic matter can essentially be treated as pressureless, hence $w_m = w_b=w_\text{CDM}=0$ and thus $\rho_m \propto a^{-3}$. This corresponds to the dilution of a density field in an expanding volume. Furthermore, neutrinos are so light that they can still be treated as relativistic (radiation), and we therefore have $w_r=w_\gamma=w_\nu=1/3$, which implies $\rho_r\propto a^{-4}$. Radiation is also diluted as the Universe expands, and the extra factor of $a^{-1}$ comes from redshifting of relativistic particles in an expanding universe. From eq. \eqref{eq:rho k} we indeed see that we can treat curvature as a perfect fluid with equation of state $w_k=-1/3$, while dark energy, represented by the cosmological constant $\Lambda$, remains constant in time, hence $w_\Lambda=-1$.
+
+A much more convenient way of writing the Friedmann equation can be derived by defining the critical density, which is the density required for a flat universe ($k=0$):
 \begin{equation}
-  \mathcal{H}_r \approx H_0\sqrt{\Omega_{r0}}e^{-x},
+  \rho_c = \frac{3 H^2}{8 \pi G}.
 \end{equation}
-and thus
-\begin{align}
-  \left(\frac{d\mathcal{H}}{dx}\right)_r &= -H_0\sqrt{\Omega_{r0}}e^{-x}=-\mathcal{H}_r 
-  \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_r=-1,
-  \\
-  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_r &= H_0\sqrt{\Omega_{r0}}e^{-x}=\mathcal{H}_r
-  \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_r=1.
-\end{align}
-Similarly, we have
-% \begin{align}
-%   \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
-%   \\
-%   \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{1}{2}H_0\sqrt{\Omega_{m0}e^{-x}}=-\frac{\mathcal{H}_m}{2} 
-%   \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
-%   \\
-%   \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{1}{4}H_0\sqrt{\Omega_{m0}e^{-x}}=\frac{\mathcal{H}_m}{4}
-%   \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
-% \end{align}
-\begin{align}
-  \mathcal{H}_m &= H_0\sqrt{\Omega_{m0}e^{-x}},
-  \\
-  \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{\mathcal{H}_m}{2} 
-  \hspace{5pt}\Leftrightarrow\hspace{10pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
-  \\
-  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{\mathcal{H}_m}{4}
-  \hspace{12pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
-\end{align}
-in the matter dominated era, and
+We may then define the dimensionless density parameters, which describe how much of the total energy density each component $i$ contributes:
 \begin{equation}
-  \mathcal{H}_\Lambda = \left(\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = H_0\sqrt{\Omega_{\Lambda0}}e^{x}
+  \Omega_i = \frac{\rho_{i}}{\rho_c}.
 \end{equation}
-in the dark energy dominated era. From the latter it is obvious that
+Substituting this into the Friedmann equation gives us then
 \begin{equation}
-  \left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = 1.
+  H^2 = \frac{8\pi G}{3} \sum_i \Omega_{i}\rho_c = H^2\sum_i \Omega_{i}, \label{eq:H squared}
+\end{equation}
+which shows us explicitly that the density parameters always must sum up to unity. We would like to rewrite this in terms of quantities that we can actually measure today, such as the present day density parameters $\Omega_{i0}$. In that case, $H^2$ becomes $H_0^2$ on the right-hand side of eq. \eqref{eq:H squared}. Furthermore, since we know how the density components scale with $a$, we may write
+\begin{equation}
+  H^2 = H_0^2\sum_i \Omega_{i0}a^{-3(1+w_i)}. \label{eq:H squared 2}
 \end{equation} 
+The equivalency of this expression with eq. \eqref{eq:H squared} tells us that
+\begin{equation}
+  \Omega_{i}(a) = \frac{\Omega_{i0}a^{-3(1+w_i)}}{H^2(a)/H_0^2}, \label{eq:density params}
+\end{equation}
+Additionally, taking the square root on both sides of eq. \eqref{eq:H squared 2} and writing out the terms explicitly, we have
+\begin{equation}
+    H = H_0 \sqrt{(\Omega_{b0} + \Omega_{\text{CDM}0}) a^{-3} + (\Omega_{\gamma 0} + \Omega_{\nu 0}) a^{-4} + \Omega_{k0} a^{-2} + \Omega_{\Lambda 0}}.
+\end{equation}
 
-
-
-
-
-\colorbox{Plum}{only calculate x and z here? do it different?}
-% Radiation-matter equality occured at a very high redshift, hence the dark energy component in the Friedmann equation can safely be ignored. Assuming no curvature, we thus have
+Eventually, I will need to use data to determine all but the photon and neutrino density parameters, which we know are given by
+\begin{align}
+    \Omega_{\gamma0} &= g\frac{\pi^2}{30}\frac{\left(k_\text{B}T_{\text{CMB}0}\right)^4}{\hbar^3c^5}\frac{8\pi G}{3H_0^2},
+    \\
+    \Omega_{\nu0} &= \frac{7}{8}N_\text{eff}\left(\frac{4}{11}\right)^{1/3}\Omega_{\gamma0}.
+\end{align}
+Here, $g=g_\gamma=g_\nu=2$, since photons and neutrinos both have 2 internal polarization states, while $T_{\text{CMB}0}$ is the present day value of the CMB temperature, and $N_\text{eff}$ is the effective number of relativistic degrees of freedom. 
+% Together with the baryon ($\Omega_{b0}$), cold dark matter ($\Omega_{\text{CDM}0}$) and curvature ($\Omega_{k0}$) density parameters, we then get the dark energy density parameter from
 % \begin{equation}
-%   H_{rm} \approx H_0\sqrt{\Omega_{m0}e^{-3x} + \Omega_{r0}e^{-4x}},
+%     \Omega_{\Lambda0} = 1 - \left(\Omega_{k0} + \Omega_{b0} + \Omega_{\text{CDM}0} + \Omega_{\gamma0} + \Omega_{\nu0} \right),
 % \end{equation}
-% where the subscript $rm$ stands for radiation-matter equality. Furthermore, at this point in time we have
-% \begin{equation}
-%   \Omega_{r,rm} = \Omega_{m,rm} 
-%   \hspace{5pt}\Leftrightarrow\hspace{5pt} 
-%   \Omega_{r0}e^{-4x_{rm}} = \Omega_{m0}e^{-3x_{rm}} 
-%   \hspace{5pt}\Leftrightarrow\hspace{5pt}
-%   \Omega_{r0} = \Omega_{m0}e^{x_{rm}}, 
-% \end{equation}
-% which lets us express the Hubble parameter as
-At radiation-matter equality ($rm$) we have
+% since the density parameters must all sum to unity. 
+
+When integrating from the very early universe, it becomes quite numerically challenging to use the scale factor $a$ as time parameter, as it quickly tends to vanishing orders of magnitude as we move further back in time. \colorbox{Plum}{rephrase?}, I will therefore adopt the logarithmic time coordinate
+\begin{equation}
+    x = \log a,
+\end{equation}
+instead, which implies that $x=0$ today and $x=-\infty$ at the Big Bang. Expressed in terms of $\Omega_{m0}=\Omega_{b0}+\Omega_{\text{CDM}0}$ and $\Omega_{r0}=\Omega_{\gamma0}+\Omega_{\nu0}$, we can equivalently write the Hubble parameter as
+\begin{equation}
+    H = H_0 \sqrt{\Omega_{m0} e^{-3x} + \Omega_{r0} e^{-4x} + \Omega_{k0} e^{-2x} + \Omega_{\Lambda 0}}.
+\end{equation}
+
+A commonly used rescaled version of the Hubble parameter is the conformal Hubble parameter:
+\begin{equation}
+    \mathcal{H} = aH = H_0 \sqrt{\Omega_{m0} e^{-x} + \Omega_{r0} e^{-2x} + \Omega_{k0} + \Omega_{\Lambda 0}e^{2x}}. \label{eq:Hp}
+\end{equation}
+This naturally appears when rewriting cosmological equations in terms of the conformal time $\eta$, which I will present below. \colorbox{Plum}{explain why?} I will focus more on this version of the Hubble parameter, and it will become useful to know its first and second derivatives with respect to $x$, specifically in order to verify numerical stability. \colorbox{Plum}{explain why?} After some tedious calculation, we find that these are
+\begin{align*}
+    \frac{d\mathcal{H}}{dx} &= \frac{H_0}{2}
+    \frac{-\Omega_{m0}e^{-x} - 2\Omega_{r0}e^{-2x} + 2\Omega_{\Lambda0}e^{2x}}
+    {\sqrt{\Omega_{m0}e^{-x} 
+    + \Omega_{r0}e^{-2x}
+    + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}},
+    \\
+    &= -\frac{H_0^2}{2\mathcal{H}}\left(\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} - 2\Omega_{\Lambda0}e^{2x}\right), \numberthis
+    \\
+    \frac{d^2\mathcal{H}}{dx^2} &= \frac{H_0}{2}
+    \left(\frac{\Omega_{m0}e^{-x} + 4\Omega_{r0}e^{-2x} + 4\Omega_{\Lambda0}e^{2x}}{\sqrt{\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}}}\right.
+    \\
+    &\hspace{38pt}
+    \left.- \frac{1}{2}\frac{\left(\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} - 2\Omega_{\Lambda0}e^{2x}\right)^2}{\left(\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}\right)^{3/2}}\right),
+    \\
+    &= \frac{H_0^2}{\mathcal{H}}\left[\frac{1}{2}\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} + 2\Omega_{\Lambda0}e^{2x}- \frac{1}{H_0^2}\left(\frac{d\mathcal{H}}{dx}\right)^2\right]. \numberthis
+  \end{align*}
+
+
+\subsubsection{Conformal time and distance measures}
+The cosmic time $t$ is related to our time variable $x$ through
+\begin{equation}
+  \frac{dt}{dx} = \frac{dt}{da}\frac{da}{dx} = \frac{a}{\dot{a}} = \frac{1}{H},
+\end{equation}
+hence, to compute the cosmic time $t$ given our time coordinate $x$, we simply integrate this to get 
+\begin{equation}
+  t(x) = \int_{-\infty}^{x} \frac{dx'}{H(x')}.
+\end{equation}
+Evaluating this at $x=0$ (today), we obtain the age of the Universe.
+
+While it will be interesting to solve our system of equations for $t$, it will be more useful to introduce the conformal time $\eta$. This is defined as
+\begin{equation}
+d\eta = \frac{cdt}{a} \hspace{5pt}\Leftrightarrow\hspace{5pt}\frac{d\eta}{dx} = \frac{c}{\mathcal{H}},
+\end{equation}
+and thus has units of length. The equation on the right can easily be numerically integrated to obtain $\eta(x)$, which describes how far light has traveled since the Big Bang. In other words, the comoving distance a photon has traveled since the start of the Universe is given by:
+\begin{equation}
+\chi = \eta_0 - \eta,
+\end{equation}
+where $\eta_0$ is the conformal time today. This quantity is also called the particle horizon, and it is a crucial concept in cosmology, as it represents the maximum comoving distance that light has traveled since the beginning of the Universe, thus determining its causal structure. 
+
+The horizon is fundamental in defining distance measures in cosmology. We know that photons travel along null geodesics $ds^2 = 0$, and from the conformal time and the FLRW line element we see that this implies that the coordinate distance $r$ satisfies
+\begin{equation}
+  c dt = \frac{adr}{\sqrt{1 - k r^2}},
+\end{equation}
+for a radially traveling photon ($d\theta = d\phi = 0$). Changing the time coordinate to conformal time, we rewrite this as
+\begin{equation}
+  d\eta = \frac{dr}{\sqrt{1 - k r^2}},
+\end{equation}
+and integrating from emission at time $\eta$ to today (\( \eta_0 \)), we get the comoving distance:
+\begin{equation}
+  \chi = \int_{\eta}^{\eta_0}  d\eta' = \int_{0}^{r} \frac{dr'}{\sqrt{1 - k r'^2}}.
+\end{equation}
+Solving this integral for different values of the curvature constant $k$, we obtain
+\begin{equation}
+  r = 
+  \chi\begin{cases}
+  \cfrac{\sin\left(\sqrt{|\Omega_{k0}|} H_0 \chi / c\right)}{\left(\sqrt{|\Omega_{k0}|} H_0 \chi / c\right)}, & \Omega_{k0} < 0 \quad \text{(Closed)}, \\
+1, & \Omega_{k0} = 0 \quad \text{(Flat)}, \\
+\cfrac{\sinh\left(\sqrt{|\Omega_{k0}|} H_0 \chi / c\right)}{\left(\sqrt{|\Omega_{k0}|} H_0 \chi / c\right)}, & \Omega_{k0} > 0 \quad \text{(Open)}.
+\end{cases}
+\end{equation}
+This defines the proper radial coordinate $r$, which is used in all cosmological distance measures. 
+
+The angular diameter distance relates an object's physical extent $D$ to its observed angular extent $\theta$ on the sky:
+\begin{equation}
+d_A = \frac{D}{\theta}.
+\end{equation}
+From the metric, we see that the transverse separation of a source at $r$ subtending an angle $d\theta$ is
+\begin{equation}
+  dD = a r d\theta,
+\end{equation}
+hence the angular diameter distance:
+\begin{equation}
+  d_A = a r,
+\end{equation}
+which simplifies to:
+\begin{equation}
+  d_A = a \chi,
+\end{equation}
+for a flat universe.
+
+Even more relevant for this milestone is the luminosity distance, which is dependent on the measured brightness of standard candles like Type Ia supernovae. We know that the flux $F$ from a source with luminosity $L$ follows an inverse-square law:
+\begin{equation}
+  F = \frac{L}{4\pi d_L^2}.
+\end{equation}
+In an expanding universe, photons are redshifted and their arrival rate is also affected, leading to the relation:
+\begin{equation}
+  d_L = d_A (1 + z)^2 = \frac{d_A}{a^2}.
+\end{equation}
+\colorbox{Plum}{TODO: maybe explain}
+
+
+
+\subsubsection{Key cosmological epochs}
+Though it also has been verified by numerous observations, based on the expression for the Hubble parameter it is not hard to see that the Universe must have gone through phases where its energy budget was (or will be) dominated by radiation, matter and dark energy, separately, in that order. This implies that there must have been a point in time where the Universe was equal amounts of radiation and matter (matter and dark energy), if we neglect the curvature and dark energy (radiation). At radiation-matter equality ($rm$) we have
 \begin{equation}
     \Omega_{r,rm} = \Omega_{m,rm} 
     \hspace{5pt}\Leftrightarrow\hspace{5pt} 
@@ -297,17 +261,8 @@ and thus
 Using that $x = \log a$ and $z = 1/a - 1$ this gives us an expression for the redshift at $rm$:
 \begin{equation}
   z_{rm} = \frac{\Omega_{m0}}{\Omega_{r0}} - 1.
-\end{equation}
-Furthermore, to compute the age of the universe at $rm$ we may use that
-\begin{equation}
-  t_{rm} = \int^{t_{rm}}_{0}dt = \int^{x_{rm}}_{-\infty}\frac{dt}{dx}dx = \int^{x_{rm}}_{-\infty}\frac{dx}{H},
-\end{equation}
-and that the Universe is radiation dominated before this point. This lets us ignore the matter and dark energy terms in the expression for $H$, although the former component plays an increasingly important role as we reach $t_{rm}$. \colorbox{Plum}{valid? include matter term?} Thus, we have
-\begin{equation}
-  t_{rm} = \int^{x_{rm}}_{-\infty}\frac{dx}{H_0\sqrt{\Omega_{r0}e^{-4x}}} = \frac{e^{2x_{rm}}}{2H_0\sqrt{\Omega_{r0}}} = \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2}.
-\end{equation}
-
-Following a similar logic, at matter-dark energy equality ($m\Lambda$) we have
+\end{equation} 
+Similarly, at matter-dark energy equality ($m\Lambda$) we have
 \begin{equation}
   \Omega_{m0}e^{-3x_{m\Lambda}} = \Omega_{\Lambda0}
   \hspace{5pt}\Leftrightarrow\hspace{5pt}
@@ -317,49 +272,8 @@ and thus
 \begin{equation}
   z_{m\Lambda} = \left(\frac{\Omega_{\Lambda0}}{\Omega_{m0}}\right)^{1/3} - 1.
 \end{equation}
-Since the Universe is matter dominated between $rm$ and $m\Lambda$ we may ignore the radiation and dark energy terms to obtain
-\begin{align*}
-  t_{m\Lambda} &= t_{rm} + \int^{x_{m\Lambda}}_{x_{rm}}\frac{dx}{H_0\sqrt{\Omega_{m0}e^{-3x}}}, 
-  \\
-  &= \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2} +\frac{2\left(e^{3x_{m\Lambda}/2} - e^{3x_{rm}/2} \right)}{3H_0\sqrt{\Omega_{m0}}}, 
-  \\
-  &= \frac{\Omega_{r0}^{3/2}}{2H_0\Omega_{m0}^2} + \frac{2}{3H_0\sqrt{\Omega_{\Lambda0}}} - \frac{2\Omega_{r0}^{3/2}}{3H_0\Omega_{m0}^2},
-  \\
-  &= \frac{1}{3H_0}\left(\frac{2}{\sqrt{\Omega_{\Lambda0}}} -\frac{\Omega_{r0}^{3/2}}{2\Omega_{m0}^2}\right). \numberthis
-\end{align*}
-\colorbox{Plum}{correct?}
 
-We know that the Universe starts to accelerate after $\ddot{a}$ goes from being negative to positive. Assuming that this happens well after the radiation dominated era, the second Friedmann equation reads as 
-\begin{equation}
-  0 = - \frac{4\pi G}{3}\Big[\rho_m(x_\text{acc})- 2\rho_\Lambda(x_\text{acc})\Big]. \label{eq: equal acc time}
-\end{equation}
-Using that the density parameters at arbitrary $x$ can be written as
-\begin{align}
-  \Omega_i(x) = \frac{\Omega_{i0}}{e^{nx}H^2(x)/H_0^2},
-\end{align}
-where $n = 3$ for matter and $n=0$ for dark energy, we can rewrite eq. \eqref{eq: equal acc time} to get
-\begin{equation}
-  \Omega_{m0}e^{-3x_\text{acc}} = 2\Omega_{\Lambda0}
-  \hspace{5pt}\Leftrightarrow\hspace{5pt}
-  x_\text{acc} = \frac{1}{3}\log\left(\frac{\Omega_{m0}}{2\Omega_{\Lambda0}}\right).
-\end{equation}
-This corresponds to a redshift
-\begin{equation}
-  z_\text{acc} = \left(\frac{2\Omega_{\Lambda0}}{\Omega_{m0}}\right)^{1/3}-1.
-\end{equation}
-Obviously, $t_\text{acc}<t_{m\Lambda}$, so we can make the same approximation this time, hence
-\begin{equation}
-  t_\text{acc} = t_{rm} + \int^{x_\text{acc}}_{x_{rm}}\frac{dx}{H_0\sqrt{\Omega_{m0}e^{-3x}}} = \frac{1}{3H_0}\left(\sqrt{\frac{2}{\Omega_{\Lambda0}}} -\frac{\Omega_{r0}^{3/2}}{2\Omega_{m0}^2}\right).
-\end{equation}
-\colorbox{Plum}{maybe do this derivation more thorough/different}
-
-
-
-The cosmic time is related to our time variable $x$ through
-\begin{equation}
-  \frac{dt}{dx} = \frac{dt}{da}\frac{da}{dx} = \frac{a}{\dot{a}} = \frac{1}{H}.
-\end{equation}
-Thus, for a universe dominated by a single component with equation of state $w_i$ the cosmic time $t$ is given by
+To ensure that the numerical results presented in this work agree with analytical expectations, it will be beneficial to have approximate expressions for the cosmic and conformal times in the different regimes. For a universe dominated by a single component with equation of state $w_i$ the cosmic time $t$ is given by
 \begin{equation}
   t = \int_0^t dt' = \int_{-\infty}^{x}\frac{dx'}{H_0\sqrt{\Omega_{i0}e^{-3(1+w_i)x'}}}.
 \end{equation}
@@ -385,7 +299,7 @@ and for matter it then follows
 \end{align*}
 with matter-dark energy equality occuring at
 \begin{equation}
-  t_{m\Lambda} = \frac{1}{3H_0}\left[\frac{2}{\sqrt{\Omega_{\Lambda0}}} - \frac{\Omega_{r0}^{3/2}}{2\Omega^2_{m0}} \right]
+  t_{m\Lambda} = \frac{1}{3H_0}\left[\frac{2}{\sqrt{\Omega_{\Lambda0}}} - \frac{\Omega_{r0}^{3/2}}{2\Omega^2_{m0}} \right].
 \end{equation}
 Lastly, for dark energy we have
 \begin{align*}
@@ -395,25 +309,13 @@ Lastly, for dark energy we have
   \\
   &= \frac{1}{H_0\sqrt{\Omega_{\Lambda0}}}\left[x+\frac{2}{3}-\frac{1}{3}\log\left(\frac{\Omega_{m0}}{\Omega_{\Lambda0}}\right)-\frac{\sqrt{\Omega_{\Lambda0}}\Omega_{r0}^{3/2}}{6\Omega^2_{m0}}\right]. \numberthis
 \end{align*}
-\colorbox{Plum}{comment that the dependencies between a and t are as expected}
-% Furthermore, we can compute the expected evolution of the scale factor $a(t)$ \colorbox{Plum}{or just x?} and compare this to the numerical solution. In the different regimes we have
-% \begin{align}
-%   \left(\frac{da}{dt}\right)_r &\approx H_0\frac{\sqrt{\Omega_{r0}}}{a}
-%   \hspace{12pt}\Rightarrow\hspace{5pt} a \propto t^{1/2},
-%   \\
-%   \left(\frac{da}{dt}\right)_m &\approx H_0\frac{\sqrt{\Omega_{m0}}}{a^{1/2}}
-%   \hspace{9.5pt}\Rightarrow\hspace{5pt} a \propto t^{2/3},
-%   \\
-%   \left(\frac{da}{dt}\right)_\Lambda &\approx H_0\sqrt{\Omega_{\Lambda0}}\,a
-%   \hspace{5pt}\Rightarrow\hspace{5pt} a \propto e^{H_0\sqrt{\Omega_{\Lambda0}}t},
-% \end{align}
-% where I have used that $\mathcal{H}=aH = \dot{a}$. \colorbox{Plum}{do more thorough? t as function of x instead?}
+From these derived expressions, it is obvious that $a\propto t^{1/2}$ in the radiation dominated era, $a\propto t^{2/3}$ in the matter era and $a\propto e^{H_0\sqrt{\Omega_{\Lambda0}}t}$ in the dark energy era, which is the expected result. \colorbox{Plum}{word different?}
 
-These approximate expressions are interesting to have when analyzing the numerical results, as they point us toward the correct solution. We can derive analogous expressions for the conformal time $\eta$, and it is straight-forward to show that since
+Following an analogous approach for the conformal time, it is straight-forward to show that since
 \begin{equation}
   \eta_i(x) \approx \eta_{j,i} + \int_{x_{j,i}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{i0}e^{-(1+3w_i)x'}}},
 \end{equation}
-we have \colorbox{Plum}{rephrase paragraph}.
+we have the following approximate expressions:
 \begin{align}
   \eta_r(x) &= \frac{c}{H_0\sqrt{\Omega_{r0}e^{-2x}}},
   \\
@@ -428,826 +330,286 @@ with the conformal equality times:
   \eta_{m\Lambda} &= \frac{c}{H_0}\left[\frac{2}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}\right].
 \end{align}
 
-% \colorbox{Plum}{include this?}
-% In an era dominated by a component with equation of state $w_i$ we have
+To test for numerical stability and accuracy, it is essential to compute analytical expressions that can be used for comparison. Obviously, in an era dominated by component $i$ we have
+\begin{equation}
+    \mathcal{H}_i \approx H_0\sqrt{\Omega_{i0}e^{-(1+3w_i)}},
+\end{equation}
+and in the radiation dominated era we thus have
+\begin{align}
+  \left(\frac{d\mathcal{H}}{dx}\right)_r &= -H_0\sqrt{\Omega_{r0}}e^{-x}=-\mathcal{H}_r 
+  \hspace{5pt}\Leftrightarrow\hspace{9pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_r=-1,
+  \\
+  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_r &= H_0\sqrt{\Omega_{r0}}e^{-x}=\mathcal{H}_r
+  \hspace{18pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_r=1.
+\end{align}
+Similarly, we have
+\begin{align}
+  \left(\frac{d\mathcal{H}}{dx}\right)_m &= -\frac{\mathcal{H}_m}{2} 
+  \hspace{5pt}\Leftrightarrow\hspace{10pt}\left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_m=-\frac{1}{2},
+  \\
+  \left(\frac{d^2\mathcal{H}}{dx^2}\right)_m &= \frac{\mathcal{H}_m}{4}
+  \hspace{12pt}\Leftrightarrow\hspace{5pt}\left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_m=\frac{1}{4}.
+\end{align}
+in the matter dominated era, and
+\begin{equation}
+  \mathcal{H}_\Lambda = \left(\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = H_0\sqrt{\Omega_{\Lambda0}}e^{x},
+\end{equation}
+in the dark energy dominated era. From the latter it is obvious that
+\begin{equation}
+  \left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = 1.
+\end{equation} 
+
+
+\subsubsection{Onset of acceleration}
+Later on, when we will analyze the observed CMB power spectrum, it will be interesting to know when the expansion of the Universe started to accelerate. It is a well known fact that the expansion rate (governed by $\dot{a}$) is increasing as of today, and that we are in the early stage of a dark energy dominated era. We have the second Friedmann equation
+\begin{equation}
+    \frac{\ddot{a}}{a} = -\frac{4\pi G}{3}\sum_i \rho_i\left(1 + 3w_i \right),
+\end{equation}
+where the sum runs over all components (matter, radiation, etc.). The onset of acceleration occurs when $\ddot{a}$ switches sign, i.e., when
+\begin{equation}
+    \sum_i \rho_i\left(1 + 3w_i \right) = 0.
+\end{equation}
+Assuming that this happens well after the radiation dominated era, we can approximate this as
+\begin{equation}
+  \rho_m(x_\text{acc})- 2\rho_\Lambda(x_\text{acc}) = 0 \label{eq: equal acc time}
+\end{equation}
+Using that the expression \eqref{eq:density params} for the density parameters at arbitrary $a$, we can rewrite eq. \eqref{eq: equal acc time} to get
+\begin{equation}
+  \Omega_{m0}e^{-3x_\text{acc}} = 2\Omega_{\Lambda0}
+  \hspace{5pt}\Leftrightarrow\hspace{5pt}
+  x_\text{acc} = \frac{1}{3}\log\left(\frac{\Omega_{m0}}{2\Omega_{\Lambda0}}\right).
+\end{equation}
+This corresponds to a redshift
+\begin{equation}
+  z_\text{acc} = \left(\frac{2\Omega_{\Lambda0}}{\Omega_{m0}}\right)^{1/3}-1.
+\end{equation}
+Obviously, $t_\text{acc}<t_{m\Lambda}$, so we can make the same approximation this time, hence
 % \begin{equation}
-%   \eta_i(x) \approx \eta_{i-1}(x_{i,\text{start}}) + \int_{x_{i,\text{start}}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{i0}e^{-(1+3w_i)x'}}},
+%   t_\text{acc} = t_{rm} + \int^{x_\text{acc}}_{x_{rm}}\frac{dx}{H_0\sqrt{\Omega_{m0}e^{-3x}}} = \frac{1}{3H_0}\left(\sqrt{\frac{2}{\Omega_{\Lambda0}}} -\frac{\Omega_{r0}^{3/2}}{2\Omega_{m0}^2}\right).
 % \end{equation}
-% where $x_{i,\text{start}}$ denotes the value of $x$ when the Universe first became dominated by component $i$, and $\eta_{i-1}(x_{i,\text{start}})$ is the (approximate) value of the conformal time, estimated using the expression for the previously dominating component. For radiation we simply have $x_{r,\text{start}}=-\infty$ and thus $\eta(x_{r,\text{start}})=0$, hence
-% \begin{equation}
-%   \eta_r(x) = \int_{{-\infty}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{r0}}e^{-x'}} = \frac{c}{H_0\sqrt{\Omega_{r0}}e^{-x}}.
-% \end{equation}
-% For matter it then follows
-% \begin{align*}
-%   \eta_m(x) &\approx \eta_r(x_{rm}) + \int_{x_{rm}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{m0}e^{-x'}}}, 
-%   \\
-%   &= \frac{c}{H_0}\frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}+\frac{2c}{H_0}\left[\frac{1}{\sqrt{\Omega_{m0}e^{-x}}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} \right],
-%   \\
-%   &= \frac{c}{H_0}\left[\frac{2}{\sqrt{\Omega_{m0}e^{-x}}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} \right], \numberthis
-% \end{align*}
-% and for dark energy we have
-% \begin{align*}
-%   \eta_\Lambda(x) &\approx \eta_m(x_{m\Lambda}) + \int_{x_{m\Lambda}}^{x}\frac{cdx'}{H_0\sqrt{\Omega_{\Lambda0}}e^{x'}}, 
-%   \\
-%   &= \frac{c}{H_0}\left[\frac{2}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}\right] - \frac{c}{H_0}\left[\frac{1}{\sqrt{\Omega_{\Lambda0}}e^{x}} - \frac{1}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}}\right],
-%   \\
-%   &= -\frac{c}{H_0}\left[\frac{1}{\sqrt{\Omega_{\Lambda0}}e^{x}} +\frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} - \frac{3}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} \right]. \numberthis
-% \end{align*}
+\begin{equation}
+    t_\text{acc} = t_m(x_\text{acc}) = \frac{1}{3H_0}\left[\sqrt{\frac{2}{\Omega_{\Lambda0}}} -\frac{\Omega_{r0}^{3/2}}{2\Omega_{m0}^2}\right],
+\end{equation}
+with the conformal time being
+\begin{equation}
+    \eta_\text{acc} = \eta_m(x_\text{acc}) = \frac{c}{H_0}\left[\frac{2^{5/6}}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}\right].
+\end{equation}
+\colorbox{Plum}{maybe do this derivation more thorough/different}
+
+\subsubsection{The Universe today}
+It is of course a great consistency check to see if I am able to replicate the values for the age of the Universe and its horizon size today, and we can use the expressions derived above to do so. Following the approximations I have done up until this point, we have
+\begin{align}
+  t_0 &\approx t_{\Lambda}(0) = \frac{1}{H_0\sqrt{\Omega_{\Lambda0}}}\left[\frac{2}{3}-\frac{1}{3}\log\left(\frac{\Omega_{m0}}{\Omega_{\Lambda0}}\right)-\frac{\sqrt{\Omega_{\Lambda0}}\Omega_{r0}^{3/2}}{6\Omega^2_{m0}}\right],
+  \\
+  \eta_0 &\approx \eta_\Lambda(0) = -\frac{c}{H_0}\left[\frac{1}{\sqrt{\Omega_{\Lambda0}}} +\frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}} - \frac{3}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} \right].
+\end{align}
+as we know that we currently are in the beginning of a dark energy dominated era.
+
+\colorbox{Plum}{maybe remove and present in results}
 
 
-% TODO: Derive initial condition for eta, we start in radiation dominated era, eta should be zero at x = \infty, so that C = 0, and we get eta = c/(H_0\sqrt(\Omega_R))e^x which is basically c/aH = c/Hp
+\subsubsection{The \texorpdfstring{$\chi^2$}{Lg}-method}
+\color{Plum}
+Having established the theoretical framework describing the evolution of the universe, we now turn to how observational data can be used to constrain cosmological parameters. One of the most powerful tools for this is the study of Type Ia supernovae, which serve as standard candles for measuring the expansion history of the universe. Given their intrinsic luminosity, the observed flux allows us to determine their luminosity distance \( d_L \) as a function of redshift \( z \), providing a direct probe of the universe's geometry and expansion.
+
+To quantitatively compare theoretical models to observational data, we define the chi-squared statistic:
+
+\[
+\chi^2(h, \Omega_{m0}, \Omega_{k0}) = \sum_{i=1}^{N} \frac{ \left( d_L(z_i, h, \Omega_{m0}, \Omega_{k0}) - d_L^{\text{obs}}(z_i) \right)^2 }{\sigma_i^2},
+\]
+
+where \( d_L^{\text{obs}}(z_i) \) represents the measured luminosity distance at redshift \( z_i \), and \( \sigma_i \) is the associated measurement uncertainty. This function quantifies how well a given set of parameters \( (h, \Omega_{m0}, \Omega_{k0}) \) fits the data: a lower \( \chi^2 \) value corresponds to a better fit. 
+
+The likelihood function, describing the probability of the data given a specific model, is proportional to:
+
+\[
+L \propto e^{-\chi^2/2}.
+\]
+
+Rather than exhaustively evaluating \( \chi^2 \) over all parameter combinations, which is computationally expensive, we employ a Monte Carlo Markov Chain (MCMC) approach, such as the Metropolis-Hastings algorithm. This method efficiently samples the likelihood distribution, generating a chain of parameter values that follow the posterior probability distribution. 
+
+From this chain, we determine the best-fit model—the parameter set yielding the minimum \( \chi^2 \). A good fit is characterized by \( \chi^2 / N \sim 1 \), where \( N \) is the number of data points (here, \( N = 31 \)). To assess parameter uncertainties, we identify the confidence regions by considering all values satisfying:
+
+\[
+\chi^2 - \chi^2_{\text{min}} < 3.53,
+\]
+
+corresponding to the \( 1\sigma \) (68.4%) confidence level for two free parameters. 
+
+The MCMC output also allows us to construct probability distributions for individual parameters, providing insight into their most likely values and associated uncertainties. These statistical techniques thus bridge theoretical predictions with observational constraints, enabling precise determinations of fundamental cosmological parameters.
+\color{black}
 
 
-%--------------------------------------------------------------------
+
 \subsection{Implementation}\label{subsec: I methods}
-% %-------------------------------------- Two column figure (place early!)
-%    \begin{figure*}
-%    \centering
-%    %%%\includegraphics{empty.eps}
-%    %%%\includegraphics{empty.eps}
-%    \includegraphics[width=\textwidth]{density.pdf}
-%    \caption{Adiabatic exponent $\Gamma_1$.
-%                $\Gamma_1$ is plotted as a function of
-%                $\lg$ internal energy $\mathrm{[erg\,g^{-1}]}$ and $\lg$
-%                density $\mathrm{[g\,cm^{-3}]}$.}
-%               \label{FigGam}%
-%     \end{figure*}
-% %
-%    In this section the one-zone model of \citet{baker},
-%    originally used to study the Cephe{\"{\i}}d pulsation mechanism, will
-%    be briefly reviewed. The resulting stability criteria will be
-%    rewritten in terms of local state variables, local timescales and
-%    constitutive relations.
+\subsubsection{The fiducial model}
+As mentioned in section \ref{sec: introduction}, I will adopt the best-fit Planck 2018 cosmology \colorbox{Plum}{cite} as my fiducial model, which includes the following parameters:
+\begin{align*}
+    h &= 0.67,
+    \\
+    T_{\text{CMB}0} &= 2.7255\,\text{K},
+    \\
+    N_\text{eff} &= 3.046,
+    \\
+    \Omega_{b0} &= 0.05,
+    \\
+    \Omega_{\text{CDM}0} &= 0.267,
+    \\
+    \Omega_{k0} &= 0.
+\end{align*}
+Here, $h$ is the dimensionless Hubble constant, which is related to the commonly presented Hubble constant through
+\begin{equation*}
+    H_0 = 100h\,\text{km\,s}^{-1}\text{\,Mpc}^{-1}.
+\end{equation*}
+The photon and neutrino density parameters are easily calculated using the values for $T_{\text{CMB}0}$ and $N_\text{eff}$, and since all the density parameters must sum up to unity, we have
+\begin{align*}
+  \Omega_{\gamma0} &= 5.50896\times10^{-5},
+  \\
+  \Omega_{\nu0} &=  3.81093\times10^{-5},
+  \\
+  \Omega_{\Lambda0} &= 0.682907.
+\end{align*}
 
-%    \citet{baker} investigates the stability of thin layers in
-%    self-gravitating,
-%    spherical gas clouds with the following properties:
-%    \begin{itemize}
-%       \item hydrostatic equilibrium,
-%       \item thermal equilibrium,
-%       \item energy transport by grey radiation diffusion.
-%    \end{itemize}
-%    For the one-zone-model Baker obtains necessary conditions
-%    for dynamical, secular and vibrational (or pulsational)
-%    stability (Eqs.\ (34a,\,b,\,c) in Baker \citeyear{baker}). Using Baker's
-%    notation:
-%    %%begin novalidate
-%    \[
-%       \begin{array}{lp{0.8\linewidth}}
-%          M_{r}  & mass internal to the radius $r$     \\
-%          m               & mass of the zone                    \\
-%          r_0             & unperturbed zone radius             \\
-%          \rho_0          & unperturbed density in the zone     \\
-%          T_0             & unperturbed temperature in the zone \\
-%          L_{r0}          & unperturbed luminosity              \\
-%          E_{\mathrm{th}} & thermal energy of the zone
-%       \end{array}
-%    \]
-%    %%end novalidate
-% \noindent
-%    and with the definitions of the \emph{local cooling time\/}
-%    (see Fig.~\ref{FigGam})
-%    \begin{equation}
-%       \tau_{\mathrm{co}} = \frac{E_{\mathrm{th}}}{L_{r0}} \,,
-%    \end{equation}
-%    and the \emph{local free-fall time}
-%    \begin{equation}
-%       \tau_{\mathrm{ff}} =
-%          \sqrt{ \frac{3 \pi}{32 G} \frac{4\pi r_0^3}{3 M_{\mathrm{r}}}
-% }\,,
-%    \end{equation}
-%    Baker's $K$ and $\sigma_0$ have the following form:
-%    \begin{eqnarray}
-%       \sigma_0 & = & \frac{\pi}{\sqrt{8}}
-%                      \frac{1}{ \tau_{\mathrm{ff}}} \\
-%       K        & = & \frac{\sqrt{32}}{\pi} \frac{1}{\delta}
-%                         \frac{ \tau_{\mathrm{ff}} }
-%                              { \tau_{\mathrm{co}} }\,;
-%    \end{eqnarray}
-%    where $ E_{\mathrm{th}} \approx m (P_0/{\rho_0})$ has been used and
-%    \begin{equation}
-%    \begin{array}{l}
-%       \delta = - \left(
-%                     \frac{ \partial \ln \rho }{ \partial \ln T }
-%                  \right)_P \\
-%       e=mc^2
-%    \end{array}
-%    \end{equation}
-%    is a thermodynamical quantity which is of order $1$ and equal to $1$
-%    for nonreacting mixtures of classical perfect gases. The physical
-%    meaning of $ \sigma_0 $ and $K$ is clearly visible in the equations
-%    above. $\sigma_0$ represents a frequency of the order one per
-%    free-fall time. $K$ is proportional to the ratio of the free-fall
-%    time and the cooling time. Substituting into Baker's criteria, using
-%    thermodynamic identities and definitions of thermodynamic quantities,
-%    \begin{displaymath}
-%       \Gamma_1      = \left( \frac{ \partial \ln P}{ \partial\ln \rho}
-%                            \right)_{S}    \, , \;
-%       \chi^{}_\rho  = \left( \frac{ \partial \ln P}{ \partial\ln \rho}
-%                            \right)_{T}    \, , \;
-%       \kappa^{}_{P} = \left( \frac{ \partial \ln \kappa}{ \partial\ln P}
-%                            \right)_{T}
-%    \end{displaymath}
-%    \begin{displaymath}
-%       \nabla_{\mathrm{ad}} = \left( \frac{ \partial \ln T}
-%                              { \partial\ln P} \right)_{S} \, , \;
-%       \chi^{}_T       = \left( \frac{ \partial \ln P}
-%                              { \partial\ln T} \right)_{\rho} \, , \;
-%       \kappa^{}_{T}   = \left( \frac{ \partial \ln \kappa}
-%                              { \partial\ln T} \right)_{T}
-%    \end{displaymath}
-%    one obtains, after some pages of algebra, the conditions for
-%    \emph{stability\/} given
-%    below:
-%    \begin{eqnarray}
-%       \frac{\pi^2}{8} \frac{1}{\tau_{\mathrm{ff}}^2}
-%                 ( 3 \Gamma_1 - 4 )
-%          & > & 0 \label{ZSDynSta} \\
-%       \frac{\pi^2}{\tau_{\mathrm{co}}
-%                    \tau_{\mathrm{ff}}^2}
-%                    \Gamma_1 \nabla_{\mathrm{ad}}
-%                    \left[ \frac{ 1- 3/4 \chi^{}_\rho }{ \chi^{}_T }
-%                           ( \kappa^{}_T - 4 )
-%                         + \kappa^{}_P + 1
-%                    \right]
-%         & > & 0 \label{ZSSecSta} \\
-%      \frac{\pi^2}{4} \frac{3}{\tau_{ \mathrm{co} }
-%                               \tau_{ \mathrm{ff} }^2
-%                              }
-%          \Gamma_1^2 \, \nabla_{\mathrm{ad}} \left[
-%                                    4 \nabla_{\mathrm{ad}}
-%                                    - ( \nabla_{\mathrm{ad}} \kappa^{}_T
-%                                      + \kappa^{}_P
-%                                      )
-%                                    - \frac{4}{3 \Gamma_1}
-%                                 \right]
-%         & > & 0   \label{ZSVibSta}
-%    \end{eqnarray}
-% %
-%    For a physical discussion of the stability criteria see \citet{baker} or \citet{cox}.
+Our numerical methods must accurately compute \( H(x) \), \( \mathcal{H}(x) \), and \( \eta(x) \) to ensure physical accuracy.
 
-%    We observe that these criteria for dynamical, secular and
-%    vibrational stability, respectively, can be factorized into
-%    \begin{enumerate}
-%       \item a factor containing local timescales only,
-%       \item a factor containing only constitutive relations and
-%          their derivatives.
-%    \end{enumerate}
-%    The first factors, depending on only timescales, are positive
-%    by definition. The signs of the left hand sides of the
-%    inequalities~(\ref{ZSDynSta}), (\ref{ZSSecSta}) and (\ref{ZSVibSta})
-%    therefore depend exclusively on the second factors containing
-%    the constitutive relations. Since they depend only
-%    on state variables, the stability criteria themselves are \emph{
-%    functions of the thermodynamic state in the local zone}. The
-%    one-zone stability can therefore be determined
-%    from a simple equation of state, given for example, as a function
-%    of density and
-%    temperature. Once the microphysics, i.e.\ the thermodynamics
-%    and opacities (see Table~\ref{KapSou}), are specified (in practice
-%    by specifying a chemical composition) the one-zone stability can
-%    be inferred if the thermodynamic state is specified.
-%    The zone -- or in
-%    other words the layer -- will be stable or unstable in
-%    whatever object it is imbedded as long as it satisfies the
-%    one-zone-model assumptions. Only the specific growth rates
-%    (depending upon the time scales) will be different for layers
-%    in different objects.
+\subsubsection{Initial conditions}
 
-% %--------------------------------------------------- One column table
-%    \begin{table}
-%       \caption[]{Opacity sources.}
-%          \label{KapSou}
-%      $$ 
-%          \begin{array}{p{0.5\linewidth}l}
-%             \hline
-%             \noalign{\smallskip}
-%             Source      &  T / {[\mathrm{K}]} \\
-%             \noalign{\smallskip}
-%             \hline
-%             \noalign{\smallskip}
-%             Yorke 1979, Yorke 1980a & \leq 1700^{\mathrm{a}}     \\
-% %           Yorke 1979, Yorke 1980a & \leq 1700             \\
-%             Kr\"ugel 1971           & 1700 \leq T \leq 5000 \\
-%             Cox \& Stewart 1969     & 5000 \leq             \\
-%             \noalign{\smallskip}
-%             \hline
-%          \end{array}
-%      $$ 
-%    \end{table}
-% %
-%    We will now write down the sign (and therefore stability)
-%    determining parts of the left-hand sides of the inequalities
-%    (\ref{ZSDynSta}), (\ref{ZSSecSta}) and (\ref{ZSVibSta}) and thereby
-%    obtain \emph{stability equations of state}.
+\subsubsection{Program structure and splining}
+\colorbox{Plum}{TODO: briefly explain code, spline} \\
+\colorbox{Plum}{TODO: xmin, xmax and npts for solving and splining} 
 
-%    The sign determining part of inequality~(\ref{ZSDynSta}) is
-%    $3\Gamma_1 - 4$ and it reduces to the
-%    criterion for dynamical stability
-%    \begin{equation}
-%      \Gamma_1 > \frac{4}{3}\,\cdot
-%    \end{equation}
-%    Stability of the thermodynamical equilibrium demands
-%    \begin{equation}
-%       \chi^{}_\rho > 0, \;\;  c_v > 0\, ,
-%    \end{equation}
-%    and
-%    \begin{equation}
-%       \chi^{}_T > 0
-%    \end{equation}
-%    holds for a wide range of physical situations.
-%    With
-%    \begin{eqnarray}
-%       \Gamma_3 - 1 = \frac{P}{\rho T} \frac{\chi^{}_T}{c_v}&>&0\\
-%       \Gamma_1     = \chi_\rho^{} + \chi_T^{} (\Gamma_3 -1)&>&0\\
-%       \nabla_{\mathrm{ad}}  = \frac{\Gamma_3 - 1}{\Gamma_1}         &>&0
-%    \end{eqnarray}
-%    we find the sign determining terms in inequalities~(\ref{ZSSecSta})
-%    and (\ref{ZSVibSta}) respectively and obtain the following form
-%    of the criteria for dynamical, secular and vibrational
-%    \emph{stability}, respectively:
-%    \begin{eqnarray}
-%       3 \Gamma_1 - 4 =: S_{\mathrm{dyn}}      > & 0 & \label{DynSta}  \\
-% %
-%       \frac{ 1- 3/4 \chi^{}_\rho }{ \chi^{}_T } ( \kappa^{}_T - 4 )
-%          + \kappa^{}_P + 1 =: S_{\mathrm{sec}} > & 0 & \label{SecSta} \\
-% %
-%       4 \nabla_{\mathrm{ad}} - (\nabla_{\mathrm{ad}} \kappa^{}_T
-%                              + \kappa^{}_P)
-%                              - \frac{4}{3 \Gamma_1} =: S_{\mathrm{vib}}
-%                                       > & 0\,.& \label{VibSta}
-%    \end{eqnarray}
-%    The constitutive relations are to be evaluated for the
-%    unperturbed thermodynamic state (say $(\rho_0, T_0)$) of the zone.
-%    We see that the one-zone stability of the layer depends only on
-%    the constitutive relations $\Gamma_1$,
-%    $\nabla_{\mathrm{ad}}$, $\chi_T^{},\,\chi_\rho^{}$,
-%    $\kappa_P^{},\,\kappa_T^{}$.
-%    These depend only on the unperturbed
-%    thermodynamical state of the layer. Therefore the above relations
-%    define the one-zone-stability equations of state
-%    $S_{\mathrm{dyn}},\,S_{\mathrm{sec}}$
-%    and $S_{\mathrm{vib}}$. See Fig.~\ref{FigVibStab} for a picture of
-%    $S_{\mathrm{vib}}$. Regions of secular instability are
-%    listed in Table~1.
+\subsubsection{Supernova fitting}
+\color{Plum}
+TODO we have four parameters (H, Omega\_m, Omega\_k and Omega\_Lambda), and one constraint (Omega\_m + Omega\_k + Omega\_Lambda = 1), hence k=3 degrees of freedom. Cite the table and state the sigma values.
 
-% %
-% %                                                One column figure
-% %----------------------------------------------------------------- 
-%    \begin{figure}
-%    \centering
-%    %%%\includegraphics[width=3cm]{empty.eps}
-%       \caption{Vibrational stability equation of state
-%                $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
-%                $>0$ means vibrational stability.
-%               }
-%          \label{FigVibStab}
-%    \end{figure}
-% %-----------------------------------------------------------------
-% \subsection{Background theory}
-% \subsubsection{Halo mass function}
-% \subsubsection{Press-Schechter formalism}
-% \subsubsection{Navarro-Frenk-White profile}
+We ignore first 200 samples, burn-in time. Say how many samples. Say MCMC in that header file
+\color{black}
 
-% Cosmological N-body simulations are essential because they allow us to explore non-linear gravitational interactions and structure formation in ways that analytical methods cannot fully capture. Despite the success of analytical models like Press-Schechter, discrepancies between these theoretical predictions and observations often arise. For example, the overabundance of small halos predicted by the Press-Schechter formalism compared to what is observed in the real universe, also known as the ``missing satellite problem'', and the differences in the inner structure of halos, where simulations show more complex dynamics that deviate from simple models. \colorbox{Plum}{observations? shorten? move to intro?}
+\colorbox{Plum}{TODO: explain chi2 thing here?}
 
 
 \subsection{Results}\label{subsec: I results}
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=\textwidth]{hmf_candidates.pdf}
-%   \caption{HMF values calculated at $z=0$ for candidates 1, 2, 4, 7, 11 and 8 (the ``universe'' analyzed in this work), as well as for Sijing Shen. The Press-Schechter (solid line) and Sheth-Tormen (dashed line) fits are also plotted, and are the same for all realizations. In Shen's simulation, a box of size of $L=40\:\text{Mpc}$ containing $128^3$ particles was used instead.}\label{fig:hmf cand}
-% \end{figure*}
+\subsubsection{Important time stamps and horizon sizes}
+\begin{table*}
+\caption{\colorbox{Plum}{CAPTION}}             % title of Table
+\label{table:1}      % is used to refer this table in the text
+\centering                          % used for centering table
+\begin{tabular}{| c | c | c | c | c |}        % centered columns (4 columns)
+\hline                % inserts double horizontal lines
+ & Radiation-matter equality & Onset of acceleration & Matter-dark energy equality & Present day values \\    % table heading 
+\hline                        % inserts single horizontal line
+\hspace{6pt}$x$\hspace{53pt} & \hspace{8.5pt}$-8.13$ & $-0.49$ & $-0.26$ & 0 \\      % inserting body of the table
+\hline 
+\hspace{6pt}$z$\hspace{53pt} & $3400.33$ & \hspace{6.5pt}$0.63$ & \hspace{7pt}$0.29$  & 0 \\
+\hline 
+\hspace{6pt}$t$ \hspace{5pt}(analytical) & \hspace{25pt}$65.38\,$kyr & \hspace{24.5pt}$8.33\,$Gyr & \hspace{19pt}$11.78\,$Gyr & \hspace{25pt}$16.30\,$Gyr \\
+\hspace{6pt}$t$ \hspace{5pt}(numerical) & \hspace{25pt}$51.06\,$kyr & \hspace{24.5pt}$7.75\,$Gyr & \hspace{19pt}$10.38\,$Gyr & \hspace{25pt}$13.86\,$Gyr \\
+\hline 
+   $\eta/c$ (analytical) & \hspace{25pt}$444.75\,$Myr & \hspace{20.5pt}$40.22\,$Gyr & \hspace{19pt}$45.20\,$Gyr & \hspace{25pt}$50.36\,$Gyr \\ 
+   $\eta/c$ (numerical) & \hspace{25pt}$368.44\,$Myr & \hspace{20.5pt}$38.57\,$Gyr & \hspace{19pt}$42.37\,$Gyr & \hspace{25pt}$46.32\,$Gyr \\ 
+   \hline 
+   \hspace{5.5pt}$\eta$ \hspace{3.5pt}(analytical) & \hspace{25pt}$136.27\,$Mpc & \hspace{20.5pt}$12.32\,$Gpc & \hspace{19pt}$13.85\,$Gpc & \hspace{25pt}$15.43\,$Gpc \\ 
+   \hspace{5.5pt}$\eta$ \hspace{3.5pt}(numerical) & \hspace{25pt}$112.89\,$Mpc & \hspace{20.5pt}$11.82\,$Gpc & \hspace{19pt}$12.98\,$Gpc & \hspace{25pt}$14.19\,$Gpc \\ 
+\hline                                   %inserts single line
+\end{tabular}
+\end{table*}
+
+\colorbox{Plum}{TODO: time stamps fit what we know} \\
+\colorbox{Plum}{TODO: discuss horizon size}
+
+\subsubsection{Tests of numerical stability}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf}
+    \caption{\colorbox{Plum}{caption}.}\label{fig:numerical stability}
+\end{figure}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf}
+    \caption{\colorbox{Plum}{caption}.}\label{fig:H_prime derivatives}
+\end{figure*}
+
+
+\subsubsection{Time evolution}
+\colorbox{Plum}{maybe rename / split into fewer sections}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf}
+    \caption{\colorbox{Plum}{caption}.}\label{fig:H_prime}
+\end{figure}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf}
+    \caption{\colorbox{Plum}{caption}.}\label{fig:eta and t}
+\end{figure*}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf}
+    \caption{\colorbox{Plum}{caption}.}\label{fig:density parameters}
+\end{figure}
+
+
+
+\subsubsection{Supernova fitting}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf}
+    \caption{\colorbox{Plum}{caption}.}\label{fig:luminosity distance}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf}
+    \caption{\colorbox{Plum}{caption}.}\label{fig:MCMC fits}
+\end{figure}
+
+\begin{figure*}
+      \centering
+      \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf}
+      \caption{\colorbox{Plum}{caption}.}\label{fig:distributions}
+\end{figure*}
+
+
+
+\section{Milestone II}\label{sec: milestone II}
+
+\subsection{Theory}\label{subsec: II theory}
+
+\subsection{Implementation}\label{subsec: II methods}
+
+\subsection{Results}\label{subsec: II results}
+
+
+
+\section{Milestone III}\label{sec: milestone III}
+
+\subsection{Theory}\label{subsec: III theory}
+
+\subsection{Implementation}\label{subsec: III methods}
+
+\subsection{Results}\label{subsec: III results}
+
+
+
+\section{Milestone IV}\label{sec: milestone IV}
+
+\subsection{Theory}\label{subsec: IV theory}
+
+\subsection{Implementation}\label{subsec: IV methods}
+
+\subsection{Results}\label{subsec: IV results}
+
+
 
 \section{Conclusions}\label{sec: conclusions}
 
-% \begin{acknowledgements}
-%       Part of this work was supported by the German
-%       \emph{Deut\-sche For\-schungs\-ge\-mein\-schaft, DFG\/} project
-%       number Ts~17/2--1.
-% \end{acknowledgements}
-
-% WARNING
-%-------------------------------------------------------------------
-% Please note that we have included the references to the file aa.dem in
-% order to compile it, but we ask you to:
-%
-% - use BibTeX with the regular commands:
-%   \bibliographystyle{aa} % style aa.bst
-%   \bibliography{Yourfile} % your references Yourfile.bib
-%
-% - join the .bib files when you upload your source files
-%-------------------------------------------------------------------
-
-  \cite{Armadillo}
-  \bibliographystyle{aa} % style aa.bst
-  \bibliography{references} % your references Yourfile.bib
+\cite{Armadillo}
+\bibliographystyle{aa} % style aa.bst
+\bibliography{references} % your references Yourfile.bib
 
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% %
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Example below of non-structurated natbib references  
-% To use the v8.3 macros with this form of composition of bibliography, 
-% the option "bibyear" should be added to the command line 
-% "\documentclass[bibyear]{aa}".
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{thebibliography}{}
-
-%   \bibitem[1966]{baker} Baker, N. 1966,
-%       in Stellar Evolution,
-%       ed.\ R. F. Stein,\& A. G. W. Cameron
-%       (Plenum, New York) 333
-
-%    \bibitem[1988]{balluch} Balluch, M. 1988,
-%       A\&A, 200, 58
-
-%    \bibitem[1980]{cox} Cox, J. P. 1980,
-%       Theory of Stellar Pulsation
-%       (Princeton University Press, Princeton) 165
-
-%    \bibitem[1969]{cox69} Cox, A. N.,\& Stewart, J. N. 1969,
-%       Academia Nauk, Scientific Information 15, 1
-
-%    \bibitem[1980]{mizuno} Mizuno H. 1980,
-%       Prog. Theor. Phys., 64, 544
-   
-%    \bibitem[1987]{tscharnuter} Tscharnuter W. M. 1987,
-%       A\&A, 188, 55
-  
-%    \bibitem[1992]{terlevich} Terlevich, R. 1992, in ASP Conf. Ser. 31, 
-%       Relationships between Active Galactic Nuclei and Starburst Galaxies, 
-%       ed. A. V. Filippenko, 13
-
-%    \bibitem[1980a]{yorke80a} Yorke, H. W. 1980a,
-%       A\&A, 86, 286
-
-%    \bibitem[1997]{zheng} Zheng, W., Davidsen, A. F., Tytler, D. \& Kriss, G. A.
-%       1997, preprint
-% \end{thebibliography}
-% %
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Examples for figures using graphicx
-% A guide "Using Imported Graphics in LaTeX2e"  (Keith Reckdahl)
-% is available on a lot of LaTeX public servers or ctan mirrors.
-% The file is : epslatex.pdf 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% %-------------------------------------------------------------
-% %                 A figure as large as the width of the column
-% %-------------------------------------------------------------
-%    \begin{figure}
-%    \centering
-%    \includegraphics[width=\hsize]{empty.eps}
-%       \caption{Vibrational stability equation of state
-%                $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
-%                $>0$ means vibrational stability.
-%               }
-%          \label{FigVibStab}
-%    \end{figure}
-% %
-% %-------------------------------------------------------------
-% %                                    One column rotated figure
-% %-------------------------------------------------------------
-%    \begin{figure}
-%    \centering
-%    \includegraphics[angle=-90,width=3cm]{empty.eps}
-%       \caption{Vibrational stability equation of state
-%                $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
-%                $>0$ means vibrational stability.
-%               }
-%          \label{FigVibStab}
-%    \end{figure}
-% %
-% %-------------------------------------------------------------
-% %                        Figure with caption on the right side 
-% %-------------------------------------------------------------
-%    \begin{figure}
-%    \sidecaption
-%    \includegraphics[width=3cm]{empty.eps}
-%       \caption{Vibrational stability equation of state
-%                $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
-%                $>0$ means vibrational stability.
-%               }
-%          \label{FigVibStab}
-%    \end{figure}
-% %
-% %-------------------------------------------------------------
-% %                                Figure with a new BoundingBox 
-% %-------------------------------------------------------------
-%    \begin{figure}
-%    \centering
-%    \includegraphics[bb=10 20 100 300,width=3cm,clip]{empty.eps}
-%       \caption{Vibrational stability equation of state
-%                $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
-%                $>0$ means vibrational stability.
-%               }
-%          \label{FigVibStab}
-%    \end{figure}
-% %
-% %-------------------------------------------------------------
-% %                                      The "resizebox" command 
-% %-------------------------------------------------------------
-%    \begin{figure}
-%    \resizebox{\hsize}{!}
-%             {\includegraphics[bb=10 20 100 300,clip]{empty.eps}
-%       \caption{Vibrational stability equation of state
-%                $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
-%                $>0$ means vibrational stability.
-%               }
-%          \label{FigVibStab}
-%    \end{figure}
-% %
-% %-------------------------------------------------------------
-% %                                             Two column Figure 
-% %-------------------------------------------------------------
-%    \begin{figure*}
-%    \resizebox{\hsize}{!}
-%             {\includegraphics[bb=10 20 100 300,clip]{empty.eps}
-%       \caption{Vibrational stability equation of state
-%                $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
-%                $>0$ means vibrational stability.
-%               }
-%          \label{FigVibStab}
-%    \end{figure*}
-% %
-% %-------------------------------------------------------------
-% %                                             Simple A&A Table
-% %-------------------------------------------------------------
-% %
-% \begin{table}
-% \caption{Nonlinear Model Results}             % title of Table
-% \label{table:1}      % is used to refer this table in the text
-% \centering                          % used for centering table
-% \begin{tabular}{c c c c}        % centered columns (4 columns)
-% \hline\hline                 % inserts double horizontal lines
-% HJD & $E$ & Method\#2 & Method\#3 \\    % table heading 
-% \hline                        % inserts single horizontal line
-%    1 & 50 & $-837$ & 970 \\      % inserting body of the table
-%    2 & 47 & 877    & 230 \\
-%    3 & 31 & 25     & 415 \\
-%    4 & 35 & 144    & 2356 \\
-%    5 & 45 & 300    & 556 \\ 
-% \hline                                   %inserts single line
-% \end{tabular}
-% \end{table}
-% %
-% %-------------------------------------------------------------
-% %                                             Two column Table 
-% %-------------------------------------------------------------
-% %
-% \begin{table*}
-% \caption{Nonlinear Model Results}             
-% \label{table:1}      
-% \centering          
-% \begin{tabular}{c c c c l l l }     % 7 columns 
-% \hline\hline       
-%                       % To combine 4 columns into a single one 
-% HJD & $E$ & Method\#2 & \multicolumn{4}{c}{Method\#3}\\ 
-% \hline                    
-%    1 & 50 & $-837$ & 970 & 65 & 67 & 78\\  
-%    2 & 47 & 877    & 230 & 567& 55 & 78\\
-%    3 & 31 & 25     & 415 & 567& 55 & 78\\
-%    4 & 35 & 144    & 2356& 567& 55 & 78 \\
-%    5 & 45 & 300    & 556 & 567& 55 & 78\\
-% \hline                  
-% \end{tabular}
-% \end{table*}
-% %
-% %-------------------------------------------------------------
-% %                                          Table with notes 
-% %-------------------------------------------------------------
-% %
-% % A single note
-% \begin{table}
-% \caption{\label{t7}Spectral types and photometry for stars in the
-%   region.}
-% \centering
-% \begin{tabular}{lccc}
-% \hline\hline
-% Star&Spectral type&RA(J2000)&Dec(J2000)\\
-% \hline
-% 69           &B1\,V     &09 15 54.046 & $-$50 00 26.67\\
-% 49           &B0.7\,V   &*09 15 54.570& $-$50 00 03.90\\
-% LS~1267~(86) &O8\,V     &09 15 52.787&11.07\\
-% 24.6         &7.58      &1.37 &0.20\\
-% \hline
-% LS~1262      &B0\,V     &09 15 05.17&11.17\\
-% MO 2-119     &B0.5\,V   &09 15 33.7 &11.74\\
-% LS~1269      &O8.5\,V   &09 15 56.60&10.85\\
-% \hline
-% \end{tabular}
-% \tablefoot{The top panel shows likely members of Pismis~11. The second
-% panel contains likely members of Alicante~5. The bottom panel
-% displays stars outside the clusters.}
-% \end{table}
-% %
-% % More notes
-% %
-% \begin{table}
-% \caption{\label{t7}Spectral types and photometry for stars in the
-%   region.}
-% \centering
-% \begin{tabular}{lccc}
-% \hline\hline
-% Star&Spectral type&RA(J2000)&Dec(J2000)\\
-% \hline
-% 69           &B1\,V     &09 15 54.046 & $-$50 00 26.67\\
-% 49           &B0.7\,V   &*09 15 54.570& $-$50 00 03.90\\
-% LS~1267~(86) &O8\,V     &09 15 52.787&11.07\tablefootmark{a}\\
-% 24.6         &7.58\tablefootmark{1}&1.37\tablefootmark{a}   &0.20\tablefootmark{a}\\
-% \hline
-% LS~1262      &B0\,V     &09 15 05.17&11.17\tablefootmark{b}\\
-% MO 2-119     &B0.5\,V   &09 15 33.7 &11.74\tablefootmark{c}\\
-% LS~1269      &O8.5\,V   &09 15 56.60&10.85\tablefootmark{d}\\
-% \hline
-% \end{tabular}
-% \tablefoot{The top panel shows likely members of Pismis~11. The second
-% panel contains likely members of Alicante~5. The bottom panel
-% displays stars outside the clusters.\\
-% \tablefoottext{a}{Photometry for MF13, LS~1267 and HD~80077 from
-% Dupont et al.}
-% \tablefoottext{b}{Photometry for LS~1262, LS~1269 from
-% Durand et al.}
-% \tablefoottext{c}{Photometry for MO2-119 from
-% Mathieu et al.}
-% }
-% \end{table}
-% %
-% %-------------------------------------------------------------
-% %                                       Table with references 
-% %-------------------------------------------------------------
-% %
-% \begin{table*}[h]
-%  \caption[]{\label{nearbylistaa2}List of nearby SNe used in this work.}
-% \begin{tabular}{lccc}
-%  \hline \hline
-%   SN name &
-%   Epoch &
-%  Bands &
-%   References \\
-%  &
-%   (with respect to $B$ maximum) &
-%  &
-%  \\ \hline
-% 1981B   & 0 & {\it UBV} & 1\\
-% 1986G   &  $-$3, $-$1, 0, 1, 2 & {\it BV}  & 2\\
-% 1989B   & $-$5, $-$1, 0, 3, 5 & {\it UBVRI}  & 3, 4\\
-% 1990N   & 2, 7 & {\it UBVRI}  & 5\\
-% 1991M   & 3 & {\it VRI}  & 6\\
-% \hline
-% \noalign{\smallskip}
-% \multicolumn{4}{c}{ SNe 91bg-like} \\
-% \noalign{\smallskip}
-% \hline
-% 1991bg   & 1, 2 & {\it BVRI}  & 7\\
-% 1999by   & $-$5, $-$4, $-$3, 3, 4, 5 & {\it UBVRI}  & 8\\
-% \hline
-% \noalign{\smallskip}
-% \multicolumn{4}{c}{ SNe 91T-like} \\
-% \noalign{\smallskip}
-% \hline
-% 1991T   & $-$3, 0 & {\it UBVRI}  &  9, 10\\
-% 2000cx  & $-$3, $-$2, 0, 1, 5 & {\it UBVRI}  & 11\\ %
-% \hline
-% \end{tabular}
-% \tablebib{(1)~\citet{branch83};
-% (2) \citet{phillips87}; (3) \citet{barbon90}; (4) \citet{wells94};
-% (5) \citet{mazzali93}; (6) \citet{gomez98}; (7) \citet{kirshner93};
-% (8) \citet{patat96}; (9) \citet{salvo01}; (10) \citet{branch03};
-% (11) \citet{jha99}.
-% }
-% \end{table}
-% %-------------------------------------------------------------
-% %                      A rotated Two column Table in landscape  
-% %-------------------------------------------------------------
-% \begin{sidewaystable*}
-% \caption{Summary for ISOCAM sources with mid-IR excess 
-% (YSO candidates).}\label{YSOtable}
-% \centering
-% \begin{tabular}{crrlcl} 
-% \hline\hline             
-% ISO-L1551 & $F_{6.7}$~[mJy] & $\alpha_{6.7-14.3}$ 
-% & YSO type$^{d}$ & Status & Comments\\
-% \hline
-%   \multicolumn{6}{c}{\it New YSO candidates}\\ % To combine 6 columns into a single one
-% \hline
-%   1 & 1.56 $\pm$ 0.47 & --    & Class II$^{c}$ & New & Mid\\
-%   2 & 0.79:           & 0.97: & Class II ?     & New & \\
-%   3 & 4.95 $\pm$ 0.68 & 3.18  & Class II / III & New & \\
-%   5 & 1.44 $\pm$ 0.33 & 1.88  & Class II       & New & \\
-% \hline
-%   \multicolumn{6}{c}{\it Previously known YSOs} \\
-% \hline
-%   61 & 0.89 $\pm$ 0.58 & 1.77 & Class I & \object{HH 30} & Circumstellar disk\\
-%   96 & 38.34 $\pm$ 0.71 & 37.5& Class II& MHO 5          & Spectral type\\
-% \hline
-% \end{tabular}
-% \end{sidewaystable*}
-% %-------------------------------------------------------------
-% %                      A rotated One column Table in landscape  
-% %-------------------------------------------------------------
-% \begin{sidewaystable}
-% \caption{Summary for ISOCAM sources with mid-IR excess 
-% (YSO candidates).}\label{YSOtable}
-% \centering
-% \begin{tabular}{crrlcl} 
-% \hline\hline             
-% ISO-L1551 & $F_{6.7}$~[mJy] & $\alpha_{6.7-14.3}$ 
-% & YSO type$^{d}$ & Status & Comments\\
-% \hline
-%   \multicolumn{6}{c}{\it New YSO candidates}\\ % To combine 6 columns into a single one
-% \hline
-%   1 & 1.56 $\pm$ 0.47 & --    & Class II$^{c}$ & New & Mid\\
-%   2 & 0.79:           & 0.97: & Class II ?     & New & \\
-%   3 & 4.95 $\pm$ 0.68 & 3.18  & Class II / III & New & \\
-%   5 & 1.44 $\pm$ 0.33 & 1.88  & Class II       & New & \\
-% \hline
-%   \multicolumn{6}{c}{\it Previously known YSOs} \\
-% \hline
-%   61 & 0.89 $\pm$ 0.58 & 1.77 & Class I & \object{HH 30} & Circumstellar disk\\
-%   96 & 38.34 $\pm$ 0.71 & 37.5& Class II& MHO 5          & Spectral type\\
-% \hline
-% \end{tabular}
-% \end{sidewaystable}
-% %
-% %-------------------------------------------------------------
-% %                              Table longer than a single page  
-% %-------------------------------------------------------------
-% % All long tables will be placed automatically at the end of the document
-% %
-% \longtab{
-% \begin{longtable}{lllrrr}
-% \caption{\label{kstars} Sample stars with absolute magnitude}\\
-% \hline\hline
-% Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
-% \hline
-% \endfirsthead
-% \caption{continued.}\\
-% \hline\hline
-% Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
-% \hline
-% \endhead
-% \hline
-% \endfoot
-% %%
-% Gl 33    & 6.37 & K2 V & 7.46 & S & 0.043170\\
-% Gl 66AB  & 6.26 & K2 V & 8.15 & S & 0.260478\\
-% Gl 68    & 5.87 & K1 V & 7.47 & P & 0.026610\\
-%          &      &      &      & H & 0.008686\\
-% Gl 86 
-% \footnote{Source not included in the HRI catalog. See Sect.~5.4.2 for details.}
-%          & 5.92 & K0 V & 10.91& S & 0.058230\\
-% \end{longtable}
-% }
-% %
-% %-------------------------------------------------------------
-% %                              Table longer than a single page
-% %                                            and in landscape, 
-% %                    in the preamble, use: \usepackage{lscape}
-% %-------------------------------------------------------------
-
-% % All long tables will be placed automatically at the end of the document
-% %
-% \longtab{
-% \begin{landscape}
-% \begin{longtable}{lllrrr}
-% \caption{\label{kstars} Sample stars with absolute magnitude}\\
-% \hline\hline
-% Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
-% \hline
-% \endfirsthead
-% \caption{continued.}\\
-% \hline\hline
-% Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
-% \hline
-% \endhead
-% \hline
-% \endfoot
-% %%
-% Gl 33    & 6.37 & K2 V & 7.46 & S & 0.043170\\
-% Gl 66AB  & 6.26 & K2 V & 8.15 & S & 0.260478\\
-% Gl 68    & 5.87 & K1 V & 7.47 & P & 0.026610\\
-%          &      &      &      & H & 0.008686\\
-% Gl 86
-% \footnote{Source not included in the HRI catalog. See Sect.~5.4.2 for details.}
-%          & 5.92 & K0 V & 10.91& S & 0.058230\\
-% \end{longtable}
-% \end{landscape}
-% }
-% %
-% %-------------------------------------------------------------
-% %               Appendices have to be placed at the end, after
-% %                                        \end{thebibliography}
-% %-------------------------------------------------------------
-% \end{thebibliography}
-
-% \begin{appendix} %First appendix
-% \section{Background galaxy number counts and shear noise-levels}
-% Because the optical images used in this analysis...
-% \begin{figure*}%f1
-% \includegraphics[width=10.9cm]{1787f23.eps}
-% \caption{Shown in greyscale is a...}
-% \label{cl12301}
-% \end{figure*}
-
-% In this case....
-% \begin{figure*}
-% \centering
-% \includegraphics[width=16.4cm,clip]{1787f24.ps}
-% \caption{Plotted above...}
-% \label{appfig}
-% \end{figure*}
-
-% Because the optical images...
-
-% \section{Title of Second appendix.....} %Second appendix
-% These studies, however, have faced...
-% \begin{table}
-% \caption{Complexes characterisation.}\label{starbursts}
-% \centering
-% \begin{tabular}{lccc}
-% \hline \hline
-% Complex & $F_{60}$ & 8.6 &  No. of  \\
-% ...
-% \hline
-% \end{tabular}
-% \end{table}
-
-% The second method produces...
-% \end{appendix}
-% %
-% %
-% \end{document}
-
-% %
-% %-------------------------------------------------------------
-% %          For the appendices, table longer than a single page
-% %-------------------------------------------------------------
-
-% % Table will be print automatically at the end of the document, 
-% % after the whole appendices
-
-% \begin{appendix} %First appendix
-% \section{Background galaxy number counts and shear noise-levels}
-
-% % In the appendices do not forget to put the counter of the table 
-% % as an option
-
-% \longtab[1]{
-% \begin{longtable}{lrcrrrrrrrrl}
-% \caption{Line data and abundances ...}\\
-% \hline
-% \hline
-% Def & mol & Ion & $\lambda$ & $\chi$ & $\log gf$ & N & e &  rad & $\delta$ & $\delta$ 
-% red & References \\
-% \hline
-% \endfirsthead
-% \caption{Continued.} \\
-% \hline
-% Def & mol & Ion & $\lambda$ & $\chi$ & $\log gf$ & B & C &  rad & $\delta$ & $\delta$ 
-% red & References \\
-% \hline
-% \endhead
-% \hline
-% \endfoot
-% \hline
-% \endlastfoot
-% A & CH & 1 &3638 & 0.002 & $-$2.551 &  &  &  & $-$150 & 150 &  Jorgensen et al. (1996) \\                    
-% \end{longtable}
-% }% End longtab
-% \end{appendix}
-
-% %-------------------------------------------------------------
-% %                   For appendices and landscape, large table:
-% %                    in the preamble, use: \usepackage{lscape}
-% %-------------------------------------------------------------
-
-% \begin{appendix} %First appendix
-% %
-% \longtab[1]{
-% \begin{landscape}
-% \begin{longtable}{lrcrrrrrrrrl}
-% ...
-% \end{longtable}
-% \end{landscape}
-% }% End longtab
-% \end{appendix}
-
-% %%%% End of aa.dem

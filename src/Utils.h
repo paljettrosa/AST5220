@@ -27,6 +27,10 @@ extern struct ConstantsAndUnits {
   const double J           = N*m;                         // Joule
   const double W           = J/s;                         // Watt
   const double Mpc         = 3.08567758e22 * m;           // Megaparsec
+  const double Gpc         = 3.08567758e25 * m;           // Gigaparsec
+  const double kyr         = 3.1536e10 * m;               // Kiloyear
+  const double Myr         = 3.1536e13 * m;               // Megayear
+  const double Gyr         = 3.1536e16 * m;               // Gigayear
   const double eV          = 1.60217653e-19 * J;          // Electronvolt
   
   // Physical constants    
@@ -48,8 +52,11 @@ extern struct ConstantsAndUnits {
   const double k_max = 0.3     / Mpc;
   
   // Min and max x-value
-  const double x_start = -20.0;
-  const double x_end   =  5.0;
+  const double x_start = -21.0;
+  const double x_end   =  6.0;
+
+  // Number of integration points
+  const int npts = 1000;
 
   // Include polarization and/or neutrinos?
   const bool polarization  = true;

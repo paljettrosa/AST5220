@@ -34,15 +34,26 @@ int main(int argc, char **argv){
 
   // Set up and solve the background
   BackgroundCosmology cosmo(h, OmegaB, OmegaCDM, OmegaK, Neff, TCMB);
-  cosmo.solve(true, true);
   cosmo.info();
+  cosmo.solve(true, true);
+
+  // Print the current day values of the cosmic and conformal times
+  cosmo.print_times();
   
   // Output background evolution quantities
-  cosmo.output("results/cosmology.txt", true, true, true, true);
+  cosmo.output(-20.0, 5.0, "results/cosmology.txt", true, true, true, true);
 
-  // Do the supernova fits. Uncomment when you are ready to run this
-  // Make sure you read the comments on the top of src/SupernovaFitting.h
-  // mcmc_fit_to_supernova_data("data/supernovadata.txt", "results/results_supernovafitting.txt");
+  // // Do the supernova fits
+  // Vector bestfit_params {0.0, 0.0, 0.0};
+  // mcmc_fit_to_supernova_data("data/supernovadata.txt", "results/results_supernovafitting.txt", &bestfit_params);
+
+  // // Solve background with best-fit parameters
+  // BackgroundCosmology cosmo_bestfit(bestfit_params[0], OmegaB, bestfit_params[1] - OmegaB, bestfit_params[2], Neff, TCMB);
+  // cosmo_bestfit.info();
+  // cosmo_bestfit.solve();
+  
+  // // Output background evolution quantities
+  // cosmo_bestfit.output(-20.0, 5.0, "results/cosmology_bestfit.txt", false, false, true, false);
 
   // Remove when module is completed
   return 0;

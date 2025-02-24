@@ -23,9 +23,17 @@ class BackgroundCosmology{
     double OmegaK;                  // Curvature density = 1 - OmegaM - OmegaR - OmegaNu - OmegaLambda
     double H0;                      // The Hubble parameter today H0 = 100h km/s/Mpc
 
-    // Start and end of x-integration (can be changed)
+    // Derived expressions for x
+    double x_rm;                    // Radiation-matter equality
+    double x_acc;                   // Onset of acceleration
+    double x_mLambda;               // Matter-dark energy equality
+
+    // Start and end of x-integration
     double x_start = Constants.x_start;
     double x_end   = Constants.x_end;
+
+    // Number of integration points
+    int npts = Constants.npts;
 
     // Splines to be made
     Spline eta_of_x_spline{"eta"};
@@ -50,8 +58,11 @@ class BackgroundCosmology{
     // Do all the solving
     void solve(bool eta = true, bool t = false, bool timing = true);
 
+    // For printing the cosmic and conformal times at important values of x
+    void print_times() const;
+
     // Output some results to file
-    void output(const std::string filename, bool t = false, bool detadx = false, bool distances = false, bool TCMB = false) const;
+    void output(const double x_min, const double x_max, const std::string filename, bool t = false, bool detadx = false, bool distances = false, bool TCMB = false) const;
 
     // Get functions that we must implement
     double eta_of_x(double x) const;

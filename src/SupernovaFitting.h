@@ -30,14 +30,14 @@
 #include <array>
 #include <vector>
 
-void mcmc_fit_to_supernova_data(std::string supernovadata_filename, std::string outfile){
+void mcmc_fit_to_supernova_data(std::string supernovadata_filename, std::string outfile, Vector *bestfit_params){
 
   // The number of parameters to fit
   const int nparam = 3;
   // Maximal number of samples to generate
   const int maxsteps = 10000;
   // Seed for random number generator
-  const int seed = 1234;
+  const int seed = 292929;
   // How many meters in a Gpc
   const double Gpc = Constants.Mpc * 1000;
 
@@ -184,9 +184,11 @@ void mcmc_fit_to_supernova_data(std::string supernovadata_filename, std::string 
     }
   }
 
-  // Print best-fit
+  // Print and update best-fit parameters
   std::cout << "Minimum chi^2 found " << chi2_min << " ";
-  for(int i = 0; i < nparam; i++)
+  for(int i = 0; i < nparam; i++) {
     std::cout << best_parameters[i] << " ";
+    (*bestfit_params)[i] = best_parameters[i];
+  }
   std::cout << "\n";
 }
