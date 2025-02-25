@@ -1,7 +1,13 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{3}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
-\bibitem[{Sanderson \& Curtin(Accessed: October 2023)}]{Armadillo}
-Sanderson, D.~C. \& Curtin, D.~R. Accessed: October 2023, {Armadillo C++ Library"}, \url{https://arma.sourceforge.net/docs.html}
+\bibitem[{{Planck Collaboration} {et~al.}(2020){Planck Collaboration}, Aghanim, Akrami, \& {et al.}}]{Planck}
+{Planck Collaboration}, Aghanim, N., Akrami, Y., \& {et al.} 2020, \href{https://doi.org/10.1051/0004-6361/201833910}{Astronomy \& Astrophysics}, 641
+
+\bibitem[{Reid(Accessed: February 2025)}]{Chi2}
+Reid, R. Accessed: February 2025, {Chi-squared distribution table with sigma values}, \url{https://www.reid.ai/2012/09/chi-squared-distribution-table-with.html}
+
+\bibitem[{Winther {et~al.}(Accessed: February 2025)Winther, Eriksen, Øystein Elgarøy, Mota, \& Ihle}]{Course}
+Winther, H.~A., Eriksen, H.~K., Øystein Elgarøy, Mota, D.~F., \& Ihle, H. Accessed: February 2025, {Cosmology II - A course on the formation of the cosmic microwave background and structures in the Universe}, \url{https://cmb.wintherscoming.no/index.php}
 
 \end{thebibliography}

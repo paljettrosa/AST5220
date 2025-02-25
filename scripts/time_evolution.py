@@ -110,20 +110,24 @@ fig, axs = plt.subplots(ncols = 2, figsize = (16, 6))
 fig.subplots_adjust(left = 0.07, right = 0.97, wspace = 0.15)
 
 axs[0].plot([data["x"][0], x_rm], [-1, -1], color = "yellowgreen", label = r"$r$-dominated")
-axs[0].plot([x_rm, x_rm], [-1, -1/2], color = "gold", linestyle = "--")
 axs[0].plot([x_rm, x_mLambda], [-1/2, -1/2], color = "orange", label = r"$m$-dominated")
-axs[0].plot([x_mLambda, x_mLambda], [-1/2, 1], color = "palevioletred", linestyle = "--")
 axs[0].plot([x_mLambda, data["x"][-1]], [1, 1], color = "mediumorchid", label = r"$\Lambda$-dominated")
+axs[0].axvline(x_rm, 0, 1, color = "gold", label = r"$(r,m)$-equality")
+axs[0].axvline(x_acc, 0, 1, color = "coral", label = r"Onset of acceleration")
+axs[0].axvline(x_mLambda, 0, 1, color = "palevioletred", label = r"$(\Lambda,m)$-equality")
+axs[0].axvline(0, 0, 1, color = "black", linestyle = "--", label = "Today")
 axs[0].plot(data["x"], data["dHpdx"]/data["Hp"], "k", label = "Computed evolution")
 
 axs[1].plot([data["x"][0], x_rm], [1, 1], color = "yellowgreen", label = r"$r$-dominated")
-axs[1].plot([x_rm, x_rm], [1, 1/4], color = "gold", linestyle = "--")
 axs[1].plot([x_rm, x_mLambda], [1/4, 1/4], color = "orange", label = r"$m$-dominated")
-axs[1].plot([x_mLambda, x_mLambda], [1/4, 1], color = "palevioletred", linestyle = "--")
 axs[1].plot([x_mLambda, data["x"][-1]], [1, 1], color = "mediumorchid", label = r"$\Lambda$-dominated")
+axs[1].axvline(x_rm, 0, 1, color = "gold", label = r"$(r,m)$-equality")
+axs[1].axvline(x_acc, 0, 1, color = "coral", label = r"Onset of acceleration")
+axs[1].axvline(x_mLambda, 0, 1, color = "palevioletred", label = r"$(\Lambda,m)$-equality")
+axs[1].axvline(0, 0, 1, color = "black", linestyle = "--", label = "Today")
 axs[1].plot(data["x"], data["ddHpddx"]/data["Hp"], "k", label = "Computed evolution")
 
-axs[0].legend()
+axs[0].legend(framealpha = 1)
 axs[0].set_xlim([x_min, x_max])
 axs[1].set_xlim([x_min, x_max])
 axs[0].set_title(r"$\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}$", fontsize = 28, pad = 16)
@@ -178,7 +182,6 @@ plt.show()
 
 """
 Plot of cosmic time t(x) and conformal time eta(x)/x with analytical expectations
-#TODO argue that it is inaccurate in the matter dominated era since radiation is not negligible in the beginning and dark energy not in the end?
 """
 fig = plt.figure(layout = "constrained", figsize = (16, 12))
 subfigs = fig.subfigures(2, 1, hspace = 0.05, height_ratios = [1.5, 1])
@@ -236,10 +239,6 @@ Plot of density parameters
 plt.figure(figsize = (8, 6))
 plt.subplots_adjust(left = 0.09, right = 0.96, top = 0.93)
 
-# plt.plot(data["x"], data["Omega_gamma"] + data["Omega_nu"], color = "yellowgreen", label = r"$\Omega_{r} = \Omega_{\gamma} + \Omega_{\nu}$")
-# plt.plot(data["x"], data["Omega_b"] + data["Omega_CDM"], color = "orange", label = r"$\Omega_{m} = \Omega_{b} + \Omega_{\small\textrm{CDM}}$")
-# plt.plot(data["x"], data["Omega_Lambda"], color = "mediumorchid", label = r"$\Omega_{\Lambda}$")
-
 plt.plot(data["x"], data["Omega_gamma"] + data["Omega_nu"], color = "mediumseagreen", label = r"$\Omega_{r}$", zorder = 1)
 plt.plot(data["x"], data["Omega_gamma"], color = "yellowgreen", linestyle = "--", label = r"$\Omega_{\gamma}$", zorder = 0)
 plt.plot(data["x"], data["Omega_nu"], color = "skyblue", linestyle = "--", label = r"$\Omega_{\nu}$", zorder = 0)
@@ -247,7 +246,6 @@ plt.plot(data["x"], data["Omega_b"] + data["Omega_CDM"], color = "orange", label
 plt.plot(data["x"], data["Omega_b"], color = "#ffd726", linestyle = "--", label = r"$\Omega_{b}$", zorder = 0)
 plt.plot(data["x"], data["Omega_CDM"], color = "palevioletred", linestyle = "--", label = r"$\Omega_{\small\textrm{CDM}}$", zorder = 0)
 plt.plot(data["x"], data["Omega_Lambda"], color = "mediumorchid", label = r"$\Omega_{\Lambda}$")
-plt.axvline(x_acc, 0, 1, color = "coral", label = r"$x_{\small\textrm{acc}}$", zorder = 1)
 
 plt.legend(loc = "center left", framealpha = 1)
 plt.xlim([x_min, x_max])
@@ -255,14 +253,3 @@ plt.xlabel(r"$x=\log(a)$")
 plt.ylabel(r"Density parameters $\Omega_i$")
 plt.savefig("figs/density_parameters.pdf")
 plt.show()
-
-
-
-#TODO maybe change font to astro font, and figsize to ish nine, fontsize to text fontsize
-#TODO maybe make some subfigures showing deviations from analytical expressions for the eta/t plot. two tall subplots next to the normal plot (zoomed in on r-m and m-Lambda equalities), or own figure? use linear time axis in that case?
-#TODO fix supernova plots. add distribution function to histograms (print standard deviations). maybe only plot H0?
-#TODO calculate all times asked for, use spline for accurate value of time today
-#TODO write intro and theory done
-#TODO write implementation and testing, move some theory to this section?
-#TODO maybe do neutrino thing?
-#TODO discuss results in table in light of commonly accepted times

@@ -773,12 +773,13 @@
   \renewcommand\aa@abstract@i{#1}%
   \@ifnextchar\bgroup{\aa@abstract@next}{\aa@abstract@one}
 }
-\newcommand\aa@abstract@next[4]{%
+\newcommand\aa@abstract@next[5]{%
   \aa@structabstracttrue
   \renewcommand\aa@abstract@ii{#1}%
   \renewcommand\aa@abstract@iii{#2}%
   \renewcommand\aa@abstract@iv{#3}%
   \renewcommand\aa@abstract@v{#4}%
+  \renewcommand\aa@abstract@vi{#5}% %TODO changed
   \begingroup
     \renewcommand\thanks[1]{}%
     \protected@xdef\aa@abstractwords{%
@@ -787,6 +788,7 @@
       \aa@abstract@iii \space
       \aa@abstract@iv \space
       \aa@abstract@v \space
+      \aa@abstract@vi \space %TODO changed
     }%
   \endgroup
   \aa@cnta \z@
@@ -816,6 +818,7 @@
 \newcommand\aa@abstract@iii{}
 \newcommand\aa@abstract@iv{}
 \newcommand\aa@abstract@v{}
+\newcommand\aa@abstract@vi{} %TODO changed
 \newcommand*\keywords[1]{%
   \renewcommand*\aa@keywords{#1}%
   \aa@keywords@cnt
@@ -1067,19 +1070,24 @@
       %   {\aa@abstractfont \ignorespaces\aa@abstract@i\par}
       %   \vspace{\aa@aftersubabstractskip}
       % \fi
-      {\noindent\aa@subabstractfont \aa@subabstractiiname. }%
+      {\noindent\aa@subabstractfont \aa@subabstractiname. }%
       {\aa@abstractfont \ignorespaces\aa@abstract@ii\par}
       \vspace{\aa@aftersubabstractskip}
-      {\noindent\aa@subabstractfont \aa@subabstractiiiname. }%
+      {\noindent\aa@subabstractfont \aa@subabstractiiname. }%
       {\aa@abstractfont \ignorespaces\aa@abstract@iii\par}
       \vspace{\aa@aftersubabstractskip}
-      {\noindent\aa@subabstractfont \aa@subabstractivname. }%
+      {\noindent\aa@subabstractfont \aa@subabstractiiiname. }%
       {\aa@abstractfont \ignorespaces\aa@abstract@iv\par}
       \vspace{\aa@aftersubabstractskip}
-      \ifx\aa@abstract@v\longempty\else
-        {\noindent\aa@subabstractfont \aa@subabstractvname. }%
-        {\aa@abstractfont \ignorespaces\aa@abstract@v\par}
-      \fi
+      % \ifx\aa@abstract@v\longempty\else
+      %   {\noindent\aa@subabstractfont \aa@subabstractvname. }%
+      %   {\aa@abstractfont \ignorespaces\aa@abstract@v\par}
+      % \fi
+      {\noindent\aa@subabstractfont \aa@subabstractivname. }%
+      {\aa@abstractfont \ignorespaces\aa@abstract@v\par}
+      \vspace{\aa@aftersubabstractskip}
+      {\noindent\aa@subabstractfont \aa@subabstractvname. }%
+      {\aa@abstractfont \ignorespaces\aa@abstract@vi\par}
     \else
       {\noindent\aa@abstractfont \ignorespaces\aa@abstract@i\par}
     \fi

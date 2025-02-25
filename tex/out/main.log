@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  24 FEB 2025 21:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  25 FEB 2025 21:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -545,9 +545,9 @@ LaTeX Info: Redefining \Cpagerefrange on input line 2370.
 LaTeX Info: Redefining \labelcref on input line 2370.
 LaTeX Info: Redefining \labelcpageref on input line 2370.
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 37.
-Package hyperref Info: Option `breaklinks' set `true' on input line 37.
-LaTeX Font Info:    Trying to load font information for T1+txr on input line 39.
+Package hyperref Info: Option `colorlinks' set `true' on input line 38.
+Package hyperref Info: Option `breaklinks' set `true' on input line 38.
+LaTeX Font Info:    Trying to load font information for T1+txr on input line 40.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/t1txr.fd
 File: t1txr.fd 2000/12/15 v3.1
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -557,40 +557,40 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 ) (out/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 39.
-LaTeX Font Info:    Trying to load font information for OML+txmi on input line 39.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 40.
+LaTeX Font Info:    Trying to load font information for OML+txmi on input line 40.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 39.
-LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 39.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 40.
+LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 40.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 39.
-LaTeX Font Info:    Trying to load font information for OMX+txex on input line 39.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 40.
+LaTeX Font Info:    Trying to load font information for OMX+txex on input line 40.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 39.
-LaTeX Font Info:    Trying to load font information for U+txexa on input line 39.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 40.
+LaTeX Font Info:    Trying to load font information for U+txexa on input line 40.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -644,74 +644,220 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 39.
+Package hyperref Info: Link coloring ON on input line 40.
  (out/main.out) (out/main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 68.
-
-[1
-
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
-
-]
-LaTeX Font Info:    Trying to load font information for T1+txss on input line 68.
+LaTeX Font Info:    Trying to load font information for T1+txss on input line 69.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/t1txss.fd
 File: t1txss.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 16.41594pt on input line 68.
+(Font)              scaled to size 16.41594pt on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <17.28> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 16.41594pt on input line 68.
-LaTeX Font Info:    Trying to load font information for OT1+txr on input line 68.
+(Font)              scaled to size 16.41594pt on input line 69.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 69.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsya on input line 68.
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 69.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsya.fd
 File: utxsya.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyb on input line 68.
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 69.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsyb.fd
 File: utxsyb.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txmia on input line 68.
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 69.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxmia.fd
 File: utxmia.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyc on input line 68.
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 69.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 13.67995pt on input line 68.
+(Font)              scaled to size 13.67995pt on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <14.4> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 13.67995pt on input line 68.
+(Font)              scaled to size 13.67995pt on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 68.
+(Font)              scaled to size 8.54997pt on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <9> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 8.54997pt on input line 68.
-LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 10.40245pt on input line 68.
-LaTeX Font Info:    Font shape `T1/txss/b/n' in size <10.95> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 68.
-LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 10.40245pt on input line 68.
-LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 77.
-LaTeX Font Info:    Font shape `T1/txss/m/it' in size <10> not available
-(Font)              Font shape `T1/txss/m/sl' tried instead on input line 77.
+(Font)              scaled to size 8.54997pt on input line 69.
+LaTeX Font Info:    Font shape `T1/txss/m/it' in size <9> not available
+(Font)              Font shape `T1/txss/m/sl' tried instead on input line 69.
 LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
-(Font)              scaled to size 9.49997pt on input line 77.
+(Font)              scaled to size 8.54997pt on input line 69.
+LaTeX Font Info:    Font shape `T1/txss/m/n' will be
+(Font)              scaled to size 10.40245pt on input line 69.
+LaTeX Font Info:    Font shape `T1/txss/b/n' in size <10.95> not available
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
+LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
+(Font)              scaled to size 10.40245pt on input line 69.
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--72
+
+ []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 110
+Underfull \hbox (badness 1077) in paragraph at lines 73--75
+\T1/txr/m/n/10 the fidu-cial cos-mol-ogy. The the-o-ret-i-cal frame-work for this
+ []
+
+
+Underfull \hbox (badness 1048) in paragraph at lines 73--75
+\T1/txr/m/n/10 jor com-po-nents based on tem-plates de-vel-oped by Winther.
+ []
+
+LaTeX Font Info:    Font shape `T1/txss/m/n' will be
+(Font)              scaled to size 9.49997pt on input line 82.
+LaTeX Font Info:    Font shape `T1/txss/m/it' in size <10> not available
+(Font)              Font shape `T1/txss/m/sl' tried instead on input line 82.
+LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
+(Font)              scaled to size 9.49997pt on input line 82.
+
+Package hyperref Warning: Suppressing link with empty target on input line 109.
+
+[1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+]
+
+Package hyperref Warning: Suppressing link with empty target on input line 202.
+
+[2]
+
+Package hyperref Warning: Suppressing link with empty target on input line 296.
+
+[3]
+
+Package hyperref Warning: Suppressing link with empty target on input line 406.
+
+[4]
+LaTeX Font Info:    Trying to load font information for T1+txtt on input line 467.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/t1txtt.fd
+File: t1txtt.fd 2000/12/15 v3.1
+)
+Underfull \hbox (badness 1314) in paragraph at lines 469--470
+\T1/txr/m/n/10 Nec-es-sary con-stants and units are de-fined in their SI-unit
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 469--470
+\T1/txr/m/n/10 te-grated nu-mer-i-cally us-ing a GSL-based ODE solver (see
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 478.
+
+[5]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf, id=263, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf  used on input line 484.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+LaTeX Font Info:    Font shape `T1/txr/b/n' in size <9> not available
+(Font)              Font shape `T1/txr/bx/n' tried instead on input line 485.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf, id=265, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf  used on input line 496.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf, id=267, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf  used on input line 505.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 514.
+
+[6 </Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf, id=326, 1156.32pt x 867.24pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf  used on input line 517.
+(pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf, id=334, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf  used on input line 555.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf, id=337, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf  used on input line 586.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 591.
+
+[7 </Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf, id=362, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf  used on input line 595.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 600.
+
+[8 </Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf, id=381, 1156.32pt x 867.24pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf  used on input line 608.
+(pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
+ (out/main.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 6.
+
+[9 </Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf>])
+
+Package hyperref Warning: Suppressing link with empty target on input line 655.
+
+[10 </Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>] (out/main.aux
+
+Package natbib Warning: Citation `Planck' multiply defined.
+
+
+Package natbib Warning: Citation `Chi2' multiply defined.
+
+
+Package natbib Warning: Citation `Course' multiply defined.
+
+) ) 
+Here is how much of TeX's memory you used:
+ 16567 strings out of 474116
+ 267348 string characters out of 5743682
+ 1973187 words of memory out of 5000000
+ 38528 multiletter control sequences out of 15000+600000
+ 641587 words of font info for 159 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 87i,16n,93p,1380b,622s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on out/main.pdf (10 pages, 639623 bytes).
+PDF statistics:
+ 547 PDF objects out of 1000 (max. 8388607)
+ 485 compressed objects within 5 object streams
+ 129 named destinations out of 1000 (max. 500000)
+ 313 words of extra memory for PDF output out of 10000 (max. 10000000)
+

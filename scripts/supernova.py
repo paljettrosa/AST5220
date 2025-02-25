@@ -4,6 +4,7 @@ import matplotlib.patheffects as pe
 plt.rcParams.update({'text.usetex': True, 'font.size': 18, 'font.family': 'serif', 'font.serif': 'Computer Modern Sans Serif', 'font.weight': 100, 'mathtext.fontset': 'cm', 'xtick.labelsize': 16, 'ytick.labelsize': 16})
 
 Gpc = 3.08567758e25
+Omega_r0 = 5.50896e-05 + 3.81093e-05
 
 """
 Read data from files
@@ -55,7 +56,7 @@ chi2 = np.array(chi2)
 H0 = 100*np.array(h)
 Omega_m = np.array(Omega_m)
 Omega_k = np.array(Omega_k)
-Omega_Lambda = 1 - Omega_m - Omega_k
+Omega_Lambda = 1 - Omega_m - Omega_k - Omega_r0
 
 
 """
@@ -87,7 +88,7 @@ plt.figure(figsize = (8, 6))
 plt.subplots_adjust(left = 0.09, right = 0.96, top = 0.93)
 plt.scatter(Omega_m[chi2 < (np.min(chi2) + sigma2)], Omega_Lambda[chi2 < (np.min(chi2) + sigma2)], s = 15, color = "#de82b4", label = r"$\chi^2<2\sigma$ fits")
 plt.scatter(Omega_m[chi2 < (np.min(chi2) + sigma1)], Omega_Lambda[chi2 < (np.min(chi2) + sigma1)], s = 15, color = "#8d3063", label = r"$\chi^2<1\sigma$ fits")
-plt.scatter(Omega_m[np.argmin(chi2)], 1 - Omega_m[np.argmin(chi2)] - Omega_k[np.argmin(chi2)], color = "black", label = r"Minimum $\chi^2$")
+plt.scatter(Omega_m[np.argmin(chi2)], Omega_Lambda[np.argmin(chi2)], color = "black", label = r"Minimum $\chi^2$")
 plt.scatter(0.317, 0.682907, color = "slategrey", label = "Planck", zorder = 2)
 plt.plot(np.linspace(0, 1, 100), 1 - np.linspace(0, 1, 100), "k--", label = "Flat universe", zorder = 1)
 plt.legend(framealpha = 1)

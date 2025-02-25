@@ -43,7 +43,8 @@ TARGETS := cmb
 all: $(TARGETS)
 
 # OBJECT FILES
-OBJS = Main.o Utils.o BackgroundCosmology.o RecombinationHistory.o Perturbations.o PowerSpectrum.o Spline.o ODESolver.o
+OUTDIR = out
+OBJS = $(OUTDIR)/Main.o $(OUTDIR)/Utils.o $(OUTDIR)/BackgroundCosmology.o $(OUTDIR)/RecombinationHistory.o $(OUTDIR)/Perturbations.o $(OUTDIR)/PowerSpectrum.o $(OUTDIR)/Spline.o $(OUTDIR)/ODESolver.o
 
 # DEPENDENCIES
 Main.o                  : BackgroundCosmology.h RecombinationHistory.h Perturbations.h PowerSpectrum.h
@@ -56,15 +57,23 @@ Perturbations.o         : Perturbations.h BackgroundCosmology.h RecombinationHis
 PowerSpectrum.o         : PowerSpectrum.h BackgroundCosmology.h RecombinationHistory.h Perturbations.h
 Examples.o              : Utils.h Spline.h ODESolver.h
 
-examples: Examples.o Utils.o Spline.o ODESolver.o
+# examples: Examples.o Utils.o Spline.o ODESolver.o
+# 	${CC} -o $@ $^ $C $(INC) $(LIBS)
+examples: $(OUTDIR)/Examples.o $(OUTDIR)/Utils.o $(OUTDIR)/Spline.o $(OUTDIR)/ODESolver.o | $(OUTDIR)
 	${CC} -o $@ $^ $C $(INC) $(LIBS)
 
-cmb: $(OBJS)
-	${CC} -o $@ $^ $C $(INC) $(LIBS)
+# cmb: $(OBJS)
+# 	${CC} -o $@ $^ $C $(INC) $(LIBS)
+cmb: $(OBJS) | $(OUTDIR)
+	${CC} -o $@ $(OBJS) $C $(INC) $(LIBS)
 
-%.o: %.cpp
-	${CC}  -c -o $@ $< $C $(INC) 
+# %.o: %.cpp
+# 	${CC}  -c -o $@ $< $C $(INC) 
+$(OUTDIR)/%.o: %.cpp | $(OUTDIR)
+	${CC} -c -o $@ $< $C $(INC) 
 
+# clean:
+# 	rm -rf $(TARGETS) *.o
 clean:
-	rm -rf $(TARGETS) *.o
+	rm -rf $(TARGETS) $(OUTDIR)/*.o
 
