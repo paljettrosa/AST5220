@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex out/main"] 1740516020.63736 "out/main.aux" "out/main.bbl" "out/main" 1740516280.20833 0
+["bibtex out/main"] 1740516020.63736 "out/main.aux" "out/main.bbl" "out/main" 1740516917.23197 0
   "./aa.bst" 1728412657.75515 32101 d07be6eccf1293b463b353311acc9bc2 ""
   "./references.bib" 1740503639.72198 4945 1df08cd7d7f7c54af146ecac13f370a4 ""
-  "out/main.aux" 1740516279.68952 16997 9116660b17cb43da34964f108e891669 "pdflatex"
+  "out/main.aux" 1740516916.80506 16997 9116660b17cb43da34964f108e891669 "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1740516277.96381 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1740516280.20862 0
+["pdflatex"] 1740516915.36516 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1740516917.23221 0
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf" 1740494761.84912 168936 b87752f63c233d9287cf8df8e905e4db ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf" 1740494758.02218 133470 ce2f4b820c9ccfdf9648259452ef9dda ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf" 1740435023.12872 313728 4197de1df0c2b0990bf16e12ac2176ca ""
@@ -16,7 +16,7 @@
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf" 1740494765.10277 143246 0b8f8c4d22f940edb1073d9bac799c13 ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf" 1740435020.40157 102931 d9ba5cd4b9c61f4971712d5afdf91965 ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf" 1740494755.91671 185256 21b58017fee5d0d3e9ec8398d212e8fa ""
-  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1740516015.82133 56032 626be1f2da704d0e6defa72367b23bf2 ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1740516895.64966 56077 9591f18379e6d53502f3d03973ee7b5d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -165,10 +165,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727209366 8221429 db52235156dd1f5fc2399dadb68c726f ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "aa.cls" 1740429603.40553 63872 8acf7ca1a064b0be9664141008161280 ""
-  "main.tex" 1740516015.82133 56032 626be1f2da704d0e6defa72367b23bf2 ""
-  "out/main.aux" 1740516279.68952 16997 9116660b17cb43da34964f108e891669 "pdflatex"
+  "main.tex" 1740516895.64966 56077 9591f18379e6d53502f3d03973ee7b5d ""
+  "out/main.aux" 1740516916.80506 16997 9116660b17cb43da34964f108e891669 "pdflatex"
   "out/main.bbl" 1740516020.88597 962 37f5c2a4b9b4f0646a21190d51f955c9 "bibtex out/main"
-  "out/main.out" 1740516279.69306 6194 ab41edec9e1574115883088d2ef5047c "pdflatex"
+  "out/main.out" 1740516916.80739 6194 ab41edec9e1574115883088d2ef5047c "pdflatex"
   (generated)
   "out/main.aux"
   "out/main.log"
