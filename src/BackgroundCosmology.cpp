@@ -43,7 +43,7 @@ BackgroundCosmology::BackgroundCosmology(
 // Solve the background
 //====================================================
 
-void BackgroundCosmology::solve(bool eta, bool t, bool timing){
+void BackgroundCosmology::solve(const double x_start, const double x_end, const int npts, bool eta, bool t, bool timing){
   ODESolver ode;
   
   Vector x_array = Utils::linspace(x_start, x_end, npts);
@@ -289,15 +289,15 @@ void BackgroundCosmology::print_times() const{
   std::cout << "Today:\n";
   std::cout << "t:      " << t_of_x(0.0)/Constants.Gyr << " Gyr\n";
   std::cout << "eta/c:  " << eta_of_x(0.0)/Constants.c/Constants.Gyr << " Gyr\n";
-  std::cout << "eta:    " << eta_of_x(0.0)/Constants.Gpc << " Gpc\n";
+  std::cout << "eta:    " << eta_of_x(0.0)/Constants.Gpc << " Gpc\n\n";
 }
 
 //====================================================
 // Output some data to file
 //====================================================
 void BackgroundCosmology::output(const double x_min, const double x_max, const std::string filename, bool t, bool detadx, bool distances, bool TCMB) const{
-  const int n_pts = static_cast<int>(x_max - x_min)*100 + 1; 
-  Vector x_array = Utils::linspace(x_min, x_max, n_pts);
+  const int npts = static_cast<int>(x_max - x_min)*100 + 1; 
+  Vector x_array = Utils::linspace(x_min, x_max, npts);
 
   std::ofstream fp(filename.c_str());
   auto print_data = [&] (const double x) {

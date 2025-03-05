@@ -44,19 +44,12 @@ extern struct ConstantsAndUnits {
   const double lambda_2s1s = 8.227 / s;                   // Transition time between 2s and 1s in Hydrogen
   const double H0_over_h   = 100 * km/s/Mpc;              // H0 / h
   const double epsilon_0   = 13.605693122994 * eV;        // Ionization energy for the ground state of hydrogen
-  const double xhi0        = 24.587387 * eV;              // Ionization energy for neutral Helium
-  const double xhi1        = 4.0 * epsilon_0;             // Ionization energy for singly ionized Helium
+  const double chi_0       = 24.587387 * eV;              // Ionization energy for neutral Helium
+  const double chi_1       = 4.0 * epsilon_0;             // Ionization energy for singly ionized Helium
   
   // Min and max k-value
   const double k_min = 0.00005 / Mpc;
   const double k_max = 0.3     / Mpc;
-  
-  // Min and max x-value
-  const double x_start = -21.0;
-  const double x_end   =  6.0;
-
-  // Number of integration points
-  const int npts = 1000;
 
   // Include polarization and/or neutrinos?
   const bool polarization  = true;

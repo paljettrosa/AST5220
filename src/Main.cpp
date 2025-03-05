@@ -21,7 +21,8 @@ int main(int argc, char **argv){
   double TCMB        = 2.7255;
 
   // Recombination parameters
-  double Yp          = 0.245;
+  // double Yp          = 0.245;
+  double Yp          = 0.0;
 
   // Power-spectrum parameters
   double A_s         = 2.1e-9;
@@ -35,7 +36,7 @@ int main(int argc, char **argv){
   // Set up and solve the background
   BackgroundCosmology cosmo(h, OmegaB, OmegaCDM, OmegaK, Neff, TCMB);
   cosmo.info();
-  cosmo.solve(true, true);
+  cosmo.solve(-21.0, 6.0, 1000, true, true);
 
   // Print the current day values of the cosmic and conformal times
   cosmo.print_times();
@@ -56,7 +57,7 @@ int main(int argc, char **argv){
   // cosmo_bestfit.output(-20.0, 5.0, "results/cosmology_bestfit.txt", false, false, true, false);
 
   // Remove when module is completed
-  return 0;
+  // return 0;
 
   //=========================================================================
   // Module II
@@ -64,11 +65,11 @@ int main(int argc, char **argv){
   
   // Solve the recombination history
   RecombinationHistory rec(&cosmo, Yp);
-  rec.solve();
+  rec.solve(-13.0, 0.0, 1000);
   rec.info();
 
   // Output recombination quantities
-  rec.output("recombination.txt");
+  rec.output(-12.0, 0.0, "results/recombination.txt");
   
   // Remove when module is completed
   return 0;
@@ -77,28 +78,28 @@ int main(int argc, char **argv){
   // Module III
   //=========================================================================
  
-  // Solve the perturbations
-  Perturbations pert(&cosmo, &rec);
-  pert.solve();
-  pert.info();
+  // // Solve the perturbations
+  // Perturbations pert(&cosmo, &rec);
+  // pert.solve();
+  // pert.info();
   
-  // Output perturbation quantities
-  double kvalue = 0.01 / Constants.Mpc;
-  pert.output(kvalue, "perturbations_k0.01.txt");
+  // // Output perturbation quantities
+  // double kvalue = 0.01 / Constants.Mpc;
+  // pert.output(kvalue, "perturbations_k0.01.txt");
   
-  // Remove when module is completed
-  return 0;
+  // // Remove when module is completed
+  // return 0;
   
-  //=========================================================================
-  // Module IV
-  //=========================================================================
+  // //=========================================================================
+  // // Module IV
+  // //=========================================================================
 
-  PowerSpectrum power(&cosmo, &rec, &pert, A_s, n_s, kpivot_mpc);
-  power.solve();
-  power.output("cells.txt");
+  // PowerSpectrum power(&cosmo, &rec, &pert, A_s, n_s, kpivot_mpc);
+  // power.solve();
+  // power.output("cells.txt");
   
-  // Remove when module is completed
-  return 0;
+  // // Remove when module is completed
+  // return 0;
 
-  Utils::EndTiming("Everything");
+  // Utils::EndTiming("Everything");
 }

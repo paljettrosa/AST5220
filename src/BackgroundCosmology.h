@@ -28,13 +28,6 @@ class BackgroundCosmology{
     double x_acc;                   // Onset of acceleration
     double x_mLambda;               // Matter-dark energy equality
 
-    // Start and end of x-integration
-    double x_start = Constants.x_start;
-    double x_end   = Constants.x_end;
-
-    // Number of integration points
-    int npts = Constants.npts;
-
     // Splines to be made
     Spline eta_of_x_spline{"eta"};
     Spline t_of_x_spline{"t"};
@@ -56,7 +49,7 @@ class BackgroundCosmology{
     void info() const;
 
     // Do all the solving
-    void solve(bool eta = true, bool t = false, bool timing = true);
+    void solve(const double x_start, const double x_end, const int npts, bool eta = true, bool t = false, bool timing = true);
 
     // For printing the cosmic and conformal times at important values of x
     void print_times() const;

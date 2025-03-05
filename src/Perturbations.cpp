@@ -15,10 +15,10 @@ Perturbations::Perturbations(
 // Do all the solving
 //====================================================
 
-void Perturbations::solve(){
+void Perturbations::solve(const double x_start, const double x_end){
 
   // Integrate all the perturbation equation and spline the result
-  integrate_perturbations();
+  integrate_perturbations(x_start, x_end);
 
   // Compute source functions and spline the result
   compute_source_functions();
@@ -29,7 +29,7 @@ void Perturbations::solve(){
 // and spline the results
 //====================================================
 
-void Perturbations::integrate_perturbations(){
+void Perturbations::integrate_perturbations(const double x_start, const double x_end){
   Utils::StartTiming("integrateperturbation");
 
   //===================================================================
@@ -312,7 +312,8 @@ void Perturbations::compute_source_functions(){
 
       // NB: This is the format the data needs to be stored 
       // in a 1D array for the 2D spline routine source(ix,ik) -> S_array[ix + nx * ik]
-      const int index = ix + n_x * ik;
+      // const int index = ix + n_x * ik;
+      const int index = ix + 1000 * ik; //TODO: maybe change this back
 
       //=============================================================================
       // TODO: Compute the source functions
@@ -527,9 +528,10 @@ double Perturbations::get_Nu(const double x, const double k, const int ell) cons
 void Perturbations::info() const{
   std::cout << "\n";
   std::cout << "Info about perturbations class:\n";
-  std::cout << "x_start:       " << x_start                << "\n";
-  std::cout << "x_end:         " << x_end                  << "\n";
-  std::cout << "n_x:     " << n_x              << "\n";
+  // TODO: maybe change this back
+  // std::cout << "x_start:       " << x_start                << "\n";
+  // std::cout << "x_end:         " << x_end                  << "\n";
+  // std::cout << "n_x:     " << n_x              << "\n";
   std::cout << "k_min (1/Mpc): " << k_min * Constants.Mpc  << "\n";
   std::cout << "k_max (1/Mpc): " << k_max * Constants.Mpc  << "\n";
   std::cout << "n_k:     " << n_k              << "\n";
@@ -580,10 +582,13 @@ void Perturbations::info() const{
 // Output some results to file for a given value of k
 //====================================================
 
-void Perturbations::output(const double k, const std::string filename) const{
+void Perturbations::output(const double x_min, const double x_max, const double k, const std::string filename) const{
   std::ofstream fp(filename.c_str());
-  const int npts = 5000;
-  auto x_array = Utils::linspace(x_start, x_end, npts);
+  // const int npts = 5000;
+  // auto x_array = Utils::linspace(x_start, x_end, npts);
+  const int npts = static_cast<int>(x_max - x_min)*100 + 1; // TODO: maybe change
+  Vector x_array = Utils::linspace(x_min, x_max, npts);
+
   auto print_data = [&] (const double x) {
     double arg = k * (cosmo->eta_of_x(0.0) - cosmo->eta_of_x(x));
     fp << x                  << " ";

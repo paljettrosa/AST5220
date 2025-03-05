@@ -23,11 +23,6 @@ class Perturbations{
     const int n_k        = 100;
     const double k_min   = Constants.k_min;
     const double k_max   = Constants.k_max;
-    
-    // Start and end of the time-integration
-    const int n_x        = 1000;
-    const double x_start = Constants.x_start;
-    const double x_end   = Constants.x_end;
 
     // Below is a full list of splines you probably need, 
     // but you only need to make the splines you will need
@@ -85,7 +80,7 @@ class Perturbations{
     //==========================================================
     
     // Integrate perturbations and spline the result
-    void integrate_perturbations();
+    void integrate_perturbations(const double x_start, const double x_end);
     
     //==========================================================
     // [4] Compute source functions from the result
@@ -103,13 +98,13 @@ class Perturbations{
         RecombinationHistory *rec); 
 
     // Do all the solving
-    void solve();
+    void solve(const double x_start, const double x_end);
     
     // Print some useful info about the class
     void info() const;
 
     // Output info to file
-    void output(const double k, const std::string filename) const;
+    void output(const double x_min, const double x_max, const double k, const std::string filename) const;
 
     // Get the quantities we have integrated
     double get_delta_cdm(const double x, const double k) const;
