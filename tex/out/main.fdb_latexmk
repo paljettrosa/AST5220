@@ -1,22 +1,27 @@
 # Fdb version 4
-["bibtex out/main"] 1740603928.41803 "out/main.aux" "out/main.bbl" "out/main" 1740603930.46913 0
+["bibtex out/main"] 1742257892.89689 "out/main.aux" "out/main.bbl" "out/main" 1742257935.67661 0
   "./aa.bst" 1728412657.75515 32101 d07be6eccf1293b463b353311acc9bc2 ""
-  "./references.bib" 1740503639.72198 4945 1df08cd7d7f7c54af146ecac13f370a4 ""
-  "out/main.aux" 1740603930.04049 20365 0a76e703f8317ba5c2ab82d19d135056 "pdflatex"
+  "./references.bib" 1741780491.66988 5813 f895103c1a36007a7317db9d90c0fbae ""
+  "out/main.aux" 1742257935.21108 30110 83e20d0cbb9e2377343d8b6ab6cf5cba "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1740603928.56811 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1740603930.46938 0
+["pdflatex"] 1742257933.50691 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1742257935.67691 0
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf" 1740494761.84912 168936 b87752f63c233d9287cf8df8e905e4db ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf" 1740494758.02218 133470 ce2f4b820c9ccfdf9648259452ef9dda ""
-  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf" 1740435023.12872 313728 4197de1df0c2b0990bf16e12ac2176ca ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf" 1742164412.74213 313724 589b6d5fc4b69d1c1996173ca1281280 ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf" 1742236767.78588 168073 edaf7fd4f3327102748641822a80b164 ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf" 1740494775.46371 168136 0e0d3e2045a2d782256cccc4530cfae0 ""
-  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf" 1740435026.91211 139374 5993a9efb167a66f30c564ad41d57122 ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf" 1742164413.66007 139414 bf5163e502d67e13e4a4b480192a4866 ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf" 1740494765.10277 143246 0b8f8c4d22f940edb1073d9bac799c13 ""
-  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf" 1740435020.40157 102931 d9ba5cd4b9c61f4971712d5afdf91965 ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf" 1742164411.0013 102621 4e961305c956442913feb3bd2164c7d9 ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf" 1740494755.91671 185256 21b58017fee5d0d3e9ec8398d212e8fa ""
-  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1740603921.56433 155010 09775329026f2de2bb4e6583a682371d ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf" 1742236771.65147 183867 26f6bb1ed9b19ed36bab75ea5958f7ec ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf" 1742236790.23081 197509 c4729f1df6cee1ecb620b4d06547afcc ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf" 1742236788.31347 130460 9851571d59934266dda1cba78a6bf461 ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf" 1742236775.32504 135615 6f0a5426ac2a811442319aaa6569de79 ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1742257930.18502 185140 d9568dfaefbdb6cd3e88ede76fc6ab1d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -150,6 +155,7 @@
   "/usr/local/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty" 1665067230 13815 760b0c02f691ea230f5359c4e1de23a7 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1708463273 30006 3d512c0edd558928ddea1690180ef77e ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/multirow/multirow.sty" 1615845910 6149 2398eec4faa1ee24ff761581e580ecf1 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/natbib/natbib.sty" 1291685959 45456 1c8843383c0bd05870c45fa0ebea6cc2 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657483315 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
@@ -180,10 +186,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727209366 8221429 db52235156dd1f5fc2399dadb68c726f ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "aa.cls" 1740429603.40553 63872 8acf7ca1a064b0be9664141008161280 ""
-  "main.tex" 1740603921.56433 155010 09775329026f2de2bb4e6583a682371d ""
-  "out/main.aux" 1740603930.04049 20365 0a76e703f8317ba5c2ab82d19d135056 "pdflatex"
-  "out/main.bbl" 1740603928.56077 962 37f5c2a4b9b4f0646a21190d51f955c9 "bibtex out/main"
-  "out/main.out" 1740603930.04315 10578 75c9a1bb94c180a86e92f15925d11799 "pdflatex"
+  "main.tex" 1742257930.18502 185140 d9568dfaefbdb6cd3e88ede76fc6ab1d ""
+  "out/main.aux" 1742257935.21108 30110 83e20d0cbb9e2377343d8b6ab6cf5cba "pdflatex"
+  "out/main.bbl" 1742257893.05477 1369 afcc84e6c07b49c14e874afc3dea753e "bibtex out/main"
+  "out/main.out" 1742257935.21501 12508 5525527d86804fe5e517abc7a4fca2d4 "pdflatex"
   (generated)
   "out/main.aux"
   "out/main.log"

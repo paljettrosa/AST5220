@@ -26,6 +26,7 @@
 %
 \usepackage{hyperref}         % automagic cross-referencing
 \usepackage{cleveref}
+\usepackage{multirow}
 \renewcommand{\arraystretch}{1.3}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 % defines the color of hyperref objects
@@ -40,9 +41,9 @@
 \begin{document} 
 
 
-   \title{A numerical study of the Cosmic Microwave Background}
+   \title{A Numerical Study of the Cosmic Microwave Background}
 
-   \subtitle{AST5220 - Cosmology II \colorbox{Plum}{maybe change title?}}
+   \subtitle{AST5220 - Cosmology II}
 
    \author{Candidate 15011
         %   \inst{1}
@@ -70,13 +71,13 @@
 \colorbox{Plum}{TODO: proper intro when finished} \\
 % \colorbox{Plum}{does it make sense to have the links here?} 
 
-In this work, I extensively reference the 2018 Planck results \citep[see][]{Planck}, which serve as the fiducial cosmology. The theoretical framework for this study, including derivations and discussions, is based on material from the AST5220 - Cosmology II course taught by Hans A. Winther at the University of Oslo \citep[see][]{Course}. All computational codes used in this work are available on my \href{https://github.com/paljettrosa/AST5220}{GitHub repository}, with major components based on templates developed by Winther. \colorbox{Plum}{okay to write this? link your GitHub?}
+In this work, I extensively reference the 2018 Planck results \citep[see][]{Planck}, which serve as the fiducial cosmology. The theoretical framework for this study, including derivations and discussions, is based on material from the AST5220 - Cosmology II course taught by Hans A. Winther at the University of Oslo \citep[see][]{Course}. All computational codes used in this work are available on my \href{https://github.com/paljettrosa/AST5220}{GitHub repository}, with major components based on templates developed by Winther. \colorbox{Plum}{TODO: link to Hans?}
 % The templates for  and these templates are available on his \href{https://github.com/HAWinther/AST5220-Cosmology}{GitHub account}. 
 
 \section{Milestone I: Background Cosmology}\label{sec: milestone I}
 The evolution of the universe is governed by the interplay between different energy components, including radiation, matter, and dark energy. Understanding how these components influence the expansion history is essential for predicting the large-scale structure of the Universe and the Cosmic Microwave Background (CMB) fluctuations. This milestone focuses on modeling the background evolution of the Universe using the Friedmann equations, which describe how the Hubble parameter $H$, and thus time and distance measures, evolve with redshift. 
 
-I will implement a numerical framework that takes in cosmological parameters and computes such key background quantities, and use this to fit to measurements of supernova luminosity distances. By completing this milestone, I aim to establish a robust computational framework that will serve as a foundation for later stages of the project, where I will analyze perturbations and extract information about CMB anisotropies. \colorbox{Plum}{correct?}
+I implement a numerical framework that takes in cosmological parameters and computes such key background quantities, and use this to fit to measurements of supernova luminosity distances. By completing this milestone, I aim to establish a robust computational framework that serves as a foundation for later stages of the project, where I analyze perturbations and extract information about CMB anisotropies to obtain constraints on cosmological parameters. \colorbox{Plum}{TODO: maybe change}
 % The results will then be used for constraining cosmological parameters using observational data. 
 
 \subsection{Theoretical framework}\label{subsec: I theory}
@@ -97,7 +98,7 @@ Here, $H = \dot{a}/a$ is the Hubble parameter, and $\rho_i$ denotes the total en
 \end{equation}
 It is essential to know not only how the curvature ``energy density'' scales with $a$, but the other components as well. To understand this, we start with the continuity equation for a perfect fluid, which is a very accurate description of the energy density components in the Universe on the largest scales, applied to a homogeneous and isotropic universe:
 \begin{equation}
-  \frac{d\rho}{dt} + 3H (\rho_i+ p_i) = \frac{d\rho}{dt} + \frac{3}{a}\frac{da}{dt} \rho_i(1 + w_i) = 0.
+  \frac{d\rho_i}{dt} + 3H (\rho_i+ p_i) = \frac{d\rho_i}{dt} + \frac{3}{a}\frac{da}{dt} \rho_i(1 + w_i) = 0.
 \end{equation}
 Here, $p_i$ is the pressure of the fluid, and $w_i=p_i/\rho_i$ is the equation of state parameter, which is constant for the fluids considered in conventional cosmology. This differential equation is easily solved by separating variables and integrating, which gives us:
 \begin{equation}
@@ -105,7 +106,7 @@ Here, $p_i$ is the pressure of the fluid, and $w_i=p_i/\rho_i$ is the equation o
 \end{equation}
 where $\rho_{i0}$ is the present-day density.
 
-On universal scales, non-relativistic matter can essentially be treated as pressureless, hence $w_m = w_b=w_\text{CDM}=0$ and thus $\rho_m \propto a^{-3}$. This corresponds to the dilution of a density field in an expanding volume. Furthermore, neutrinos are so light that they can still be treated as relativistic (radiation), and we therefore have $w_r=w_\gamma=w_\nu=1/3$, which implies $\rho_r\propto a^{-4}$. Radiation is also diluted as the Universe expands, and the extra factor of $a^{-1}$ comes from redshifting of relativistic particles in an expanding universe. From eq. \eqref{eq:rho k} we indeed see that we can treat curvature as a perfect fluid with equation of state $w_k=-1/3$, while dark energy, represented by the cosmological constant $\Lambda$, remains constant in time, hence $w_\Lambda=-1$.
+On large scales, non-relativistic matter can essentially be treated as pressureless, hence $w_m = w_b=w_\text{CDM}=0$ and thus $\rho_m \propto a^{-3}$. This corresponds to the dilution of a density field in an expanding volume. Furthermore, neutrinos are so light that they can still be treated as relativistic (radiation), and we therefore have $w_r=w_\gamma=w_\nu=1/3$, which implies $\rho_r\propto a^{-4}$. Radiation is also diluted as the Universe expands, and the extra factor of $a^{-1}$ comes from redshifting of relativistic particles in an expanding universe. From eq. \eqref{eq:rho k} we indeed see that we can treat curvature as a perfect fluid with equation of state $w_k=-1/3$, while dark energy, represented by the cosmological constant $\Lambda$, remains constant in time, hence $w_\Lambda=-1$. 
 
 A much more convenient way of writing the Friedmann equation can be derived by defining the critical density, which is the density required for a flat universe ($k=0$):
 \begin{equation}
@@ -132,20 +133,20 @@ Additionally, taking the square root on both sides of eq. \eqref{eq:H squared 2}
     H = H_0 \sqrt{(\Omega_{b0} + \Omega_{\text{CDM}0}) a^{-3} + (\Omega_{\gamma 0} + \Omega_{\nu 0}) a^{-4} + \Omega_{k0} a^{-2} + \Omega_{\Lambda 0}}.
 \end{equation}
 
-Eventually, I will need to use data to determine all but the photon and neutrino density parameters, which we know are given by
+When fitting to measurements of supernova luminosity distances, I attempt to constrain all but the photon and neutrino density parameters. This is because we know these are given by
 \begin{align}
     \Omega_{\gamma0} &= g\frac{\pi^2}{30}\frac{\left(k_\text{B}T_{\text{CMB}0}\right)^4}{\hbar^3c^5}\frac{8\pi G}{3H_0^2},
     \\
     \Omega_{\nu0} &= \frac{7}{8}N_\text{eff}\left(\frac{4}{11}\right)^{1/3}\Omega_{\gamma0}.
 \end{align}
-Here, $g=g_\gamma=g_\nu=2$, since photons and neutrinos both have 2 internal polarization states, while $T_{\text{CMB}0}$ is the present day value of the CMB temperature, and $N_\text{eff}$ is the effective number of relativistic degrees of freedom. 
+where $g=g_\gamma=g_\nu=2$, since photons and neutrinos both have 2 internal polarization states. We see that the only free parameters that appear in these expressions are $T_{\text{CMB}0}$, the present day value of the CMB temperature, and $N_\text{eff}$, the effective number of relativistic degrees of freedom, both of which are determined to high precision already. 
 % Together with the baryon ($\Omega_{b0}$), cold dark matter ($\Omega_{\text{CDM}0}$) and curvature ($\Omega_{k0}$) density parameters, we then get the dark energy density parameter from
 % \begin{equation}
 %     \Omega_{\Lambda0} = 1 - \left(\Omega_{k0} + \Omega_{b0} + \Omega_{\text{CDM}0} + \Omega_{\gamma0} + \Omega_{\nu0} \right),
 % \end{equation}
 % since the density parameters must all sum to unity. 
 
-When integrating from the very early universe, using the scale factor $a$ as the time parameter becomes numerically challenging, as it rapidly decreases to vanishingly small values. To address this, I will therefore adopt the logarithmic time coordinate
+When integrating from the very early universe, using the scale factor $a$ as the time parameter becomes numerically challenging, as it rapidly decreases to vanishingly small values. To address this, I therefore adopt the logarithmic time coordinate
 \begin{equation}
     x = \log a,
 \end{equation}
@@ -158,7 +159,7 @@ A commonly used rescaled version of the Hubble parameter is the conformal Hubble
 \begin{equation}
     \mathcal{H} = aH = H_0 \sqrt{\Omega_{m0} e^{-x} + \Omega_{r0} e^{-2x} + \Omega_{k0} + \Omega_{\Lambda 0}e^{2x}}. \label{eq:Hp}
 \end{equation}
-This naturally appears when rewriting cosmological equations in terms of the conformal time $\eta$, which I will present below. I will focus more on this version of the Hubble parameter, and it will become useful to know its first and second derivatives with respect to $x$, specifically in order to verify the validity of approximations I will make later on. After some tedious calculation, we find that these are
+This naturally appears when rewriting cosmological equations in terms of the conformal time $\eta$, which I present below. I focus more on this version of the Hubble parameter, partly because its first and second derivatives with respect to $x$ prove themselves useful verifing the validity of approximations I make later on. After some tedious calculation, we find that these are
 \begin{align*}
     \frac{d\mathcal{H}}{dx} &= \frac{H_0}{2}
     \frac{-\Omega_{m0}e^{-x} - 2\Omega_{r0}e^{-2x} + 2\Omega_{\Lambda0}e^{2x}}
@@ -175,7 +176,9 @@ This naturally appears when rewriting cosmological equations in terms of the con
     \left.- \frac{1}{2}\frac{\left(\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} - 2\Omega_{\Lambda0}e^{2x}\right)^2}{\left(\Omega_{m0}e^{-x} + \Omega_{r0}e^{-2x} + \Omega_{k0} + \Omega_{\Lambda0}e^{2x}\right)^{3/2}}\right),
     \\
     &= \frac{H_0^2}{\mathcal{H}}\left[\frac{1}{2}\Omega_{m0}e^{-x} + 2\Omega_{r0}e^{-2x} + 2\Omega_{\Lambda0}e^{2x}- \frac{1}{H_0^2}\left(\frac{d\mathcal{H}}{dx}\right)^2\right]. \numberthis \label{eq:ddHpddx}
-  \end{align*}
+\end{align*}
+
+\colorbox{Plum}{maybe move to appendix}
 
 
 \subsubsection{Conformal time and distance measures}
@@ -189,17 +192,18 @@ hence, to compute the cosmic time $t$ given our time coordinate $x$, we simply i
 \end{equation}
 Evaluating this at $x=0$ (today), we obtain the age of the Universe.
 
-While it will be interesting to solve our system of equations for $t$, it will be more useful to introduce the conformal time $\eta$. This is defined as
+While it is interesting to solve our system of equations for $t$, it is more useful to introduce the conformal time $\eta$. This is defined as
 \begin{equation}
 d\eta = \frac{cdt}{a} \hspace{5pt}\Leftrightarrow\hspace{5pt}\frac{d\eta}{dx} = \frac{c}{\mathcal{H}},
 \end{equation}
-and thus has units of length. The equation on the right can easily be numerically integrated to obtain $\eta(x)$, which describes how far light has traveled since the Big Bang. In other words, the comoving distance a photon has traveled since the start of the Universe is given by:
-\begin{equation}
-\chi = \eta_0 - \eta,
-\end{equation}
-where $\eta_0$ is the conformal time today. This quantity is also called the particle horizon, and it is a crucial concept in cosmology, as it represents the maximum comoving distance that light has traveled since the beginning of the Universe, thus determining its causal structure. 
+and thus has units of length. The equation on the right can easily be numerically integrated to obtain $\eta(x)$, which describes how far light has traveled since the Big Bang. It is therefore also called the particle horizon, and is a crucial concept in cosmology, as it determines the causal structure of the Universe. 
 
-The horizon is fundamental in defining distance measures in cosmology. We know that photons travel along null geodesics $ds^2 = 0$, and from the conformal time and the FLRW line element we see that this implies that the coordinate distance $r$ satisfies
+
+A closely related quantity is the so-called comoving distance a photon has travelled since emission, defined as
+\begin{equation}
+  \chi = \eta_0 - \eta,
+\end{equation}
+where $\eta_0$ is the conformal time today. This is fundamental in defining distance measures in cosmology. We know that photons travel along null geodesics $ds^2 = 0$, and from the conformal time and the FLRW line element we see that this implies that the coordinate distance $r$ satisfies
 \begin{equation}
   c dt = \frac{adr}{\sqrt{1 - k r^2}},
 \end{equation}
@@ -207,9 +211,9 @@ for a radially traveling photon ($d\theta = d\phi = 0$). Changing the time coord
 \begin{equation}
   d\eta = \frac{dr}{\sqrt{1 - k r^2}},
 \end{equation}
-and integrating from emission at time $\eta$ to today ($\eta_0$), we get the comoving distance:
+and integrating from emission at time $\eta$ to today, we get precisely the comoving distance:
 \begin{equation}
-  \chi = \int_{\eta}^{\eta_0}  d\eta' = \int_{0}^{r} \frac{dr'}{\sqrt{1 - k r'^2}}.
+  \int_{\eta}^{\eta_0}  d\eta' \equiv \chi = \int_{0}^{r} \frac{dr'}{\sqrt{1 - k r'^2}}.
 \end{equation}
 Solving this integral for different values of the curvature constant $k$, we obtain
 \begin{equation}
@@ -278,7 +282,7 @@ and thus
   z_{m\Lambda} = \left(\frac{\Omega_{\Lambda0}}{\Omega_{m0}}\right)^{1/3} - 1.
 \end{equation}
 
-To ensure that the numerical results presented in this work agree with analytical expectations, it will be beneficial to have approximate expressions for the cosmic and conformal times in the different regimes. For a universe dominated by a single component with equation of state $w_i$ the cosmic time $t$ is given by
+To ensure that the numerical results presented in this work agree with analytical expectations, it is beneficial to have approximate expressions for the cosmic and conformal times in the different regimes. For a universe dominated by a single component with equation of state $w_i$ the cosmic time $t$ is given by
 \begin{equation}
   t = \int_0^t dt' = \int_{-\infty}^{x}\frac{dx'}{H_0\sqrt{\Omega_{i0}e^{-3(1+w_i)x'}}}.
 \end{equation}
@@ -335,7 +339,7 @@ with the conformal equality times:
   \eta_{m\Lambda} &= \frac{c}{H_0}\left[\frac{2}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}\right].
 \end{align}
 
-To be able to actually test the validity of the approximations made above, it is essential to use them to compute the expected values of some scaled expressions, as this will make it easier to see the relative errors. Obviously, in an era dominated by component $i$ we have
+To be able to actually test the validity of the approximations made above, it is essential to use them to compute the expected values of some scaled expressions, as this makes it easier to see the relative errors. Obviously, in an era dominated by component $i$ we have
 \begin{equation}
     \mathcal{H}_i \approx H_0\sqrt{\Omega_{i0}e^{-(1+3w_i)}},
 \end{equation}
@@ -364,9 +368,10 @@ in the dark energy dominated era. From the latter it is obvious that
   \left(\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}\right)_\Lambda = \left(\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}\right)_\Lambda = 1.
 \end{equation} 
 
+\colorbox{Plum}{maybe move "to ensure..." and down to app.}
 
 \subsubsection{Onset of acceleration}
-Later on, when we will analyze the observed CMB power spectrum, it will be interesting to know when the expansion of the Universe started to accelerate. It is a well known fact that the expansion rate (governed by $\dot{a}$) is increasing as of today, and that we are in the early stage of a dark energy dominated era. We have the second Friedmann equation
+When analyzing a simulated CMB power spectrum and comparing it to observations, it is interesting to know when the expansion of the Universe started to accelerate. It is a well known fact that the expansion rate (governed by $\dot{a}$) is increasing as of today, and that we are in the early stage of a dark energy dominated era. We have the second Friedmann equation
 \begin{equation}
     \frac{\ddot{a}}{a} = -\frac{4\pi G}{3}\sum_i \rho_i\left(1 + 3w_i \right),
 \end{equation}
@@ -400,6 +405,8 @@ with the conformal time being
     \eta_\text{acc} = \eta_m(x_\text{acc}) = \frac{c}{H_0}\left[\frac{2^{5/6}}{\Omega_{m0}^{1/3}\Omega_{\Lambda0}^{1/6}} - \frac{\sqrt{\Omega_{r0}}}{\Omega_{m0}}\right].
 \end{equation}
 
+\colorbox{Plum}{rewrite this if appendix}
+
 
 \subsubsection{The Universe today}
 It is of course a great consistency check to see if I am able to replicate the values for the age of the Universe and its horizon size today, and we can use the expressions derived above to do so. Following the approximations I have done up until this point, we have
@@ -421,8 +428,6 @@ To numerically solve for conformal time $\eta$ and cosmic time $t$, we need appr
 \end{align}
 This ensures a smooth transition between analytical and numerical solutions, minimizing errors when solving for the full evolution of $\eta(x)$ and $t(x)$.
 
-\colorbox{Plum}{should this section be somewhere else?}
-
 
 \subsubsection{The \texorpdfstring{$\chi^2$}{Lg}-method}
 After having established the theoretical framework describing the evolution of the Universe, we now turn to how observational data can be used to constrain cosmological parameters. One of the most powerful tools for this is the study of Type Ia supernovae, which serve as standard candles for measuring the expansion history of the Universe. Given their intrinsic luminosity, the observed flux allows us to determine their luminosity distance $d_L$ as a function of redshift $z$, providing a direct probe of the Universe's geometry and expansion.
@@ -435,8 +440,8 @@ where $N$ is the number of data points, $d_L^{\text{obs}}(z_i)$ represents the m
 
 
 \subsection{Implementation details}\label{subsec: I methods}
-\subsubsection{The fiducial model}
-As mentioned in section \ref{sec: introduction}, I will adopt the best-fit Planck 2018 cosmology \citep[see][]{Planck} as my fiducial model, which includes the following parameters:
+\subsubsection{The fiducial model}\label{subsubsec: I methods fiducial}
+As mentioned in section \ref{sec: introduction}, I adopt the best-fit Planck 2018 cosmology \citep[see][]{Planck} as my fiducial model, with values chosen within their stated uncertainties. This includes the following parameters:
 \begin{align*}
     h &= 0.67,
     \\
@@ -460,41 +465,42 @@ The photon and neutrino density parameters are easily calculated using the value
   \\
   \Omega_{\nu0} &=  3.81093\times10^{-5},
   \\
-  \Omega_{\Lambda0} &= 0.682907.
+  \Omega_{\Lambda0} &= 0.683.
 \end{align*}
 
-\subsubsection{Main program structure}
-As mentioned in section \ref{sec: introduction}, all the code I use is located on my \href{https://github.com/paljettrosa/AST5220}{GitHub repository}. In this section I will specify which files are relevant for this milestone, and roughly what they contain and how they should be implemented. All of the source codes, which are implemented in C++, are located in the \verb|src| folder, including the main program \verb|Main.cpp|. Naturally, the \verb|scripts| folder contains Python scripts, wherein NumPy and Matplotlib have been used for plotting and analyzing the results. The \verb|data| and \verb|results| folders contain data and outputs from the source code, respectively, in the form of \verb|.txt| files, while figures are placed in \verb|figs|. The \verb|Makefile| and \verb|README.md| are not contained within any folder, and are completely written by Winther. \colorbox{Plum}{should I remove stuff about folders?}
 
-The evolution of the conformal and cosmic times, Hubble parameter, density parameters and related quantities are computed using the \verb|BackgroundCosmology| class, implemented in \verb|BackgroundCosmology.cpp| and \verb|BackgroundCosmology.h|. Necessary constants and units are defined in their SI-unit values in \verb|Utils.h|, as well as some convenient data types. The fundamental equations governing the expansion are integrated numerically using a GSL-based ODE solver (see \verb|ODESolver.cpp| and \verb|ODESolver.h|). The solutions for $t(x)$ and $\eta(x)$ are stored at discrete values of $x$ and are interpolated using cubic splines (see \verb|Spline.cpp| and \verb|Spline.h|) for efficient lookup, which also ensure smooth evaluations of these quantities at any redshift. This is implemented within the \verb|BackgroundCosmology| class, and all results produced here are written to file and analyzed in \verb|time_evolution.py|. \colorbox{Plum}{should C++, Python, GNU, etc. be cited?}
+\subsubsection{Main program structure}
+As mentioned in section \ref{sec: introduction}, all the code I have used is located on my \href{https://github.com/paljettrosa/AST5220}{GitHub repository}. In this section I specify which files are relevant for this milestone, and roughly what they contain and how they should be implemented. All of the source codes, which are implemented in C++, are located in the \verb|src| folder, including the main program \verb|Main.cpp|. Naturally, the \verb|scripts| folder contains Python scripts, wherein NumPy and Matplotlib are used for plotting and analyzing the results. The \verb|data| and \verb|results| folders contain data and outputs from the source code, respectively, in the form of \verb|.txt| files, while figures are placed in \verb|figs|. \colorbox{Plum}{maybe remove folder info}
+
+The evolution of the conformal and cosmic times, Hubble parameter, density parameters and related quantities are computed using the \verb|BackgroundCosmology| class, implemented in \verb|BackgroundCosmology.cpp| and \verb|BackgroundCosmology.h|. Necessary constants and units are defined in their SI-unit values in \verb|Utils.h|, as well as some convenient data types. The fundamental equations governing the expansion are integrated numerically using a GSL-based ODE solver (see \verb|ODESolver.cpp| and \verb|ODESolver.h|). The solutions for $t(x)$ and $\eta(x)$ are stored at discrete values of $x$ and are interpolated using cubic splines (see \verb|Spline.cpp| and \verb|Spline.h|) for efficient lookup, which also ensure smooth evaluations of these quantities at any redshift. This is implemented within the \verb|BackgroundCosmology| class, and all results produced here are written to file and analyzed in \verb|background.py|. 
 
 
 \subsubsection{Integration limits and points}
-When integrating to solve for $\eta$ and $t$, I chose to use $x_\text{min}=-21.0$ and $x_\text{max}=6.0$ as integration limits, with $n=1\,000$ points. However, when splining the results I used $x_\text{min}=-20.0$ and $x_\text{max}=5.0$ instead, so as to not include the likely more unstable endpoints, and with $n=100(x_\text{max}-x_\text{min})+1=2501$ points for smoother visualization.
+When integrating to solve for $\eta$ and $t$, I chose to use $x_\text{min}=-21.0$ and $x_\text{max}=6.0$ as integration limits, with $n=1\,000$ points. However, when splining the results I used $x_\text{min}=-20.0$ and $x_\text{max}=5.0$ instead, so as to not include the likely more unstable endpoints, with $n=2501$ points (corresponding to $\Delta x = 0.01$) for smoother visualization.
 
 
 \subsubsection{Supernova fitting}
-To constrain cosmological parameters ($h, \Omega_{m0}, \Omega_{k0}$), I performed a Markov Chain Monte Carlo (MCMC) fit to Type Ia supernova data (see \verb|supernovadata.txt|), which is implemented in \verb|SupernovaFitting.h|. The MCMC chain consists of 10$\,$000 samples, where I have treated the 200 first samples are as burn-in time and thus discarded them. The results are further analyzed in \verb|supernova.py|, where I visualize the accepted samples within the $(\chi^2-\chi^2_\text{min})<1\sigma$ and $(\chi^2-\chi^2_\text{min})<2\sigma$, constraints in the $(\Omega_{m0},\Omega_{\Lambda0})$-plane, corresponding to 68.3\% and 95.45\% confidence levels, repsectively. I have used tabulated values of $1\sigma=3.53$ and $2\sigma=8.02$ \citep[see][]{Chi2}, since we have $k=3$ degrees of freedom. This is because we really have four parameters $(h, \Omega_{m0}, \Omega_{k0}, \Omega_{\Lambda0})$, but the constraint that all the density parameters must sum up to unity, which eliminates one d.o.f. 
+To constrain cosmological parameters ($h, \Omega_{m0}, \Omega_{k0}$), I performed a Markov Chain Monte Carlo (MCMC) fit to Type Ia supernova data (see \verb|supernovadata.txt|), which is implemented in \verb|SupernovaFitting.h|. The MCMC chain consists of 10$\,$000 samples, where I have treated the 200 first samples are as burn-in time and thus discarded them. The results are further analyzed in \verb|supernova.py|, where I visualize the accepted samples within the $(\chi^2-\chi^2_\text{min})<1\sigma$ and $(\chi^2-\chi^2_\text{min})<2\sigma$, constraints in the $(\Omega_{m0},\Omega_{\Lambda0})$-plane, corresponding to 68.3\% and 95.45\% confidence levels, repsectively. I use tabulated values of $1\sigma=3.53$ and $2\sigma=8.02$ \citep[see][]{Chi2}, since we have $k=3$ degrees of freedom. This is because we really have four parameters $(h, \Omega_{m0}, \Omega_{k0}, \Omega_{\Lambda0})$, but also the constraint that all the density parameters must sum up to unity, which eliminates one d.o.f. 
 
-
-\subsection{Results and discussions}\label{subsec: I results}
-\subsubsection{Test of numerical stability}
+\subsubsection{Testing numerical stability}
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf}
     \caption{Comparison of the numerically computed conformal time derivative  $\eta'\mathcal{H}/c$ with the expected value of 1 (pink line). The small deviations on the order of $\lesssim 10^{-5}$ confirm the numerical stability of the integration.}\label{fig:numerical stability}
 \end{figure}
 
-\colorbox{Plum}{should this section come later?}
+To test the stability of the numerical solutions presented in the following section, I have plotted $\eta'\mathcal{H}/c$ as function of $x$ in figure \ref{fig:numerical stability}, since this quantity should remain close to unity throughout the range. The scatter points, which were obtained by taking the derivative of the spline for $\eta$, show small deviations from 1, on the order of $\lesssim 10^{-5}$, indicating that the numerical error is very small. It also remains bounded bounded throughout the range of $x$, suggesting that the ODE solver maintains stability and does not accumulate significant numerical drift. The slight periodic variations could result from finite step sizes in the integration, or have something to do with interpolation errors between the integration points, but they are well within an acceptable tolerance.
 
-To ensure that the numerical solutions are stable, I have plotted $\eta'\mathcal{H}/c$ as function of $x$ in figure \ref{fig:numerical stability}, since this quantity should remain close to unity throughout the range. The scatter points, which were obtained by taking the derivative of the spline for $\eta$, show small deviations from 1, on the order of $\lesssim 10^{-5}$, indicating that the numerical error is very small. It also remains bounded bounded throughout the range of $x$, suggesting that the ODE solver maintains stability and does not accumulate significant numerical drift. The slight periodic variations could result from finite step sizes in the integration, or have something to do with interpolation errors between the integration points, but they are well within an acceptable tolerance. \colorbox{Plum}{is this a reasonable argument?}
+\colorbox{Plum}{TODO: maybe move over prev. sec.}
 
+
+\subsection{Results and discussions}\label{subsec: I results}
 
 \subsubsection{The conformal Hubble parameter}
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf}
-  \caption{Exact evolution of the conformal Hubble parameter $\mathcal{H}(x)$ (black) compared with approximations (dashed). The onset of acceleration is visible as a departure from matter-like scaling, occuring at the trough of the exact solution. \colorbox{Plum}{okay to write this here instead of main text?}}\label{fig:H_prime}
+  \caption{Exact evolution of the conformal Hubble parameter $\mathcal{H}(x)$ (black) compared with approximations (dashed). The onset of acceleration is visible as a departure from matter-like scaling, occuring at the trough of the exact solution.}\label{fig:H_prime}
 \end{figure}
 
 
@@ -508,7 +514,7 @@ In figure \ref{fig:H_prime} I have plotted the exact evolution of the conformal 
 
 A more direct comparison between the approximations and the exact evolution can be seen in figure \ref{fig:H_prime derivatives}, where I have plotted the first (left) and second (right) derivatives of $\mathcal{H}$ with respect to $x$, divided by $\mathcal{H}$ to see relative differences more easily. The dashed lines of different colors represent the same things here as well. We see good agreement in the asymptotically radiation-dominated and dark energy-dominated regimes, while in the matter-dominated epoch and around the equality times there are clear deviations, especially for the double derivative. This is reasonable, as we make rough approximations in both the beginning and the end of this era, hence the exact solution barely has time to sink to the expected value before it rises at the next transition point. 
 
-It is interesting to see that the scaled double derivative actually increases beyond the expected value in the beginning of the dark energy-dominated era, with the peak being today. To understand this, we can look back at the expressions \eqref{eq:dHpdx} and \eqref{eq:ddHpddx}. The latter shows that the second derivative is influenced by a competition between growing and decaying terms as the Universe evolves: During the matter-dominated era, the dominant term is $\Omega_{m0} e^{-x}$, which leads to a slow decrease in $\mathcal{H}$; as $\Lambda$ begins to dominate, the exponential growth of the $2\Omega_{\Lambda 0} e^{2x}$ term starts accelerating the Universe. The transition is not instantaneous, meaning there is a period where the competing effects of matter dilution ($e^{-x}$) and dark energy growth ($e^{2x}$) cause a rapid shift in dynamics. This is visible in the sharp turn of $\mathcal{H}$ in figure \ref{fig:H_prime}, and explains the peak in the scaled second derivative before it settles into the $\Lambda$-dominated regime. \colorbox{Plum}{is this a reasonable analysis?}
+It is interesting to see that the scaled double derivative actually increases beyond the expected value in the beginning of the dark energy-dominated era, with the peak being today. To understand this, we can look back at eqs. \eqref{eq:dHpdx} and \eqref{eq:ddHpddx}. The latter shows that the second derivative is influenced by a competition between growing and decaying terms as the Universe evolves: During the matter-dominated era, the dominant term is $\Omega_{m0} e^{-x}$, which leads to a slow decrease in $\mathcal{H}$; as $\Lambda$ begins to dominate, the exponential growth of the $2\Omega_{\Lambda 0} e^{2x}$ term starts accelerating the Universe. The transition is not instantaneous, meaning there is a period where the competing effects of matter dilution ($e^{-x}$) and dark energy growth ($e^{2x}$) cause a rapid shift in dynamics. This is visible in the sharp turn of $\mathcal{H}$ in figure \ref{fig:H_prime}, and explains the peak in the scaled second derivative before it settles into the $\Lambda$-dominated regime.
 
 
 \subsubsection{Time and horizon measures}
@@ -547,7 +553,7 @@ In figure \ref{fig:eta and t} I have plotted the numerical solutions for the con
 
 In table \ref{table:time stamps} I have listed key cosmological timestamps for important transition points in the Universe's history: radiation-matter equality, the onset of acceleration, matter-dark energy equality, and present-day values. The logarithmic scale factor $x = \log a$ and redshift $z$ are listed for each event, along with analytical and numerical results for cosmic time $t$, conformal time $\eta/c$, and the comoving horizon $\eta$. We observe a discrepancy between the analytically approximated values for $t$ and $\eta$ obtained using the expressions derived in section \ref{subsec: I theory} and the corresponding numerical values, which instead were obtained by solving the full system of equations and interpolating via splines. These discrepancies are consistent with figure \ref{fig:eta and t}.
 
-The age of the Universe is presented as $t_0=13.801\pm0.024\,\text{Gyr}$ in \citet{Planck}, an estimate based on $1\sigma$ constraints on a combination of gravitational lensing and TT (temperature), TE (temperature-E mode polarization), EE (E mode polarization) and lowE (low multipole E-mode polarization) angular power spectra measurements. This is in good agreement with the numerical result, although the value stated here is slightly larger. Nevertheless, the analytical approximation greatly overestimate it in comparison. This further validates the numerical solution around the equality times, where it deviates from the approximate evolutions and we have less to compare it to.
+In \citet{Planck}, one presented estimate of the age of the Universe is $t_0=13.801\pm0.024\,\text{Gyr}$. This is based on $1\sigma$ constraints on a combination of gravitational lensing and TT (temperature), TE (temperature-E mode polarization), EE (E mode polarization) and lowE (low multipole E-mode polarization) angular power spectra measurements. This is in good agreement with the numerical result, although the value stated here is slightly larger. Nevertheless, the analytical approximation greatly overestimate it in comparison. This further validates the numerical solution around the equality times, where it deviates from the approximate evolutions and we have less to compare it to.
 
 \subsubsection{Density parameters}
 \begin{figure}
@@ -559,26 +565,47 @@ The age of the Universe is presented as $t_0=13.801\pm0.024\,\text{Gyr}$ in \cit
 The evolutions of the density parameters $\Omega_i(x)$ are plotted in figure \ref{fig:density parameters}, with solid lines for $\Omega_r$, $\Omega_m$ and $\Omega_\Lambda$, and dashed lines for the individual components that make up the two first of these. The solid curves are consistent with the previous results, with the transitions between the different eras matching the observed changes in $\mathcal{H}$, $\eta$ and $t$. For example, the abrupt change in the conformal Hubble parameter at $(m,\Lambda)$-equality compared to the change at $(r,m)$-equality matches the relatively rapid takeover of $\Lambda$ as the dominating energy component, as opposed to the more gradual change from radiation to matter domination. 
 
 \subsubsection{Supernova fitting}
+% \begin{table}
+%   \caption{Best-fit cosmological parameters obtained from supernova data, along with their mean values and standard deviations. The best-fit values correspond to the minimum $\chi^2$, while the Planck 2018 values are provided for comparison. The Hubble constant $H_0$ is given in units of km/s/Mpc.}             % title of Table
+%   \label{table:supernova}      % is used to refer this table in the text
+%   \centering                          % used for centering table
+%   \begin{tabular}{| c || c | c | c | c |}        % centered columns (4 columns)
+%   \hline                % inserts double horizontal lines
+%    & \hspace{5pt}$\mu_i$\hspace{5pt} & \hspace{7pt}$\sigma_i$\hspace{7pt} & min$\big(\chi^2\big)$ & Planck \\    % table heading 
+%   \hline\hline                     % inserts single horizontal line
+%   $H_0$ & \hspace{-10pt}70.1 & \hspace{-10pt}0.5 & \hspace{-10pt}70.2 & \hspace{-10pt}67.0 \\
+%   \hline
+%   $\Omega_{m0}$ & \hspace{5pt}0.240 & 0.087 & \hspace{5pt}0.258 & \hspace{5pt}0.317 \\
+%   \hline
+%   $\Omega_{k0}$ & \hspace{5pt}0.118 & 0.216 & \hspace{5pt}0.071 & \hspace{5pt}0.000 \\
+%   \hline
+%   $\Omega_{\Lambda0}$ & \hspace{5pt}0.642 & 0.133 & \hspace{5pt}0.672 & \hspace{5pt}0.683 \\
+%   \hline                                   %inserts single line
+%   \end{tabular}
+% \end{table}
+
 \begin{table}
-  \caption{Best-fit cosmological parameters obtained from supernova data, along with their mean values and standard deviations. The best-fit values correspond to the minimum $\chi^2$, while the Planck 2018 values are provided for comparison. The Hubble constant $H_0$ is given in units of km/s/Mpc.}             % title of Table
+  \caption{Best-fit cosmological parameters obtained from supernova data, along with their mean values and standard deviations. The best-fit values correspond to the minimum $\chi^2$, while the Planck 2018 values estimated from 1$\sigma$ constraints on TT,TE,EE+lowE+lensing measurements are provided for comparison. These were determined by assuming a perfectly flat Universe, though they do actually estimate a small non-zero curvature density ($\Omega_{k0}=0.0007\pm0.0019$) when relaxing this assumption and also including BAO measurements. I have chosen to neglect this in my analysis, due to the relatively small value and large uncertainty. \colorbox{Plum}{move to main text?} Moreover, the Hubble constant is given in units of km/s/Mpc.}             % title of Table
   \label{table:supernova}      % is used to refer this table in the text
   \centering                          % used for centering table
   \begin{tabular}{| c || c | c | c | c |}        % centered columns (4 columns)
   \hline                % inserts double horizontal lines
    & \hspace{5pt}$\mu_i$\hspace{5pt} & \hspace{7pt}$\sigma_i$\hspace{7pt} & min$\big(\chi^2\big)$ & Planck \\    % table heading 
   \hline\hline                     % inserts single horizontal line
-  $H_0$ & 70.112 & 0.483 & 70.204 & 67 \\
+  $H_0$ & \hspace{-10pt}70.1 & \hspace{-10.2pt}0.5 & \hspace{-10.8pt}70.2 & \hspace{-5.5pt}$67.4\pm0.5$ \\
   \hline
-  $\Omega_{m0}$ & \hspace{5pt}0.240 & 0.086 & \hspace{5pt}0.258 & 0.317 \\
+  $\Omega_{m0}$ & \hspace{4.8pt}0.240 & \hspace{-0.2pt}0.087 & \hspace{4.6pt}0.258 & $0.315\pm0.007$ \\
   \hline
-  $\Omega_{k0}$ & \hspace{5pt}0.118 & 0.216 & \hspace{5pt}0.071 & 0 \\
+  $\Omega_{k0}$ & \hspace{0pt}0.12 & \hspace{-5pt}0.22 & \hspace{0pt}0.07 & 0 \\
   \hline
-  $\Omega_{\Lambda0}$ & \hspace{5pt}0.642 & 0.133 & \hspace{5pt}0.672 & 0.682907 \\
+  $\Omega_{\Lambda0}$ & \hspace{5pt}0.642 & 0.133 & \hspace{5pt}0.672 & $0.685\pm0.007$ \\
   \hline                                   %inserts single line
   \end{tabular}
 \end{table}
 
-When running the MCMC fits, the minimum chi-squared value obtained was $\chi^2_\text{min}=29.2867$, corresponding to the parameter values listed in the third column of table \ref{table:supernova}. The means $\mu_i$ and standard deviations $\sigma_i$ (where $i$ runs over the parameters) computed for the samples within the $1\sigma$ constraints are listed as well, in addition to the Planck parameters for comparison. Interestingly, the results favor a slightly open universe, deviating from the Planck result of a flat universe. However, the standard deviation, which is about three times larger than the best-fit value, suggests that the data does not strongly constrain curvature. We also see that the Planck result for $\Omega_{m0}$ is higher than the best-fit value, though it is within the $1\sigma_m$ confidence interval. \colorbox{Plum}{correct to say this?} Nevertheless, this suggests that the supernova data prefers a lower matter density, which is consistent with the higher inferred value of $H_0$. 
+
+When running the MCMC fits, the minimum chi-squared value obtained was $\chi^2_\text{min}=29.2867$, corresponding to the parameter values listed in the third column of table \ref{table:supernova}. The means $\mu_i$ and standard deviations $\sigma_i$ (where $i$ runs over the parameters) computed for the samples within the $1\sigma$ constraints are listed as well, in addition to the Planck parameters stated in \cite{Planck} for comparison. Interestingly, the supernova measurements favor a slightly open universe, deviating from the Planck result of a flat universe. However, the standard deviation, which is about three times larger than the best-fit value, suggests that the data does not strongly constrain curvature. We also see that the Planck result for $\Omega_{m0}$ is higher than the best-fit value, though it is within the $1\sigma_m$ confidence interval. 
+% Nevertheless, this suggests that the supernova data prefers a lower matter density, which is consistent with the higher inferred value of $H_0$. 
 % Lastly, the Planck value for $\Omega_{\Lambda0}$ is only slightly larger than the best-fit value, and it is well within $1\sigma_\Lambda$. \colorbox{Plum}{correct to say this?}.
 
 \begin{figure}
@@ -587,7 +614,7 @@ When running the MCMC fits, the minimum chi-squared value obtained was $\chi^2_\
     \caption{Comparison of the luminosity distances $d_L^\text{obs}/z$ gathered from supernova observations (pink with errorbars) with the fiducial Planck model (grey) and the best-fit model from MCMC analysis (black).}\label{fig:luminosity distance}
 \end{figure}
 
-After obtaining the best-fit values I made a new instance of \verb|BackgroundCosmology| with these parameters and solved for this universe as well. In figure \ref{fig:luminosity distance} I have plotted the scaled luminosity distance $d_L/z$ against $z$ for this best-fit cosmology (black curve) as well as the Planck cosmology (grey curve), together with the data points $d_L^\text{obs}/z$ with scaled errorbars (pink). We see that the best-fit cosmology aligns much better with the data points than the Planck model, as it does not always lie within the supernova errorbars. The former fact is not suprising, considering that the Planck result assumes a flat universe, whereas the best-fit suggests slightly negative curvature, which alters the distance-redshift relation. The latter is more peculiar, and it highlights tensions between low-redshift and high-redshift cosmological probes. However, it should be kept in mind that measurements of supernova magnitudes can be affected by calibration uncertainties, host galaxy effects and dust extinction, potentially shifting best-fit cosmological parameters. Nevertheless, the discrepancies underscore the importance of using multiple probes and datasets to break parameter degeneracies and obtain a more complete picture of cosmic expansion.
+After obtaining the best-fit values I made a new instance of \verb|BackgroundCosmology| with these parameters and solved for this universe as well. In figure \ref{fig:luminosity distance} I have plotted the scaled luminosity distance $d_L/z$ against $z$ for this best-fit cosmology (black curve) as well as the Planck cosmology (grey curve), together with the data points $d_L^\text{obs}/z$ with scaled errorbars (pink). We see that the best-fit cosmology aligns much better with the data points than the Planck model, as the latter does not always lie within the supernova errorbars. This reflects the fact that the Planck data prefers a flat universe, whereas the best-fit suggests slightly negative curvature, which alters the distance-redshift relation. It also highlights tensions between low-redshift and high-redshift cosmological probes (see e.g. \cite{JWST} for a recent discussion of this so-called Hubble tension in light of JWST observations). However, it should be kept in mind that measurements of supernova magnitudes can be affected by calibration uncertainties, host galaxy effects and dust extinction, potentially shifting best-fit cosmological parameters. Nevertheless, the discrepancies underscore the importance of using multiple probes and datasets to break parameter degeneracies and obtain a more complete picture of cosmic expansion.
 
 
 \begin{figure}
@@ -606,12 +633,15 @@ In figure \ref{fig:MCMC fits} I have scatter plotted the accepted $(\Omega_{m0},
 \begin{figure*}
   \centering
   \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf}
-  \caption{Histograms of the MCMC posterior distributions for the parameters $(H_0,\Omega_{m0}, \Omega_{k0}, \Omega_{\Lambda0})$, compared with Gaussian fits (solid curves) and Planck values. Deviations from Gaussianity indicate asymmetries in parameter uncertainties.}\label{fig:distributions}
+  \caption{Histograms of the MCMC posterior distributions for the parameters $(H_0,\Omega_{m0}, \Omega_{k0}, \Omega_{\Lambda0})$, compared with Gaussian fits (solid curves) and Planck values. Deviations from Gaussianity indicate asymmetries in parameter uncertainties. \colorbox{Plum}{TODO: maybe change lines}}\label{fig:distributions}
 \end{figure*}
 
-Figure \ref{fig:distributions} shows normalized histograms of the samples within the 1$\sigma$ constraint, with Gaussian fits made with the $\mu_i$ and $\sigma_i$ overplotted to represent the posterior distributions. Most noticeable is how different the supernova and Planck results are for $H_0$, with the smallest accepted $1\sigma$ samples being as large as $69\,$km/s/Mpc. Planck's estimate is derived from early universe physics (CMB, baryon acoustic oscillations and large-scale structure), while supernova constraints come from low-redshift expansion. The discrepancy may therefore indicate new and/or unknown physics present at some eras of the expansion history, or possibly systematic errors in one or both datasets. Moreover, we see that the supernova-only constraint clearly prefers a lower matter density compared than the Planck estimate, consistent with the MCMC contour plot.
+Figure \ref{fig:distributions} shows normalized histograms of the samples within the 1$\sigma$ constraint, with Gaussian fits made with the $\mu_i$ and $\sigma_i$ overplotted to represent the posterior distributions. Most noticeable is how different the supernova and Planck results are for $H_0$, with the smallest accepted $1\sigma$ samples being as large as $69\,$km/s/Mpc. Planck's estimate is derived from early universe physics (CMB, baryon acoustic oscillations and large-scale structure), while supernova constraints come from low-redshift expansion. The discrepancy may therefore indicate new and/or unknown physics present at some eras of the expansion history (see \cite{JWST}, but also \cite{tensions} for critical discussions on tensions as indicators of new physics), or possibly systematic errors in one or both datasets. Moreover, we see that the supernova-only constraint clearly prefers a lower matter density compared than the Planck estimate, consistent with the MCMC contour plot.
 
-The posterior distribution suggests a preference for a slightly open universe, though with considerable uncertainty. This deviation from flatness may arise because supernovae alone do not tightly constrain curvature, as they primarily measure relative distances, not absolute spatial curvature. Moreover, we see that the histograms are not perfectly Gaussian, particularly those for $\Omega_{m0}$ and $\Omega_{k0}$. Specifically, the asymmetry with more samples in the low mass/negative curvature ends suggest a skewed uncertainty, indicating that a simple Gaussian error estimate might underestimate the possible range of accepted values. \colorbox{Plum}{does this make sense?} Alarmingly, the $H_0$ distribution appears more symmetric, indicating that supernova data alone provide a more stable estimate for the Hubble constant, which deviates the most from the Planck result.
+The posterior distribution suggests a preference for a slightly open universe, though with considerable uncertainty. This deviation from flatness may arise because supernovae alone do not tightly constrain curvature, as they primarily measure relative distances, not absolute spatial curvature. Moreover, we see that the histograms are not perfectly Gaussian, particularly those for $\Omega_{m0}$ and $\Omega_{k0}$. Specifically, the asymmetry with more samples in the low mass/negative curvature ends may suggest a skewed uncertainty, indicating that a simple Gaussian error estimate might underestimate the possible range of accepted values. 
+
+\colorbox{Plum}{maybe remove/argue for good in ast. standards}
+% Alarmingly, the $H_0$ distribution appears more symmetric, indicating that supernova data alone provide a more stable estimate for the Hubble constant, which deviates the most from the Planck result.
 
 
 
@@ -619,7 +649,7 @@ The posterior distribution suggests a preference for a slightly open universe, t
 \section{Milestone II: Recombination History}\label{sec: milestone II}
 In the previous milestone, I established a numerical framework for solving the background evolution of the Universe, validating the results against analytical approximations and observational constraints. This provided a foundation for understanding the expansion history and cosmic distances, key ingredients in interpreting cosmological data. However, to model the formation of the CMB and its anisotropies, we must now extend the analysis to include recombination history: the period when the Universe transitioned from an ionized plasma to a neutral state, allowing photons to decouple from matter. This process determines the surface of last scattering, setting the initial conditions for the CMB fluctuations we observe today.  
 
-In this milestone, I will compute the recombination and reionization history by solving the Saha and Peebles equations, track the evolution of the optical depth $\tau(x)$, and derive the visibility function $\tilde{g}(x)$, which quantifies when CMB photons last interacted with free electrons. These quantities are essential for accurately modeling the temperature and polarization anisotropies of the CMB in the next milestones. Additionally, I will compute the sound horizon at decoupling, a fundamental scale imprinted in the CMB power spectrum. This milestone bridges the gap between background cosmology and perturbation theory, ensuring that my model of the early Universe correctly captures the physics governing photon-matter interactions before recombination. \colorbox{Plum}{maybe change/shorten}
+In this milestone, I compute the recombination and reionization history by solving the Saha and Peebles equations, track the evolution of the optical depth $\tau(x)$, and derive the visibility function $\tilde{g}(x)$, which quantifies when CMB photons last interacted with free electrons. These quantities are essential for accurately modeling the temperature and polarization anisotropies of the CMB in the next milestones. Additionally, I compute the sound horizon at decoupling, a fundamental scale imprinted in the CMB power spectrum. This milestone bridges the gap between background cosmology and perturbation theory, ensuring that my model of the early Universe correctly captures the physics governing photon-matter interactions before recombination. \colorbox{Plum}{maybe change/shorten}
 
 
 \subsection{Theoretical framework}\label{subsec: II theory}
@@ -989,8 +1019,204 @@ Reionization is a crucial epoch in cosmic history, bridging the gap between reco
 
 
 \subsection{Implementation details}\label{subsec: II methods}
+\begin{enumerate}
+  \item [-] Short section about which reionization and helium fraction parameters are used. Planck values? Check this.
+  \item [-] Short paragraph about which files contain what (similar to milestone I). Mention which splines are made (specifically the weird ones, such as $x(\tau)$, and what it is used for). Maybe explain booleans.
+  \item [-] Specify integration limits, number of points for splining, etc. mention that electron fraction and especially optical depth double derivative are somewhat unstable in Saha to Peebles regime and at reionization, so we use more points.
+  \item [-] Own paragraph about tolerances etc., mention that we use $X_e = 0.9999$ as Saha limit, tolerance of $10^{-3}$ for Taylor expanding in Saha regime, adjust accuracy of ODE solver when solving for $T_b$, and use a tolerance for $x$ when solving for $y$ since it is very unstable in the beginning. Also mention how we iterately solve for $f_e$ and the tolerance used.
+  \item [-] Mention test of integral of $\tilde{g}$, explain why we do this, and state result with relative error.
+\end{enumerate}
+
+\subsubsection{The fiducial model}
+Adding to the cosmological parameters specified in section \ref{subsubsec: I methods fiducial}, I use the following parameters to compute the recombination and reionization history of the Universe:
+\begin{align*}
+  Y_p &= 0.245,
+  \\
+  z_\text{reion} &= 8.0,
+  \\
+  \Delta z_\text{reion} &= 0.5,
+  \\
+  z_\text{He,reion} &= 3.5,
+  \\
+  \Delta z_\text{He,reion} &= 0.5.
+\end{align*}
+These are again based on best-fit values from the 2018 Planck results \colorbox{Plum}{should I cite here again?}. They use a primordial Helium mass fraction of $Y_p=0.2454$, the posterior mean predicted by Big Bang Nucleosynthesis, and state their estimate of the reionization redshift mid-point as $z_\text{reion}=7.82\pm0.71$ based on $1\sigma$ limits on TT,TE,EE+lowE+lensing+BAO measurements. When modelling the reionization, the rest of the parameters they use are the same as those stated here. \colorbox{Plum}{maybe word differently}
+
+\subsubsection{Main program structure}
+The free electron fraction, electron density, optical depths with derivatives, visibility functions with derivatives, sound horizon, and baryon temperature are all computed using the \verb|RecombinationHistory| class, implemented in \verb|RecombinationHistory.cpp| and \verb|RecombinationHistory.h|. This version differs more from Winther's original template than the \verb|BackgroundCosmology| class, but I have made sure to document it thoroughly without adding too much unnecessary text. \colorbox{Plum}{does this seem unprofessional?} The same GSL-based ODE solver used previously is also used when solving for $X_e$ (in the Peebles regime), $\tau$, $\tau_b$, $\tilde{g}$, $\tilde{g}_b$, $s$ and $T_b$, and all of these solutions are interpolated using cubic splines. The results are written to file and visualized in \verb|recombination.py|. \colorbox{Plum}{shorten?}
+
+\colorbox{Plum}{paragraph explaining specific class methods?}
+
+
+\subsubsection{Integration limits and points}
+
+\subsubsection{Tolerances}
+\colorbox{Plum}{maybe fuse into section above}
+
+\subsubsection{Testing numerical stability}
+
 
 \subsection{Results and discussions}\label{subsec: II results}
+% Can you present and discuss this plot of the posterior distributions for H0, Omega_m0, Omega_k0 and Omega_Lambda0?  Remember to adress the difference between our fiducial model (Planck) and the supernova data, and discuss in light of the two previous plots. Really discuss thoroughly that the Planck results are based on many measures, and mention these. Also, discuss the deviations in the histograms from the gaussian fits I have plotted
+
+% Also, can you present this table containing important time stamps as well? I used the analytical expressions from the theory section for all values except for the values of t and eta/c today, which I got from the splines. 
+
+% Can you write short, concise captions for all the plots and tables I have presented to you? Make sure they fit the writing style of milestone I.
+
+
+\subsubsection{Electron fraction and number density}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf}
+  \caption{The evolution of the free electron fraction $X_e$ (left) and the free electron number density $n_e$ (right) as functions of $x = \log(a)$. The dashed blue line indicates the time of recombination estimated using only the Saha approximation. The solid line show the result from solving the Peebles equation, and the significant difference illustrates the limitations of assuming equilibrium. The multiple orders of magnitude difference in $n_e$ and the sharp transitions highlight key epochs such as recombination, reionization, and helium reionization. \colorbox{Plum}{maybe remove last sentence}}\label{fig:X_e and n_e}
+\end{figure*}
+
+In figure \ref{fig:X_e and n_e} I have plotted the free electron fraction, $X_e$ (left subplot), and the electron number density, $n_e$ (right subplot), as a function of $x$. We see that $X_e \lesssim 1.2$ in the beginning when the Universe is fully ionized, slightly larger than 1 since we also have Helium. \colorbox{Plum}{maybe specify numbers} Furthermore, around 
+$x \approx -9$, \colorbox{Plum}{correct?} doubly ionized Helium ($\text{He}^{++}$) recombines to singly ionized Helium ($\text{He}^+$), and shortly afterward, at $x \approx -8$, singly ionized Helium recombines to neutral Helium. At around $x\approx -7$ the free electron fraction rapidly drops as most electrons combine with protons to form neutral Hydrogen, proving Hydrogen recombination to be the dominant process. This is also very evident from the electron number density $n_e$, which decreases around four orders of magnitude during Hydrogen recombination, while no visible deviation from the usual volume dilution is visible during Helium recombination. colorbox{Plum}{word different?} Moreover, the dashed blue line indicates the expected recombination time based on the Saha approximation, which predicts recombination happening slightly earlier than in the full numerical solution, marked by the solid blue line. This discrepancy arises due to non-equilibrium effects included in the Peebles equation. \colorbox{Plum}{explain? maybe make own paragraph}
+
+By turning off reionization I found that the freeze-out abundance of free electrons corresponds to
+\begin{align*}
+  X_e &\approx 2.7 \times10^{-4},
+  \\
+  n_e &\approx 5.2 \times10^{-5}\,\text{m}^{-3}.
+\end{align*}
+This is consistent with expectations from recombination theory, where only a small residual ionized fraction remains after Hydrogen recombination. \colorbox{Plum}{compare with common results?} However, it is clear from the figure that at later times ($x \lesssim -2$), the reionization of Hydrogen and neutral Helium occurs, driven by the formation of the first stars and quasars. This leads to the expected rise in $X_e$ back toward $\lesssim1.1$. Reionization of singly ionized Helium follows at even later times, completing around $x \approx -1.5$. This is associated with high-energy sources such as quasars, which provide sufficient ionizing photons to fully ionize Helium.\colorbox{Plum}{source} Although the free electron fraction does increase at this point, the overall change in the number density is negligible compared to the multiple orders of magnitude that it increases around the first reionization period, in agreement with the evolution around recombination. \colorbox{Plum}{word different/discuss implication}
+
+
+
+
+
+\subsubsection{Optical depths}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf}
+  \caption{The evolution of the optical depth $\tau$ (blue), its first derivative $-\tau'$ (red), and its second derivative $\tau''$ (green) for both photons (darker lines) and baryons (lighter lines). The bottom left subplot shows the evolutions of these quantities around decoupling and recombination, while the bottom right subplot highlights their changes during the epoch of reionization. The drop in $\tau$ marks photon decoupling, while the gradual decline in $\tau_b$ reflects the extended drag epoch. Reionization leads to characteristic plateaus in the optical depths that extend towards late times.}\label{fig:optical depth}
+\end{figure*}
+
+Figure \ref{fig:optical depth} illustrates the evolution of the optical depth $\tau(x)$ (blue), its first derivative $-\tau'(x)$ (red), and its second derivative $\tau''(x)$ (green) as functions of $x$. These quantities are shown for both photons (darker colors) and baryons (lighter colors). We see that the photon optical depth $\tau$ is initially large, reflecting the fact that photons are tightly coupled to the baryon-electron plasma due to frequent Thomson scattering. Around decoupling we see a rapid drop in $\tau$, since the photons stop noticing the baryons. This is also visible from the steep negative peak in $-\tau'$, which marks the rapid decline in the scattering probability. Furthermore, the second derivative $\tau''$ has two smaller peaks before the large one right before recombination, highlighting the changes in the free electron fraction seen in figure \ref{fig:X_e and n_e}. Though subtle, the two smaller peaks indeed match sudden drops in $-\tau'$, which are directly linked to the abrupt changes in $n_e$ as electrons and $\text{He}^{++}$ form $\text{He}^{+}$ and later when neutral Helium is formed. \colorbox{Plum}{shorten/split into two?}
+
+After recombination, $\tau$ levels off and remains roughly constant, meaning that photons are no longer frequently scattering. This corresponds to the transition to CMB free-streaming, where the photons released at decoupling can travel more or less uninterrupted throughout the Universe. We see a sudden increase in $-\tau'$ (and thus a sharp drop in $\tau''$) at $x \lesssim -2$ when ionizing radiation from early stars reionizes neutral Hydrogen, as this leads to a rapid increase in free electrons. This is reflected in the sharp increase in $n_e$ seen in figure \ref{fig:X_e and n_e}, and leads to the so-called reionization plateau \colorbox{Plum}{correct name?} we see in the graph for $\tau$. A second, smaller bump also occurs at $x \approx -1.5$ due to Helium reionization, where high-energy photons from quasars fully ionize Helium.
+
+To understand the reionization plateau \colorbox{Plum}{correct name?}, we may imagine a photon released at some redshift $z<z_\text{reion}$. Since most electrons are free, the photon has a much larger probability of being scattered on its way towards us than if all the Hydrogen in the Universe was neutral. Thus, the longer ago that it was emitted, the larger this probability is, and thus the larger the optical depth. However, if it was emitted at some redshift $z_\text{rec}\gg z>z_\text{reion}$, where $z_\text{rec}$ is the redshift at recombination, this probability remains approximately constant up until reionization, hence why the optical depth does as well. \colorbox{Plum}{shorten/explain in theory?} The value of $\tau$ at reionization is often more interesting than the redshift at which it happened, and from my computed spline I found this to be  $\tau_\text{reion} = 0.0561$. This perfectly matches the Planck 2018 result: from $1\sigma$ limits on TT,TE,EE+lowE+lensing+BAO measurements, \cite{Planck} estimated the optical depth of this plateau as $\tau_\text{reion}=0.0561\pm0.0071$. \colorbox{Plum}{discuss, word differently?}. 
+
+We see that the baryon optical depth $\tau_b$ behaves similarly to the photon optical depth but starts off having a much larger value, reflecting the fact that the photon-to-baryon ratio is very large, and the baryons thus have an even shorter mean free path than photons in the tightly coupled plasma. \colorbox{Plum}{word different?} It also has a longer tail due to the drag epoch, which is evident from the baryon decoupling occurring at a slightly later epoch than photon decoupling, as well as $-\tau_b$ falling off more gradually. The additional interactions between baryons and photons delay the time at which baryons move independently, which is important for setting the initial conditions for large-scale structure formation. While photons begin free-streaming immediately, baryons remain coupled to the residual ionized plasma for a longer time, affecting the formation of the first acoustic peaks in the CMB. \colorbox{Plum}{maybe shorten/move to theory} Furthermore, Hydrogen and Helium reionization cause a delayed but similar rise in the baryon optical depth derivative, just as in the photon case. The impact is, however, less pronounced because baryons are non-relativistic and are not as strongly affected by the free-electron fraction as photons.
+
+
+\subsubsection{Visibility functions}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf}
+  \caption{The visibility function $\tilde{g}(x)$ (top), its first derivative $\tilde{g}'(x)$ (middle), and its second derivative $\tilde{g}''(x)$ (bottom), plotted for both photons (black) and baryons (grey). The sharp peak in $\tilde{g}$ defines the last scattering surface, while the first derivative's zero-crossing confirms the rapid transition. The second derivative provides insight into the smoothness of recombination, and secondary features at late times reflect reionization events. \colorbox{Plum}{maybe word differently}}\label{fig:visibility function}
+\end{figure}
+
+In figure \ref{fig:visibility function} I have plotted the photon (black) and baryon (grey) visibility functions $\tilde{g}(x)$ and $\tilde{g}_b(x)$ (top), their first derivatives $\tilde{g}'(x)$ and $\tilde{g}_b'(x)$ (middle), and their second derivatives $\tilde{g}''(x)$ and $\tilde{g}_b''(x)$ (bottom) as functions of $x$. I have cropped away the interval $x\in[-12,-8)$, since all the quantities stay constant at zero here. \colorbox{Plum}{okay to do this?} The large peaks of the visibility functions around $x \approx -7 $ agree with the estimated decoupling times, and we see that $\tilde{g}_b$ indeed peaks slightly later than $\tilde{g}$. Furthermore, this peak is significantly larger for $\tilde{g}_b$ than $\tilde{g}$, which reflects the fact that $\tau_b>\tau$ and $-\tau_b'>-\tau'$ around decoupling, as seen in figure \ref{fig:optical depth}. \colorbox{Plum}{word different} 
+
+The width of the largest peak in the photon visibility function $\tilde{g}$ defines the thickness of the last scattering surface: a thinner peak would indicate an abrupt transition, while a broader peak suggests a more extended recombination \colorbox{Plum}{correct? move to theory?}. Furthermore, the peak of $\tilde{g}'$ corresponds to the moment of steepest decrease in the visibility function. Thus, the fact that the zero-crossing of $\tilde{g}'$ closely aligns with photon decoupling confirms that this was when the transition was most rapid. \colorbox{Plum}{maybe remove} The double derivative $\tilde{g}'' $ provides further insight into the smoothness of recombination, with a sharp peak indicating that recombination happened quickly, and a broader feature suggesting a more gradual transition. The strong negative dip around $ x \approx -7 $ thus reflects the sharpness of the last scattering surface, confirming that photon decoupling occurred in a well-defined window. \colorbox{Plum}{correct? move to theory?}
+
+
+Around $x \lesssim -2$, Hydrogen reionization causes a secondary, broad increase in $ \tilde{g}(x)$, reflecting the renewed interaction between photons and free electrons. However, this increase is much smaller than at recombination, indicating that only a small fraction of the Universe's photons were re-scattered during this epoch. Even smaller is the change due to the reionization of $\text{He}^{+}$ to $\text{He}^{++}$, which matches the negligible effect on the optical depths and their first derivatives. Similar to why the changes in $\tilde{g}_b$ and its derivatives were larger than those of $\tilde{g}$ and its derivatives around decoupling, they are negligible in comparison at reionization. This reflects the significantly smaller magnitudes of $\tau_b$ and $\tau_b'$ in this region. \colorbox{Plum}{rewrite?}
+
+
+
+\subsubsection{Important time stamps and horizons}
+
+\begin{table*}
+  \caption{Table of key cosmological time stamps, showing photon and baryon decoupling, the changes that occur inbetween (the drag epoch), and recombination, along with their corresponding redshifts, cosmic times, conformal times (particle horizons), and sound horizons. The Saha-only results differ significantly from the full solution, underestimating recombination time due to its equilibrium assumption.} 
+  %The sound horizon at recombination sets the scale for acoustic peaks in the CMB and BAO in large-scale structure. \colorbox{Plum}{fact check} \colorbox{Plum}{add Planck values!}}             % title of Table
+  \label{table:time stamps decoupling}    % is used to refer this table in the text
+  \centering                          % used for centering table
+  \begin{tabular}{| c || c || c | c | c | c |}        % centered columns (4 columns)
+  \hline                % inserts double horizontal lines
+  Quantity & Method & Photon decoupling & Baryon decoupling & Drag epoch & Recombination \\    % table heading 
+  \hline\hline                        % inserts single horizontal line
+  \multirow{2}{*}{$x$}       & Saha only       & \hspace{4.5pt}$-7.16$  & \hspace{4.5pt}$-7.14$     & \hspace{4.5pt}$0.02$        & \hspace{4.5pt}$-7.13$   \\      
+  \cline{2-6}
+                           & Saha + Peebles  & \hspace{4.5pt}$-6.97$  & \hspace{4.5pt}$-6.95$     & \hspace{4.5pt}$0.02$        & \hspace{4.5pt}$-6.94$   \\      
+  \hline 
+  \multirow{2}{*}{$z$}       & Saha only       & \hspace{-4pt}$1291.70$ & \hspace{-4pt}$1260.11$    & \hspace{-7pt}$-31.59$       & \hspace{-4pt}$1249.29$ \\
+  \cline{2-6}
+                           & Saha + Peebles  & \hspace{-4pt}$1064.44$ & \hspace{-4pt}$1037.76$    & \hspace{-7pt}$-26.68$       & \hspace{-4pt}$1033.21$ \\
+  \hline 
+  \multirow{2}{*}{$t$ [kyr]} & Saha only       & \hspace{1pt}$279.19$   & \hspace{1pt}$291.19$      & \hspace{-0.5pt}$11.99$        & \hspace{1pt}$295.48$    \\
+  \cline{2-6}
+                           & Saha + Peebles  & \hspace{1pt}$387.17$   & \hspace{1pt}$404.02$      & \hspace{-0.5pt}$16.85$      & \hspace{1pt}$407.01$    \\
+  % \hline 
+  % $\eta/c$ (Saha, TODO) & $934.94\,$Myr & \hspace{6pt}$949.53\,$Myr   & \hspace{0pt}$14.59\,$Myr  & \hspace{0pt}$14.59\,$Myr \\ 
+  % \cline{2-6}
+  % $\eta/c$ (numerical)  & $934.94\,$Myr & \hspace{6pt}$949.53\,$Myr   & \hspace{0pt}$14.59\,$Myr  & \hspace{0pt}$14.59\,$Myr TODO \\
+  \hline 
+  \multirow{2}{*}{$\eta$ [Mpc]} & Saha only       & \hspace{1pt}$246.80$   & \hspace{1pt}$251.49$      & \hspace{4.5pt}$4.69$        & \hspace{1pt}$253.14$    \\ 
+  \cline{2-6}
+                           & Saha + Peebles  & \hspace{1pt}$285.49$   & \hspace{1pt}$290.92$      & \hspace{4.5pt}$5.43$        & \hspace{1pt}$291.87$    \\ 
+  \hline 
+  \multirow{2}{*}{$s$ [Mpc]} & Saha only       & \hspace{1pt}$128.90$   & \hspace{1pt}$131.09$      & \hspace{4.5pt}$2.19$        & \hspace{1pt}$131.85$    \\ 
+  \cline{2-6}
+                           & Saha + Peebles  & \hspace{1pt}$146.66$   & \hspace{1pt}$149.10$      & \hspace{4.5pt}$2.44$        & \hspace{1pt}$149.53$    \\
+  \hline                                   %inserts single line
+  \end{tabular}
+\end{table*}
+
+Table \ref{table:time stamps decoupling} shows computed values of $x$, redshift $z$, cosmic time $t$, conformal time (particle horizon) $\eta$, and sound horizon $s$ corresponding to photon and baryon decoupling, the changes that occured between the two (drag epoch), and recombination. These have all been computed by using the Saha approximation only, and by using both Saha and the full Peebles equation. We see that photon decoupling (where the optical depth equals unity) and recombination (where the free electron fraction drops below 0.1) occur at nearly identical times. This is expected since photons cease scattering once hydrogen atoms form, meaning the two processes are closely linked. However, recombination occurs slightly earlier because a small number of free electrons remain after decoupling. \colorbox{Plum}{write different/remove?} 
+
+Baryon decoupling happens at a slightly later time than photon decoupling, as evident from figures \ref{fig:optical depth} and \ref{fig:visibility function}. This is because, even after photons decouple, baryons still experience residual interactions due to photon pressure, preventing them from immediately falling into dark matter potential wells. The end of the drag epoch marks the transition from radiation-driven baryonic motion to gravitationally-driven structure formation. \colorbox{Plum}{remove?}
+
+By using only the Saha approximation, both recombination and decoupling appear to happen much earlier, which agrees with the more sudden drop in the free electron fraction seen in figure \ref{fig:X_e and n_e}. This occurs because the Saha equation assumes instantaneous thermal equilibrium, meaning ionization and recombination happen instantly when crossing equilibrium thresholds. \colorbox{Plum}{correct?} In reality, the recombination process is non-instantaneous, as captured by the Peebles equation, which accounts for the slower capture of electrons by protons in an expanding universe.
+
+The difference in sound horizons between the Saha-only approximation and the Saha + Peebles method shows that an earlier recombination leads to a slightly smaller horizon. This would have a direct impact on the CMB power spectrum, as the first acoustic peak corresponds to the largest mode that fits within the sound horizon at decoupling. Thus, a smaller sound horizon would shift the peak positions in the CMB anisotropy spectrum. It would also influence the baryon acoustic oscillations (BAO) in the matter power spectrum, which serves as a key probe of large-scale structure formation. This clearly shows the importance of using the Peebles equation to correctly model recombination, as the Saha approximation alone leads to artificially early decoupling. \colorbox{Plum}{word different?}
+
+\colorbox{Plum}{rename section?}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf}
+  \caption{The evolution of the sound horizon $s(x)$ as a function of $x = \log(a)$. The rapid early growth reflects the high sound speed in the tightly coupled photon-baryon plasma, while the flattening at recombination marks the transition to the dark era. \colorbox{Plum}{correct?}}\label{fig:sound horizon}
+\end{figure}
+
+Figure \ref{fig:sound horizon} illustrates the evolution of the sound horizon $s(x)$, with the estimated time of recombination marked to highlight where the growth of the horizon gets stunted. \colorbox{Plum}{word different?} We see that $s$ grows rapidly at early times, which reflects the fact that sound waves in the tightly coupled photon-baryon fluid propagate at a relativistic speed. However, around recombination, the rate of photon-baryon interactions drops sharply. This weakens the pressure support from photons, allowing for clustering of matter and thus leading to a decline in the sound speed. \colorbox{Plum}{correct?} Consequently, the sound horizon's growth rate flattens out, as baryons start to decouple from photons and fall into dark matter potential wells. This is reflected in the less steep slope of $ s$ beyond recombination. \colorbox{Plum}{word differently}
+
+In \cite{Planck}, the redshifts at photon and baryon decoupling are estimated to be $z_s=1089.92\pm0.25$ and $z_\text{drag} = 1059.94\pm0.30$, respectively, based on $1\sigma$ limits on TT,TE,EE+lowE+lensing measurements. The associated sound horizons were then $r_s=144.43\pm0.26$ and $r_\text{drag} = 149.09\pm0.26$. \colorbox{Plum}{discuss}
+
+Using the value for the particle horizon at photon decoupling presented in table \ref{table:time stamps decoupling} (Saha + Peebles value), and the particle horizon today presented in table \ref{table:time stamps} (numerical value), we find that the comoving distance to the last scattering surface is
+\begin{equation*}
+  \chi_{s} = \eta_0-\eta_{s} \approx 13904.51\,\text{Mpc}.
+\end{equation*}
+Since I calculated the sound horizon at to be $r_s \approx 146.66\,\text{Mpc}$, the angular acoustic scale becomes
+\begin{equation*}
+  100\theta_{s} = 100\frac{r_s}{\chi_{s}} \approx 1.0548.
+\end{equation*}
+This is larger than the Planck result of $100\theta_{s}=1.0411\pm0.0003$, and not within their uncertainty. However, it should be noted that my inferred value really is not precise down to this number of decimals, because ... Nevertheless, this means that ...  \colorbox{Plum}{weave into rest of the text, discuss}
+
+\colorbox{Plum}{maybe introduce expression in theory}
+
+\colorbox{Plum}{mention that Planck has z-reion as 7.64?}
+
+
+
+
+\subsubsection{Baryon temperature evolution}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf}
+  \caption{The evolution of the baryon temperature $T_b(x)$ (black) compared to the photon temperature $T_\text{CMB}(x)$ (grey). The two temperatures track each other closely before recombination due to strong Thomson scattering. Some time after decoupling, baryons start to cool adiabatically as $T_b \propto a^{-2}$ \colorbox{Plum}{fact check}, while photons continue to cool as $T_\text{CMB} \propto a^{-1}$.}\label{fig:baryon temperature}
+\end{figure}
+
+In figure \ref{fig:baryon temperature} I have plotted the evolution of the baryon temperature $T_b$ (black line) and the photon (CMB) temperature $T_\text{CMB}$ (grey line) as functions of $x$. At early times ($x \lesssim -6$), the baryon temperature closely follows the photon temperature. This is expected since Thomson scattering between electrons and CMB photons efficiently transfers energy between the two components, maintaining thermal equilibrium. In this regime, both temperatures follow the expected radiation-like scaling, decreasing as $T\propto a^{-1}$ and thus following the green dashed line. 
+
+% In figure \ref{fig:optical depth} we saw a sharp decrease in the optical depth around decoupling, due to Thomson scattering becoming inefficient after the free electron fraction drops. As a result, baryons are no longer in thermal equilibrium with photons, and the two temperatures begin to diverge. 
+At around $x\approx-6$ the baryon temperature starts to evolve adiabatically, cooling faster than photons as $T_b\propto a^{-2}$, following the purple dashed line. This is directly linked to the drop in optical depth observed in the previous plots. As soon as photon interactions weaken, baryons begin cooling faster, confirming their thermal decoupling from the radiation field. The delay between decoupling and the point where the two diverge explains why $\tau_b$ declines more gradually than $\tau$ in figure \ref{fig:optical depth}, extending the impact of photon pressure beyond the formal decoupling time. \colorbox{Plum}{correct? word different?} 
+
+At the present, I found the baryon temperature to be
+\begin{equation*}
+T_{b0} \approx 21.176\,\text{mK}.
+\end{equation*}
+This is significantly lower than the measured CMB temperature, which is $T_\text{CMB0} \approx 2.725 \,$K. The baryon temperature is therefore only $ \sim 7-8\% $ of the CMB temperature today, reflecting the expected $a^{-2}$ dependence during late times. \colorbox{Plum}{discuss more? find source of baryon temp?} This temperature deviation between photons and baryons introduces a slight correction to the photon-baryon sound speed, which could, in principle, affect acoustic oscillations in the CMB. However, this effect is likely quite small, as recombination is already more or less complete when $T_b$ begins deviating significantly from $T_\text{CMB}$. \colorbox{Plum}{move to theory?}
+
+
 
 
 
@@ -1000,7 +1226,7 @@ Reionization is a crucial epoch in cosmic history, bridging the gap between reco
 \section{Milestone III: Perturbations}\label{sec: milestone III}
 Having established the background evolution of the universe and the recombination history in the previous milestones, I now turn to the evolution of cosmological perturbations, which describe how small fluctuations in density and temperature grew from the early universe into the large-scale structures we observe today. This step is essential for understanding the formation of the CMB anisotropies, as well as the distribution of galaxies and clusters in the late universe. \colorbox{Plum}{maybe remove}
 
-In this milestone, I numerically solve the Einstein-Boltzmann equations to track the evolution of perturbations in different components of the Universe, including photons, neutrinos, baryons, and cold dark matter. By evolving these perturbations across different Fourier modes, I construct time-dependent solutions for key physical quantities such as density and velocity perturbations, temperature fluctuations, and gravitational potentials. Additionally, I account for the tight coupling approximation at early times to handle numerical instabilities and ensure accurate solutions. The results from this milestone will provide the foundation for computing the CMB power spectrum in the next step, allowing us to directly compare theoretical predictions with observations.
+In this milestone, I numerically solve the Einstein-Boltzmann equations to track the evolution of perturbations in different components of the Universe, including photons, neutrinos, baryons, and cold dark matter. By evolving these perturbations across different Fourier modes, I construct time-dependent solutions for key physical quantities such as density and velocity perturbations, temperature fluctuations, and gravitational potentials. Additionally, I account for the tight coupling approximation at early times to handle numerical instabilities and ensure accurate solutions. The results from this milestone provide the foundation for computing the CMB power spectrum in the next step, allowing us to directly compare theoretical predictions with observations.
 
 \colorbox{Plum}{mention that we use linear perturbation theory}
 
@@ -1614,7 +1840,7 @@ Since we only observe one realization of the CMB sky, our measurement of $C_\ell
 \begin{equation}
 \frac{\Delta C_\ell}{C_\ell} = \sqrt{\frac{2}{2\ell+1}}.
 \end{equation}
-This effect is most pronounced at low multipoles (\(\ell < 30\)), where there are fewer independent modes available. As a result, large-scale features in the CMB (such as the Sachs-Wolfe plateau) are inherently noisier compared to smaller-scale acoustic peaks.
+This effect is most pronounced at low multipoles ($\ell < 30$), where there are fewer independent modes available. As a result, large-scale features in the CMB (such as the Sachs-Wolfe plateau) are inherently noisier compared to smaller-scale acoustic peaks.
 
 Given the theoretical prediction for the CMB power spectrum $C_\ell$, we can generate simulated CMB maps by drawing random realizations from a Gaussian distribution:
 \begin{equation}

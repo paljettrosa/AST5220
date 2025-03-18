@@ -49,15 +49,28 @@ class BackgroundCosmology{
     void info() const;
 
     // Do all the solving
-    void solve(const double x_start, const double x_end, const int npts, bool eta = true, bool t = false, bool timing = true);
+    void solve(
+        const double x_start, 
+        const double x_end, 
+        const int npts, 
+        bool eta = true, 
+        bool t = false, 
+        bool timing = true);
 
     // For printing the cosmic and conformal times at important values of x
     void print_times() const;
 
     // Output some results to file
-    void output(const double x_min, const double x_max, const std::string filename, bool t = false, bool detadx = false, bool distances = false, bool TCMB = false) const;
+    void output(
+        const double x_min, 
+        const double x_max, 
+        const std::string filename, 
+        bool t = false, 
+        bool detadx = false, 
+        bool distances = false, 
+        bool TCMB = false) const;
 
-    // Get functions that we must implement
+    // Get functions
     double eta_of_x(double x) const;
     double detadx_of_x(double x) const;
     double t_of_x(double x) const;

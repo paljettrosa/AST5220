@@ -66,7 +66,7 @@ plt.figure(figsize = (8, 6))
 plt.subplots_adjust(left = 0.09, right = 0.96, top = 0.93)
 plt.plot(z, d_L_bestfit/z, "k", label = r"Minimum $\chi^2$")
 plt.plot(z, d_L/z, "slategrey", label = "Planck")
-plt.errorbar(z_measure, d_L_measure/z_measure, d_L_err/z_measure, capsize = 2, color = "#ff77bc", ecolor = "#ffaed7", label = "Measurements")
+plt.errorbar(z_measure, d_L_measure/z_measure, d_L_err/z_measure, fmt = ' ', elinewidth = 1.5, capsize = 3, ecolor = "#ff77bc", label = "Measurements")
 plt.legend()
 plt.xscale("log")
 plt.xlim(10**(1.18*np.log10(z_measure[-1])), 10**(1.01*np.log10(z_measure[0])))
@@ -89,7 +89,7 @@ plt.subplots_adjust(left = 0.09, right = 0.96, top = 0.93)
 plt.scatter(Omega_m[chi2 < (np.min(chi2) + sigma2)], Omega_Lambda[chi2 < (np.min(chi2) + sigma2)], s = 15, color = "#de82b4", label = r"$\chi^2<2\sigma$ fits")
 plt.scatter(Omega_m[chi2 < (np.min(chi2) + sigma1)], Omega_Lambda[chi2 < (np.min(chi2) + sigma1)], s = 15, color = "#8d3063", label = r"$\chi^2<1\sigma$ fits")
 plt.scatter(Omega_m[np.argmin(chi2)], Omega_Lambda[np.argmin(chi2)], color = "black", label = r"Minimum $\chi^2$")
-plt.scatter(0.317, 0.682907, color = "slategrey", label = "Planck", zorder = 2)
+plt.scatter(0.317, 0.682, color = "slategrey", label = "Planck", zorder = 2)
 plt.plot(np.linspace(0, 1, 100), 1 - np.linspace(0, 1, 100), "k--", label = "Flat universe", zorder = 1)
 plt.legend(framealpha = 1)
 plt.xlim(0, 1)
@@ -104,7 +104,7 @@ plt.show()
 Plot of posterior PDFs for H0, Omega_m0, Omega_k0 and Omega_Lambda0
 """
 variables = [[H0, Omega_m], [Omega_k, Omega_Lambda]]
-Planck = [[67, 0.317], [0, 0.682907]]
+Planck = [[67.4, 0.315], [0, 0.685]]
 names = [["H0", "Omega_m0"], ["Omega_k0", "Omega_Lambda0"]]
 labels = [[r"$H_0$ [km/s/Mpc]", r"$\Omega_{m0}$"], [r"$\Omega_{k0}$", r"$\Omega_{\Lambda0}$"]]
 colors = [["#b9e2f5", "#f5b267"], ["#f2a2c1", "#ddabed"]]
@@ -115,10 +115,10 @@ for i in range(2):
         mean = np.mean(variables[i][j][chi2 < np.min(chi2) + sigma1])
         std = np.std(variables[i][j][chi2 < np.min(chi2) + sigma1])
         print(f"  {names[i][j]}:")
-        print(f"Mean:     {mean:6.3f} km/s/Mpc" if (i == 0 and j == 0) else f"Mean:     {mean:6.3f}")
-        print(f"Std:      {std:6.3f} km/s/Mpc" if (i == 0 and j == 0) else f"Std:      {std:6.3f}")
-        print(f"Best fit: {variables[i][j][np.argmin(chi2)]:6.3f} km/s/Mpc" if (i == 0 and j == 0) else f"Best fit: {variables[i][j][np.argmin(chi2)]:6.3f}")
-        print(f"Planck:   {Planck[i][j]:6.3f} km/s/Mpc" if (i == 0 and j == 0) else f"Planck:   {Planck[i][j]:6.3f}")
+        print(f"Mean:     {mean:6.2f} km/s/Mpc" if (i == 0 and j == 0) else f"Mean:     {mean:6.4f}")
+        print(f"Std:      {std:6.2f} km/s/Mpc" if (i == 0 and j == 0) else f"Std:      {std:6.4f}")
+        print(f"Best fit: {variables[i][j][np.argmin(chi2)]:6.2f} km/s/Mpc" if (i == 0 and j == 0) else f"Best fit: {variables[i][j][np.argmin(chi2)]:6.4f}")
+        print(f"Planck:   {Planck[i][j]:6.2f} km/s/Mpc" if (i == 0 and j == 0) else f"Planck:   {Planck[i][j]:6.4f}")
         print("\n")
 
         x = np.linspace(mean - 3*std, mean + 3*std, 1000)

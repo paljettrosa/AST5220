@@ -22,15 +22,37 @@ Omega_m0 = 0.05 + 0.267
 Omega_r0 = 5.50896e-05 + 3.81093e-05
 Omega_Lambda0 = 0.682907
 
+# Reionization parameters
+z_reion         = 8
+Delta_z_reion   = 0.5
+z_Hereion       = 3.5
+Delta_z_Hereion = 0.5
+
+
 """
-Read data from file
+Define important time stamps
+"""
+x_Peebles = -7.50305
+x_decoup_Saha = -7.15948
+x_drag_Saha = -7.13972
+x_recomb_Saha = -7.13113
+x_decoup = -6.9666
+x_drag = -6.94575
+x_recomb = -6.94139
+x_reion = np.log(1/(1 + z_reion))
+x_Hereion = np.log(1/(1 + z_Hereion))
+
+
+"""
+Read data from files
 """
 x_min = -12
 x_max = 0
-n_pts = (x_max - x_min)*100 + 1
+n_pts = (x_max - x_min)*10000 + 1
+
 data = {}
-keys = ["x", "Xe", "ne", "tau", "dtaudx", "ddtauddx", "g_tilde", "dgdx_tilde", "ddgddx_tilde"]
-for j, key in enumerate(keys):
+keys = ["x", "Xe", "ne", "tau", "dtaudx", "ddtauddx", "g_tilde", "dgdx_tilde", "ddgddx_tilde", "s", "TCMB", "Tb", "tau_b", "dtau_bdx", "ddtau_bddx", "g_tilde_b", "dgdx_tilde_b", "ddgddx_tilde_b"]
+for key in keys:
     data[key] = np.zeros(n_pts)
 
 with open("results/recombination.txt", "r") as infile:
@@ -39,191 +61,238 @@ with open("results/recombination.txt", "r") as infile:
         for j, key in enumerate(keys):
             data[key][i] = float(values[j])
 
-plt.plot(data["x"], data["tau"])
-plt.plot(data["x"], -data["dtaudx"])
-plt.plot(data["x"], data["ddtauddx"])
+data_Saha = {}
+for key in keys[:3]:
+    data_Saha[key] = np.zeros(n_pts)
+
+with open("results/recombination_Saha.txt", "r") as infile:
+    for i, line in enumerate(infile):
+        values = line.split()
+        for j, key in enumerate(keys[:3]):
+            data_Saha[key][i] = float(values[j])
+
+
+"""
+Checking if g_tilde and g_tilde_b are properly normalized
+"""
+npts = 10000
+integral = np.sum(data["g_tilde"])/npts
+integral_b = np.sum(data["g_tilde_b"])/npts
+rel_err = abs(integral - 1)
+rel_err_b = abs(integral_b - 1)
+print("    Photons:")
+print(f"Integral of g_tilde: {integral}")
+print(f"Relative error:      {rel_err*100:.3e}%")
+print("    Baryons:")
+print(f"Integral of g_tilde: {integral_b}")
+print(f"Relative error:      {rel_err_b*100:.3e}%")
+
+
+"""
+Plot of free electron fraction X_e and free electron density n_e
+"""
+fig, axs = plt.subplots(ncols = 2, figsize = (16, 6))
+fig.subplots_adjust(left = 0.04, right = 0.97, top = 0.9, wspace = 0.15)
+
+Xe_ne = [data["Xe"], data["ne"], data_Saha["Xe"], data_Saha["ne"]]
+for i in range(2):
+    axs[i].plot(data["x"], Xe_ne[i+2], "k", linestyle = "--", label = r"Saha only")
+    axs[i].plot(data["x"], Xe_ne[i], "k", label = r"Saha + Peebles")
+    axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles")
+    axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
+    axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
+    axs[i].axvline(x_reion, color = "orange", label = r"Hydrogen reionization")
+    axs[i].axvline(x_Hereion, color = "plum", label = r"Helium reionization")
+    axs[i].set_xlim([x_min, x_max])
+
+axs[1].legend(loc = "upper right", framealpha = 1)
+axs[1].set_yscale("log")
+axs[1].set_ylim(0.1*np.min(data["ne"]), 1.1*np.max(data["ne"]))
+axs[0].set_title(r"Free electron fraction $X_e$")
+axs[1].set_title(r"Electron number density $n_e$ [m$^{-3}$]")
+fig.supxlabel(r"$x=\log(a)$")
+fig.savefig("figs/Xe_and_ne.pdf")
+plt.show()
+
+
+
+"""
+Plot of tau, -dtaudx and ddtauddx
+"""
+#TODO maybe have zoom-ins around important time stamps instead of only photons / only baryons
+fig = plt.figure(layout = "constrained", figsize = (16, 12))
+subfigs = fig.subfigures(2, 1, hspace = 0.02, height_ratios = [1.5, 1])
+axs = list(subfigs[1].subplots(1, 2))
+axs.append(subfigs[0].subplots(1, 1))
+
+# titles = ["Photons", "Baryons", "Photons + Baryons"]
+# for i in range(3):
+#     if i != 1:
+#         axs[i].plot(data["x"], data["tau"], color = "royalblue", label = r"$\tau(x)$", zorder = 1)
+#         axs[i].plot(data["x"], -data["dtaudx"], color = "mediumvioletred", label = r"-$\tau'(x)$", zorder = 3)
+#         axs[i].plot(data["x"], data["ddtauddx"], color = "olivedrab", label = r"$\tau''(x)$", zorder = 5)
+    
+#     axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles", zorder = 6)
+#     if i != 1: 
+#         axs[i].axvline(x_decoup, color = "#fc95c7", label = "Photon decoupling", zorder = 7)
+#         axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 7)
+#     if i != 0: 
+#         axs[i].axvline(x_drag, color = "gold", label = "Baryon decoupling", zorder = 8)
+#         axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 8)
+
+#     if i != 0:
+#         axs[i].plot(data["x"], data["tau_b"], color = "cornflowerblue", label = r"$\tau_b(x)$", zorder = 0)
+#         axs[i].plot(data["x"], -data["dtau_bdx"], color = "palevioletred", label = r"$-\tau_b'(x)$", zorder = 2)
+#         axs[i].plot(data["x"], data["ddtau_bddx"], color = "yellowgreen", label = r"$\tau_b''(x)$", zorder = 4)
+    
+#     axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
+#     axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
+#     axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
+#     axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization")
+    
+#     axs[i].set_title(titles[i])
+#     axs[i].set_xlim(x_min, x_max)
+#     axs[i].set_ylim(bottom = 1e-8)
+#     axs[i].set_yscale("log") 
+xlims = [[-9, -6], [-3.5, -0.5], [x_min, x_max]]
+ylims = [[1e-3, 1e5], [1e-7, 1], [1e-8, np.max(data["ddtau_bddx"])]]
+for i in range(3):
+    axs[i].plot(data["x"], data["tau"], color = "royalblue", label = r"$\tau(x)$", zorder = 1)
+    axs[i].plot(data["x"], -data["dtaudx"], color = "mediumvioletred", label = r"-$\tau'(x)$", zorder = 3)
+    axs[i].plot(data["x"], data["ddtauddx"], color = "olivedrab", label = r"$\tau''(x)$", zorder = 5)  
+    axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles", zorder = 6)
+    axs[i].axvline(x_decoup, color = "#fc95c7", label = "Photon decoupling", zorder = 7)
+    axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 7)
+    axs[i].axvline(x_drag, color = "gold", label = "Baryon decoupling", zorder = 8)
+    axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 8)
+    axs[i].plot(data["x"], data["tau_b"], color = "cornflowerblue", label = r"$\tau_b(x)$", zorder = 0)
+    axs[i].plot(data["x"], -data["dtau_bdx"], color = "palevioletred", label = r"$-\tau_b'(x)$", zorder = 2)
+    axs[i].plot(data["x"], data["ddtau_bddx"], color = "yellowgreen", label = r"$\tau_b''(x)$", zorder = 4)
+    axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
+    axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
+    axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
+    axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization")
+    
+    axs[i].set_xlim(xlims[i])
+    axs[i].set_ylim(ylims[i])
+    axs[i].set_yscale("log") 
+
+
+axs[2].legend(ncols = 2, framealpha = 1)
+fig.supxlabel(r"$x=\log(a)$")
+fig.supylabel(r"Optical depth and derivatives")
+fig.savefig("figs/optical_depth.pdf")
+plt.show()
+
+
+
+"""
+Plot of g_tilde, dgdx_tilde and ddgddx_tilde
+"""
+#TODO include visibility functions computed from tau_b also?
+fig, axs = plt.subplots(nrows = 3, layout = "constrained", figsize = (8, 12))
+
+quantities = [data["g_tilde"], data["dgdx_tilde"], data["ddgddx_tilde"], data["g_tilde_b"], data["dgdx_tilde_b"], data["ddgddx_tilde_b"]]
+titles = [r"$\tilde{g}(x)$", r"$\tilde{g}'(x)$", r"$\tilde{g}''(x)$"]
+for i in range(3):
+    axs[i].plot(data["x"], quantities[i], "k", label = "Photons", zorder = 7)
+    axs[i].plot(data["x"], quantities[i+3], "slategrey", label = "Baryons", zorder = 6)
+    axs[i].axvline(x_decoup, color = "#fc95c7", label = r"Photon decoupling", zorder = 0) 
+    axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 1)
+    axs[i].axvline(x_drag, color = "gold", label = r"Baryon decoupling", zorder = 2) #TODO include this?
+    axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 3) #TODO include this?
+    # axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination") #TODO include this?
+    # axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--") #TODO include this?
+    axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization", zorder = 4)
+    axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization", zorder = 5)
+    axs[i].set_title(titles[i])
+    axs[i].set_xlim(-8 , x_max)
+axs[0].legend(loc = "upper right", framealpha = 1)
+
+fig.supxlabel(r"$x=\log(a)$")
+fig.supylabel(r"Visibility function and derivatives")
+fig.savefig("figs/visibility_function.pdf")
+plt.show()
+
+
+
+
+"""
+Plot of sound horizon
+"""
+plt.figure(figsize = (8, 6))
+plt.subplots_adjust(left = 0.16, right = 0.96, top = 0.93)
+#TODO have important time stamps in this figure?
+#TODO overplot close-ups of s(x), tau(x) and tau_b(x) around x_decoup and x_drag? 
+plt.plot(data["x"], data["s"]/Mpc, "k", label = "Computed evolution")
+# plt.axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles") #TODO include this?
+# plt.axvline(x_decoup, color = "#fc95c7", label = r"Photon decoupling") 
+# plt.axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--") 
+# plt.axvline(x_drag, color = "gold", label = r"Baryon decoupling") 
+# plt.axvline(x_drag_Saha, color = "gold", linestyle = "--") 
+plt.axvline(x_recomb, color = "skyblue", label = r"Recombination") 
+plt.axvline(x_recomb_Saha, color = "skyblue", linestyle = "--") 
+# plt.axvline(x_reion, color = "orange", label = "Hydrogen reionization") #TODO include this?
+# plt.axvline(x_Hereion, color = "plum", label = "Helium reionization") #TODO include this?
+plt.legend(loc = "lower right", framealpha = 1)
 plt.xlim(x_min, x_max)
 plt.yscale("log")
+plt.yticks([1, 10, 100, 1000], ["1 Mpc", "10 Mpc", "100 Mpc", "1 Gpc"])
+plt.xlabel(r"$x=\log(a)$")
+plt.ylabel(r"Sound horizon $s(x)$")
+plt.savefig("figs/sound_horizon.pdf")
 plt.show()
 
-plt.plot(data["x"], data["Xe"])
+
+
+"""
+Plot of photon and baryon temperature versus redshift TODO decide if x or z
+"""
+# Temperatures today
+print("\n")
+print(f"T_CMB0 = {data['TCMB'][-1]:7.5f} K")
+print(f"T_b0   = {data['Tb'][-1]*1e3:.5f} mK")
+
+z = 1/np.exp(data["x"]) - 1
+
+#TODO have important time stamps in this figure?
+plt.figure(figsize = (8, 6))
+plt.subplots_adjust(left = 0.12, right = 0.96, top = 0.93)
+# plt.plot(z, data["TCMB"], color = "yellowgreen", label = r"$T_{\small\textrm{CMB}}$")
+# plt.plot(z, data["Tb"], color = "#fca32d", label = r"$T_b$")
+# plt.plot(data["x"], data["TCMB"], color = "yellowgreen", label = r"$T_{\small\textrm{CMB}}$")
+# plt.plot(data["x"], data["Tb"], color = "#fca32d", label = r"$T_b$")
+plt.plot(data["x"], data["TCMB"], "slategrey", label = r"$T_{\small\textrm{CMB}}$")
+plt.plot(data["x"], data["Tb"], "k", label = r"$T_b$")
+plt.plot(data["x"], np.exp(-data["x"])/np.exp(-data["x"][-1])*data["TCMB"][-1], color = "#9db92c", linestyle = "dashdot", label = r"$a^{-1}$")
+plt.plot(data["x"], np.exp(-2*data["x"])/np.exp(-2*data["x"][-1])*data["Tb"][-1], color = "#a66fb5", linestyle = "dashdot", label = r"$a^{-2}$")
+# plt.axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles") #TODO include this?
+plt.axvline(x_decoup, color = "#fc95c7", label = r"Photon decoupling") 
+plt.axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--") 
+plt.axvline(x_drag, color = "gold", label = r"Baryon decoupling") 
+plt.axvline(x_drag_Saha, color = "gold", linestyle = "--") 
+# plt.axvline(x_recomb, color = "skyblue", label = r"Recombination") 
+# plt.axvline(x_recomb_Saha, color = "skyblue", linestyle = "--") 
+# plt.axvline(x_reion, color = "orange", label = "Hydrogen reionization") #TODO include this?
+# plt.axvline(x_Hereion, color = "plum", label = "Helium reionization") #TODO include this?
+plt.legend(framealpha = 1)
+# plt.xlim([np.max(z), z[-2]])
+# plt.xscale("log")
+plt.xlim([x_min, x_max])
+plt.ylim([1e-2, 1e6])
 plt.yscale("log")
-plt.show()
-
-#TODO remember to test that the integral of g_tilde is 1!
-plt.plot(data["x"], data["g_tilde"])
-plt.show()
-
-plt.plot(data["x"], data["dgdx_tilde"])
-plt.show()
-
-plt.plot(data["x"], data["ddgddx_tilde"])
+# plt.xlabel(r"Redshift $z$")
+plt.xlabel(r"$x=\log(a)$")
+plt.ylabel(r"Temperature [K]")
+plt.savefig("figs/photon_baryon_temp.pdf")
 plt.show()
 
 
 
+#TODO maybe plot helium and hydrogen density together with electron density?
 
-# """
-# Plot of eta'Hp/c to test for numerical stability
-# """
-# plt.figure(figsize = (8, 6))
-# plt.subplots_adjust(left = 0.16, right = 0.95, top = 0.93)
-# plt.scatter(data["x"], data["detadx"]*data["Hp"]/c, 15, color = "black")
-# plt.plot([data["x"][0], data["x"][-1]], [1, 1], color = "#ff77bc")
-# plt.xlim([x_min, x_max])
-# plt.xlabel(r"$x=\log(a)$")
-# plt.ylabel(r"$\frac{\eta'\mathcal{H}}{c}$", fontsize = 26)
-# plt.savefig("figs/numerical_stability.pdf")
-# plt.show()
+#TODO compute tau without reionization as well? why split into three regions?
+#TODO why should tau_b be computed without reionization? does it look wrong?
 
-
-# """
-# Plots of Hp'/Hp and Hp''/Hp vs. x together with analytical expectations
-# """
-# fig, axs = plt.subplots(ncols = 2, figsize = (16, 6))
-# fig.subplots_adjust(left = 0.07, right = 0.97, wspace = 0.15)
-
-# axs[0].plot([data["x"][0], x_rm], [-1, -1], color = "yellowgreen", label = r"$r$-dominated")
-# axs[0].plot([x_rm, x_mLambda], [-1/2, -1/2], color = "orange", label = r"$m$-dominated")
-# axs[0].plot([x_mLambda, data["x"][-1]], [1, 1], color = "mediumorchid", label = r"$\Lambda$-dominated")
-# axs[0].axvline(x_rm, 0, 1, color = "gold", label = r"$(r,m)$-equality")
-# axs[0].axvline(x_acc, 0, 1, color = "coral", label = r"Onset of acceleration")
-# axs[0].axvline(x_mLambda, 0, 1, color = "palevioletred", label = r"$(\Lambda,m)$-equality")
-# axs[0].axvline(0, 0, 1, color = "black", linestyle = "--", label = "Today")
-# axs[0].plot(data["x"], data["dHpdx"]/data["Hp"], "k", label = "Computed evolution")
-
-# axs[1].plot([data["x"][0], x_rm], [1, 1], color = "yellowgreen", label = r"$r$-dominated")
-# axs[1].plot([x_rm, x_mLambda], [1/4, 1/4], color = "orange", label = r"$m$-dominated")
-# axs[1].plot([x_mLambda, data["x"][-1]], [1, 1], color = "mediumorchid", label = r"$\Lambda$-dominated")
-# axs[1].axvline(x_rm, 0, 1, color = "gold", label = r"$(r,m)$-equality")
-# axs[1].axvline(x_acc, 0, 1, color = "coral", label = r"Onset of acceleration")
-# axs[1].axvline(x_mLambda, 0, 1, color = "palevioletred", label = r"$(\Lambda,m)$-equality")
-# axs[1].axvline(0, 0, 1, color = "black", linestyle = "--", label = "Today")
-# axs[1].plot(data["x"], data["ddHpddx"]/data["Hp"], "k", label = "Computed evolution")
-
-# axs[0].legend(framealpha = 1)
-# axs[0].set_xlim([x_min, x_max])
-# axs[1].set_xlim([x_min, x_max])
-# axs[0].set_title(r"$\frac{1}{\mathcal{H}}\frac{d\mathcal{H}}{dx}$", fontsize = 28, pad = 16)
-# axs[1].set_title(r"$\frac{1}{\mathcal{H}}\frac{d^2\mathcal{H}}{dx^2}$", fontsize = 28, pad = 16)
-# fig.supxlabel(r"$x=\log(a)$")
-# fig.savefig("figs/H_prime_derivatives.pdf")
-# plt.show()
-
-
-# """
-# Compute analytical expectations and shift values by constants to fit plot
-# """
-# x_r = np.linspace(data["x"][0], x_rm, 100)
-# x_m = np.linspace(x_rm, x_mLambda, 100)
-# x_Lambda = np.linspace(x_mLambda, data["x"][-1], 100)
-
-# Hp_r = H0*np.sqrt(Omega_r0*np.exp(-2*x_r))
-# Hp_m = H0*np.sqrt(Omega_m0*np.exp(-x_m))
-# Hp_m += H0*(Hp_r[-1] - Hp_m[0])
-# Hp_Lambda = H0*np.sqrt(Omega_Lambda0*np.exp(2*x_Lambda))
-# Hp_Lambda += H0*(Hp_m[-1] - Hp_Lambda[0])
-
-# t_r = 1/(2*H0*(1000/Mpc)) * np.exp(2*x_r)/np.sqrt(Omega_r0)
-# t_m = 1/(3*H0*(1000/Mpc)) * (2*np.exp(3*x_m/2)/np.sqrt(Omega_m0) - Omega_r0**(3/2)/(2*Omega_m0**2))
-# t_Lambda = 1/(H0*(1000/Mpc)*np.sqrt(Omega_Lambda0)) * (x_Lambda + 2/3 - np.log(Omega_m0/Omega_Lambda0)/3 - np.sqrt(Omega_Lambda0)*Omega_r0**(3/2)/(6*Omega_m0**2)) 
-
-# eta_r = c/(H0*(1000/Mpc)) * np.exp(x_r)/np.sqrt(Omega_r0)
-# eta_m = c/(H0*(1000/Mpc)) * (2*np.sqrt(np.exp(x_m)/Omega_m0) - np.sqrt(Omega_r0)/Omega_m0)
-# eta_Lambda = - c/(H0*(1000/Mpc)) * (1/(np.sqrt(Omega_Lambda0)*np.exp(x_Lambda)) + np.sqrt(Omega_r0)/Omega_m0 - 3/(Omega_m0**(1/3)*Omega_Lambda0**(1/6)))
-
-
-# """
-# Plot of Hp(x) together with analytical expectations
-# """
-# plt.figure(figsize = (8, 6))
-# plt.subplots_adjust(left = 0.09, right = 0.96, top = 0.93)
-# plt.plot(x_r, Hp_r, color = "yellowgreen", linewidth = 2, linestyle = "--", label = r"$r$-dominated")
-# plt.plot(x_m, Hp_m, color = "orange", linewidth = 2, linestyle = "--", label = r"$m$-dominated")
-# plt.plot(x_Lambda, Hp_Lambda, color = "mediumorchid", linewidth = 2, linestyle = "--", label = r"$\Lambda$-dominated")
-# plt.axvline(x_rm, 0, 1, color = "gold", label = r"$(r,m)$-equality")
-# plt.axvline(x_acc, 0, 1, color = "coral", label = r"Onset of acceleration")
-# plt.axvline(x_mLambda, 0, 1, color = "palevioletred", label = r"$(m,\Lambda)$-equality")
-# plt.plot(data["x"], data["Hp"] * (Mpc/1000), "k", linewidth = 3, label = "Computed evolution", zorder = 0)
-# plt.legend(loc = "upper right", framealpha = 1)
-# plt.xlim([x_min, x_max])
-# plt.yscale("log")
-# plt.xlabel(r"$x=\log(a)$")
-# plt.ylabel(r"$\mathcal{H}(x)$ [km/s/Mpc]")
-# plt.savefig("figs/H_prime.pdf")
-# plt.show()
-
-
-# """
-# Plot of cosmic time t(x) and conformal time eta(x)/x with analytical expectations
-# """
-# fig = plt.figure(layout = "constrained", figsize = (16, 12))
-# subfigs = fig.subfigures(2, 1, hspace = 0.05, height_ratios = [1.5, 1])
-# axs = list(subfigs[1].subplots(1, 2))
-# axs.append(subfigs[0].subplots(1, 1))
-
-# for i in range(3):
-#     axs[i].plot(x_r, t_r / yr, color = "yellowgreen", linewidth = 2, linestyle = "--", label = r"$r$-dominated", zorder = 1)
-#     axs[i].plot(x_m, t_m / yr, color = "orange", linewidth = 2, linestyle = "--", label = r"$m$-dominated", zorder = 1)
-#     axs[i].plot(x_Lambda, t_Lambda / yr, color = "mediumorchid", linewidth = 2, linestyle = "--", label = r"$\Lambda$-dominated", zorder = 1)
-#     axs[i].plot(data["x"], data["t"] / yr, "k", linewidth = 3, label = r"Cosmic time $t$", zorder = 0)
-
-#     axs[i].plot(x_r, eta_r/c / yr, color = "yellowgreen", linewidth = 2, linestyle = "--", zorder = 1)
-#     axs[i].plot(x_m, eta_m/c / yr, color = "orange", linewidth = 2, linestyle = "--", zorder = 1)
-#     axs[i].plot(x_Lambda, eta_Lambda/c / yr, color = "mediumorchid", linewidth = 2, linestyle = "--", zorder = 1)
-
-#     axs[i].axvline(x_rm, 0, 1, color = "gold", label = r"$(r,m)$-equality", zorder = 1)
-#     axs[i].axvline(x_acc, 0, 1, color = "coral", label = r"Onset of acceleration", zorder = 1)
-#     axs[i].axvline(x_mLambda, 0, 1, color = "palevioletred", label = r"$(m,\Lambda)$-equality", zorder = 1)
-
-#     axs[i].plot(data["x"], data["eta"]/c / yr, "slategrey", linewidth = 3, label = r"Conformal time $\eta/c$", zorder = 0)
-
-#     axs[i].set_yscale("log")
-
-# axs[2].legend(ncols = 2, framealpha = 1)
-
-# axs[2].set_xlim([x_min, x_max])
-# axs[2].set_yticks([data["t"][0]/yr, 1/yr*60*60*24, 1, 1000, 1e6, 1e9, data["t"][-1]/yr], [f"{data['t'][0]:.1f} sec", "1 day", "1 yr", "1 kyr", "1 Myr", "1 Gyr", f"{data['t'][-1]/Gyr:.1f} Gyr"])
-# axs[0].set_xlim([x_rm-1.5, x_rm+1.5])
-# axs[0].set_ylim([10**(0.75*np.log10(t_rm / yr)), 10**(1.25*np.log10(t_rm / yr))])
-# times = np.logspace(0.78*np.log10(t_rm / yr), 1.22*np.log10(t_rm / yr), 5)
-# labels = [f"{time/1e3:.2f}" for time in times]
-# axs[0].set_yticks(times)
-# axs[0].set_yticklabels(labels)
-# axs[0].set_ylabel("kyr")
-# axs[1].set_xlim([x_mLambda-1.5, x_mLambda+1.5])
-# axs[1].set_ylim([10**(0.9*np.log10(t_mLambda / yr)), 10**(1.1*np.log10(t_mLambda / yr))])
-# times = np.logspace(0.91*np.log10(t_mLambda / yr), 1.09*np.log10(t_mLambda / yr), 5)
-# labels = [f"{time/1e9:.2f}" for time in times]
-# axs[1].set_yticks(times)
-# axs[1].set_yticklabels(labels)
-# axs[1].set_ylabel("Gyr")
-
-# fig.supxlabel(r"$x=\log(a)$")
-# fig.supylabel(r"Time")
-# fig.savefig("figs/eta_and_t.pdf")
-# plt.show()
-
-
-
-
-# """
-# Plot of density parameters
-# """
-# plt.figure(figsize = (8, 6))
-# plt.subplots_adjust(left = 0.09, right = 0.96, top = 0.93)
-
-# plt.plot(data["x"], data["Omega_gamma"] + data["Omega_nu"], color = "mediumseagreen", label = r"$\Omega_{r}$", zorder = 1)
-# plt.plot(data["x"], data["Omega_gamma"], color = "yellowgreen", linestyle = "--", label = r"$\Omega_{\gamma}$", zorder = 0)
-# plt.plot(data["x"], data["Omega_nu"], color = "skyblue", linestyle = "--", label = r"$\Omega_{\nu}$", zorder = 0)
-# plt.plot(data["x"], data["Omega_b"] + data["Omega_CDM"], color = "orange", label = r"$\Omega_{m}$", zorder = 1)
-# plt.plot(data["x"], data["Omega_b"], color = "#ffd726", linestyle = "--", label = r"$\Omega_{b}$", zorder = 0)
-# plt.plot(data["x"], data["Omega_CDM"], color = "palevioletred", linestyle = "--", label = r"$\Omega_{\small\textrm{CDM}}$", zorder = 0)
-# plt.plot(data["x"], data["Omega_Lambda"], color = "mediumorchid", label = r"$\Omega_{\Lambda}$")
-
-# plt.legend(loc = "center left", framealpha = 1)
-# plt.xlim([x_min, x_max])
-# plt.xlabel(r"$x=\log(a)$")
-# plt.ylabel(r"Density parameters $\Omega_i$")
-# plt.savefig("figs/density_parameters.pdf")
-# plt.show()
+#TODO plot without helium for comparison?
+#TODO compute predicted decoupling and recombination times from the Saha equation (without hydrogen?). overplot this with dashed but same colors

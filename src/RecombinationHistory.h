@@ -18,9 +18,30 @@ class RecombinationHistory{
     
     // Helium fraction
     double Yp;
+
+    // Reionization parameters
+    double z_reion;
+    double Delta_z_reion;
+    double z_Hereion;
+    double Delta_z_Hereion;
+
+    // Derived reionization parameters
+    double y_reion;
+    double Delta_y_reion;
+    double f_He;
+
+    // Booleans
+    bool Helium       = false;
+    bool reionization = false;
+
+    // x at recombination (determined when solving for Xe)
+    double x_recombination        = 0.0;
   
     // Xe for when to switch between Saha and Peebles
-    const double Xe_saha_limit = 0.99;
+    const double Xe_Saha_limit    = 0.9999;
+
+    // Xe at recombination
+    const double Xe_recombination = 0.1;
 
 
     //===============================================================
@@ -28,37 +49,62 @@ class RecombinationHistory{
     //===============================================================
  
     // Compute Xe from the Saha equation
-    std::pair<double,double> electron_fraction_from_saha_equation(double x) const;
+    std::pair<double,double> electron_fraction_from_Saha_equation(double x) const;
     
     // Right hand side of the dXedx Peebles equation
-    int rhs_peebles_ode(double x, const double *y, double *dydx);
+    int rhs_Peebles_ode(
+        double x, 
+        const double *y, 
+        double *dydx, 
+        bool baryon_temp,
+        double x_tol);
     
     // Solve for Xe and ne
-    void solve_number_density_electrons(const double x_start, const double x_end, const int npts, bool timing = true);
+    void solve_number_density_electrons(
+        const double x_start, 
+        const double x_end, 
+        const int npts, 
+        bool baryon_temp,
+        double x_tol,
+        bool only_Saha,
+        bool timing);
   
 
     //===============================================================
     // [2] Compute tau and visibility functions
     //===============================================================
-
-    // Solve for tau and g_tilde
-    void solve_optical_depth_tau(const double x_start, const double x_end, const int npts, bool timing = true);
+    void solve_optical_depth_tau(
+        const double x_start, 
+        const double x_end, 
+        const int npts, 
+        bool baryon_tau, 
+        bool only_Saha,
+        bool timing);
 
 
     //===============================================================
     // [3] Compute sound horizon s
     //===============================================================
-
-    // Solve for s
-    void solve_sound_horizon_s(const double x_start, const double x_end, const int npts, bool timing = true);
+    void solve_sound_horizon_s(
+        const double x_start, 
+        const double x_end, 
+        const int npts, bool 
+        timing);
 
 
     // Splines contained in this class
     Spline Xe_of_x_spline{"Xe"};
     Spline log_ne_of_x_spline{"ne"};
-    Spline tau_of_x_spline{"tau"}; 
+    Spline Xe_noreion_of_x_spline{"Xe_noreion"};
+    Spline log_ne_noreion_of_x_spline{"ne_noreion"};
+    Spline tau_of_x_spline{"tau"};
+    Spline tau_b_of_x_spline{"tau_b"}; 
+    Spline x_of_tau_spline{"x_of_tau"};
+    Spline x_of_tau_b_spline{"x_of_tau_b"};
     Spline g_tilde_of_x_spline{"g"};  
+    Spline g_tilde_b_of_x_spline{"g_b"}; 
     Spline s_of_x_spline{"s"};
+    Spline y_of_x_spline{"y"}; 
 
   public:
 
@@ -66,29 +112,66 @@ class RecombinationHistory{
     RecombinationHistory() = delete;
     RecombinationHistory(
         BackgroundCosmology *cosmo, 
-        double Yp);
+        double Yp,
+        double z_reion,
+        double Delta_z_reion,
+        double z_Hereion,
+        double Delta_z_Hereion);
 
-    // Do all the solving
-    void solve(const double x_start, const double x_end, const int npts, bool Xe_ne = true, bool tau_g = true, bool s = false, bool timing = true);
-    
     // Print some useful info about the class
     void info() const;
 
-    // Output some data to file
-    void output(const double x_min, const double x_max, const std::string filename, bool s = false) const;
+    // Do all the solving
+    void solve(
+        const double x_start, 
+        const double x_end, 
+        const int npts, 
+        bool tau_g = true, 
+        bool sound_horizon = false, 
+        bool baryon_temp = false, 
+        double x_tol = -7.0,
+        bool baryon_tau = false, 
+        bool only_Saha = false,
+        bool timing = true);
 
-    // Get functions that we must implement
-    double tau_of_x(double x) const;
-    double dtaudx_of_x(double x) const;
-    double ddtauddx_of_x(double x) const;
-    double g_tilde_of_x(double x) const;
-    double dgdx_tilde_of_x(double x) const;
-    double ddgddx_tilde_of_x(double x) const;
-    double Xe_of_x(double x) const;
-    double ne_of_x(double x) const;
-    double s_of_x(double x) const;
+    // Compute and print the freeze-out abundance of free electrons
+    void print_freeze_out_abundance() const;
+
+    // Print the optical debth(s) at reionization
+    void print_tau_reionization(bool baryon_tau = false) const;
+
+    // Print the times and horizon sizes for decoupling (also for baryons if drag = true) and recombination
+    void print_decoupling_and_recombination(bool drag = false, bool Saha = false) const;
+
+    // Output some data to file
+    void output(
+        const double x_min, 
+        const double x_max, 
+        const std::string filename, 
+        bool tau_g = true,
+        bool sound_horizon = false, 
+        bool baryon_temp = false, 
+        bool baryon_tau = false) const;
+
+    // Get functions
+    double Xe_of_x(double x, bool no_reionization = false) const;
+    double ne_of_x(double x, bool no_reionization = false) const;
     double nb_of_x(double x) const;
+    double tau_of_x(double x, bool baryon_tau = false) const;
+    double dtaudx_of_x(double x, bool baryon_tau = false) const;
+    double ddtauddx_of_x(double x, bool baryon_tau = false) const;
+    double x_of_tau(double tau, bool baryon_tau = false) const;
+    double g_tilde_of_x(double x, bool baryon_tau = false) const;
+    double dgdx_tilde_of_x(double x, bool baryon_tau = false) const;
+    double ddgddx_tilde_of_x(double x, bool baryon_tau = false) const;
+    double s_of_x(double x) const;
+    double Tb_of_x(double x, bool baryon_temp = false) const;
     double get_Yp() const;
+    double get_z_reion() const;
+    double get_Delta_z_reion() const;
+    double get_z_Hereion() const;
+    double get_Delta_z_Hereion() const;
+    double get_x_recombination() const;
 };
 
 #endif

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  26 FEB 2025 22:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  18 MAR 2025 01:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -544,53 +544,59 @@ LaTeX Info: Redefining \cpagerefrange on input line 2370.
 LaTeX Info: Redefining \Cpagerefrange on input line 2370.
 LaTeX Info: Redefining \labelcref on input line 2370.
 LaTeX Info: Redefining \labelcpageref on input line 2370.
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip127
+\multirow@cntb=\count323
+\multirow@dima=\skip128
+\bigstrutjot=\dimen174
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 38.
-Package hyperref Info: Option `breaklinks' set `true' on input line 38.
-LaTeX Font Info:    Trying to load font information for T1+txr on input line 40.
+Package hyperref Info: Option `colorlinks' set `true' on input line 39.
+Package hyperref Info: Option `breaklinks' set `true' on input line 39.
+LaTeX Font Info:    Trying to load font information for T1+txr on input line 41.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/t1txr.fd
 File: t1txr.fd 2000/12/15 v3.1
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count323
+\l__color_backend_stack_int=\count324
 \l__pdf_internal_box=\box68
 ) (out/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 40.
-LaTeX Font Info:    Trying to load font information for OML+txmi on input line 40.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 41.
+LaTeX Font Info:    Trying to load font information for OML+txmi on input line 41.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 40.
-LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 40.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 41.
+LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 41.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 40.
-LaTeX Font Info:    Trying to load font information for OMX+txex on input line 40.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 41.
+LaTeX Font Info:    Trying to load font information for OMX+txex on input line 41.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 40.
-LaTeX Font Info:    Trying to load font information for U+txexa on input line 40.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 41.
+LaTeX Font Info:    Trying to load font information for U+txexa on input line 41.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -627,16 +633,16 @@ LaTeX Font Info:    ... okay on input line 40.
 
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count324
-\scratchdimen=\dimen174
+\scratchcounter=\count325
+\scratchdimen=\dimen175
 \scratchbox=\box69
-\nofMPsegments=\count325
-\nofMParguments=\count326
+\nofMPsegments=\count326
+\nofMParguments=\count327
 \everyMPshowfont=\toks34
-\MPscratchCnt=\count327
-\MPscratchDim=\dimen175
-\MPnumerator=\count328
-\makeMPintoPDFobject=\count329
+\MPscratchCnt=\count328
+\MPscratchDim=\dimen176
+\MPnumerator=\count329
+\makeMPintoPDFobject=\count330
 \everyMPtoPDFconversion=\toks35
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -644,362 +650,467 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 40.
+Package hyperref Info: Link coloring ON on input line 41.
  (out/main.out) (out/main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for T1+txss on input line 69.
+LaTeX Font Info:    Trying to load font information for T1+txss on input line 70.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/t1txss.fd
 File: t1txss.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 16.41594pt on input line 69.
+(Font)              scaled to size 16.41594pt on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <17.28> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 16.41594pt on input line 69.
-LaTeX Font Info:    Trying to load font information for OT1+txr on input line 69.
+(Font)              scaled to size 16.41594pt on input line 70.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 70.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsya on input line 69.
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 70.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsya.fd
 File: utxsya.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyb on input line 69.
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 70.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsyb.fd
 File: utxsyb.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txmia on input line 69.
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 70.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxmia.fd
 File: utxmia.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyc on input line 69.
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 70.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 13.67995pt on input line 69.
+(Font)              scaled to size 13.67995pt on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <14.4> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 13.67995pt on input line 69.
+(Font)              scaled to size 13.67995pt on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 69.
+(Font)              scaled to size 8.54997pt on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <9> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 8.54997pt on input line 69.
+(Font)              scaled to size 8.54997pt on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/m/it' in size <9> not available
-(Font)              Font shape `T1/txss/m/sl' tried instead on input line 69.
+(Font)              Font shape `T1/txss/m/sl' tried instead on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
-(Font)              scaled to size 8.54997pt on input line 69.
+(Font)              scaled to size 8.54997pt on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 10.40245pt on input line 69.
+(Font)              scaled to size 10.40245pt on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/b/n' in size <10.95> not available
-(Font)              Font shape `T1/txss/bx/n' tried instead on input line 69.
+(Font)              Font shape `T1/txss/bx/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `T1/txss/bx/n' will be
-(Font)              scaled to size 10.40245pt on input line 69.
+(Font)              scaled to size 10.40245pt on input line 70.
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--72
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
 
- []
-
-
-Underfull \hbox (badness 1077) in paragraph at lines 73--75
-\T1/txr/m/n/10 the fidu-cial cos-mol-ogy. The the-o-ret-i-cal frame-work for this
- []
-
-
-Underfull \hbox (badness 1048) in paragraph at lines 73--75
-\T1/txr/m/n/10 jor com-po-nents based on tem-plates de-vel-oped by Winther.
  []
 
 LaTeX Font Info:    Font shape `T1/txss/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 82.
+(Font)              scaled to size 9.49997pt on input line 83.
 LaTeX Font Info:    Font shape `T1/txss/m/it' in size <10> not available
-(Font)              Font shape `T1/txss/m/sl' tried instead on input line 82.
+(Font)              Font shape `T1/txss/m/sl' tried instead on input line 83.
 LaTeX Font Info:    Font shape `T1/txss/m/sl' will be
-(Font)              scaled to size 9.49997pt on input line 82.
+(Font)              scaled to size 9.49997pt on input line 83.
 
-Package hyperref Warning: Suppressing link with empty target on input line 109.
+Package hyperref Warning: Suppressing link with empty target on input line 110.
 
 [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
 
-Package hyperref Warning: Suppressing link with empty target on input line 202.
+Package hyperref Warning: Suppressing link with empty target on input line 205.
 
 [2]
 
-Package hyperref Warning: Suppressing link with empty target on input line 296.
+Package hyperref Warning: Suppressing link with empty target on input line 300.
 
 [3]
 
-Package hyperref Warning: Suppressing link with empty target on input line 406.
+Package hyperref Warning: Suppressing link with empty target on input line 413.
 
 [4]
-LaTeX Font Info:    Trying to load font information for T1+txtt on input line 467.
+LaTeX Font Info:    Trying to load font information for T1+txtt on input line 473.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/txfonts/t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
 )
-Underfull \hbox (badness 1314) in paragraph at lines 469--470
-\T1/txr/m/n/10 Nec-es-sary con-stants and units are de-fined in their SI-unit
- []
 
-
-Underfull \hbox (badness 1642) in paragraph at lines 469--470
-\T1/txr/m/n/10 te-grated nu-mer-i-cally us-ing a GSL-based ODE solver (see
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 478.
+Package hyperref Warning: Suppressing link with empty target on input line 484.
 
 [5]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf, id=360, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf, id=401, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf  used on input line 484.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf  used on input line 488.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 LaTeX Font Info:    Font shape `T1/txr/b/n' in size <9> not available
-(Font)              Font shape `T1/txr/bx/n' tried instead on input line 485.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf, id=362, 578.16pt x 433.62pt>
+(Font)              Font shape `T1/txr/bx/n' tried instead on input line 489.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf, id=403, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf  used on input line 496.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf  used on input line 502.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf, id=364, 1156.32pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf, id=405, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf  used on input line 505.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf  used on input line 511.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package hyperref Warning: Suppressing link with empty target on input line 514.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 520.
 
 [6 </Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf>]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf, id=422, 1156.32pt x 867.24pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf, id=464, 1156.32pt x 867.24pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf  used on input line 517.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf  used on input line 523.
 (pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf, id=430, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf, id=472, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf  used on input line 555.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf  used on input line 561.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf, id=433, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf, id=477, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf  used on input line 586.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf  used on input line 613.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 591.
+Package hyperref Warning: Suppressing link with empty target on input line 618.
 
 [7 </Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf, id=459, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf, id=506, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf  used on input line 595.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf  used on input line 622.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package hyperref Warning: Suppressing link with empty target on input line 600.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 627.
 
 [8 </Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf>]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf, id=478, 1156.32pt x 867.24pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf, id=526, 1156.32pt x 867.24pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf  used on input line 608.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf  used on input line 635.
 (pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 621.
+Package hyperref Warning: Suppressing link with empty target on input line 651.
 
 [9 </Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 1092) in paragraph at lines 627--628
+Underfull \hbox (badness 1092) in paragraph at lines 657--658
 []\T1/txr/m/n/10 Write out the dis-tri-bu-tion func-tion $\OML/txmi/m/it/10 f$ \T1/txr/m/n/10 for fermions and
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 631.
+Package hyperref Warning: Suppressing link with empty target on input line 661.
 
 [10 </Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>]
-Overfull \hbox (22.81424pt too wide) detected at line 698
+Overfull \hbox (22.81424pt too wide) detected at line 728
 $\OML/txmi/m/it/10 n \OT1/txr/m/n/10 = [] [] \OML/txmi/m/it/10 fd[]p;  ^^Z \OT1/txr/m/n/10 = [] [] \OML/txmi/m/it/10 Efd[]p;  P \OT1/txr/m/n/10 = [] [] []\OML/txmi/m/it/10 fd[]p:$  
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 704.
+Package hyperref Warning: Suppressing link with empty target on input line 731.
 
 [11]
 
-Package hyperref Warning: Suppressing link with empty target on input line 800.
+Package hyperref Warning: Suppressing link with empty target on input line 830.
 
 [12]
 
-Package hyperref Warning: Suppressing link with empty target on input line 889.
+Package hyperref Warning: Suppressing link with empty target on input line 919.
 
 [13]
-Underfull \hbox (badness 1009) in paragraph at lines 948--949
+Underfull \hbox (badness 1009) in paragraph at lines 978--979
 []\T1/txr/m/n/10 To com-pute the sound hori-zon ac-cu-rately, we in-te-grate
  []
 
 
-Underfull \hbox (badness 1259) in paragraph at lines 950--953
+Underfull \hbox (badness 1259) in paragraph at lines 980--983
 \T1/txr/m/n/10 tion. Mea-sur-ing it at dif-fer-ent red-shifts al-lows us to con-
  []
 
 
-Underfull \hbox (badness 2460) in paragraph at lines 950--953
+Underfull \hbox (badness 2460) in paragraph at lines 980--983
 \T1/txr/m/n/10 strain cos-mo-log-i-cal pa-ram-e-ters, such as the Hub-ble con-
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 950--953
+Underfull \hbox (badness 2285) in paragraph at lines 980--983
 \T1/txr/m/n/10 stant $\OML/txmi/m/it/10 H[]$\T1/txr/m/n/10 , and test mod-els of cos-mic ex-pan-sion. Its role
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 950--953
+Underfull \hbox (badness 1168) in paragraph at lines 980--983
 \T1/txr/m/n/10 in BAO mea-sure-ments makes it a key ob-serv-able for un-
  []
 
 
-Underfull \hbox (badness 1082) in paragraph at lines 967--969
+Underfull \hbox (badness 1082) in paragraph at lines 997--999
 \T1/txr/m/n/10 where $\OML/txmi/m/it/10 t[]$ \T1/txr/m/n/10 is an ef-fec-tive reion-iza-tion timescale, and $\OML/txmi/m/it/10 X[]$ \T1/txr/m/n/10 is
  []
 
 
-Underfull \hbox (badness 1694) in paragraph at lines 970--971
+Underfull \hbox (badness 1694) in paragraph at lines 1000--1001
 []\T1/txr/m/n/10 Reionization af-fects CMB tem-per-a-ture and po-lar-iza-tion
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 971.
+Package hyperref Warning: Suppressing link with empty target on input line 1001.
 
 [14]
-Underfull \hbox (badness 5119) in paragraph at lines 1003--1004
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+\T1/txr/m/n/10 The free elec-tron frac-tion, elec-tron den-sity, op-ti-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+\T1/txr/m/n/10 cal depths with deriva-tives, vis-i-bil-ity func-tions with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+\T1/txr/m/n/10 deriva-tives, sound hori-zon, and baryon tem-per-a-ture
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+\T1/txr/m/n/10 are all com-puted us-ing the [][]\T1/txtt/m/n/10 RecombinationHistory
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+[]\T1/txr/m/n/10 class, im-ple-mented in [][]\T1/txtt/m/n/10 RecombinationHistory.cpp
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+[]\T1/txr/m/n/10 and [][]\T1/txtt/m/n/10 RecombinationHistory.h[]\T1/txr/m/n/10 . This ver-sion dif-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+\T1/txr/m/n/10 fers more from Winther's orig-i-nal tem-plate than the
+ []
+
+
+Underfull \hbox (badness 4144) in paragraph at lines 1046--1047
+[][]\T1/txtt/m/n/10 BackgroundCosmology []\T1/txr/m/n/10 class, but I have made sure to
+ []
+
+
+Underfull \hbox (badness 2460) in paragraph at lines 1046--1047
+\T1/txr/m/n/10 text. [][][][][][] The same GSL-based
+ []
+
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf, id=647, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf  used on input line 1071.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1083.
+
+[15]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf, id=655, 1156.32pt x 867.24pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf  used on input line 1094.
+(pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
+
+Underfull \vbox (badness 2111) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1105.
+
+[16 </Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf, id=684, 578.16pt x 867.24pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf  used on input line 1111.
+(pdftex.def)             Requested size: 256.0748pt x 384.10106pt.
+
+Underfull \hbox (badness 1205) in paragraph at lines 1117--1118
+[]\T1/txr/m/n/10 The width of the largest peak in the pho-ton vis-i-bil-ity
+ []
+
+
+Underfull \hbox (badness 2126) in paragraph at lines 1117--1118
+\T1/txr/m/n/10 face: a thin-ner peak would in-di-cate an abrupt tran-si-tion,
+ []
+
+
+Underfull \vbox (badness 1748) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1120.
+
+[17 </Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf, id=712, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf  used on input line 1175.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1184.
+
+[18 </Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf, id=737, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf  used on input line 1204.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1213.
+
+[19 </Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>]
+Underfull \hbox (badness 1776) in paragraph at lines 1216--1218
+\T1/txr/m/n/10 This is sig-nif-i-cantly lower than the mea-sured CMB tem-
+ []
+
+
+Underfull \hbox (badness 1199) in paragraph at lines 1216--1218
+\T1/txr/m/n/10 a-ture is there-fore only $\OMS/txsy/m/n/10 ^^X \OT1/txr/m/n/10 7 \OMS/txsy/m/n/10 ^^@ \OT1/txr/m/n/10 8%$ \T1/txr/m/n/10 of the CMB tem-per-a-
+ []
+
+
+Underfull \hbox (badness 5119) in paragraph at lines 1229--1230
 []\T1/txr/m/n/10 In this mile-stone, I nu-mer-i-cally solve the Einstein-
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 1014--1015
+Underfull \hbox (badness 1087) in paragraph at lines 1240--1241
 \T1/txr/m/n/10 Boltz-mann equa-tion in gen-eral rel-a-tiv-ity that we in-tro-
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1045.
-
-[15]
-Underfull \hbox (badness 1184) in paragraph at lines 1099--1101
-[]\T1/txr/m/n/10 Metric per-tur-ba-tions in-tro-duce small fluc-tu-a-tions to the
- []
-
-
-Underfull \hbox (badness 2818) in paragraph at lines 1118--1120
-\T1/txr/m/n/10 This equa-tion en-codes two key ef-fects that shape CMB
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1123.
-
-[16]
-Underfull \hbox (badness 2150) in paragraph at lines 1178--1179
-[]\T1/txr/m/n/10 Like pho-tons, neu-tri-nos fol-low the Einstein-Boltzmann
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1198.
-
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 1226--1227
-[]\T1/txr/m/n/10 Since CDM par-ti-cles are mas-sive and move non-
- []
-
-
-Underfull \hbox (badness 7888) in paragraph at lines 1226--1227
-\T1/txr/m/n/10 relativistically, their phase-space dis-tri-bu-tion func-tion is
  []
 
 
 Package hyperref Warning: Suppressing link with empty target on input line 1285.
 
-[18]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1377.
-
-[19]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1443.
-
 [20]
-Underfull \hbox (badness 1789) in paragraph at lines 1443--1444
+Underfull \hbox (badness 1184) in paragraph at lines 1325--1327
+[]\T1/txr/m/n/10 Metric per-tur-ba-tions in-tro-duce small fluc-tu-a-tions to the
+ []
+
+
+Underfull \hbox (badness 2818) in paragraph at lines 1344--1346
+\T1/txr/m/n/10 This equa-tion en-codes two key ef-fects that shape CMB
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1357.
+
+[21]
+Underfull \hbox (badness 2150) in paragraph at lines 1404--1405
+[]\T1/txr/m/n/10 Like pho-tons, neu-tri-nos fol-low the Einstein-Boltzmann
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1439.
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 1452--1453
+[]\T1/txr/m/n/10 Since CDM par-ti-cles are mas-sive and move non-
+ []
+
+
+Underfull \hbox (badness 7888) in paragraph at lines 1452--1453
+\T1/txr/m/n/10 relativistically, their phase-space dis-tri-bu-tion func-tion is
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1525.
+
+[23]
+
+Package hyperref Warning: Suppressing link with empty target on input line 1610.
+
+[24]
+Underfull \hbox (badness 1789) in paragraph at lines 1669--1670
 []\T1/txr/m/n/10 Explain that most in-fla-tion mod-els pre-dict a so-called
  []
 
 
-Underfull \hbox (badness 1917) in paragraph at lines 1443--1444
+Underfull \hbox (badness 1917) in paragraph at lines 1669--1670
 \T1/txr/m/n/10 Harrison-Zel'dovich pri-mor-dial spec-trum, and ex-plic-itly
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 1516--1517
+Package hyperref Warning: Suppressing link with empty target on input line 1676.
+
+[25]
+Underfull \hbox (badness 1215) in paragraph at lines 1742--1743
 []\T1/txr/m/n/10 This method was de-vel-oped by Sel-jak and Zal-dar-riaga
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1535.
+Package hyperref Warning: Suppressing link with empty target on input line 1777.
 
-[21]
+[26]
 
-Package hyperref Warning: Suppressing link with empty target on input line 1626.
+Package hyperref Warning: Suppressing link with empty target on input line 1857.
 
-[22]
+[27]
 
-Package hyperref Warning: Suppressing link with empty target on input line 1711.
+Package hyperref Warning: Suppressing link with empty target on input line 1953.
 
-[23]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1800.
-
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 2026--2027
 []\T1/txr/m/n/10 Gravitational lens-ing mod-i-fies the ob-served CMB
  []
 
 
-Underfull \hbox (badness 2521) in paragraph at lines 1800--1801
+Underfull \hbox (badness 2521) in paragraph at lines 2026--2027
 \T1/txr/m/n/10 anisotropies by remap-ping the pho-ton tra-jec-to-ries due to
  []
 
 
-Underfull \hbox (badness 1014) in paragraph at lines 1832--1835
+Package hyperref Warning: Suppressing link with empty target on input line 2042.
+
+[29]
+Underfull \hbox (badness 1014) in paragraph at lines 2058--2061
 \T1/txr/m/n/10 part of the E-mode po-lar-iza-tion into B-modes, in-tro-duc-ing
  []
 
 (out/main.bbl)
 
-Package hyperref Warning: Suppressing link with empty target on input line 1861.
+Package hyperref Warning: Suppressing link with empty target on input line 2087.
 
-[25] (out/main.aux
+[30
+
+] (out/main.aux
+
+Package natbib Warning: Citation `tensions' multiply defined.
+
 
 Package natbib Warning: Citation `Planck' multiply defined.
 
@@ -1007,22 +1118,25 @@ Package natbib Warning: Citation `Planck' multiply defined.
 Package natbib Warning: Citation `Chi2' multiply defined.
 
 
+Package natbib Warning: Citation `JWST' multiply defined.
+
+
 Package natbib Warning: Citation `Course' multiply defined.
 
 ) ) 
 Here is how much of TeX's memory you used:
- 16792 strings out of 474116
- 270491 string characters out of 5743682
+ 16947 strings out of 474116
+ 275364 string characters out of 5743682
  1973187 words of memory out of 5000000
- 38586 multiletter control sequences out of 15000+600000
+ 38714 multiletter control sequences out of 15000+600000
  656831 words of font info for 197 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,16n,93p,1380b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,16n,93p,1448b,552s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (25 pages, 752442 bytes).
+Output written on out/main.pdf (30 pages, 829289 bytes).
 PDF statistics:
- 857 PDF objects out of 1000 (max. 8388607)
- 775 compressed objects within 8 object streams
- 280 named destinations out of 1000 (max. 500000)
- 505 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1048 PDF objects out of 1200 (max. 8388607)
+ 954 compressed objects within 10 object streams
+ 303 named destinations out of 1000 (max. 500000)
+ 610 words of extra memory for PDF output out of 10000 (max. 10000000)
 

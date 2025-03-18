@@ -13,21 +13,31 @@ int main(int argc, char **argv){
   //=========================================================================
 
   // Background parameters
-  double h           = 0.67;
-  double OmegaB      = 0.05;
-  double OmegaCDM    = 0.267;
-  double OmegaK      = 0.0;
-  double Neff        = 3.046;
-  double TCMB        = 2.7255;
+  double h               = 0.67;
+  double OmegaB          = 0.05;
+  double OmegaCDM        = 0.267;
+  double OmegaK          = 0.0;
+  double Neff            = 3.046;
+  double TCMB            = 2.7255;
 
-  // Recombination parameters
-  // double Yp          = 0.245;
-  double Yp          = 0.0;
+  // Recombination/reionization parameters
+  // double Yp              = 0.0;
+  // double z_reion         = 0.0;
+  // double Delta_z_reion   = 0.0;
+  // double z_Hereion       = 0.0;
+  // double Delta_z_Hereion = 0.0;
+  double Yp              = 0.245;
+  double z_reion         = 8.0;
+  double Delta_z_reion   = 0.5;
+  double z_Hereion       = 3.5;
+  double Delta_z_Hereion = 0.5;
+  // double z_Hereion       = 0.0;
+  // double Delta_z_Hereion = 0.0;
 
   // Power-spectrum parameters
-  double A_s         = 2.1e-9;
-  double n_s         = 0.965;
-  double kpivot_mpc  = 0.05;
+  double A_s             = 2.1e-9;
+  double n_s             = 0.965;
+  double kpivot_mpc      = 0.05;
 
   //=========================================================================
   // Module I
@@ -63,13 +73,34 @@ int main(int argc, char **argv){
   // Module II
   //=========================================================================
   
-  // Solve the recombination history
-  RecombinationHistory rec(&cosmo, Yp);
-  rec.solve(-13.0, 0.0, 1000);
+  // Initialize instance of the recombination history class and print info
+  RecombinationHistory rec(&cosmo, Yp, z_reion, Delta_z_reion, z_Hereion, Delta_z_Hereion);
   rec.info();
 
+  // // Solve using only the Saha approximation
+  // std::cout << "\nSolving for X_e and n_e using only the Saha approximation:\n";
+  // rec.solve(-13.0, 0.0, 1000, false, false, false, -7.0, false, true); 
+  
+  // // Output recombination quantities
+  // rec.output(-12.0, 0.0, "results/recombination_Saha.txt", false);
+
+  // Solve using both Saha and Peebles
+  std::cout << "\nSolving entire system with Saha and Peebles:\n";
+  rec.solve(-13.0, 0.0, 10000, true, true, true, -7.0, true); // More points due to abrupt changes in dtau/dx and ddtau/ddx
+
+  // Print freeze-out abundance of free electrons
+  rec.print_freeze_out_abundance();
+
+  // Print optical debths at reionization
+  rec.print_tau_reionization(true);
+
+  // Print the times and horizon sizes at decoupling and recombination (with and without Peebles)
+  rec.print_decoupling_and_recombination(true);
+  rec.print_decoupling_and_recombination(true, true);
+
   // Output recombination quantities
-  rec.output(-12.0, 0.0, "results/recombination.txt");
+  rec.output(-12.0, 0.0, "results/recombination.txt", true, true, true, true);
+
   
   // Remove when module is completed
   return 0;
