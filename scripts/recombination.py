@@ -96,8 +96,8 @@ fig.subplots_adjust(left = 0.04, right = 0.97, top = 0.9, wspace = 0.15)
 
 Xe_ne = [data["Xe"], data["ne"], data_Saha["Xe"], data_Saha["ne"]]
 for i in range(2):
-    axs[i].plot(data["x"], Xe_ne[i+2], "k", linestyle = "--", label = r"Saha only")
-    axs[i].plot(data["x"], Xe_ne[i], "k", label = r"Saha + Peebles")
+    axs[i].plot(data["x"], Xe_ne[i+2], "k", linestyle = "--", label = r"Saha only", linewidth = 2)
+    axs[i].plot(data["x"], Xe_ne[i], "k", label = r"Saha + Peebles", linewidth = 2)
     axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles")
     axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
     axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
@@ -157,17 +157,17 @@ axs.append(subfigs[0].subplots(1, 1))
 xlims = [[-9, -6], [-3.5, -0.5], [x_min, x_max]]
 ylims = [[1e-3, 1e5], [1e-7, 1], [1e-8, np.max(data["ddtau_bddx"])]]
 for i in range(3):
-    axs[i].plot(data["x"], data["tau"], color = "royalblue", label = r"$\tau(x)$", zorder = 1)
-    axs[i].plot(data["x"], -data["dtaudx"], color = "mediumvioletred", label = r"-$\tau'(x)$", zorder = 3)
-    axs[i].plot(data["x"], data["ddtauddx"], color = "olivedrab", label = r"$\tau''(x)$", zorder = 5)  
+    axs[i].plot(data["x"], data["tau"], color = "royalblue", label = r"$\tau(x)$", linewidth = 2, zorder = 1)
+    axs[i].plot(data["x"], -data["dtaudx"], color = "mediumvioletred", label = r"-$\tau'(x)$", linewidth = 2, zorder = 3)
+    axs[i].plot(data["x"], data["ddtauddx"], color = "olivedrab", label = r"$\tau''(x)$", linewidth = 2, zorder = 5)  
     axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles", zorder = 6)
     axs[i].axvline(x_decoup, color = "#fc95c7", label = "Photon decoupling", zorder = 7)
     axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 7)
     axs[i].axvline(x_drag, color = "gold", label = "Baryon decoupling", zorder = 8)
     axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 8)
-    axs[i].plot(data["x"], data["tau_b"], color = "cornflowerblue", label = r"$\tau_b(x)$", zorder = 0)
-    axs[i].plot(data["x"], -data["dtau_bdx"], color = "palevioletred", label = r"$-\tau_b'(x)$", zorder = 2)
-    axs[i].plot(data["x"], data["ddtau_bddx"], color = "yellowgreen", label = r"$\tau_b''(x)$", zorder = 4)
+    axs[i].plot(data["x"], data["tau_b"], color = "cornflowerblue", label = r"$\tau_b(x)$", linewidth = 2, zorder = 0)
+    axs[i].plot(data["x"], -data["dtau_bdx"], color = "palevioletred", label = r"$-\tau_b'(x)$", linewidth = 2, zorder = 2)
+    axs[i].plot(data["x"], data["ddtau_bddx"], color = "yellowgreen", label = r"$\tau_b''(x)$", linewidth = 2, zorder = 4)
     axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
     axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
     axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
@@ -195,16 +195,16 @@ fig, axs = plt.subplots(nrows = 3, layout = "constrained", figsize = (8, 12))
 quantities = [data["g_tilde"], data["dgdx_tilde"], data["ddgddx_tilde"], data["g_tilde_b"], data["dgdx_tilde_b"], data["ddgddx_tilde_b"]]
 titles = [r"$\tilde{g}(x)$", r"$\tilde{g}'(x)$", r"$\tilde{g}''(x)$"]
 for i in range(3):
-    axs[i].plot(data["x"], quantities[i], "k", label = "Photons", zorder = 7)
-    axs[i].plot(data["x"], quantities[i+3], "slategrey", label = "Baryons", zorder = 6)
-    axs[i].axvline(x_decoup, color = "#fc95c7", label = r"Photon decoupling", zorder = 0) 
-    axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 1)
-    axs[i].axvline(x_drag, color = "gold", label = r"Baryon decoupling", zorder = 2) #TODO include this?
-    axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 3) #TODO include this?
+    axs[i].plot(data["x"], quantities[i], "k", label = "Photons", linewidth = 2, zorder = 1)
+    axs[i].plot(data["x"], quantities[i+3], "slategrey", label = "Baryons", linewidth = 2, zorder = 0)
+    axs[i].axvline(x_decoup, color = "#fc95c7", label = r"Photon decoupling") 
+    axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--")
+    axs[i].axvline(x_drag, color = "gold", label = r"Baryon decoupling") #TODO include this?
+    axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--") #TODO include this?
     # axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination") #TODO include this?
     # axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--") #TODO include this?
-    axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization", zorder = 4)
-    axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization", zorder = 5)
+    axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
+    axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization")
     axs[i].set_title(titles[i])
     axs[i].set_xlim(-8 , x_max)
 axs[0].legend(loc = "upper right", framealpha = 1)
@@ -224,7 +224,7 @@ plt.figure(figsize = (8, 6))
 plt.subplots_adjust(left = 0.16, right = 0.96, top = 0.93)
 #TODO have important time stamps in this figure?
 #TODO overplot close-ups of s(x), tau(x) and tau_b(x) around x_decoup and x_drag? 
-plt.plot(data["x"], data["s"]/Mpc, "k", label = "Computed evolution")
+plt.plot(data["x"], data["s"]/Mpc, "k", label = "Computed evolution", linewidth = 2)
 # plt.axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles") #TODO include this?
 # plt.axvline(x_decoup, color = "#fc95c7", label = r"Photon decoupling") 
 # plt.axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--") 
@@ -262,8 +262,8 @@ plt.subplots_adjust(left = 0.12, right = 0.96, top = 0.93)
 # plt.plot(z, data["Tb"], color = "#fca32d", label = r"$T_b$")
 # plt.plot(data["x"], data["TCMB"], color = "yellowgreen", label = r"$T_{\small\textrm{CMB}}$")
 # plt.plot(data["x"], data["Tb"], color = "#fca32d", label = r"$T_b$")
-plt.plot(data["x"], data["TCMB"], "slategrey", label = r"$T_{\small\textrm{CMB}}$")
-plt.plot(data["x"], data["Tb"], "k", label = r"$T_b$")
+plt.plot(data["x"], data["TCMB"], "slategrey", label = r"$T_{\small\textrm{CMB}}$", linewidth = 2)
+plt.plot(data["x"], data["Tb"], "k", label = r"$T_b$", linewidth = 2)
 plt.plot(data["x"], np.exp(-data["x"])/np.exp(-data["x"][-1])*data["TCMB"][-1], color = "#9db92c", linestyle = "dashdot", label = r"$a^{-1}$")
 plt.plot(data["x"], np.exp(-2*data["x"])/np.exp(-2*data["x"][-1])*data["Tb"][-1], color = "#a66fb5", linestyle = "dashdot", label = r"$a^{-2}$")
 # plt.axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles") #TODO include this?

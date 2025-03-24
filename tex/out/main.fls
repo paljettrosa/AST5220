@@ -450,10 +450,14 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txbexa.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txbmi.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxbmi.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmbi.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txb.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmb.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxb.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txb.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/txbmi.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxbmi.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmbi.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xi.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xi.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxi.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xb.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xb.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxptmb.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxb.tfm
 INPUT out/main.bbl
@@ -464,8 +468,6 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txr.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txmi.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txsy.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txex.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txb.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txb.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txsya.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txi.tfm

@@ -1,8 +1,14 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{7}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Basu {et~al.}(2024)Basu, Garaldi, \& Ciardi}]{Helium}
+Basu, A., Garaldi, E., \& Ciardi, B. 2024, \href{https://doi.org/10.1093/mnras/stae1488}{Monthly Notices of the Royal Astronomical Society}, 532, 841
 
 \bibitem[{Cortês \& Liddle(2024)}]{tensions}
 Cortês, M. \& Liddle, A.~R. 2024, \href{https://doi.org/10.1093/mnrasl/slae030}{Monthly Notices of the Royal Astronomical Society}, 531, L52
+
+\bibitem[{Lewis {et~al.}(2000)Lewis, Challinor, \& Lasenby}]{camb2}
+Lewis, A., Challinor, A., \& Lasenby, A. 2000, \href{https://doi.org/10.1086/309179}{The Astrophysical Journal}, 538, 473
 
 \bibitem[{{Planck Collaboration} {et~al.}(2020){Planck Collaboration}, Aghanim, Akrami, \& {et al.}}]{Planck}
 {Planck Collaboration}, Aghanim, N., Akrami, Y., \& {et al.} 2020, \href{https://doi.org/10.1051/0004-6361/201833910}{Astronomy \& Astrophysics}, 641

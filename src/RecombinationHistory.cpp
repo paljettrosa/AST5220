@@ -262,7 +262,7 @@ std::pair<double,double> RecombinationHistory::electron_fraction_from_Saha_equat
     double x_H;
     double x_He;
     double x_He2;
-    while (abs(fe - fe_old) >= tol) {
+    while (abs(fe - fe_old) > tol) {
       x_H    = 1.0 / (1.0 + fe*nb/rhs_H);
       x_He   = 1.0 / (1.0 + fe*nb/rhs_He + rhs_He2/(fe*nb));
       x_He2  = rhs_He2*x_He / (fe*nb);
