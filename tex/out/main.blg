@@ -3,45 +3,47 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: aa.bst
 Database file #1: references.bib
+Warning--I didn't find a database entry for "Helium"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 7 entries,
+You've used 8 entries,
             3039 wiz_defined-function locations,
-            710 strings with 6329 characters,
-and the built_in function-call counts, 3029 in all, are:
-= -- 253
-> -- 224
+            718 strings with 6554 characters,
+and the built_in function-call counts, 3532 in all, are:
+= -- 294
+> -- 264
 < -- 2
-+ -- 73
-- -- 66
-* -- 253
-:= -- 575
-add.period$ -- 7
-call.type$ -- 7
-change.case$ -- 50
-chr.to.int$ -- 7
-cite$ -- 7
-duplicate$ -- 128
-empty$ -- 168
-format.name$ -- 87
-if$ -- 581
++ -- 86
+- -- 78
+* -- 298
+:= -- 667
+add.period$ -- 8
+call.type$ -- 8
+change.case$ -- 58
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 147
+empty$ -- 195
+format.name$ -- 102
+if$ -- 680
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 5
-newline$ -- 25
-num.names$ -- 28
-pop$ -- 53
+missing$ -- 6
+newline$ -- 28
+num.names$ -- 32
+pop$ -- 62
 preamble$ -- 1
-purify$ -- 50
+purify$ -- 58
 quote$ -- 0
-skip$ -- 99
+skip$ -- 115
 stack$ -- 0
-substring$ -- 117
+substring$ -- 141
 swap$ -- 0
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 63
+type$ -- 72
 warning$ -- 0
-while$ -- 25
+while$ -- 29
 width$ -- 0
-write$ -- 73
+write$ -- 83
+(There was 1 warning)

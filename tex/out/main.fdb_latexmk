@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex out/main"] 1742833370.83591 "out/main.aux" "out/main.bbl" "out/main" 1742833373.15606 0
+["bibtex out/main"] 1742931578.12166 "out/main.aux" "out/main.bbl" "out/main" 1742932031.17389 0
   "./aa.bst" 1728412657.75515 32101 d07be6eccf1293b463b353311acc9bc2 ""
-  "./references.bib" 1742563719.40589 6252 a129523e5cc7ee9488b0b745ccafbd3d ""
-  "out/main.aux" 1742833372.70398 35941 286fb698a44431db0db130f61a0de2b0 "pdflatex"
+  "./references.bib" 1742848130.02633 6628 c8a244940d34c02e11f8f3d54fedf052 ""
+  "out/main.aux" 1742932030.70793 37770 34e86ffb8584261c6892ba2b57bcee3f "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1742833371.00319 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1742833373.15642 0
+["pdflatex"] 1742932028.98908 "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" "out/main.pdf" "main" 1742932031.17421 0
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf" 1740494761.84912 168936 b87752f63c233d9287cf8df8e905e4db ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf" 1740494758.02218 133470 ce2f4b820c9ccfdf9648259452ef9dda ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf" 1742164412.74213 313724 589b6d5fc4b69d1c1996173ca1281280 ""
@@ -21,14 +21,13 @@
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf" 1742291586.57364 197509 ca14c163b8e4c3e8c93cda104d0e9f22 ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf" 1742291582.10208 130464 5f0fc8d2ab9f9008299e5dede307aa96 ""
   "/Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf" 1742291579.93478 135627 c39f628e69f28b05ec3efd921d9dd10e ""
-  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1742833359.06688 257698 16ab06e05084ee877bebdd83962eb7c0 ""
+  "/Users/paljettrosa/Documents/GitHub/AST5220/tex/main.tex" 1742931569.17252 248852 951ae52fce03515ad91dfdcf47838fff ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxb.tfm" 1136768653 1020 c53143d3e3747b5c1149bd9a5ecd7b55 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxbmi.tfm" 1136768653 1060 e14d7b946996a4ac038e9ab7bbf2c66e ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxbss.tfm" 1136768653 952 8af6d4411025237a8a19c5fe76c48519 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxi.tfm" 1136768653 1048 a97cff5f6b833b712079817ce7a40d4c ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxmi.tfm" 1136768653 1056 e2202af076e43d03fc17f87e104021b0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxphvb.tfm" 1136768653 4548 1ffa7e4f8cec4f54428bd6e887feff07 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxphvr.tfm" 1136768653 4748 767b775b8de19d97ba9256ce2b48e057 ""
@@ -42,7 +41,6 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/rtxsssl.tfm" 1136768653 1012 8cc6548f651cb7d6018c40ec4a405a18 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xb.tfm" 1136768653 6892 772bf8e6c154137db8568fa8a47a6ceb ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xbss.tfm" 1136768653 6700 9f7ab5807b4ea0f94f86ef51654456a0 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xi.tfm" 1136768653 6956 cab20301c4a0fe2075f774c8a2433c5d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xr.tfm" 1136768653 6716 6d25a377562601272906e3bfe6b2817a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xss.tfm" 1136768653 7096 d4068737d849c31bd955cec162cc9c1f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/t1xsssl.tfm" 1136768653 7320 442528840b39263f05b2bb9418cb055c ""
@@ -88,7 +86,6 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb" 1136849748 45458 a3faba884469519614ca56ba5f6b1de1 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xb.vf" 1136768653 2144 bab2875eda5b2344ea7b1db74ccc03a4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xbss.vf" 1136768653 2140 53a6b204134ca23b688a5eb135473f18 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xi.vf" 1136768653 2120 35084608d79b6b13dd746dfcffe98243 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xr.vf" 1136768653 2140 99e5b3a34695df6221a167ffa8b498d6 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xss.vf" 1136768653 2140 1f9dbe1be7b322ce3d2dc5796a8e88ed ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/txfonts/t1xsssl.vf" 1136768653 2148 3b03d03d82cf6e8c21b92d2903f15dc8 ""
@@ -188,10 +185,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727209366 8221429 db52235156dd1f5fc2399dadb68c726f ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "aa.cls" 1740429603.40553 63872 8acf7ca1a064b0be9664141008161280 ""
-  "main.tex" 1742833359.06688 257698 16ab06e05084ee877bebdd83962eb7c0 ""
-  "out/main.aux" 1742833372.70398 35941 286fb698a44431db0db130f61a0de2b0 "pdflatex"
-  "out/main.bbl" 1742833370.99648 1775 ce304865b74331ce94c3dbe981161b58 "bibtex out/main"
-  "out/main.out" 1742833372.70829 13681 c02fdb45dde0870c7c67df1baab7763e "pdflatex"
+  "main.tex" 1742931569.17252 248852 951ae52fce03515ad91dfdcf47838fff ""
+  "out/main.aux" 1742932030.70793 37770 34e86ffb8584261c6892ba2b57bcee3f "pdflatex"
+  "out/main.bbl" 1742931578.27969 2075 a8655480e883e3999a7133745dcc48d3 "bibtex out/main"
+  "out/main.out" 1742932030.7123 13621 74c30aaa5cf9872081b11279ca75ec9a "pdflatex"
   (generated)
   "out/main.aux"
   "out/main.log"

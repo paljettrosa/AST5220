@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  24 MAR 2025 17:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  25 MAR 2025 20:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -831,254 +831,168 @@ Package hyperref Warning: Suppressing link with empty target on input line 912.
 
 [12]
 
-Package hyperref Warning: Suppressing link with empty target on input line 997.
+Package hyperref Warning: Suppressing link with empty target on input line 996.
 
 [13]
 
-Package hyperref Warning: Suppressing link with empty target on input line 1075.
+Package hyperref Warning: Suppressing link with empty target on input line 1074.
 
 [14]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf, id=714, 1156.32pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf, id=715, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf  used on input line 1112.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf  used on input line 1109.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf, id=716, 1156.32pt x 867.24pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf, id=717, 1156.32pt x 867.24pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf  used on input line 1153.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf  used on input line 1133.
 (pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
+LaTeX Font Info:    Font shape `T1/txr/b/n' in size <10> not available
+(Font)              Font shape `T1/txr/bx/n' tried instead on input line 1143.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1163.
+Package natbib Warning: Citation `Helium' on page 15 undefined on input line 1143.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1144.
 
 [15]
 
-Package hyperref Warning: Suppressing link with empty target on input line 1163.
+Package hyperref Warning: Suppressing link with empty target on input line 1144.
 
 [16 </Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf, id=767, 578.16pt x 867.24pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf, id=766, 578.16pt x 867.24pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf  used on input line 1175.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf  used on input line 1155.
 (pdftex.def)             Requested size: 256.0748pt x 384.10106pt.
 
 Underfull \vbox (badness 1158) has occurred while \output is active []
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1188.
+Package hyperref Warning: Suppressing link with empty target on input line 1172.
 
 [17 </Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf>]
-Underfull \hbox (badness 1052) in paragraph at lines 1237--1238
+Underfull \hbox (badness 1052) in paragraph at lines 1215--1216
 []\T1/txr/m/n/10 The dif-fer-ence in sound hori-zons be-tween the two ap-
  []
 
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf, id=795, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf, id=793, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf  used on input line 1244.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf  used on input line 1222.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf, id=801, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf, id=799, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf  used on input line 1261.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf  used on input line 1241.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
-Package hyperref Warning: Suppressing link with empty target on input line 1269.
+Package hyperref Warning: Suppressing link with empty target on input line 1249.
 
 [18 </Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf>]
 Underfull \vbox (badness 4859) has occurred while \output is active []
 
 
-Underfull \hbox (badness 5119) in paragraph at lines 1286--1287
+Underfull \hbox (badness 5119) in paragraph at lines 1264--1265
 []\T1/txr/m/n/10 In this mile-stone, I nu-mer-i-cally solve the Einstein-
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4181) has occurred while \output is active []
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1357.
+Package hyperref Warning: Suppressing link with empty target on input line 1336.
 
 [19 </Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>]
-Underfull \hbox (badness 3977) in paragraph at lines 1389--1390
+Underfull \hbox (badness 3977) in paragraph at lines 1373--1377
 []\T1/txr/m/n/10 Eq. [] en-codes two key ef-fects that shape CMB
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1422.
+Package hyperref Warning: Suppressing link with empty target on input line 1417.
 
 [20]
-Overfull \hbox (2.7413pt too wide) detected at line 1436
-$[] \OT1/txr/m/n/10 + \OML/txmi/m/it/10 ik^^V[] \OT1/txr/m/n/10 + [] = \OML/txmi/m/it/10 n[]^^[[] [] :$  
- []
 
-
-Package hyperref Warning: Suppressing link with empty target on input line 1481.
+Package hyperref Warning: Suppressing link with empty target on input line 1487.
 
 [21]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1544.
-
-[22]
-Underfull \hbox (badness 1297) in paragraph at lines 1552--1554
+Underfull \hbox (badness 1297) in paragraph at lines 1554--1556
 \T1/txr/m/n/10 This equa-tion closely re-sem-bles the fluid con-ti-nu-ity equa-
  []
 
 
-Underfull \hbox (badness 2922) in paragraph at lines 1552--1554
+Underfull \hbox (badness 2922) in paragraph at lines 1554--1556
 \T1/txr/m/n/10 tion, with ad-di-tional terms ac-count-ing for the ex-pan-sion
  []
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 1552--1554
+Underfull \hbox (badness 1721) in paragraph at lines 1554--1556
 \T1/txr/m/n/10 of the Uni-verse and the ef-fect of grav-i-ta-tional po-ten-tials.
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1635.
+Package hyperref Warning: Suppressing link with empty target on input line 1586.
 
-[23]
-Underfull \hbox (badness 1062) in paragraph at lines 1656--1657
+[22]
+Underfull \hbox (badness 1062) in paragraph at lines 1658--1659
 \T1/txr/m/n/10 To nu-mer-i-cally solve the evo-lu-tion of per-tur-ba-tions in the
  []
 
 
-Underfull \hbox (badness 4217) in paragraph at lines 1661--1663
-\T1/txr/m/n/10 where $\OML/txmi/m/it/10 A[]$ \T1/txr/m/n/10 is the pri-mor-dial am-pli-tude, $\OML/txmi/m/it/10 n[]$ \T1/txr/m/n/10 is the spec-
- []
+Package hyperref Warning: Suppressing link with empty target on input line 1706.
 
+[23]
 
-Underfull \hbox (badness 10000) in paragraph at lines 1661--1663
-\T1/txr/m/n/10 tral in-dex, and $\OML/txmi/m/it/10 k[]$ \T1/txr/m/n/10 is a cho-sen ref-er-ence scale.
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1740.
+Package hyperref Warning: Suppressing link with empty target on input line 1799.
 
 [24]
-Underfull \hbox (badness 1033) in paragraph at lines 1815--1817
+Underfull \hbox (badness 1033) in paragraph at lines 1820--1822
 \T1/txr/m/n/10 which pro-vides a use-ful ref-er-ence in the matter-dominated
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1836.
+Package hyperref Warning: Suppressing link with empty target on input line 1917.
 
 [25]
-Underfull \hbox (badness 1067) in paragraph at lines 1970--1971
-\T1/txr/m/n/10 Ap-proach to Cos-mic Mi-crowave Back-ground Anisotropies''
- []
 
-
-Package hyperref Warning: Suppressing link with empty target on input line 1971.
+Package hyperref Warning: Suppressing link with empty target on input line 2019.
 
 [26]
-Overfull \hbox (67.67694pt too wide) detected at line 1981
-$[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 k; x\OT1/txr/m/n/10 ) = [] [] + \OML/txmi/m/it/10 e[]\OT1/txr/m/n/10 (	[] \OMS/txsy/m/n/10 ^^@ \OT1/txr/m/n/10 ^^H[]) \OMS/txsy/m/n/10 ^^@ [][]\OT1/txr/m/n/10 (\OMS/txsy/m/n/10 H[]\OML/txmi/m/it/10 v[]\OT1/txr/m/n/10 ) + [][] []$  
+Overfull \hbox (4.11177pt too wide) detected at line 2023
+$\OT1/txr/m/n/10 ^^B[](\OML/txmi/m/it/10 k\OT1/txr/m/n/10 ) \OMS/txsy/m/n/10 ^^Y [][] \OML/txmi/m/it/10 j[][]k\OT1/txr/m/n/10 (\OML/txmi/m/it/10 ^^Q[] \OMS/txsy/m/n/10 ^^@ \OML/txmi/m/it/10 ^^Q[]\OT1/txr/m/n/10 )[] \OMS/txsy/m/n/10 ^^Y [][]  \OML/txmi/m/it/10 j[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 k^^Q[]\OT1/txr/m/n/10 )\OML/txmi/m/it/10 :$  
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 2008--2009
-\T1/txr/m/n/10 Having com-puted the pho-ton tem-per-a-ture mul-ti-poles $\OT1/txr/m/n/10 ^^B[](\OML/txmi/m/it/10 k\OT1/txr/m/n/10 )$
+Underfull \hbox (badness 1701) in paragraph at lines 2023--2025
+\T1/txr/m/n/10 The sec-ond ap-prox-i-ma-tion fol-lows from the fact that the
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 2022--2023
-[]\T1/txr/m/n/10 A par-tic-u-larly im-por-tant spe-cial case is the Harrison-
- []
+Package hyperref Warning: Suppressing link with empty target on input line 2453.
 
+[27] (out/main.bbl
 
-Package hyperref Warning: Suppressing link with empty target on input line 2031.
+Package hyperref Warning: Suppressing link with empty target on input line 15.
 
-[27]
-Underfull \hbox (badness 3128) in paragraph at lines 2050--2053
-\T1/txr/m/n/10 Once the $\OML/txmi/m/it/10 a[]$\T1/txr/m/n/10 's are gen-er-ated, the tem-per-a-ture map can
- []
+[28])
 
+Package hyperref Warning: Suppressing link with empty target on input line 2595.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2050--2053
-\T1/txr/m/n/10 be con-structed us-ing tools like HEALPix or Healpy,
- []
+[29
 
-
-Underfull \hbox (badness 1077) in paragraph at lines 2050--2053
-\T1/txr/m/n/10 which per-form the spher-i-cal har-monic syn-the-sis ef-fi-ciently.
- []
-
-
-Overfull \hbox (35.81482pt too wide) detected at line 2191
-[]
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 2191.
-
-[28]
-Overfull \hbox (101.76932pt too wide) detected at line 2204
-$\OT1/txr/m/n/10 ^^B[](\OML/txmi/m/it/10 k\OT1/txr/m/n/10 ) \OMS/txsy/m/n/10 ^^Y \OT1/txr/m/n/10 (^^B[] + 	)\OML/txmi/m/it/10 j[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 k^^Q[]\OT1/txr/m/n/10 ) + 3^^B[]\OML/txmi/m/it/10 j[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 k^^Q[]\OT1/txr/m/n/10 ) \OMS/txsy/m/n/10 ^^@ []\OML/txmi/m/it/10 j[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 k^^Q[]\OT1/txr/m/n/10 ) + [][] \OML/txmi/m/it/10 d^^Q e[][]j[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 k\OT1/txr/m/n/10 (\OML/txmi/m/it/10 ^^Q[] \OMS/txsy/m/n/10 ^^@ \OML/txmi/m/it/10 ^^Q\OT1/txr/m/n/10 ))$  
- []
-
-LaTeX Font Info:    Font shape `T1/txr/b/n' in size <10> not available
-(Font)              Font shape `T1/txr/bx/n' tried instead on input line 2210.
-
-Underfull \hbox (badness 10000) in paragraph at lines 2274--2275
-[]\T1/txr/m/n/10 At high $\OML/txmi/m/it/10 `$\T1/txr/m/n/10 , pho-ton dif-fu-sion sup-presses small-scale
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 2275.
-
-[29]
-
-Package hyperref Warning: Suppressing link with empty target on input line 2366.
-
-[30]
-Underfull \hbox (badness 1852) in paragraph at lines 2382--2384
-\T1/txr/m/n/10 showing that the am-pli-tude is damped by the ex-pan-sion.
- []
-
-
-Underfull \hbox (badness 4378) in paragraph at lines 2399--2400
-[]\T1/txr/m/n/10 The \T1/txr/bx/n/10 TE cross-spectrum \T1/txr/m/n/10 re-veals cor-re-la-tions be-tween
- []
-
-
-Overfull \hbox (61.13356pt too wide) detected at line 2425
-$\OML/txmi/m/it/10 C[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 ^^R\OT1/txr/m/n/10 ) \OMS/txsy/m/n/10 ^^Y [] []\OT1/txr/m/n/10 (2\OML/txmi/m/it/10 ` \OT1/txr/m/n/10 + 1)\OML/txmi/m/it/10 C[]e[] [] ;$  
- []
-
-
-Overfull \hbox (108.83731pt too wide) detected at line 2445
-$\OML/txmi/m/it/10 d[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 ^^R\OT1/txr/m/n/10 ) = [](\OMS/txsy/m/n/10 ^^@\OT1/txr/m/n/10 1)[] [][] [][](\OML/txmi/m/it/10 ^^R=\OT1/txr/m/n/10 2) [][](\OML/txmi/m/it/10 ^^R=\OT1/txr/m/n/10 2)\OML/txmi/m/it/10 ;$  
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 2451.
-
-[31]
-
-Package hyperref Warning: Suppressing link with empty target on input line 2530.
-
-[32]
-Underfull \hbox (badness 1158) in paragraph at lines 2601--2603
-\T1/txr/m/n/10 Fourier trans-form to a 1D Han-kel trans-form. It high-lights
- []
-
-(out/main.bbl)
-
-Package hyperref Warning: Suppressing link with empty target on input line 2683.
-
-[33] (out/main.aux
-
-Package natbib Warning: Citation `Helium' multiply defined.
-
+] (out/main.aux
 
 Package natbib Warning: Citation `tensions' multiply defined.
 
 
 Package natbib Warning: Citation `camb2' multiply defined.
+
+
+Package natbib Warning: Citation `nelson2020cold' multiply defined.
 
 
 Package natbib Warning: Citation `Planck' multiply defined.
@@ -1090,22 +1004,25 @@ Package natbib Warning: Citation `Chi2' multiply defined.
 Package natbib Warning: Citation `JWST' multiply defined.
 
 
+Package natbib Warning: Citation `tumlinson2017circumgalactic' multiply defined.
+
+
 Package natbib Warning: Citation `Course' multiply defined.
 
 ) ) 
 Here is how much of TeX's memory you used:
- 17143 strings out of 474116
- 278613 string characters out of 5743682
+ 17111 strings out of 474116
+ 278366 string characters out of 5743682
  1973187 words of memory out of 5000000
- 38796 multiletter control sequences out of 15000+600000
- 659292 words of font info for 198 fonts, out of 8000000 for 9000
+ 38815 multiletter control sequences out of 15000+600000
+ 657339 words of font info for 196 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,16n,93p,1448b,513s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,16n,93p,1448b,630s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (33 pages, 875444 bytes).
+Output written on out/main.pdf (29 pages, 837634 bytes).
 PDF statistics:
- 1257 PDF objects out of 1440 (max. 8388607)
- 1158 compressed objects within 12 object streams
- 415 named destinations out of 1000 (max. 500000)
+ 1199 PDF objects out of 1200 (max. 8388607)
+ 1104 compressed objects within 12 object streams
+ 366 named destinations out of 1000 (max. 500000)
  650 words of extra memory for PDF output out of 10000 (max. 10000000)
 

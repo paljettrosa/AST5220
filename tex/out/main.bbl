@@ -1,14 +1,14 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{8}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
-
-\bibitem[{Basu {et~al.}(2024)Basu, Garaldi, \& Ciardi}]{Helium}
-Basu, A., Garaldi, E., \& Ciardi, B. 2024, \href{https://doi.org/10.1093/mnras/stae1488}{Monthly Notices of the Royal Astronomical Society}, 532, 841
 
 \bibitem[{Cortês \& Liddle(2024)}]{tensions}
 Cortês, M. \& Liddle, A.~R. 2024, \href{https://doi.org/10.1093/mnrasl/slae030}{Monthly Notices of the Royal Astronomical Society}, 531, L52
 
 \bibitem[{Lewis {et~al.}(2000)Lewis, Challinor, \& Lasenby}]{camb2}
 Lewis, A., Challinor, A., \& Lasenby, A. 2000, \href{https://doi.org/10.1086/309179}{The Astrophysical Journal}, 538, 473
+
+\bibitem[{Nelson {et~al.}(2020)Nelson, Sharma, Pillepich, \& {et. al.}}]{nelson2020cold}
+Nelson, D., Sharma, P., Pillepich, A., \& {et. al.} 2020, \href{https://doi.org/10.1093/mnras/staa2419}{Monthly Notices of the Royal Astronomical Society}, 498, 2391
 
 \bibitem[{{Planck Collaboration} {et~al.}(2020){Planck Collaboration}, Aghanim, Akrami, \& {et al.}}]{Planck}
 {Planck Collaboration}, Aghanim, N., Akrami, Y., \& {et al.} 2020, \href{https://doi.org/10.1051/0004-6361/201833910}{Astronomy \& Astrophysics}, 641
@@ -18,6 +18,9 @@ Reid, R. Accessed: February 2025, {Chi-squared distribution table with sigma val
 
 \bibitem[{Reiss {et~al.}(2024)Reiss, Scolnic, Anand, \& {et al.}}]{JWST}
 Reiss, A.~G., Scolnic, D., Anand, G.~S., \& {et al.} 2024, \href{https://doi.org/10.3847/1538-4357/ad8c21}{The Astrophysical Journal}, 977, 120
+
+\bibitem[{Tumlinson {et~al.}(2017)Tumlinson, Peeples, \& Werk}]{tumlinson2017circumgalactic}
+Tumlinson, J., Peeples, M.~S., \& Werk, J.~K. 2017, \href{https://doi.org/10.1146/annurev-astro-091916-055240}{Annual Review of Astronomy and Astrophysics}, 55, 389
 
 \bibitem[{Winther {et~al.}(Accessed: February 2025)Winther, Eriksen, Øystein Elgarøy, Mota, \& Ihle}]{Course}
 Winther, H.~A., Eriksen, H.~K., Øystein Elgarøy, Mota, D.~F., \& Ihle, H. Accessed: February 2025, {Cosmology II - A course on the formation of the cosmic microwave background and structures in the Universe}, \url{https://cmb.wintherscoming.no/index.php}
