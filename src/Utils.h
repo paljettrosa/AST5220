@@ -42,48 +42,22 @@ extern struct ConstantsAndUnits {
   const double hbar        = 1.054571817e-34 * J*s;       // Reduced Plancks constant
   const double sigma_T     = 6.6524587158e-29 * m*m;      // Thomas scattering cross-section
   const double lambda_2s1s = 8.227 / s;                   // Transition time between 2s and 1s in Hydrogen
-  const double H0_over_h   = 100 * km/s/Mpc;              // H0 / h
+  const double H_0_over_h  = 100 * km/s/Mpc;              // H0 / h
   const double epsilon_0   = 13.605693122994 * eV;        // Ionization energy for the ground state of hydrogen
   const double chi_0       = 24.587387 * eV;              // Ionization energy for neutral Helium
   const double chi_1       = 4.0 * epsilon_0;             // Ionization energy for singly ionized Helium
-  
-  // Min and max k-value
-  const double k_min = 0.00005 / Mpc;
-  const double k_max = 0.3     / Mpc;
-
-  // Include polarization and/or neutrinos?
-  const bool polarization  = true;
-  const bool neutrinos     = true;
 
   // For integration of perturbations (number of equations and positions in arrays)
   const int n_scalars           = 5;
-  const int n_ell_theta         = 8;
-  const int n_ell_thetap        = 8 * polarization;
-  const int n_ell_neutrinos     = 8 * neutrinos;
-  const int n_ell_tot_full      = n_scalars + n_ell_theta + n_ell_thetap + n_ell_neutrinos;
-  const int ind_deltacdm        = 0; 
-  const int ind_deltab          = 1;
-  const int ind_vcdm            = 2;
-  const int ind_vb              = 3;
-  const int ind_Phi             = 4;
-  const int ind_start_theta     = n_scalars;
-  const int ind_start_thetap    = ind_start_theta  + n_ell_theta;
-  const int ind_start_nu        = ind_start_thetap + n_ell_thetap;
- 
-  // For integration of perturbations in tight coupling regime (Only 2 photon multipoles + neutrinos needed)
-  const int n_scalars_tc        = 5;
-  const int n_ell_theta_tc      = 2;
-  const int n_ell_thetap_tc     = 0;
-  const int n_ell_neutrinos_tc  = n_ell_neutrinos;
-  const int n_ell_tot_tc        = n_scalars_tc + n_ell_theta_tc + n_ell_thetap_tc + n_ell_neutrinos;
-  const int ind_deltacdm_tc     = 0; 
-  const int ind_deltab_tc       = 1;
-  const int ind_vcdm_tc         = 2;
-  const int ind_vb_tc           = 3;
-  const int ind_Phi_tc          = 4;
-  const int ind_start_theta_tc  = n_scalars_tc;
-  const int ind_start_thetap_tc = ind_start_theta_tc  + n_ell_theta_tc;
-  const int ind_start_nu_tc     = ind_start_thetap_tc + n_ell_thetap_tc;
+  const int n_ell_Theta         = 8;
+  const int n_ell_Thetap        = 8;
+  const int n_ell_Nu            = 8;
+  const int idx_Phi             = 0;
+  const int idx_deltaCDM        = 1; 
+  const int idx_deltab          = 2;
+  const int idx_vCDM            = 3;
+  const int idx_vb              = 4;
+  const int idx_start_Theta     = n_scalars;
 
 } Constants;
 

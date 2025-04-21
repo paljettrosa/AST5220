@@ -30,7 +30,7 @@ class RecombinationHistory{
     double Delta_y_reion;
     double f_He;
 
-    // Booleans
+    // Include Helium and/or reionization?
     bool Helium       = false;
     bool reionization = false;
 
@@ -38,7 +38,7 @@ class RecombinationHistory{
     double x_recombination        = 0.0;
   
     // Xe for when to switch between Saha and Peebles
-    const double Xe_Saha_limit    = 0.9999;
+    const double Xe_Saha_limit    = 0.99; //TODO: change back to 0.9999
 
     // Xe at recombination
     const double Xe_recombination = 0.1;
@@ -118,9 +118,6 @@ class RecombinationHistory{
         double z_Hereion,
         double Delta_z_Hereion);
 
-    // Print some useful info about the class
-    void info() const;
-
     // Do all the solving
     void solve(
         const double x_start, 
@@ -133,6 +130,29 @@ class RecombinationHistory{
         bool baryon_tau = false, 
         bool only_Saha = false,
         bool timing = true);
+
+    // Get functions
+    double Xe_of_x(double x, bool no_reionization = false) const;
+    double ne_of_x(double x, bool no_reionization = false) const;
+    double nb_of_x(double x) const;
+    double tau_of_x(double x, bool baryon_tau = false) const;
+    double dtaudx_of_x(double x, bool baryon_tau = false) const;
+    double ddtauddx_of_x(double x, bool baryon_tau = false) const;
+    double x_of_tau(double tau, bool baryon_tau = false) const;
+    double g_tilde_of_x(double x, bool baryon_tau = false) const;
+    double dgdx_tilde_of_x(double x, bool baryon_tau = false) const;
+    double ddgddx_tilde_of_x(double x, bool baryon_tau = false) const;
+    double s_of_x(double x) const;
+    double T_b_of_x(double x, bool baryon_temp = false) const;
+    double get_Yp() const;
+    double get_z_reion() const;
+    double get_Delta_z_reion() const;
+    double get_z_Hereion() const;
+    double get_Delta_z_Hereion() const;
+    double get_x_recombination() const;
+
+    // Print some useful info about the class
+    void info() const;
 
     // Compute and print the freeze-out abundance of free electrons
     void print_freeze_out_abundance() const;
@@ -152,26 +172,6 @@ class RecombinationHistory{
         bool sound_horizon = false, 
         bool baryon_temp = false, 
         bool baryon_tau = false) const;
-
-    // Get functions
-    double Xe_of_x(double x, bool no_reionization = false) const;
-    double ne_of_x(double x, bool no_reionization = false) const;
-    double nb_of_x(double x) const;
-    double tau_of_x(double x, bool baryon_tau = false) const;
-    double dtaudx_of_x(double x, bool baryon_tau = false) const;
-    double ddtauddx_of_x(double x, bool baryon_tau = false) const;
-    double x_of_tau(double tau, bool baryon_tau = false) const;
-    double g_tilde_of_x(double x, bool baryon_tau = false) const;
-    double dgdx_tilde_of_x(double x, bool baryon_tau = false) const;
-    double ddgddx_tilde_of_x(double x, bool baryon_tau = false) const;
-    double s_of_x(double x) const;
-    double Tb_of_x(double x, bool baryon_temp = false) const;
-    double get_Yp() const;
-    double get_z_reion() const;
-    double get_Delta_z_reion() const;
-    double get_z_Hereion() const;
-    double get_Delta_z_Hereion() const;
-    double get_x_recombination() const;
 };
 
 #endif

@@ -200,8 +200,8 @@ void RecombinationHistory::solve_number_density_electrons(
     if (only_Saha && reached_recombination) {
       if (abs(Xe_array[i] - Xe_array[i-1]) < 1e-7) {
         for (int j = i+1; j < npts; j++) {
-          Xe_array[j]  = Xe_array[j-1] - abs(Xe_array[i] - Xe_array[i-1]);
-          ne_array[j]  = ne_array[j-1] - abs(ne_array[i] - ne_array[i-1]); // Realistic decrease, for plotting purposes
+          Xe_array[j] = Xe_array[j-1] - abs(Xe_array[i] - Xe_array[i-1]);
+          ne_array[j] = ne_array[j-1] - abs(ne_array[i] - ne_array[i-1]); // Realistic decrease, for plotting purposes
         }
         break;
       }
@@ -234,7 +234,7 @@ std::pair<double,double> RecombinationHistory::electron_fraction_from_Saha_equat
   const double chi_1     = Constants.chi_1;
 
   // Fetch cosmological parameters
-  const double Tb     = cosmo->get_TCMB(x);
+  const double Tb     = cosmo->get_T_CMB(x);
 
   // Compute baryon, Hydrogen and Helium number densities
   const double nb     = nb_of_x(x);
@@ -277,7 +277,7 @@ std::pair<double,double> RecombinationHistory::electron_fraction_from_Saha_equat
 
   else {
     // Compute coefficients (a = 1, c = -b)
-    const double b   = 1.0/nb * factor * exp(-epsilon_0/(k_b*Tb));
+    const double b = 1.0/nb * factor * exp(-epsilon_0/(k_b*Tb));
 
     // Set tolerance for Taylor expanding the numerator
     const double tol = 1e-3;
@@ -317,22 +317,22 @@ int RecombinationHistory::rhs_Peebles_ode(
 
   // Fetch cosmological parameters
   const double H            = cosmo->H_of_x(x);
-  const double TCMB         = cosmo->get_TCMB(x);
+  const double T_CMB        = cosmo->get_T_CMB(x);
 
-  double Tb                 = TCMB;
+  double T_b                = T_CMB;
   // Use precise baryon temperature if we solve for it
   // The ODE for y is very unstable in the beginning of the Peebles regime
-  if (baryon_temp && x > x_tol) Tb = (Xe[1] + 1.0)*TCMB;
+  if (baryon_temp && x > x_tol) T_b = (Xe[1] + 1.0)*T_CMB;
 
   // Compute relevant quantities
   const double nH           = (1.0 - Yp)*nb_of_x(x);
   const double n_1s         = (1.0 - Xe_current)*nH;
   const double lambda_alpha = H * pow(3.0*epsilon_0*hbar/c, 3) / (pow(8.0*M_PI, 2)*n_1s);
-  const double phi_2        = 0.448 * log(epsilon_0/(k_b*Tb));
+  const double phi_2        = 0.448 * log(epsilon_0/(k_b*T_b));
   const double alpha        = m_e*c/hbar * sqrt(3*sigma_T / (8*M_PI));
-  const double alpha2       = 64.0*M_PI/sqrt(27.0*M_PI) * pow(alpha*hbar/m_e, 2)/c * sqrt(epsilon_0/(k_b*Tb)) * phi_2;
-  const double beta         = alpha2 * pow(m_e*k_b*Tb / (2.0*pow(hbar, 2)*M_PI), 3.0/2.0) * exp(-epsilon_0/(k_b*Tb));
-  const double beta2        = alpha2 * pow(m_e*k_b*Tb / (2.0*pow(hbar, 2)*M_PI), 3.0/2.0) * exp(-epsilon_0/(4.0*k_b*Tb));
+  const double alpha2       = 64.0*M_PI/sqrt(27.0*M_PI) * pow(alpha*hbar/m_e, 2)/c * sqrt(epsilon_0/(k_b*T_b)) * phi_2;
+  const double beta         = alpha2 * pow(m_e*k_b*T_b / (2.0*pow(hbar, 2)*M_PI), 3.0/2.0) * exp(-epsilon_0/(k_b*T_b));
+  const double beta2        = alpha2 * pow(m_e*k_b*T_b / (2.0*pow(hbar, 2)*M_PI), 3.0/2.0) * exp(-epsilon_0/(4.0*k_b*T_b));
   const double C_r          = (lambda_2s1s + lambda_alpha) / (lambda_2s1s + lambda_alpha + beta2);
 
   // Update value for dXedx
@@ -340,14 +340,14 @@ int RecombinationHistory::rhs_Peebles_ode(
 
   // Update value for dydx if we solve for the baryon temperature
   if (baryon_temp) {
-    const double y_current = Xe[1]; 
-    const double mu        = Constants.m_H;
-    const double OmegaR    = cosmo->get_OmegaR(0.0);
-    const double OmegaB    = cosmo->get_OmegaB(0.0);
+    const double y_current    = Xe[1]; 
+    const double mu           = Constants.m_H;
+    const double Omega_gamma0 = cosmo->get_Omega_gamma();
+    const double Omega_b0     = cosmo->get_Omega_b();
 
-    double ne              = nH*Xe_current;
-    double R               = 4.0*OmegaR / (3.0*OmegaB*exp(x));
-    double dtaudx          = -c*ne*sigma_T/H;
+    double ne     = nH*Xe_current;
+    double R      = 4.0*Omega_gamma0 / (3.0*Omega_b0*exp(x));
+    double dtaudx = -c*ne*sigma_T/H;
 
     dXedx[1] = - 1.0 + y_current * (2.0*mu/m_e * R*dtaudx - 1.0);
   }
@@ -398,10 +398,10 @@ void RecombinationHistory::solve_optical_depth_tau(
 
     if (baryon_tau) { 
       // Fetch cosmological parameters
-      const double OmegaR = cosmo->get_OmegaR(0.0);
-      const double OmegaB = cosmo->get_OmegaB(0.0);
+      const double Omega_gamma0 = cosmo->get_Omega_gamma();
+      const double Omega_b0     = cosmo->get_Omega_b();
 
-      double R  = 4.0*OmegaR / (3.0*OmegaB*exp(x));
+      double R  = 4.0*Omega_gamma0 / (3.0*Omega_b0*exp(x));
       dtaudx[tau_b_idx] = R*dtaudx[0];
       if (reionization) 
         dtaudx[tau_b_idx+1] = R*dtaudx[1];
@@ -428,7 +428,7 @@ void RecombinationHistory::solve_optical_depth_tau(
     x_of_tau_spline.create(tau_noreion_array, x_array, "x_of_tau");
   }
   else
-    x_of_tau_spline.create(tau_array, x_array, "x_of_tau");
+    // x_of_tau_spline.create(tau_array, x_array, "x_of_tau"); //TODO: add back
 
   // Repeat process for x(tau_b_noreion) if we want to estime x_drag
   if (baryon_tau) {
@@ -494,8 +494,8 @@ void RecombinationHistory::solve_sound_horizon_s(
   const double c      = Constants.c;
 
   // Fetch cosmological parameters
-  const double OmegaR = cosmo->get_OmegaR(0.0);
-  const double OmegaB = cosmo->get_OmegaB(0.0);
+  const double Omega_gamma0 = cosmo->get_Omega_gamma();
+  const double Omega_b0     = cosmo->get_Omega_b();
 
   // Set up x-array to integrate over
   Vector x_array = Utils::linspace(x_start, x_end, npts);
@@ -510,7 +510,7 @@ void RecombinationHistory::solve_sound_horizon_s(
   ODEFunction dsdx = [&](double x, const double *s, double *dsdx){
     // Compute relevant quantities
     Hp  = cosmo->Hp_of_x(x);
-    R   = 4.0*OmegaR / (3.0*OmegaB*exp(x));
+    R   = 4.0*Omega_gamma0 / (3.0*Omega_b0*exp(x));
     c_s = c * sqrt(R / (3*(1 + R)));
 
     // Set the derivative for the sound horizon
@@ -521,7 +521,7 @@ void RecombinationHistory::solve_sound_horizon_s(
 
   // Set up and solve the ODE and make s splines
   Hp  = cosmo->Hp_of_x(x_start);
-  R   = 4.0*OmegaR / (3.0*OmegaB*exp(x_start));
+  R   = 4.0*Omega_gamma0 / (3.0*Omega_b0*exp(x_start));
   c_s = c * sqrt(R / (3*(1 + R)));
   Vector s_ini {c_s/Hp};
 
@@ -550,16 +550,16 @@ double RecombinationHistory::ne_of_x(double x, bool no_reionization) const{
 
 double RecombinationHistory::nb_of_x(double x) const{
   // Physical constants in SI units
-  const double G      = Constants.G;
-  const double m_H    = Constants.m_H;
+  const double G   = Constants.G;
+  const double m_H = Constants.m_H;
 
   // Fetch cosmological parameters
-  const double H0     = cosmo->get_H0();
-  const double OmegaB = cosmo->get_OmegaB(0.0);
+  const double H_0      = cosmo->get_H_0();
+  const double Omega_b0 = cosmo->get_Omega_b();
 
   // Compute baryon number density
-  double rho_c0       = 3.0*pow(H0, 2) / (8.0*M_PI*G);
-  double nb           = OmegaB*rho_c0 / (m_H*exp(3*x));
+  double rho_c0 = 3.0*pow(H_0, 2) / (8.0*M_PI*G);
+  double nb     = Omega_b0*rho_c0 / (m_H*exp(3*x));
   return nb;
 }
 
@@ -602,10 +602,10 @@ double RecombinationHistory::s_of_x(double x) const{
   return s_of_x_spline(x);
 }
 
-double RecombinationHistory::Tb_of_x(double x, bool baryon_temp) const{
-  double TCMB = cosmo->get_TCMB(x);
-  if (baryon_temp) return (y_of_x_spline(x) + 1.0)*TCMB;
-  else             return TCMB;
+double RecombinationHistory::T_b_of_x(double x, bool baryon_temp) const{
+  double T_CMB = cosmo->get_T_CMB(x);
+  if (baryon_temp) return (y_of_x_spline(x) + 1.0)*T_CMB;
+  else             return T_CMB;
 }
 
 double RecombinationHistory::get_Yp() const{
@@ -794,8 +794,8 @@ void RecombinationHistory::output(
       fp << s_of_x(x)                << " ";
     }
     if (baryon_temp) {
-      fp << Tb_of_x(x)               << " ";
-      fp << Tb_of_x(x, true)         << " ";
+      fp << T_b_of_x(x)              << " ";
+      fp << T_b_of_x(x, true)        << " ";
     }
     if (baryon_tau) {
       fp << tau_of_x(x, true)        << " ";

@@ -25,14 +25,9 @@ class PowerSpectrum {
     // Parameters defining the primordial power-spectrum
     double A_s        = 2.1e-9;
     double n_s        = 0.965;
-    double kpivot_mpc = 0.05;
-
-    // The k-values we compute Theta_ell(k) etc. for
-    const int n_k      = 100;
-    const double k_min = Constants.k_min;
-    const double k_max = Constants.k_max;
+    double kpivot_Mpc = 0.05;
     
-    // The ells's we will compute Theta_ell and Cell for
+    // The ells's we will compute quantities for
     Vector ells{ 
         2,    3,    4,    5,    6,    7,    8,    10,   12,   15,   
         20,   25,   30,   40,   50,   60,   70,   80,   90,   100,  
@@ -47,47 +42,49 @@ class PowerSpectrum {
     //=====================================================================
 
     // Splines of bessel-functions for each value of ell in the array above
-    std::vector<Spline> j_ell_splines;
+    std::vector<Spline> j_ell_spline;
     
-    // Generate splines of bessel-functions for each ell needed
-    // to do the LOS integration
-    void generate_bessel_function_splines();
+    // Generate splines of bessel-functions for each ell
+    void generate_bessel_function_splines(
+        const double z_max, 
+        const int npts_z); 
     
     //=====================================================================
     // [2] Do the line of sight integration and spline the result
     //=====================================================================
     
     // Do LOS integration for all ells and all k's in the given k_array
-    // and for all the source functions (temperature, polarization, ...)
-    void line_of_sight_integration(Vector & k_array);
+    void line_of_sight_integration(
+        Vector &x_array,
+        Vector &k_array);
   
     // Do the line of sight integration for a single quantity
-    // for all ells by providing a source_function(x,k) (can be temp, pol, ...)
     Vector2D line_of_sight_integration_single(
-        Vector & k_array, 
+        Vector &x_array,
+        Vector &k_array, 
         std::function<double(double,double)> &source_function);
     
     // Splines of the reusult of the LOS integration
-    // Theta_ell(k) and ThetaE_ell(k) for polarization
-    std::vector<Spline> thetaT_ell_of_k_spline;
-    std::vector<Spline> thetaE_ell_of_k_spline;
+    std::vector<Spline> ThetaT_ell_of_k_spline;
+    std::vector<Spline> ThetaE_ell_of_k_spline;
+    std::vector<Spline> Nu_ell_of_k_spline;
+    std::vector<Spline> ThetaL_ell_of_k_spline;
     
     //=====================================================================
     // [3] Integrate to get power-spectrum
     //=====================================================================
-    
-    // General method to solve for Cells (allowing for cross-correlations)
-    // For auto spectrum (C_TT) then call with f_ell = g_ell = theta_ell
-    // For polarization C_TE call with f_ell = theta_ell and g_ell = thetaE_ell
-    Vector solve_for_cell(
+
+    Vector solve_for_C_ell(
         Vector & logk_array,
         std::vector<Spline> & f_ell, 
         std::vector<Spline> & g_ell);
 
     // Splines with the power-spectra
-    Spline cell_TT_spline{"cell_TT_spline"};
-    Spline cell_TE_spline{"cell_TE_spline"};
-    Spline cell_EE_spline{"cell_EE_spline"};
+    Spline C_ell_TT_spline{"C_ell_TT_spline"};
+    Spline C_ell_TE_spline{"C_ell_TE_spline"};
+    Spline C_ell_EE_spline{"C_ell_EE_spline"};
+    Spline C_ell_Nu_spline{"C_ell_Nu_spline"};
+    Spline C_ell_lens_spline{"C_ell_lens_spline"};
 
   public:
 
@@ -99,24 +96,45 @@ class PowerSpectrum {
         Perturbations *pert,
         double A_s,
         double n_s,
-        double kpivot_mpc);
+        double kpivot_Mpc);
     
-    // Do all the solving: bessel functions, LOS integration and then compute Cells
-    void solve();
+    // Do all the solving: bessel functions, LOS integration and then compute C_ells
+    void solve(
+        const double x_start,
+        const double x_end,
+        const int npts_x,
+        const double k_start,
+        const double k_end,
+        const int npts_k);  // TODO: reasonable?
 
-    // The dimensionless primordial power-spectrum Delta = 2pi^2/k^3 P(k)
-    double primordial_power_spectrum(const double k) const;
+    // The dimensionless primordial power-spectrum Delta = 2pi^2/k^3 P(k) TODO which one is this? make private?
+    double primordial_power_spectrum(const double k_Mpc) const;
 
-    // Get P(k,x) for a given x in units of (Mpc)^3
-    double get_matter_power_spectrum(const double x, const double k_mpc) const;
+    // Get P(k, x) for a given x in units of (Mpc)^3
+    double get_matter_power_spectrum(const double x, const double k_Mpc) const;
 
-    // Get the quantities we have computed
-    double get_cell_TT(const double ell) const;
-    double get_cell_TE(const double ell) const;
-    double get_cell_EE(const double ell) const;
+    // Get the quantities we have computed TODO: int ell instead?
+    double get_C_ell_TT(const double ell) const;
+    double get_C_ell_TE(const double ell) const;
+    double get_C_ell_EE(const double ell) const;
+    double get_C_ell_Nu(const double ell) const;
+    double get_C_ell_lens(const double ell) const;
 
-    // Output Cells in units of l(l+1)/2pi (muK)^2
-    void output(std::string filename) const;
+    //TODO: get_k_eq / print_k_eq?
+
+    // Print some useful info about the class
+    void info() const;
+
+    // Output matter power spectrum with conventional normalization
+    void output_P_k(
+        const double k_Mpc_min, 
+        const double k_Mpc_max, 
+        const std::string filename) const;
+
+    // Output C_ells with conventional normalizations
+    void output_C_ells(std::string filename) const;
+
+    //TODO: correlation functions, CMB map, etc.
 };
 
 #endif
