@@ -29,12 +29,12 @@ OPTIONS += -D_SPLINE_WARNINGS_ON
 # OPTIONS = -D_FIDUCIAL_VERBOSE_ODE_SOLVER_TRUE
 
 # Add OpenMP parallelization
-# OPTIONS += -D_USEOPEMP
-# CC += -fopenmp
+OPTIONS += -D_USEOPEMP
+CC += -fopenmp
 
 #=======================================================
 
-C = -O3 -g $(OPTIONS)
+C = -isysroot $(shell xcrun --show-sdk-path) -O3 -g $(OPTIONS)
 
 #=======================================================
 

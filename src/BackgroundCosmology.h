@@ -50,34 +50,34 @@ class BackgroundCosmology{
         const double x_start, 
         const double x_end, 
         const int npts, 
-        bool eta = true, 
-        bool t = false, 
-        bool timing = true);
+        const bool eta = true, 
+        const bool t = false, 
+        const bool timing = true);
 
     // Get functions
-    double eta_of_x(double x) const;
-    double detadx_of_x(double x) const;
-    double t_of_x(double x) const;
-    double H_of_x(double x) const;
-    double Hp_of_x(double x) const;
-    double dHpdx_of_x(double x) const;
-    double ddHpddx_of_x(double x) const;
-    double get_Omega_b(double x = 0.0) const; 
-    double get_Omega_gamma(double x = 0.0) const;
-    double get_Omega_nu(double x = 0.0) const;
-    double get_Omega_CDM(double x = 0.0) const; 
-    double get_Omega_Lambda(double x = 0.0) const; 
-    double get_Omega_k(double x = 0.0) const; 
+    double eta_of_x(const double x) const;
+    double detadx_of_x(const double x) const;
+    double t_of_x(const double x) const;
+    double H_of_x(const double x) const;
+    double Hp_of_x(const double x) const;
+    double dHpdx_of_x(const double x) const;
+    double ddHpddx_of_x(const double x) const;
+    double get_Omega_b(const double x = 0.0) const; 
+    double get_Omega_gamma(const double x = 0.0) const;
+    double get_Omega_nu(const double x = 0.0) const;
+    double get_Omega_CDM(const double x = 0.0) const; 
+    double get_Omega_Lambda(const double x = 0.0) const; 
+    double get_Omega_k(const double x = 0.0) const; 
     double get_H_0() const;
     double get_h() const;
     double get_N_eff() const;
-    double get_T_CMB(double x = 0.0) const;
-    double get_r_of_x(double x) const;
+    double get_T_CMB(const double x = 0.0) const;
+    double get_r_of_x(const double x) const;
 
     // Distance measures
-    double get_comoving_distance_of_x(double x) const;
-    double get_luminosity_distance_of_x(double x) const;
-    double get_angular_diameter_distance_of_x(double x) const;
+    double get_comoving_distance_of_x(const double x) const;
+    double get_luminosity_distance_of_x(const double x) const;
+    double get_angular_diameter_distance_of_x(const double x) const;
 
     // Print some useful info about the class
     void info() const;
@@ -90,10 +90,10 @@ class BackgroundCosmology{
         const double x_min, 
         const double x_max, 
         const std::string filename, 
-        bool t = false, 
-        bool detadx = false, 
-        bool distances = false, 
-        bool TCMB = false) const;
+        const bool t = false, 
+        const bool detadx = false, 
+        const bool distances = false, 
+        const bool TCMB = false) const;
 };
 
 #endif

@@ -151,7 +151,7 @@ where $g=g_\gamma=g_\nu=2$, since photons and neutrinos both have 2 internal pol
 
 When integrating from the very early universe, using the scale factor $a$ as the time parameter becomes numerically challenging, as it rapidly decreases to vanishingly small values. To address this, I therefore adopt the logarithmic time coordinate
 \begin{equation}
-    x = \log a,
+    x = \log (a),
 \end{equation}
 instead, which implies that $x=0$ today and $x=-\infty$ at the Big Bang. Expressed in terms of $\Omega_{m0}=\Omega_{b0}+\Omega_{\text{CDM}0}$ and $\Omega_{r0}=\Omega_{\gamma0}+\Omega_{\nu0}$, we can equivalently write the Hubble parameter as
 \begin{equation}
@@ -270,7 +270,7 @@ and thus
 \begin{equation}
   x_{rm} = \log\left(\frac{\Omega_{r0}}{\Omega_{m0}}\right).
 \end{equation}
-Using that $x = \log a$ and $z = 1/a - 1$ this gives us an expression for the redshift at $rm$:
+Using that $x = \log (a)$ and $z = 1/a - 1$ this gives us an expression for the redshift at $rm$:
 \begin{equation}
   z_{rm} = \frac{\Omega_{m0}}{\Omega_{r0}} - 1.
 \end{equation} 
@@ -484,14 +484,16 @@ When integrating to solve for $\eta$ and $t$, I chose to use $x_\text{min}=-21.0
 \subsubsection{Supernova fitting}
 To constrain cosmological parameters ($h, \Omega_{m0}, \Omega_{k0}$), I performed a Markov Chain Monte Carlo (MCMC) fit to Type Ia supernova data (see \verb|supernovadata.txt|), which is implemented in \verb|SupernovaFitting.h|. The MCMC chain consists of 10$\,$000 samples, where I have treated the 200 first samples are as burn-in time and thus discarded them. The results are further analyzed in \verb|supernova.py|, where I visualize the accepted samples within the $(\chi^2-\chi^2_\text{min})<1\sigma$ and $(\chi^2-\chi^2_\text{min})<2\sigma$, constraints in the $(\Omega_{m0},\Omega_{\Lambda0})$-plane, corresponding to 68.3\% and 95.45\% confidence levels, repsectively. I use tabulated values of $1\sigma=3.53$ and $2\sigma=8.02$ \citep[see][]{Chi2}, since we have $k=3$ degrees of freedom. This is because we really have four parameters $(h, \Omega_{m0}, \Omega_{k0}, \Omega_{\Lambda0})$, but also the constraint that all the density parameters must sum up to unity, which eliminates one d.o.f. 
 
-\subsubsection{Testing numerical stability}
+\subsubsection{Testing the code}\label{subsubsec: I methods testing}
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf}
     \caption{Comparison of the numerically computed conformal time derivative  $\eta'\mathcal{H}/c$ with the expected value of 1 (pink line). The small deviations on the order of $\lesssim 10^{-5}$ confirm the numerical stability of the integration.}\label{fig:numerical stability}
 \end{figure}
 
-To test the stability of the numerical solutions presented in the following section, I have plotted $\eta'\mathcal{H}/c$ as function of $x$ in figure \ref{fig:numerical stability}, since this quantity should remain close to unity throughout the range. The scatter points, which were obtained by taking the derivative of the spline for $\eta$, show small deviations from 1, on the order of $\lesssim 10^{-5}$, indicating that the numerical error is very small. It also remains bounded bounded throughout the range of $x$, suggesting that the ODE solver maintains stability and does not accumulate significant numerical drift. The slight periodic variations could result from finite step sizes in the integration, or have something to do with interpolation errors between the integration points, but they are well within an acceptable tolerance.
+To test the stability of the numerical solutions presented in the following section, I have plotted $\eta'\mathcal{H}/c$ as function of $x$ in figure \ref{fig:numerical stability}, since this quantity should remain close to unity throughout the range. The scatter points, which were obtained by taking the derivative of the spline for $\eta$, show small deviations from 1, on the order of $\lesssim 10^{-5}$, indicating that the numerical error is very small. It also remains bounded throughout the range of $x$, suggesting that the ODE solver maintains stability and does not accumulate significant numerical drift. The slight periodic variations could result from finite step sizes in the integration, or have something to do with interpolation errors between the integration points, but they are well within an acceptable tolerance.
+
+As an additional test of the code, I ran it using a set of toy cosmological parameters chosen to match those used by \cite{Course}. The parameters are $h = 0.7$, $\Omega_\text{CDM0} = 0.45$, $\Omega_{b0} = 0.05$, $\Omega_{k0} = 0$, $N_\text{eff} = 0$ (implying $\Omega_{\nu0} = 0$), and $T_\text{CMB0} = 0.27255,\text{K}$, as in the fiducial model. The resulting plots, shown in figures \ref{appfig: Hp_and_eta}, \ref{appfig: eta_Hp_over_c}, and \ref{appfig: Omega_i} in appendix \ref{appsec: figures}, are visually indistinguishable from those published by Winther. This provides strong validation for the accuracy and reliability of the implementation.
 
 \colorbox{Plum}{TODO: maybe move over prev. sec.}
 
@@ -553,7 +555,7 @@ In figure \ref{fig:eta and t} I have plotted the numerical solutions for the con
   \end{tabular}
   \end{table*}
 
-In table \ref{table:time stamps} I have listed key cosmological timestamps for important transition points in the Universe's history: radiation-matter equality, the onset of acceleration, matter-dark energy equality, and present-day values. The logarithmic scale factor $x = \log a$ and redshift $z$ are listed for each event, along with analytical and numerical results for cosmic time $t$, conformal time $\eta/c$, and the comoving horizon $\eta$. We observe a discrepancy between the analytically approximated values for $t$ and $\eta$ obtained using the expressions derived in section \ref{subsec: I theory} and the corresponding numerical values, which instead were obtained by solving the full system of equations and interpolating via splines. These discrepancies are consistent with figure \ref{fig:eta and t}. \colorbox{Plum}{compare r-m eq w/ Planck!}
+In table \ref{table:time stamps} I have listed key cosmological timestamps for important transition points in the Universe's history: radiation-matter equality, the onset of acceleration, matter-dark energy equality, and present-day values. The logarithmic scale factor $x = \log (a)$ and redshift $z$ are listed for each event, along with analytical and numerical results for cosmic time $t$, conformal time $\eta/c$, and the comoving horizon $\eta$. We observe a discrepancy between the analytically approximated values for $t$ and $\eta$ obtained using the expressions derived in section \ref{subsec: I theory} and the corresponding numerical values, which instead were obtained by solving the full system of equations and interpolating via splines. These discrepancies are consistent with figure \ref{fig:eta and t}. \colorbox{Plum}{compare r-m eq w/ Planck!}
 
 In \citet{Planck}, one presented estimate of the age of the Universe is $t_0=13.801\pm0.024\,\text{Gyr}$. This is based on $1\sigma$ constraints on a combination of gravitational lensing and TT (temperature), TE (temperature-E mode polarization), EE (E mode polarization) and lowE (low multipole E-mode polarization) angular power spectra measurements. This is in good agreement with the numerical result, although the value stated here is slightly larger. Nevertheless, the analytical approximation greatly overestimate it in comparison. This further validates the numerical solution around the equality times, where it deviates from the approximate evolutions and we have less to compare it to.
 
@@ -649,9 +651,11 @@ The posterior distribution suggests a preference for a slightly open universe, t
 
 
 \section{Milestone II: Recombination History}\label{sec: milestone II}
-In the previous milestone, I established a numerical framework for solving the background evolution of the Universe, validating the results against analytical approximations and observational constraints. This provided a foundation for understanding the expansion history and cosmic distances, key ingredients in interpreting cosmological data. However, to model the formation of the CMB and its anisotropies, we must now extend the analysis to include recombination history: the period when the Universe transitioned from an ionized plasma to a neutral state, allowing photons to decouple from matter. This process determines the surface of last scattering, setting the initial conditions for the CMB fluctuations we observe today.  
+I got feedback on this paragraph from the milestone II intro, saying it was good but that initial conditions was not a good word to use in the last sentence. Can you suggest an alternative?
 
-In this milestone, I compute the recombination and reionization history by solving the Saha and Peebles equations, track the evolution of the optical depth $\tau(x)$, and derive the visibility function $\tilde{g}(x)$, which quantifies when CMB photons last interacted with free electrons. These quantities are essential for accurately modeling the temperature and polarization anisotropies of the CMB in the next milestones. Additionally, I compute the sound horizon at decoupling, a fundamental scale imprinted in the CMB power spectrum. This milestone bridges the gap between background cosmology and perturbation theory, ensuring that my model of the early Universe correctly captures the physics governing photon-matter interactions before recombination. \colorbox{Plum}{maybe change/shorten}
+In the previous milestone, I established a numerical framework for solving the background evolution of the Universe, validating the results against analytical approximations and observational constraints. This provided a foundation for understanding the expansion history and cosmic distances, key ingredients in interpreting cosmological data. However, to model the formation of the CMB and its anisotropies, we must now extend the analysis to include recombination history: the period when the Universe transitioned from an ionized plasma to a neutral state, allowing photons to decouple from matter. This process determines the surface of last scattering, setting the conditions at decoupling that shape the CMB fluctuations we observe today.  
+
+In this milestone, I compute the recombination and reionization history by solving the Saha and Peebles equations, track the evolution of the optical depth $\tau(x)$, and derive the visibility function $\tilde{g}(x)$, which quantifies when CMB photons last interacted with free electrons. These quantities are essential for accurately modeling the temperature and polarization anisotropies of the CMB in the next milestones. Additionally, I compute the sound horizon at decoupling, a fundamental scale imprinted in the CMB power spectrum. This milestone bridges the gap between background cosmology and perturbation theory, ensuring that my model of the early Universe correctly captures the physics governing photon-matter interactions before recombination. 
 
 
 \subsection{Theoretical framework}\label{subsec: II theory}
@@ -700,7 +704,6 @@ In this milestone, I compute the recombination and reionization history by solvi
 
 \subsubsection{The Boltzmann equation and interactions}\label{subsubsec: II theory interactions}
 In cosmology, the evolution of particle species is governed by their phase-space distribution function, which in thermal equilibrium takes the following form:
-% $f$, which describes the number density of particles in a given region of phase space. In thermal equilibrium, it follows the Fermi-Dirac (plus sign, applies to fermions) and Bose-Einstein (minus sign, applies to bosons) distributions:
 \begin{equation}
 f(E) = \frac{1}{e^{(E - \mu) / T} \pm 1}. \label{eq: distribution}
 \end{equation}
@@ -710,11 +713,11 @@ f(E) \approx e^{-(E - \mu) / T}. \label{eq: Maxwell}
 \end{equation}
 This approximation is valid for massive species that are thermally decoupled or at sufficiently low temperatures. It plays a crucial role in describing the abundance of baryons and cold dark matter in the late Universe.
 
-The phase-space distribution functions serve as the foundation for the Boltzmann equation, which governs the evolution of number densities, energy densities, and momenta of different species as the Universe expands. In general relativity, the Boltzmann equation can be written as an equation in terms of an affine parameter $\lambda$:
+The phase-space distribution function is the fundamental quantity from which one can compute physical observables such as number densities, energy densities, and momenta. Its time evolution is governed by the Boltzmann equation, which describes how particles respond to the expansion of the Universe and interact with each other. In general relativity, this equation is written in terms of an affine parameter $\lambda$ as:
 \begin{equation}
 \frac{df}{d\lambda} = C[f], \label{eq: Boltzmann}
 \end{equation}
-Here, $C[f]$ is the collision term, which is is generally obtained from quantum field theory and encodes interactions between particles. In a homogeneous and isotropic universe, it vanishes when species are in thermal equilibrium, as detailed balance ensures that the rate of interactions maintains the equilibrium distribution.
+where $C[f]$ is the collision term, which is is generally obtained from quantum field theory and encodes interactions between particles. In a homogeneous and isotropic universe, it vanishes when species are in thermal equilibrium, as detailed balance ensures that the rate of interactions maintains the equilibrium distribution.
 
 In cosmology, we primarily consider $1+2 \leftrightharpoons 3+4$ interactions, where the most crucial to consider are Compton scattering of photons off electrons, Coulomb scattering of electrons off protons, and Hydrogen recombination and ionization:
 \begin{align}
@@ -809,17 +812,17 @@ If equilibrium holds, the right-hand side must vanish, and we obtain an equation
 % \end{align}
 % Since recombination proceeds in thermal equilibrium at early times, we can use statistical mechanics to derive the equilibrium number densities.
 
-The Saha equation provides an analytical expression for the ionization fraction in equilibrium, valid when the ionization and recombination rates are fast compared to the Hubble expansion rate. It follows from writing eq. \eqref{eq: number densities} for the process specified in eq. \eqref{eq: Hydrogen recomb} in terms of the free electron fraction $X_e$. However, in order to derive it we need the number density of a species in thermal equilibrium, which follows from the Maxwell-Boltzmann distribution (eq. \eqref{eq: Maxwell}): \colorbox{Plum}{derive this?}
+The Saha equation provides an analytical expression for the ionization fraction in equilibrium, valid when the ionization and recombination rates are fast compared to the Hubble expansion rate. It follows from writing eq. \eqref{eq: number densities} for the process specified in eq. \eqref{eq: Hydrogen recomb} in terms of the free electron fraction $X_e$. However, in order to derive it we need the number density of a species in thermal equilibrium, which follows from the distribution functions (eq. \eqref{eq: distribution}) in the non-relativistic limit $E\gg T$:
 \begin{equation}
 n_i = g_i \left( \frac{m_i k_\text{B} T}{2\pi \hbar^2} \right)^{3/2} e^{-\epsilon_i / k_\text{B} T},
 \end{equation}
-where $g_i$ is the statistical degeneracy, $m_i$ is the mass, and $\epsilon_i$ is the ionization energy. Using this, we obtain the standard Saha equation for Hydrogen recombination when ignoring Helium alltogether: \colorbox{Plum}{show more intermediate steps?}
+where $g_i$ is the statistical degeneracy, $m_i$ is the mass, and $\epsilon_i$ is the ionization energy. Using this, we obtain the standard Saha equation for Hydrogen recombination when ignoring Helium alltogether:
 \begin{equation}
 \frac{X_e^2}{1 - X_e} = \frac{1}{n_H} \left( \frac{m_e k_\text{B} T}{2\pi \hbar^2} \right)^{3/2} e^{-\epsilon_0 / k_\text{B} T}. \label{eq: Saha}
 \end{equation}
 Here, $\epsilon_0 = 13.6\,$eV is the ionization energy of Hydrogen. This equation determines how the free electron fraction evolves with temperature, and is an excellent approximation when $X_e\approx1$.
 
-To compute the recombination history more accurately, we must account for Helium. Conveniently, the ionization history of Helium follows the same principles as for Hydrogen, \colorbox{Plum}{should the interactions be specified?}
+To compute the recombination history more accurately, we must account for Helium. Conveniently, the ionization history of Helium follows the same principles as for Hydrogen,
 % with the relevant reactions taking the same form as eq. \eqref{eq: 1234}, but with different ionization energies. 
 and using the ionization fractions defined in section \ref{subsubsec: II theory mass fractions} we obtain three coupled Saha equations for Hydrogen and Helium recombination:
 \begin{align}
@@ -870,7 +873,7 @@ and
 \begin{equation}
   \alpha = \frac{m_ec}{\hbar}\sqrt{\frac{3\sigma_\text{T}}{8\pi}} \simeq \frac{1}{137.0359992},
 \end{equation}
-are the effective recombination coefficient \colorbox{Plum}{correct?} and the fine-structure constant, respectively, with $\sigma_\text{T}$ being the cross-section for Thomson scattering, and the dimensionless function
+are the effective recombination coefficient and the fine-structure constant, respectively, with $\sigma_\text{T}$ being the cross-section for Thomson scattering, and the dimensionless function
 \begin{equation}
   \phi_2(T_b) = 0.448\ln\left(\frac{\epsilon_0}{k_\text{B}T_b}\right).
 \end{equation}
@@ -878,7 +881,7 @@ Furthermore,
 \begin{equation}
   \beta(T_b) = \alpha^{(2)}(T_b)\left(\frac{m_ek_\text{B}T_b}{2\pi\hbar^2}\right)^{3/2}e^{-\epsilon_0/k_\text{B}T_b},
 \end{equation}
-is the recombination rate per unit volume \colorbox{Plum}{correct?}, and 
+is the recombination rate per unit volume, and 
 \begin{equation}
   C_r = \frac{\Lambda_{2s \to 1s} + \Lambda_{\alpha}}{\Lambda_{2s \to 1s} + \Lambda_{\alpha} + \beta^{(2)}(T_b)},
 \end{equation}
@@ -886,7 +889,7 @@ is the Peebles correction factor, which accounts for the fact that some recombin
 \begin{equation}
   \Lambda_{\alpha} = \frac{H}{(8\pi)^2n_{1s}}\left(\frac{3\epsilon_0\hbar}{c} \right)^3,
 \end{equation}
-is the Ly-$\alpha$ escape rate, which accounts for the fact that Ly-$\alpha$ photons can redshift out of resonance before being reabsorbed. \colorbox{Plum}{correct?} Furthermore, 
+is the Ly-$\alpha$ escape rate, which accounts for the fact that Ly-$\alpha$ photons can redshift out of resonance before being reabsorbed. Furthermore, 
 \begin{equation}
   n_{1s} = (1-X_e)n_\text{H},
 \end{equation}
@@ -894,7 +897,7 @@ is the number density of Hydrogen in the ground state, and
 \begin{equation}
   \beta^{(2)}(T_b) = \beta(T_b)e^{3\epsilon_0/4k_\text{B}T_b},
 \end{equation}
-is the modified recombination rate, which incorporates corrections to $\beta(T_b)$ due to excited Hydrogen states. \colorbox{Plum}{correct?} 
+is the modified photoionization rate from the $n=2$ level, introduced in the Peebles model to account for the fact that only recombinations into the $n=2$ state are considered, rather than the full statistical equilibrium among excited states.
 
 
 \subsubsection{Reionization}\label{subsubsec: II theory reionization}
@@ -927,11 +930,11 @@ It is a dimensionless quantity that describes the attenuation of intensity due t
 \end{equation} 
 If $\tau\gg1$ we say that the medium is optically thick, meaning photons scatter many times before escaping. If $\tau\ll1$ the medium is optically thin, allowing most photons to pass through unimpeded. It is common in cosmology to define $\tau=1$ as the point of last scattering, where photons transition from being tightly coupled to propagating freely.
 
-As mentioned in section \ref{subsubsec: II theory interactions}, the primary source of opacity in the early Universe is Thomson scattering of photons off free electrons. Thus, the optical depth of photons at a given conformal time $\eta$ is defined as the integrated Thomson scattering rate along the line of sight: \colorbox{Plum}{correct to say this?} 
+As mentioned in section \ref{subsubsec: II theory interactions}, the primary source of opacity in the early Universe is Thomson scattering of photons off free electrons. Thus, the optical depth of photons at a given conformal time $\eta$ is defined as the integrated Thomson scattering rate along the line of sight:
 \begin{equation}
   \tau(\eta) = \int_{\eta}^{\eta_0}n_e\sigma_\text{T}ad\eta'.
 \end{equation}
-However, it is more conveniently written on differential form in terms of the chosen time variable $x$ instead: \colorbox{Plum}{derive this?}
+However, it is more conveniently written on differential form in terms of the chosen time variable $x$ instead: 
 \begin{equation}
   \tau'(x) = \frac{d\tau}{dx} = -\frac{c n_e \sigma_\text{T}}{H}, \label{eq: optical depth deriv}
 \end{equation}
@@ -943,21 +946,22 @@ A related, but less critical quantity is the baryon optical depth, which quantif
 \begin{equation}
 \tau_b'(x) = \frac{d\tau_b}{dx} = -\frac{c Rn_e \sigma_\text{T}}{H} = R\frac{d\tau}{dx},
 \end{equation}
-where the ratio
+where
 \begin{equation}
   R(x) = \frac{4\Omega_{\gamma0}}{3\Omega_{b0}a} = \frac{4\Omega_{\gamma0}}{3\Omega_{b0}}e^{-x}, \label{eq: R}
 \end{equation}
-accounts for how photon pressure affects baryon motion. Since photons exert radiation pressure on baryons, this effect delays baryon decoupling relative to photon decoupling. The point when baryons stop being dragged by photons and begin to move under gravitational attraction alone is defined as $\tau_b=1$, and the period between these two decoupling times is called the drag epoch. This is important for understanding baryon acoustic oscillations (BAO). 
+is the ratio of the photon and baryon energy densities. The point when baryons stop being significantly influenced by the drag from photons and start evolving under gravity alone is defined by $\tau_b = 1$, and the interval between the photon and baryon decoupling is referred to as the drag epoch. This delay plays an important role in the evolution of baryon acoustic oscillations (BAO). It primarily arises from the much higher number density of photons relative to baryons, which means that photons can continue to effectively drag baryons even after photon decoupling has begun.
 % We typically define $\tau=1$ as the point where photons decouple and stop noticing the baryons, and similarly we say that the baryons decouple and stop noticing the photons when $\tau_b=1$. This happens a little later, and the period between the two events is defined as the drag epoch. This is important for understanding baryon acoustic oscillations (BAO). \colorbox{Plum}{explain dragging, word different?}
+
+Can you add a sentence saying that we also can analogously define a visibility function $\tilde{g}_b(x)$ derived from the baryon optical depth, which we won't necessarily need for further computations, but can be used for testing that $\tau_b(x)$ is integrated correctly?
 
 The visibility function $\tilde{g}(x)$ gives the probability density that a CMB photon last scattered at time $x$ and is defined as:
 \begin{equation}
 \tilde{g}(x) = -\frac{d\tau}{dx} e^{-\tau(x)}.
 \end{equation}
-This function peaks around photon decoupling, when $\tau(x) \approx 1$, meaning photons were transitioning from being frequently scattered to freely propagating. The width of $\tilde{g}(x)$ determines how sharply defined the time of photon decoupling is, hence why it is commonly called the surface of last scattering. It is also interesting to compute the first and second derivatives of the visibility function with respect to $x$, as $\tilde{g}'$ provides insight into how rapidly recombination occurred, and $\tilde{g}''$ can tell us about how diffusion damping affects small-scale CMB anisotropies. \colorbox{Plum}{correct?}
+It peaks around photon decoupling, when $\tau(x) \approx 1$, marking the transition from frequent scattering to free-streaming. The width of this peak reflects how sharply defined the time of photon decoupling is, hence why it is commonly referred to as the surface of last scattering. 
 
-\colorbox{Plum}{mention baryon visibility function?}
-
+To ensure the correctness of the numerical implementation further on, it is also useful to compute the first and second derivatives of $\tilde{g}(x)$ with respect to $x$, as they play a central role in the expression for the source function used in the line-of-sight integration. This is is essential for computing the CMB spectrum, as we will see in section \ref{subsubsec: IV theory LOS}. Analogously, we can define a baryon visibility function $\tilde{g}_b(x)$ from the baryon optical depth. While we won't need this quantity in later calculations, it can serve as a useful check to verify that $\tau_b(x)$ has been integrated correctly.
 
 
 
@@ -991,7 +995,7 @@ Furthermore, the sound horizon at baryon decoupling, $r_\text{drag}$, is relevan
 
 
 
-\subsubsection{The baryon temperature}\label{subsubsec: II theory baryon temp}
+\subsubsection{Baryon temperature}\label{subsubsec: II theory baryon temp}
 A common approximation in cosmology is to assume that the baryon temperature $T_b$ follows the photon temperature $T_\gamma=T_\text{CMB}$ at all times due to rapid interactions between baryons and photons. However, Thomson scattering becomes too inefficient some time after decoupling, and the baryon temperature eventually starts evolving independently. Though this occurs relatively late in the recombination history, and thus has little effect on the CMB anisotropies, it is good to track the full evolution of $T_b$ in order to to ensure accuracy in the predictions. 
 
 The baryon temperature is also governed by the Boltzmann equation, and in a smooth, homogeneous universe, its evolution is given by:
@@ -1000,7 +1004,7 @@ The baryon temperature is also governed by the Boltzmann equation, and in a smoo
 \end{equation}
 Here, $\mu(x)$ is the mean molecular weight of baryons, including free electrons and all ions of Hydrogen and Helium, but it is a good approximation to simply set $\mu = m_\text{H}$ at all times $x$. 
 
-Eq. \eqref{eq: dTbdx} is numerically unstable when $T_b\approx T_\text{CMB}$, so it's convenient to introduce
+Eq. \eqref{eq: dTbdx} is numerically unstable at early times when $|d\tau/dx|\gg 1$, so it's convenient to introduce
 \begin{equation}
   y = \frac{T_b}{T_\text{CMB}} - 1 \hspace{5pt}\Rightarrow\hspace{5pt} \frac{dy}{dx} = \frac{1}{T_\text{CMB}}\left[\frac{dT_b}{dx} - (y+1)\frac{dT_\text{CMB}}{dx} \right], \label{eq: y}
 \end{equation}
@@ -1043,13 +1047,11 @@ Adding to the cosmological parameters specified in section \ref{subsubsec: I met
 These are again based on best-fit values from the 2018 Planck results \citep[see][]{Planck}. They use a primordial Helium mass fraction of $Y_p=0.2454$, the posterior mean predicted by Big Bang Nucleosynthesis, and state their estimate of the reionization redshift mid-point as $z_\text{reion}=7.82\pm0.71$ based on $1\sigma$ limits on TT,TE,EE+lowE+lensing+BAO measurements. When modelling reionization, the rest of the parameters they use are the same as those stated here.
 
 \subsubsection{Main program structure}
-The free electron fraction, electron density, optical depths with derivatives, visibility functions with derivatives, sound horizon, and baryon temperature are all computed in the class \verb|RecombinationHistory|, implemented in the source code and header files of the same name. This version differs more from Winther's original template than the \verb|BackgroundCosmology| class, but I have made sure to document it thoroughly without adding too much unnecessary text. \colorbox{Plum}{unprofessional sentence?} The same GSL-based ODE solver used previously is also used when solving for $X_e$ (in the Peebles regime), $\tau$, $\tau_b$, $\tilde{g}$, $\tilde{g}_b$, $s$ and $T_b$, and all of these solutions are interpolated using cubic splines. The results are written to file and visualized in \verb|recombination.py|. 
-
-\colorbox{Plum}{should I add a paragraph explaining the class methods?}
+The free electron fraction, electron density, optical depths with derivatives, visibility functions with derivatives, sound horizon, and baryon temperature are all computed in the class \verb|RecombinationHistory|, implemented in the source code and header files of the same name. The same GSL-based ODE solver used previously is also used when solving for $X_e$ (in the Peebles regime), $\tau$, $\tau_b$, $\tilde{g}$, $\tilde{g}_b$, $s$ and $T_b$, and all of these solutions are interpolated using cubic splines. The results are written to file and visualized in \verb|recombination.py|. 
 
 
 \subsubsection{Initial conditions}
-In the numerical implementation of the recombination history, careful selection of initial conditions is crucial for stable and accurate integration. The free electron fraction naturally starts at $X_e = 1$ in the early Universe when the medium is fully ionized. Furthermore, as we switch to the Peebles regime, the initial condition for $X_e$ in eq. \eqref{eq: Peebles} is the last value computed in the Saha regime. From this, the free electron density $n_e$ is determined using the baryon number density $n_b$, which is computed separately from cosmological parameters (eq. \eqref{eq: nb}). 
+In the numerical implementation of the recombination history, careful selection of initial conditions is crucial for stable and accurate integration. As we switch to the Peebles regime, the initial condition for $X_e$ in eq. \eqref{eq: Peebles} is naturally the last value computed in the Saha regime. From this, the free electron density $n_e$ is determined using the baryon number density $n_b$, which is computed separately from cosmological parameters (eq. \eqref{eq: nb}). 
 
 For the optical depth, both the photon optical depth $\tau$ and the baryon optical depth $\tau_b$ are defined to be zero today. Since the optical depth is an integral that accumulates from past times until today, it is advantageous to integrate backward in time. This avoids truncation errors near $x = 0$ and ensures an accurate computation of the visibility function.
 
@@ -1064,9 +1066,7 @@ For the baryon temperature $T_b$, we initially set it equal to the photon temper
 
 % \subsubsection{Integration limits and specific details}
 \subsubsection{Integration limits and points}
-When integrating to solve for the different quantities, I used $x_\text{min}=-13.0$ and $x_\text{max}=0.0$ as integration limits, since the evolutions beyond this region are of little physical significance. \colorbox{Plum}{correct to say?} Also, using $x_\text{max}=0.0$ as endpoint was most convenient, since the ``initial condition'' for the optical depth is $\tau(x=0)=0$. Furthermore, I used $1\,000$ points when solving the system using only the Saha approximation, and $10\,000$ points when solving with both Saha and Peebles, to ensure a smoother transition between the two. 
-
-When splining the results I used $x_\text{min}=-12.0$ to avoid the more unstable starting point, and $x_\text{max}=0.0$, since this endpoint is important to include in the analyzes. To ensure smooth visualization I used $12\,001$ points, corresponding to $\Delta x = 0.001$.
+To ensure numerical accuracy in later milestones, I began the integration at $x_\text{min} = -18.0$, even though no significant recombination-related transitions occur this early. The upper limit was chosen as $x_\text{max} = 0.0$, since the optical depth is conventionally defined to vanish at the present time, $\tau(x = 0) = 0$, making it a natural endpoint. For the Saha-only solution, I used $1\,000$ integration points, while for the combined Saha-Peebles calculation I increased this to $10\,000$ to ensure a smooth transition between the two regimes. When outputting the results I used the range $x \in [-12.0, 0.0]$ with $12\,001$ sampling points, corresponding to $\Delta x = 0.001$.
 
 
 \subsubsection{Tolerances}
@@ -1078,20 +1078,25 @@ Although I have decided to include Helium, the code also works with $Y_p=0$. In 
 \end{equation}
 In the early Universe $T_b$ is very large, hence $b\ll 1$ since the exponential term dominates. Thus, $4/b\approx0$, which leads to $X_e = 0$. Obviously, this is not the case at early times, and be may expand the square root around $4/b = 0$ to get $X_e \approx b/2(-1 + 1 + 2/b)=1$. This is only viable in the very beginning of solving the system, and I have therefore set a tolerance of $4/b>10^{-3}$ for when the above expression can be used to compute $X_e$.
 
-As mentioned in section \ref{subsubsec: II theory Saha}, one must solve iteratively for $f_e$ in the Saha regime when using a non-zero Helium abundance. I chose to set $f_e = 1$ and $f_{e,\text{old}}=0$ to begin with, then use $\left|f_e-f_{e,\text{old}}\right|<10^{-10}$ as stopping criterion to ensure that it had properly converged. This is not numerically challenging, so the low tolerance has negligible effect on the computation speed. \colorbox{Plum}{word different?}
+As mentioned in section \ref{subsubsec: II theory Saha}, one must solve iteratively for $f_e$ in the Saha regime when using a non-zero Helium abundance. I chose to set $f_e = 1$ and $f_{e,\text{old}}=0$ to begin with, then use $\left|f_e-f_{e,\text{old}}\right|<10^{-10}$ as stopping criterion to ensure that it had properly converged. This is not numerically challenging, so the low tolerance has negligible effect on the computation speed.
 
 When solving for the baryon temperature $T_b$, we have a set of coupled differential equations for $X_e$ and $y$ in the Peebles regime becomes. The ODE for $y$ is very stiff in the beginning, and since we expect the baryon and photon temperatures to be identical until well after recombination, I have chosen to simply set $T_b=T_\text{CMB}$ in the differential equation for $X_e$ until some threshold value of $x$. This can be passed as an argument to the right-hand side method for the Peebles ODE, with default value \verb|x_tol=-7.0| (which is what I have used to produce my results). Furthermore, to aid in the stability of the differential equations I have made it so that the absolute and relative tolerances of the ODE solver are changed from $\epsilon_\text{abs}=\epsilon_\text{rel}=10^{-7}$ to $\epsilon_\text{abs}=\epsilon_\text{rel}=10^{-12}$ in case we solve for $T_b$. 
 
 
 
-\subsubsection{Testing numerical stability}
-A good way to check that the computed quantities are reasonable is to compute the integrals of $\tilde{g}$ and $\tilde{g}_b$ from $x_\text{min}$ to $x_\text{max}$, since these are probability density functions and must therefore integrate up to unity. By summing the splined values and dividing by the number of points used for integrating, I found that
+\subsubsection{Testing the code}
+A good way to check that the computed quantities are reasonable is to compute the integral of $\tilde{g}$ and $\tilde{g}_b$ from $x_\text{min}$ to $x_\text{max}$, since these are probability density functions and must therefore integrate up to unity. By summing the splined values and dividing by the number of points used for integrating, I found that
 \begin{align*}
-  \int_{x_\text{min}}^{x_\text{max}}\tilde{g}(x)\,dx &= 1.0+9.6\times10^{-8},
+  \int_{x_\text{min}}^{x_\text{max}}\tilde{g}(x)\,dx &= 1.0+9.4\times10^{-8},
   \\
-  \int_{x_\text{min}}^{x_\text{max}}\tilde{g}_b(x)\,dx &= 1.0+6.7\times10^{-9},
+  \int_{x_\text{min}}^{x_\text{max}}\tilde{g}_b(x)\,dx &= 1.0+6.9\times10^{-9}.
 \end{align*}
-which of course corresponds to relative errors of $9.6\times10^{-6}\,\%$ and $6.7\times10^{-7}\,\%$, respectively. \colorbox{Plum}{redundant?} This greatly validates most of the numerical solutions, as the visibility functions depend on the optical depths, which in turn depend on the free electron fraction.
+This greatly validates most of the numerical solutions, as the visibility functions depend on the optical depths, which in turn depend on the free electron fraction.
+
+As in the previous milestone, I have produced comparison plots to benchmark the results against those provided by \cite{Course}. Figures \ref{appfig: Xe}, \ref{appfig: tau}, and \ref{appfig: g_tilde} in appendix \ref{appsec: figures} show the evolution of $X_e$, $\tau$ (with derivatives), and $\tilde{g}$ (with derivatives), respectively. These were generated using the same toy cosmology described in section \ref{subsubsec: I methods testing}, with the addition that Helium is ignored in all cases except the right panel of figure \ref{appfig: Xe}, where $Y_p = 0.24$ is used. Reionization is also included in some runs, primarily using the fiducial parameters with the exception of $z_\text{reion} = 11.0$. Helium reionization is, naturally, only accounted for when $Y_p \neq 0$.
+
+Overall, the plots show excellent agreement with Winther's results. The only noticeable discrepancy appears in the second derivative of the optical depth, $\tau''$, which exhibits minor numerical instabilities around the transition from the Saha to Peebles regimes and near $x = 0$. Aside from this, the consistency strongly supports the robustness of the implementation.
+
 
 
 \subsection{Results and discussions}\label{subsec: II results}
@@ -1122,7 +1127,7 @@ By turning off reionization, I determined the freeze-out abundance of free elect
   \\
   n_e &\approx 5.2 \times10^{-5}\,\text{m}^{-3}.
 \end{align*}
-These values align well with standard recombination theory, which predicts a residual ionized fraction $X_e$ on the order of $10^{-3}$ to $10^{-4}$. Although this small asymptotic value is difficult to observe directly in today's highly reionized Universe, it plays an important role in our understanding of the thermal history between recombination and reionization. The existence of this residual electron population reflects the fact that photons with energies exceeding the ionization threshold remain present after recombination. These high-energy photons can continue to ionize a small fraction of Hydrogen atoms, thereby preventing complete neutralization.
+These values are consistent with standard recombination theory, which predicts a residual ionized fraction $X_e$ on the order of $10^{-3}$ to $10^{-4}$. Although this small asymptotic value is difficult to measure directly in today's highly reionized Universe, it plays an important role in our understanding of the thermal history between recombination and reionization. The presence of this residual electron population reflects both the continued existence of high-energy photons capable of reionizing hydrogen atoms and the low particle densities at late times, which reduce the likelihood of recombination events. As a result, a small fraction of electrons and protons remains unbound, preventing complete neutralization of the cosmic plasma.
 
 
 
@@ -1131,41 +1136,41 @@ These values align well with standard recombination theory, which predicts a res
 \begin{figure*}
   \centering
   \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf}
-  \caption{The evolution of the optical depth $\tau$ (blue), its first derivative $-\tau'$ (red), and its second derivative $\tau''$ (green) for both photons (darker lines) and baryons (lighter lines). The bottom left subplot shows the evolutions of these quantities around decoupling and recombination, while the bottom right subplot highlights their changes during the epoch of reionization. The sharp drop in $\tau$ marks photon decoupling, after which photons free-stream. In constrast, the gradual decline in $\tau_b$ indicates the prolonged influence of radiation pressure on baryons during the drag epoch. 
+  \caption{The evolution of the optical depth $\tau$ (blue), its first derivative $-\tau'$ (red), and its second derivative $\tau''$ (green) for both photons (left) and baryons (right). 
+  % The bottom left subplot shows the evolutions of these quantities around decoupling and recombination, while the bottom right subplot highlights their changes during the epoch of reionization. 
+  The sharp drop in $\tau$ marks photon decoupling, after which photons free-stream. In constrast, the gradual decline in $\tau_b$ indicates the prolonged influence of radiation pressure on baryons during the drag epoch. 
   % Reionization produces distinct plateaus in the optical depths, corresponding to the gradual reionization of the intergalactic medium. \colorbox{Plum}{correct? not gradual in this model?}
   }\label{fig:optical depth}
 \end{figure*}
 
-Figure \ref{fig:optical depth} illustrates the evolution of the optical depth $\tau(x)$ (blue), its first derivative $-\tau'(x)$ (red), and its second derivative $\tau''(x)$ (green) as functions of $x$. These quantities are shown for both photons (darker colors) and baryons (lighter colors). We see that the photon optical depth $\tau$ is initially large, reflecting the fact that photons are tightly coupled to the baryon-electron plasma due to frequent Thomson scattering. Around decoupling we see a rapid drop in $\tau$, since the photons stop noticing the baryons. This is also visible from the steep negative peak in $-\tau'$, which marks the rapid decline in the scattering probability. 
+Figure \ref{fig:optical depth} shows the evolution of the photon (left) and baryon (right) optical depths (blue) and their first (red) and second derivatives (green) as functions of $x = \log (a)$. We see from the left panel that the photon optical depth $\tau$ is initially large, reflecting the fact that photons are tightly coupled to the baryon-electron plasma due to frequent Thomson scattering. Around decoupling we see a rapid drop in $\tau$, since the photons stop noticing the baryons. This is also visible from the steep negative peak in $-\tau'$, which marks the rapid decline in the scattering probability. 
 
-The second derivative $\tau''$ provides further insight into the recombination process. We see two smaller peaks right before the dominant Hydrogen recombination, corresponding to the transitions of $\text{He}^{++} \rightarrow \text{He}^{+}$ and $\text{He}^{+} \rightarrow \text{He}$, which highlights the changes in the free electron fraction seen in figure \ref{fig:X_e and n_e}. Though subtle, these peaks indicate sudden drops in $-\tau'$, demonstrating that $X_e$ does not decrease monotonically but rather in distinct stages due to the sequential recombination of Helium and Hydrogen.
+The second derivative $\tau''$ provides further insight into the recombination process. In particular, we see two smaller peaks just before the dominant Hydrogen recombination, corresponding to the transitions of $\text{He}^{++} \rightarrow \text{He}^{+}$ and $\text{He}^{+} \rightarrow \text{He}$, which highlights the changes in the free electron fraction seen in figure \ref{fig:X_e and n_e}. Though subtle, these peaks indicate sudden drops in $-\tau'$, demonstrating that $X_e$ does not decrease monotonically but rather in distinct stages due to the sequential recombination of Helium and Hydrogen.
 
 After recombination, $\tau$ levels off and remains nearly constant, meaning that photons are no longer frequently scattering. This corresponds to the transition to CMB free-streaming, where the photons released at decoupling travel largely undisturbed throughout the Universe. However, at $x \lesssim -2$ we observe a sudden increase in $-\tau'$, accompanied by a sharp drop in $\tau''$, corresponding to Hydrogen reionization. This phase is driven by ionizing radiation from early stars, which rapidly increases the free electron fraction, as reflected in the jumps in $X_e$ and $n_e$ in figure \ref{fig:X_e and n_e}. The optical depth $\tau$ then enters a plateau. A second, smaller bump at $x \approx -1.5$ arises from Helium reionization, caused by high-energy photons from quasars that fully ionize singly ionized Helium (see e.g. \cite{Helium} for updated analyzes in light of recent JWST data).
 
-To understand the reionization plateau, consider a photon emitted at aredshift $z<z_\text{reion}$. Since most Hydrogen is ionized, it has a non-negligible probability of Thomson scattering on its way to us. This probability accumulates over time, making the optical depth larger for photons emitted further in the past. However, for photons emitted in the neutral era between recombination and reionization ($z_\text{rec} \gg z > z_\text{reion}$), the scattering probability remains constant, leading to a roughly constant optical depth in this regime. The optical depth at reionization is often a more relevant quantity than the precise redshift of reionization. From my computed spline, I found this value to be $\tau_\text{reion} = 0.0561$, which perfectly matches the Planck 2018 result: based on TT,TE,EE+lowE+lensing+BAO measurements, \cite{Planck} found $\tau_\text{reion} = 0.0561 \pm 0.0071$.
+To understand the reionization plateau, consider a photon emitted at aredshift $z<z_\text{reion}$. Since most Hydrogen is ionized, it has a non-negligible probability of Thomson scattering on its way to us. This probability accumulates over time, making the optical depth larger for photons emitted further in the past. However, for photons emitted in the neutral era between recombination and reionization ($z_\text{rec} \gg z > z_\text{reion}$), the scattering probability is negligible, leading to a roughly constant optical depth in this regime. The optical depth at reionization is often a more relevant quantity than the precise redshift of reionization. From my computed spline, I found this value to be $\tau_\text{reion} = 0.0561$, which perfectly matches the Planck 2018 result: based on TT,TE,EE+lowE+lensing+BAO measurements, \cite{Planck} found $\tau_\text{reion} = 0.0561 \pm 0.0071$.
 
 The baryon optical depth $\tau_b$ follows a similar evolution to the photon optical depth but starts from a significantly higher value. This reflects the large photon-to-baryon ratio, implying that baryons have an even shorter mean free path than photons in the tightly coupled plasma. Around decoupling, $\tau_b$ also undergoes a decline but does so more gradually due to the extended drag epoch, during which residual interactions between baryons and photons delay the onset of independent baryon motion. As seen in the photon case, Hydrogen and Helium reionization lead to a delayed but noticeable increase in $\tau_b'$, though the effect is less pronounced. Since baryons are non-relativistic, they are less affected by changes in the free electron fraction compared to photons, resulting in a weaker response to reionization.
 % While photons begin free-streaming immediately, baryons remain coupled to the residual ionized plasma for a longer time, affecting the formation of the first acoustic peaks in the CMB. \colorbox{Plum}{maybe shorten/move to theory} 
 
 
-\subsubsection{Visibility functions}
+\subsubsection{The visibility function}
 
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf}
-  \caption{The visibility function $\tilde{g}(x)$ (top), its first derivative $\tilde{g}'(x)$ (middle), and its second derivative $\tilde{g}''(x)$ (bottom), plotted for both photons (black) and baryons (grey). The sharp peak in $\tilde{g}$ defines the last scattering surface, while the first derivative's zero-crossing confirms the rapid transition. 
+  \caption{The visibility function $\tilde{g}(x)$ (top), its first derivative $\tilde{g}'(x)$ (middle), and its second derivative $\tilde{g}''(x)$ (bottom). The sharp peak in $\tilde{g}$ defines the last scattering surface, while the first derivative's zero-crossing confirms the rapid transition. 
   % The second derivative provides insight into the smoothness of recombination, and secondary features at late times reflect reionization events. \colorbox{Plum}{maybe word differently}
   }\label{fig:visibility function}
 \end{figure}
 
-In figure \ref{fig:visibility function}, I have plotted the photon (black) and baryon (grey) visibility functions $\tilde{g}(x)$ and $\tilde{g}_b(x)$ (top), their first derivatives $\tilde{g}'(x)$ and $\tilde{g}_b'(x)$ (middle), and their second derivatives $\tilde{g}''(x)$ and $\tilde{g}_b''(x)$ (bottom) as functions of $x$. The interval $x\in[-12,-8)$ has been omitted, as all these quantities remain identically zero in this range. The sharp peaks of the visibility functions around $x \approx -7$ coincide with the estimated decoupling times, confirming that the last scattering event occurred within this window. As expected, $\tilde{g}_b$ peaks slightly later than $\tilde{g}$, which aligns with the fact that the baryon-photon drag epoch extends beyond photon decoupling. Furthermore, the peak of $\tilde{g}_b$ is significantly larger than that of $\tilde{g}$, reflecting the fact that $\tau_b > \tau$ and $-\tau_b' > -\tau'$ in this region, as seen in figure \ref{fig:optical depth}. This behavior is a direct consequence of the stronger coupling between baryons and photons prior to baryon decoupling.
+In figure \ref{fig:visibility function}, I have plotted the photon visibility function $\tilde{g}(x)$ (top), its first derivative $\tilde{g}'(x)$ (middle), and second derivative $\tilde{g}''(x)$ (bottom) as functions of $x$. The interval $x\in[-12,-8)$ has been omitted, as all these quantities remain identically zero in this range. We see that the visibility function peaks sharply around $x \approx -7$, confirming that the last scattering of CMB photons occurred near this time. 
+% This peak marks the transition from frequent scattering to free-streaming and corresponds to photon decoupling.
+As discussed in section \ref{subsubsec: II theory optical depth}, the width of the peak in $\tilde{g}(x)$ reflects the thickness of the last scattering surface, while the zero-crossing of $\tilde{g}'(x)$ indicates the time of steepest decline in scattering probability. 
+% The strong dip in $\tilde{g}''(x)$ around $x \approx -7$ quantifies the sharpness of this transition, and verifying the shape of $\tilde{g}''(x)$ is important for ensuring the accuracy of later computations, particularly the source function used in the line-of-sight integration.
 
-As discussed in section \ref{subsubsec: II theory optical depth}, the width of the main peak in the photon visibility function $\tilde{g}(x)$ determines the thickness of the last scattering surface: a narrower peak would indicate an abrupt transition to free-streaming, while a broader peak suggests a more extended decoupling period. The zero-crossing of $\tilde{g}'(x)$ corresponds to the moment of the steepest decline in the visibility function, marking the rapid transition in photon scattering probability. This aligns with the moment of photon decoupling, confirming that the transition was well-defined but not instantaneous. The strong negative dip in the second derivative $\tilde{g}''(x)$ around $x \approx -7$ quantifies the sharpness of this transition, reinforcing that photon decoupling occurred within a narrow but finite time interval.
-
-At later times, around $x \lesssim -2$, Hydrogen reionization causes a secondary, broad increase in $\tilde{g}(x)$, reflecting the renewed interaction between photons and free electrons. However, this increase is significantly smaller than at recombination, indicating that only a fraction of CMB photons were re-scattered during this epoch. The visibility function barely changes during the subsequent reionization of singly ionized Helium to doubly ionized Helium, as expected from the negligible impact of this process on the optical depths and their first derivatives. Unlike at decoupling, where the changes in $\tilde{g}_b$ and its derivatives were more pronounced than those in $\tilde{g}$, the effects at reionization are significantly weaker. This is a direct result of the much smaller values of $\tau_b$ and $\tau_b'$ in this region, implying that baryons experienced minimal drag from photon interactions during reionization.
-
-
-\colorbox{Plum}{maybe have zoomed in plot in appendix?}
+At later times, around $x \lesssim -2$, Hydrogen reionization causes a secondary, broader increase in $\tilde{g}(x)$, reflecting the renewed interaction between photons and free electrons. However, this increase is significantly smaller than at recombination, indicating that only a fraction of CMB photons were re-scattered during this epoch. The visibility function barely changes during the subsequent reionization of singly ionized Helium to doubly ionized Helium, as expected from the negligible impact of this process on the optical depths and their first derivatives.
 
 
 
@@ -1220,17 +1225,16 @@ The difference in sound horizons between the two approaches highlights the impac
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf}
-  \caption{The evolution of the sound horizon $s(x)$ as a function of $x = \log(a)$. The rapid early growth reflects the high sound speed in the tightly coupled photon-baryon plasma, while the flattening at recombination marks the transition to the so-called dark ages. \colorbox{Plum}{correct?}}\label{fig:sound horizon}
+  \caption{The evolution of the sound horizon $s(x)$ as a function of $x = \log(a)$. The rapid early growth reflects the high sound speed in the tightly coupled photon-baryon plasma, while the flattening at recombination marks the transition to the matter era.}\label{fig:sound horizon}
 \end{figure}
 
 Figure \ref{fig:sound horizon} illustrates the evolution of the sound horizon $s(x)$, with the estimated time of recombination marked to highlight where its growth gets stunted. In the early Universe, the sound horizon increases rapidly due to the high sound speed in the tightly coupled photon-baryon fluid. This is a direct consequence of the nearly relativistic equation of state of the plasma, where the sound speed $c_s$ remains close to $c/\sqrt{3}$. However, around recombination, the pressure support from photons is significantly reduced, allowing matter to cluster more freely and leading to a decrease in the sound speed. Consequently, the growth of the sound horizon flattens out as baryons decouple from photons and begin falling into dark matter potential wells, setting the scale of BAO in the later Universe.
 
-In \cite{Planck} they estimate the redshifts at photon and baryon decoupling as $z_s = 1089.92\pm0.25$ and $z_\text{drag} = 1059.94\pm0.30$, respectively, based on $1\sigma$ limits from TT,TE,EE+lowE+lensing measurements. The corresponding sound horizons are estimated to be $r_s = 144.43\pm0.26\,$Mpc and $r_\text{drag} = 149.09\pm0.26\,$Mpc. My inferred redshifts are systematically lower, though the computed sound horizons are in reasonable agreement. The estimate for $r_\text{drag}$ is particularly close to the Planck value, but the discrepancy in redshift suggests differences in numerical methods and cosmological model assumptions. A possible source of discrepancy could be the specific recombination model used; Planck employs Recfast \colorbox{Plum}{add citation?}, which incorporates additional refinements beyond the Peebles equation, such as corrections for two-photon decays and non-equilibrium effects. Differences in how reionization is handled (e.g., the choice of $z_\text{reion} = 8$ in my calculations vs. Planck's $z_\text{reion} = 7.64$) could also slightly shift inferred parameters. 
+In \cite{Planck}, the estimated redshifts of photon and baryon decoupling are $z_s = 1089.92\pm0.25$ and $z_\text{drag} = 1059.94\pm0.30$, respectively, based on $1\sigma$ constraints from TT,TE,EE+lowE+lensing measurements. The corresponding sound horizons are $r_s = 144.43\pm0.26\,\text{Mpc}$ and $r_\text{drag} = 149.09\pm0.26\,\text{Mpc}$. My computed values for $z_s$ and $z_\text{drag}$ are systematically lower, although the resulting sound horizons—particularly $r_\text{drag}$—are in good agreement with the Planck results. This discrepancy in redshift does not necessarily indicate a numerical error but rather reflects a key difference in methodology: while I have computed these quantities using a fixed fiducial cosmology, Planck reports statistically inferred values obtained by fitting a cosmological model to observational data. Differences in how reionization is handled (e.g., the choice of $z_\text{reion} = 8$ in my calculations vs. Planck's $z_\text{reion} = 7.64$) could also slightly shift estimated parameters.
 
-\colorbox{Plum}{correct? or irrelevant?}
+Using the value for the particle horizon at photon decoupling presented in table \ref{table:time stamps decoupling} (Saha + Peebles approach) and the present-day particle horizon from table \ref{table:time stamps} (numerical value), the comoving distance to the last scattering surface is found to be $\chi_{s} \approx 13904.51\,$Mpc. With my computed sound horizon at decoupling of $r_s \approx 146.66\,$Mpc, this gives an angular acoustic scale of $100\theta_{s} \approx 1.0548$. This is slightly larger than the Planck result of $100\theta_{s} = 1.0411\pm0.0003$, falling outside their reported uncertainty. However, it should be noted that I have not been able to estimate the uncertainty of my estimate, and that the Planck value could fall within this range. Potential sources of this uncertainty include the finite resolution of the numerical integration, the choice of interpolation method for the visibility function, and approximations made in the recombination model.
 
-Using the value for the particle horizon at photon decoupling presented in table \ref{table:time stamps decoupling} (Saha + Peebles approach) and the present-day particle horizon from table \ref{table:time stamps} (numerical value), the comoving distance to the last scattering surface is found to be $\chi_{s} \approx 13904.51\,$Mpc. With my computed sound horizon at decoupling of $r_s \approx 146.66\,$Mpc, this gives an angular acoustic scale of $100\theta_{s} \approx 1.0548$. This is slightly larger than the Planck result of $100\theta_{s} = 1.0411\pm0.0003$, falling outside their reported uncertainty. However, it should be noted that my inferred value lacks the precision implied by this number of significant digits due to numerical approximations. Potential sources of uncertainty include the finite resolution of the numerical integration, the choice of interpolation method for the visibility function, and approximations made in the recombination model.
-
+\colorbox{Plum}{TODO: maybe change/remove last part}
 
 
 
@@ -1261,10 +1265,7 @@ The temperature deviation between photons and baryons introduces a minor correct
 \section{Milestone III: Perturbations}\label{sec: milestone III}
 Having established the background evolution of the universe and the recombination history in the previous milestones, I now turn to the evolution of cosmological perturbations, which describe how small fluctuations in density and temperature grew from the early Universe into the large-scale structures we observe today. This step is essential for understanding the formation of CMB anisotropies, as well as the distribution of galaxies and clusters in the late Universe. 
 
-In this milestone, I numerically solve the Einstein-Boltzmann equations to track the evolution of perturbations in different components of the Universe, including photons, neutrinos, baryons, and cold dark matter. By evolving these perturbations across different Fourier modes, I construct time-dependent solutions for key physical quantities such as density and velocity perturbations, temperature fluctuations, and gravitational potentials. Additionally, I account for the tight-coupling approximation at early times to handle numerical instabilities and ensure accurate solutions. The results from this milestone provide the foundation for computing the CMB power spectrum in the next step, allowing us to directly compare theoretical predictions with observations.
-
-\colorbox{Plum}{mention that we use linear perturbation theory?}
-
+In this milestone, I numerically solve the Einstein-Boltzmann equations in linear perturbation theory to track the evolution of cosmological perturbations in photons, neutrinos, baryons, and cold dark matter. These are computed across different Fourier modes to obtain time-dependent solutions for key quantities such as density and velocity perturbations, temperature anisotropies, and gravitational potentials. To manage numerical instabilities at early times, I implement the tight-coupling approximation. The resulting solutions form the basis for computing the CMB power spectrum in the next milestone, enabling direct comparison between theory and observation.
 
 \subsection{Theoretical framework}\label{subsec: III theory}
 
@@ -1330,23 +1331,16 @@ In this milestone, I numerically solve the Einstein-Boltzmann equations to track
 
 % % Can you write subsection 8 about the tight-coupling regime? Make sure to include points 20-22. Be concise and thorough, and match my writing style from the previous milestones.
 
-\subsubsection{Perturbations in the Newtonian gauge}
-\colorbox{Plum}{maybe rename section}
+\subsubsection{Metric perturbations}
 
-The perturbed Einstein equations for scalars, vectors, and tensors decouple at linear order, allowing us to study them separately. 
-% \colorbox{Plum}{TODO: correct?}
-In this work, I primarily focus on scalar perturbations, 
-% \colorbox{Plum}{TODO: correct? velocity}
-which correspond to density fluctuations and are responsible for structure formation. Vector perturbations (vorticity) are not generated by inflation and decay rapidly due to cosmic expansion, hence they are irrelevant when computing the CMB. Furthermore, tensor perturbations (gravitational waves) are a key prediction of inflation and is therefore a topic I revisit in the next milestone. 
+The perturbed Einstein equations for scalars, vectors, and tensors decouple at linear order, allowing us to study them separately. In this work, I primarily focus on scalar perturbations, which correspond to density fluctuations and are responsible for structure formation. Vector perturbations (vorticity) are not generated by inflation and decay rapidly due to cosmic expansion, hence they are irrelevant when computing the CMB. Furthermore, tensor perturbations (gravitational waves) are a key prediction of inflation and is therefore a topic I revisit in the next milestone. 
 
 To simplify the perturbation equations, I work in the Newtonian gauge, where the metric is diagonal:
 \begin{equation}
 ds^2 = - \,(1 + 2\Psi)\,dt^2 + a^2 (1 + 2\Phi)\, \delta_{ij}\, dx^i dx^j.
 \end{equation}
-Here, $\Psi$ and $\Phi$ are the gravitational potentials, which describe scalar perturbations to the metric and play analogous roles to the Newtonian potential in classical gravity. This is another perk of working in the Newtonian gauge, as it allows for more intuitive physical interpretation while keeping the full relativistic structure of general relativity. \colorbox{Plum}{correct to say this?} More specifically, $\Psi$ represents the perturbation to the time-time component of the metric and acts as the gravitational potential experienced by non-relativistic particles, while $\Phi$ appears in the spatial metric perturbations and affects the expansion of space. 
-%\colorbox{Plum}{TODO: correct?}
+Here, $\Psi$ and $\Phi$ are the gravitational potentials, which describe scalar perturbations to the metric and play analogous roles to the Newtonian potential in classical gravity. This is another perk of working in the Newtonian gauge, as it allows for more intuitive physical interpretation while keeping the full relativistic structure of general relativity. More specifically, $\Psi$ represents the perturbation to the time-time component of the metric and acts as the gravitational potential experienced by non-relativistic particles, while $\Phi$ appears in the spatial metric perturbations and affects the expansion of space. 
 
-% The Einstein equations relate the gravitational potentials to the density perturbations and the velocity divergence of different components in the Universe. 
 
 The perturbation equations take the form of coupled partial differential equations in real space, which are not trivial to solve. To simplify the problem, we transform them into Fourier space, where they become a system of ordinary differential equations for each wave mode. 
 % This is justified by the linearity of the system, allowing each mode to evolve independently.  
@@ -1355,10 +1349,8 @@ In Fourier space, spatial derivatives transform as:
 \nabla u(x) \rightarrow i \vec{k} \tilde{u}(k),
 \end{equation}
 where $\vec{k}$ is the comoving wave vector of the perturbation. This Fourier decomposition allows us to track the evolution of perturbations across different scales and study their behavior from superhorizon to subhorizon regimes. 
-% In the next section, I introduce the Boltzmann equation for photons and discuss how perturbations in the CMB temperature and momentum are generated, leading to the anisotropies we observe today.
 
-
-\subsubsection{Photons}
+\subsubsection{Photons}\label{subsubsec: III theory photons}
 The evolution of CMB anisotropies is governed by perturbations in the photon distribution function. Since photons are massless, they follow null geodesics in a perturbed metric. For a photon with four-momentum $P^\mu$ and energy $E=p$, expanding the Christoffel symbols in the geodesic equation leads to: 
 \begin{align}
 &\frac{dP^0}{d\lambda} + \Gamma^0_{\mu\nu} P^\mu P^\nu = 0 \\
@@ -1370,18 +1362,14 @@ The evolution of CMB anisotropies is governed by perturbations in the photon dis
 \end{equation}
 
 
-Eq. \eqref{eq: photon momentum} encodes two key effects that shape CMB anisotropies. The first of these is the Sachs-Wolfe effect: the gravitational redshift of photons due to metric perturbations at the last scattering surface, corresponding to the term $(\Psi_{\text{rec}} - \Psi_0)$. More specifically, this represents the change in the gravitational potential from recombination to today. 
-%\colorbox{Plum}{TODO: correct?} 
-Furthermore, the last term represents the time variation of the metric perturbations $(\partial_t \Psi - \partial_t \Phi)$, which affects photons' energies as they travel through evolving potential wells. This is called the integrated Sachs-Wolfe (ISW) effect, and is most important in the late Universe when dark energy becomes significant. 
-%\colorbox{Plum}{TODO: correct?}
-
+Eq. \eqref{eq: photon momentum} encodes two key effects that shape CMB anisotropies. The first of these is the Sachs-Wolfe effect: the gravitational redshift of photons due to metric perturbations at the last scattering surface, corresponding to the term $(\Psi_{\text{rec}} - \Psi_0)$. More specifically, this represents the change in the gravitational potential from recombination to today. Furthermore, the last term represents the time variation of the metric perturbations $(\partial_t \Psi - \partial_t \Phi)$, which affects photons' energies as they travel through evolving potential wells. This is called the integrated Sachs-Wolfe (ISW) effect, and is most important in the late Universe when dark energy becomes significant. 
 % These effects contribute to large-scale temperature fluctuations in the CMB, directly imprinting information about early-universe physics and cosmic structure formation.
 
 To describe perturbations in the CMB systematically, we introduce the photon temperature perturbation, defined as:
 \begin{equation}
 T = \overline{T} (1 + \Theta),
 \end{equation}
-where $\Theta = \delta T/\overline{T}$ represents small deviations from the mean photon temperature. \colorbox{Plum}{present different?} This perturbation generally depends on time, space, the magnitude, and direction of the photon momentum. However, since Thomson scattering only affects the direction of the photon momentum to first order, we can express the perturbation as $\Theta(t, \vec{x}, \hat{p})$, eliminating explicit dependence on $p$. Furthermore, expanding the distribution function for photons in the limit $\Theta \ll 1$ gives:
+where $\Theta = \delta T/\overline{T}$ represents small deviations from the mean photon temperature. This perturbation generally depends on time, space, the magnitude, and direction of the photon momentum. However, since Thomson scattering only affects the direction of the photon momentum to first order, we can express the perturbation as $\Theta(t, \vec{x}, \hat{p})$, eliminating explicit dependence on $p$. Furthermore, expanding the distribution function for photons in the limit $\Theta \ll 1$ gives:
 \begin{equation}
 f = \frac{1}{e^{p/\overline{T}(1-\Theta)}-1} \simeq \overline{f} + \Theta p\frac{\partial\overline{p}}{\partial p} \Theta,
 \end{equation}
@@ -1395,7 +1383,8 @@ Since the chemical potential $\mu=0$ for photons, this follows directly from the
 \end{equation}
 \colorbox{Plum}{show this more explicitly?} 
 
-As discussed extensively in the previous milestone, the dominant interaction term for photons is Thomson scattering with free electrons. \colorbox{Plum}{too repetitive?} If we ignore polarization and the angular dependence of the cross section, the collision to first order in perturbation theory simplifies to
+% As discussed extensively in the previous milestone, the dominant interaction term for photons is Thomson scattering with free electrons. \colorbox{Plum}{too repetitive?} 
+If we ignore polarization and the angular dependence of the Thomson scattering cross section, the collision to first order in perturbation theory simplifies to
 \begin{equation}
   C[f] = -p^2\frac{\partial\overline{f}}{\partial p}n_e\sigma_\text{T}\left(\Theta_0 - \Theta + \hat{p}\cdot\vec{v}_b \right). \label{eq: collision photons}
 \end{equation}
@@ -1407,14 +1396,13 @@ is the monopole moment of the photon distribution, which describes the local tem
 \begin{equation}
   \mu = \hat{p}\cdot\frac{\vec{k}}{k}.
 \end{equation}
-%\colorbox{Plum}{TODO: word different?} 
 Thus, inserting this into eq \eqref{eq: Boltzmann photons} we arrive at the perturbed Boltzmann equation for photons:
 \begin{equation}
   \frac{\partial{\Theta}}{\partial t} + \frac{\partial{\Theta}}{\partial x^{i}}\frac{\hat{p}^{i}}{a} + \left(\frac{\partial{\Phi}}{\partial t} + \frac{\partial{\Psi}}{\partial x^{i}}\frac{\hat{p}^{i}}{a} \right) = n_e\sigma_\text{T}\left(\Theta_0 - \Theta + \hat{p}\cdot\vec{v}_b \right).
 \end{equation}
 This equation tells us that when Thomson scattering is efficient, photons from different directions have the same temperature, enforcing $\Theta\approx\Theta_0$ locally.
 
-Since CMB perturbations are naturally described in Fourier space \colorbox{Plum}{correct to say this?}, it is convenient to make use of $\vec{k}$ and $\mu$. The baryon velocity is curl-free, so in Fourier space it simplifies to 
+Since CMB perturbations are naturally described in Fourier space, it is convenient to make use of $\vec{k}$ and $\mu$. The baryon velocity is curl-free, so in Fourier space it simplifies to 
 \begin{equation} 
   \vec{v}_b = iv_b \frac{\vec{k}}{k}. 
 \end{equation} 
@@ -1424,9 +1412,14 @@ With this, the Boltzmann equation transforms into
 \end{equation} 
 where the additional term 
 \begin{equation}
-  \Pi = \Theta_2 = -\frac{1}{2}\int_{-1}^{1}\Theta \frac{3\mu^2-1}{2}\,d\mu, \label{eq: Pi}
+  \Pi = \Theta_2 + \Theta_0^P + \Theta_2^P, \label{eq: Pi}
 \end{equation}
-accounts for the angular dependence of Tomson scattering. 
+accounts for the angular dependence of Tomson scattering through the temperature quadrupole $\Theta_2$, and CMB polarization through the polarization monopole $\Theta_0^P$ and quadrupole $\Theta_2^P$.
+% where the additional term 
+% \begin{equation}
+%   \Pi = \Theta_2 = -\frac{1}{2}\int_{-1}^{1}\Theta \frac{3\mu^2-1}{2}\,d\mu, \label{eq: Pi old}
+% \end{equation}
+% accounts for the angular dependence of Tomson scattering. 
 % and CMB polarization, although the latter is ignored here. 
 % \colorbox{Plum}{TODO: introduce w/ polarization here?} 
 % Expanding in Legendre multipoles will eventually give us a coupled hierarchy of equations, which must be solved numerically.
@@ -1443,7 +1436,7 @@ where $P_\ell(\mu)$ are the Legendre polynomials, and $\Theta_\ell$ are the mult
   \Theta_\ell(t, k) = \frac{i^\ell}{2} \int_{-1}^{1} \Theta(t, k, \mu) P_\ell(\mu) d\mu. 
 \end{equation}
 
-The first few moments in the multipole expansion have clear physical interpretations. As we have already seen in eq. \eqref{eq: collision photons}, the $\ell=0$ term corresponds to the monopole moment, which is directly related to the density contrast of radiation via $\delta_\gamma = 4\Theta_0$. Furthermore, the $\ell=1$ term describes the dipole moment, which tells us about the velocity of the photon perturbations through $v_\gamma = -3\Theta_1$. \colorbox{Plum}{word different?} Lastly, $\ell=2$ corresponds to the quadrupole moment of the photon distribution and is closely associated with the anisotropic stress, which we will get back to. Higher-order multipoles describe increasingly finer angular variations in the photon distribution, though they are less intuitive to interpret physically. 
+The first few moments in the multipole expansion have clear physical interpretations. As we have already seen in eq. \eqref{eq: collision photons}, the $\ell=0$ term corresponds to the monopole moment, which is directly related to the density contrast of radiation via $\delta_\gamma = 4\Theta_0$. Furthermore, the $\ell=1$ term describes the dipole moment, which tells us about the velocity of the photon perturbations via the relation $v_\gamma = -3\Theta_1$. Lastly, $\ell=2$ corresponds to the quadrupole moment of the photon distribution and is closely associated with the anisotropic stress, which I will get back to. Higher-order multipoles describe increasingly finer angular variations in the photon distribution, though they are less intuitive to interpret physically. 
 % These moments arise because photons free-stream through the Universe after decoupling, leading to a continuous evolution of anisotropies. 
 % \colorbox{Plum}{TODO: include last sentence?} 
 
@@ -1463,13 +1456,13 @@ Here, derivatives are taken with respect to $x$, and the optical depth derivativ
 Eq. \eqref{eq: monopole} corresponds to the perturbed continuity equation for photons, which ensures conservation of particle number. Furthermore, eq. \eqref{eq: dipole} describes the evolution of the photon dipole and is equivalent to the Euler equation, accounting for the anisotropic stress through the quadrupole term, as well as the momentum transfer between photons and baryons via the last term. 
 % \colorbox{Plum}{correct?} The quadrupole term is particularly important, as it represents the anisotropic stress of the photon distribution, \colorbox{Plum}{redundant, mentioned above} while the final term in the dipole equation 
 % The last term accounts for momentum transfer between photons and baryons via Thomson scattering, 
-This ensures that the baryon velocity remains equal to the photon velocity in the tight-coupling regime, which I come back to in section \ref{subsubsec: III theory tight-coupling}. \colorbox{Plum}{word different?}.
+This ensures that the baryon velocity remains equal to the photon velocity in the tight-coupling regime, which I come back to in section \ref{subsubsec: III theory tight-coupling}.
 
 Since the Boltzmann hierarchy contains an infinite number of coupled equations, solving the full system numerically is impossible. Fortunately, at sufficiently high multipoles, the moments decrease in amplitude, allowing for an approximation. However, a naive truncation, such as setting all moments beyond some $\ell_{\max}$ to zero, would introduce errors that propagate to lower multipoles. Instead, the hierarchy is truncated by modifying the equation for the highest included multipole:
 \begin{equation} 
   \Theta_{\ell_{\max}}' = \frac{ck}{\mathcal{H}} \Theta_{\ell_{\max}-1} - c \frac{\ell_{\max}+1}{\mathcal{H} \eta(x)} \Theta_{\ell_{\max}} + \tau' \Theta_{\ell_{\max}}. 
 \end{equation}
-This ensures that the high-order multipoles decay smoothly, preventing numerical artifacts. In the next milestone I employ an extremely valuable method known as line-of-sight integration, which lets us set $\ell_{\max} \sim 6-10$ and still obtain moderate to high accuracy. \colorbox{Plum}{word different?}
+This ensures that the high-order multipoles decay smoothly, preventing numerical artifacts. In the next milestone I employ an extremely valuable method known as line-of-sight integration, which lets us set $\ell_{\max} \sim 6-10$ and still obtain moderate to high accuracy.
 % In practice, including multipoles up to $\ell_{\max} \sim 6-10$ is sufficient for moderate accuracy, \colorbox{Plum}{mention that we include many more in IV?} while higher precision calculations (e.g., $\sim 0.1\%$ accuracy) require $\ell_{\max} \sim 10$. \colorbox{Plum}{correct? remove?}
 
 % A similar approach applies to neutrinos, whose evolution equations are obtained by taking the photon hierarchy and removing terms involving $\tau'$, as neutrinos do not experience Thomson scattering. Since neutrinos lack tight coupling, their higher-order multipoles decay more gradually, requiring a slightly higher truncation order—typically around $\ell_{\max} \sim 10 - 12$.
@@ -1478,22 +1471,23 @@ This ensures that the high-order multipoles decay smoothly, preventing numerical
 In addition to the temperature anisotropies of the CMB, polarization also plays a significant role in constraining cosmological parameters. The CMB becomes polarized due to Thomson scattering, which selectively filters the radiation field and generates linear polarization when there is a local quadrupole anisotropy in the photon distribution.
 
 % To account for polarization, we introduce the multipoles $\Theta^P_\ell$. 
-The equations governing the polarization multipoles $\Theta^P_\ell$ are similar to those for the temperature perturbations, but differ in their source terms and hierarchical coupling. It can be shown that the full set of equations for takes the following form: 
+The equations governing the polarization multipoles $\Theta^P_\ell$ are similar to those for the temperature perturbations, but differ in their source terms and hierarchical coupling. It can be shown that the full set of equations for takes the following form:
 \begin{align*} 
   \Theta'^P_0 =\, &-\frac{ck}{\mathcal{H}} \Theta^P_1 + \tau' \left[ \Theta^P_{0} - \frac{1}{2} \Pi \right], \numberthis \\ 
   \Theta'^P_{\ell} =\, &\frac{ck}{(2\ell+1)\mathcal{H}} \Big[\ell\Theta^P_{\ell-1} - (\ell+1)\Theta^P_{\ell+1}\Big] \\
   &+ \tau' \left[ \Theta^P_{\ell} - \frac{1}{10} \Pi \delta_{\ell,2} \right], \qquad 1 \leq \ell < \ell_{\max}, \numberthis \\ 
-  \Theta'^P_{\ell_{\max}} =\, &\frac{ck}{\mathcal{H}} \Theta^P_{\ell_{\max}-1} - c \frac{\ell+1}{\mathcal{H}\eta(x)} \Theta^P_{\ell_{\max}} + \tau' \Theta^P_{\ell_{\max}}. \numberthis
+  \Theta'^P_{\ell_{\max,P}} =\, &\frac{ck}{\mathcal{H}} \Theta^P_{\ell_{\max,P}-1} - c \frac{\ell+1}{\mathcal{H}\eta(x)} \Theta^P_{\ell_{\max,P}} + \tau' \Theta^P_{\ell_{\max,P}}. \numberthis
 \end{align*}
+Tight-coupling allows us to truncate this hierarchy in the same way as for photons, hence we may set $\ell_{\max,P}=\ell_{\max}$.
+
+\colorbox{Plum}{should I refer to Callin when not deriving eq. myself?}
 % TODO: include stuff about Boltzmann equation written in milestone IV draft?
 
-When including polarization in the perturbation calculations, eq. \eqref{eq: Pi} no longer holds for the variable $\Pi$. Instead, it now includes contributions from the polarization monopole and quadrupole as well: 
-% is no longer equal to $\Theta_2$ 
-% that appears in these equations, as well as in those presented in the two previous sections, is no longer simply the same as $\Theta_2$. \colorbox{Plum}{word differently}. Instead, it now includes contributions from the polarization monopole and quadrupole: 
-\begin{equation} 
-  \Pi = \Theta_2 + \Theta^P_{0} + \Theta^P_{2}. 
-\end{equation}
-This modification accounts for the effect of polarization on the photon distribution and introduces additional terms in the Boltzmann hierarchy. 
+% When including polarization in the perturbation calculations, eq. \eqref{eq: Pi old} no longer holds for the variable $\Pi$. Instead, it now includes contributions from the polarization monopole and quadrupole as well: 
+% \begin{equation} 
+%   \Pi = \Theta_2 + \Theta^P_{0} + \Theta^P_{2}. \label{eq: Pi}
+% \end{equation}
+% This modification accounts for the effect of polarization on the photon distribution and introduces additional terms in the Boltzmann hierarchy. 
 
 % TODO: include this?
 % Polarization measurements of the CMB provide an independent and complementary way to extract cosmological parameters. The polarization spectra can be decomposed into two modes—E-modes and B-modes—which arise due to different physical mechanisms.
@@ -1536,7 +1530,7 @@ Truncating this Boltzmann hierarchy at some maximum value $\ell_{\max,\nu}$ give
   \mathcal{N}_{\ell_{\max,\nu}}' = \frac{ck}{\mathcal{H}} \mathcal{N}_{\ell_{\max,\nu}-1} - c \frac{\ell_{\max,\nu} + 1}{\mathcal{H} \eta(x)} \mathcal{N}_{\ell_{\max,\nu}}.
 \end{equation}
 
-Neutrinos significantly influence cosmic structure formation. Their relativistic free-streaming contributes to the radiation density, altering the expansion rate and damping small-scale fluctuations. Additionally, neutrino free-streaming induces a phase shift in the CMB power spectrum, providing a signature of their presence. Accurately modeling these effects requires truncating the Boltzmann hierarchy for neutrinos at $\ell_{\max, \nu} \approx 10-12$, capturing their impact more comprehensively than the photon case, where tight coupling allows for truncation at lower \(\ell\).
+Unlike photons, neutrinos freely propagate without being driven toward a monopole component through scattering processes. As a result, their anisotropies persist and contribute to the formation of cosmic structures. Additionally, their relativistic free-streaming contributes to the radiation density, altering the expansion rate and damping small-scale fluctuations. This free-streaming also induces a phase shift in the CMB power spectrum, providing a signature of their presence. Accurately modeling these effects requires truncating the Boltzmann hierarchy for neutrinos at $\ell_{\max, \nu} \approx 10-12$, capturing their impact more comprehensively than the photon case, where tight coupling allows for truncation at lower $\ell$.
 
 
 
@@ -1552,13 +1546,15 @@ Since CDM is non-relativistic ($E \approx m$), its evolution is primarily descri
 \begin{equation}
 \frac{\partial n}{\partial t} + \frac{1}{a} \frac{\partial}{\partial x^i} \left(n v^i\right) + 3 n \left(H + \frac{\partial \Phi}{\partial t} \right) = 0.
 \end{equation}
-This equation closely resembles the fluid continuity equation, with additional terms accounting for the expansion of the Universe and the effect of gravitational potentials. \colorbox{Plum}{write as overdensity equation instead?}
+This equation closely resembles the fluid continuity equation, with additional terms accounting for the expansion of the Universe and the effect of gravitational potentials. 
+
+\colorbox{Plum}{write as an overdensity equation instead?}
 
 To describe the evolution of CDM velocity perturbations, we take the first moment of the Boltzmann equation, yielding the Euler equation:
 \begin{equation}
 \frac{\partial v^i}{\partial t} + H v^i = -\frac{1}{a} \frac{\partial \Psi}{\partial x^i}.
 \end{equation}
-Since CDM is pressureless, it does not develop internal sound waves, unlike baryons, which are influenced by photon pressure before recombination. Instead, dark matter perturbations grow primarily due to gravitational instability, following the potential wells formed by initial fluctuations in the early Universe.
+Since CDM is pressureless, it does not develop internal sound waves, unlike baryons, which are influenced by photon pressure. Instead, dark matter perturbations grow primarily due to gravitational instability, following the potential wells formed by initial fluctuations in the early Universe.
 
 In Fourier space, the evolution equations for the CDM overdensity $\delta_{\rm CDM}$ and velocity divergence $v_{\rm CDM}$ take the simpler forms:
 \begin{align}
@@ -1620,12 +1616,12 @@ The presence of $\tau'$ indicates that prior to recombination, photons exert a s
 
 
 
-\subsubsection{Metric perturbations}
+\subsubsection{Gravitational potentials}
 We have now established the perturbation equations for the different species in the Universe, and we finally arrive at the equations governing the metric potentials, $\Psi$ and $\Phi$. 
 % These potentials describe the scalar perturbations to the metric in the Newtonian gauge and are sourced by the perturbations in matter and radiation. The evolution of these gravitational potentials is dictated by Einstein's equations, which relate them to the energy-momentum tensor of the cosmic fluid.
 The first of these equations follows from the perturbed Einstein equations and describes how the time evolution of the metric perturbations is linked to the density perturbations in different components:
 \begin{align*}
-\Phi' =\, &\Psi - \frac{c^2 k^2}{3\mathcal{H}^2} \Phi + \frac{H_0^2}{2\mathcal{H}^2} \Big(\Omega_{\text{CDM}0} \delta_{\text{CDM}} + \Omega_{b0} \delta_b\Big)e^{-x} 
+\Phi' =\, &\Psi - \frac{c^2 k^2}{3\mathcal{H}^2} \Phi + \frac{H_0^2}{2\mathcal{H}^2} \Big(\Omega_{\text{CDM}0} \delta_{\text{CDM}} + \Omega_{b0} \delta_b\Big)e^{-x} \label{eq: dPhidx}
 \\
 &+ \frac{2H_0^2}{\mathcal{H}^2}\left(\Omega_{\gamma0} \Theta_0 + \Omega_{\nu0} \mathcal{N}_0 \right)e^{-2x}. \numberthis
 \end{align*}
@@ -1634,7 +1630,7 @@ The first of these equations follows from the perturbed Einstein equations and d
 
 The second equation we need provides a constraint relating $\Psi$ and $\Phi$. In the absence of anisotropic stress, general relativity dictates that $\Phi = -\Psi$. However, the presence of relativistic species such as photons and neutrinos generates an anisotropic stress contribution, which modifies this relation:
 \begin{equation}
-\Psi = -\Phi - \frac{12 H_0^2}{c^2 k^2 a^2} \left( \Omega_{\gamma0} \Theta_2 + \Omega_{\nu0} \mathcal{N}_2 \right).
+\Psi = -\Phi - \frac{12 H_0^2}{c^2 k^2} \left( \Omega_{\gamma0} \Theta_2 + \Omega_{\nu0} \mathcal{N}_2 \right)e^{-2x}. \label{eq: Psi}
 \end{equation}
 % Here, the quadrupole moments of the photon and neutrino distributions, $\Theta_2$ and $\mathcal{N}_2$, respectively, contribute an additional term that affects the evolution of $\Psi$. 
 % This effect arises because relativistic species free-stream, inducing anisotropic stress that modifies the gravitational potential. \colorbox{Plum}{redundant?}
@@ -1655,19 +1651,19 @@ A key takeaway from these equations is that while $\Phi$ is dynamical and evolve
 
 
 \subsubsection{Inflation and initial conditions}\label{subsubsec: III theory inflation}
-To numerically solve the evolution of perturbations in the early Universe, we must specify initial conditions for all variables involved: the metric potentials, photon and neutrino multipoles, baryon and dark matter densities and velocities, and so on. But where do these initial fluctuations come from? \colorbox{Plum}{informal sentence?}
+To numerically evolve perturbations in the early Universe, we must first determine the initial conditions for all variables involved. This requires an understanding of their origin, which inflation provides a compelling explanation for. During this phase of accelerated expansion, quantum fluctuations in the inflaton field were stretched to cosmological scales, transitioning into classical perturbations that seeded the large-scale structure of the Universe. 
 
-Inflation provides a compelling answer. During this epoch of accelerated expansion, quantum fluctuations in the inflaton field were stretched to cosmological scales. These fluctuations became classical perturbations and eventually seeded the large-scale structure of the Universe. The key prediction from inflation is the generation of a nearly scale-invariant Gaussian random field of curvature perturbations, which satisfies
+A central prediction of inflation is the emergence of a nearly scale-invariant Gaussian random field of curvature perturbations, characterized by
 \begin{equation}
   \langle\mathcal{R}(\vec{k})\mathcal{R}^*(\vec{k}')\rangle = (2\pi)^3\delta(\vec{k}-\vec{k}')P_\text{primordial}(k).
 \end{equation}
-Here, $P_\text{primordial}(k)$ is the primordial power spectrum, which is properly introduced in section \ref{subsubsec: IV theory CMB} of the next milestone. \colorbox{Plum}{write different?} Outside the horizon (i.e., for modes where $k \ll \mathcal{H}$), the curvature perturbation field $\mathcal{R}$ remains approximately constant:
+The function $P_\text{primordial}(k)$ is known as the primordial power spectrum, and is properly introduced in section \ref{subsubsec: IV theory CMB} of the next milestone. Outside the horizon (i.e., for modes where $ck \ll \mathcal{H}$), the curvature perturbation field $\mathcal{R}$ remains approximately constant:
 \begin{equation}
 \frac{d\mathcal{R}}{dt} \approx 0.
 \end{equation}
 This conservation law allows us to use $\mathcal{R}$ as a bridge between inflationary predictions and initial conditions at later times. 
 
-In the Newtonian gauge, the curvature perturbation is defined as
+In the Newtonian gauge, the curvature perturbation field is defined as
 \begin{equation}
 \mathcal{R} = \Phi + \frac{\mathcal{H}^2\left( \Phi' - \Psi \right)}{4\pi G (\bar{\rho} + \bar{P})}e^{-2x}.
 \end{equation}
@@ -1685,6 +1681,8 @@ is the neutrino fraction. This yields the following initial conditions:
 \Phi &= -\left(1 + \frac{2f_\nu}{5} \right)\Psi.
 \end{align}
 
+\colorbox{Plum}{derive these things more thoroughly?}
+
 % If we neglect neutrinos ($f_\nu = 0$) and photon polarization, the initial conditions become:
 % \begin{align}
 % \Psi &= 1, \\
@@ -1699,28 +1697,28 @@ is the neutrino fraction. This yields the following initial conditions:
 % Neutrino perturbations are ignored in this case.
 
 % When including massless neutrinos and photon polarization, the system is extended with additional variables:
-For cold dark matter and baryons, the initial conditions become:
+It can further be shown that for cold dark matter and baryons, the initial conditions become:
 \begin{align}
 \delta_\text{CDM} = \delta_b &= -\frac{3}{2}\Psi, \\
-v_\text{CDM} = v_b &= -\frac{ck}{2\mathcal{H}} \Psi.
+v_\text{CDM} = v_b &= -\frac{ck}{2\mathcal{H}} \Psi,
 \end{align}
-For photons, we set:
+while for photons, we set:
 \begin{align}
 \Theta_0 &= -\frac{1}{2} \Psi, \\
 \Theta_1 &= \frac{ck}{6\mathcal{H}} \Psi, \\
 \Theta_2 &= \begin{cases}-\cfrac{8ck}{15\mathcal{H} \tau'} \Theta_1, \qquad&\text{(with polarization)} \\
   -\cfrac{20ck}{45\mathcal{H} \tau'} \Theta_1, \hspace{3pt}&\text{(without polarization)}
 \end{cases} \label{eq: initial quadrupole} \\
-\Theta_\ell &= -\frac{\ell}{2\ell+1} \frac{ck}{\mathcal{H} \tau'} \Theta_{\ell-1}, \qquad \ell \geq 3,
+\Theta_\ell &= -\frac{\ell}{2\ell+1} \frac{ck}{\mathcal{H} \tau'} \Theta_{\ell-1}, \qquad \ell \geq 3.
 \end{align}
-and for photon polarization:
+For photon polarization we have:
 \begin{align}
 \Theta_0^P &= \frac{5}{4} \Theta_2, \\
 \Theta_1^P &= -\frac{ck}{4\mathcal{H} \tau'} \Theta_2, \\
 \Theta_2^P &= \frac{1}{4} \Theta_2, \\
 \Theta_\ell^P &= -\frac{\ell}{2\ell+1} \frac{ck}{\mathcal{H} \tau'} \Theta_{\ell-1}^P, \qquad \ell \geq 3. \label{eq: initial polarization multipole}
 \end{align}
-The neutrino perturbations follow a similar hierarchy:
+Lastly, the neutrino perturbations follow a similar hierarchy:
 \begin{align}
 \mathcal{N}_0 &= -\frac{1}{2} \Psi, \\
 \mathcal{N}_1 &= \frac{ck}{6\mathcal{H}} \Psi, \\
@@ -1728,7 +1726,7 @@ The neutrino perturbations follow a similar hierarchy:
 \mathcal{N}_\ell &= \frac{ck}{(2\ell+1)\mathcal{H}} \mathcal{N}_{\ell-1}, \qquad \ell \geq 3.
 \end{align}
 % As noted, $\Psi$ is not a dynamical variable—it only sets the initial conditions. Since the equations are linear, the overall normalization can be chosen freely and matched to observational quantities later, such as the primordial curvature power spectrum $\mathcal{P}_{\mathcal{R}}$. By choosing $\mathcal{R} = 1$ initially, we ensure compatibility with the inflationary prediction for the primordial amplitude.
-These initial conditions, derived under the assumption of adiabaticity, allow us to evolve the Boltzmann system forward in time from a well-defined starting point. If one excludes neutrinos the equations above simplify accordingly, since $f_\nu=0$. 
+These initial conditions, derived under the assumption of adiabaticity, allow us to evolve the Boltzmann system forward in time from a well-defined starting point. If one excludes polarization the equations above simplify accordingly, since then $\Pi$ is simply equal to $\Theta_2$. Similarly, excluding neutrinos sets $f_\nu=0$. 
 
 \colorbox{Plum}{should the initial conditions be derived?}
 
@@ -1761,10 +1759,84 @@ The evolution of the photon dipole then becomes
 \end{equation}
 % These expressions are derived under the assumption that time derivatives of $(3\Theta_1 + v_b)$ are suppressed due to tight-coupling and can be approximated via a leading-order expansion in $1/\tau'$.
 % \colorbox{Plum}{redundant?} 
-Furthermore, the higher-order photon multipoles, as well as all of the polarization multipoles, are not dynamically evolved but instead algebraically determined from the dipole. More specifically, they can all be computed using the initial conditions in the normal regime (eqs. \eqref{eq: initial quadrupole}-\eqref{eq: initial polarization multipole}). Furthermore, neutrinos are unaffected by baryon-photon interactions and thereofre evolve the same way as usual. 
+Furthermore, the higher-order photon multipoles, as well as all of the polarization multipoles, are not dynamically evolved but instead algebraically determined from the dipole. More specifically, they can all be computed using the initial conditions in the normal regime (eqs. \eqref{eq: initial quadrupole}-\eqref{eq: initial polarization multipole}). Furthermore, neutrinos are unaffected by baryon-photon interactions and therefore evolve the same way as usual. 
 % These relations show that in the tight-coupling limit, photon polarization and higher anisotropies are heavily suppressed, scaling with inverse powers of $\tau'$. Consequently, they are negligible at early times but must be carefully tracked as $\tau'$ decreases.
 
-As the Universe evolves and scattering between photons and electrons weakens, we eventually exit the tight-coupling regime. To determine when this transition occurs, we define a set of conditions that must be met simultaneously: 
+
+\colorbox{Plum}{should I add a sec. about analytical approx. for testing?}
+
+\colorbox{Plum}{or is it enough to compare to your figures?}
+% \subsubsection{Analytical approximations}
+% \colorbox{Plum}{maybe remove this section}
+
+% While a numerical implementation is necessary for accurately solving the full system of cosmological perturbation equations, it's valuable to have analytical estimates to compare against. These approximations help ensure that the general trends in the evolution of our perturbations are physically reasonable and that no implementation errors have been made in the code. Even though we cannot solve the full Boltzmann hierarchy analytically, simplified solutions exist in specific limits and regimes.
+
+% One key check is to examine the evolution of the photon temperature monopole. Prior to recombination, when the photon-baryon fluid is tightly coupled, the evolution of the temperature perturbations can be approximated analytically. In the simplest case, we expect the combination $\Theta_0 + \Psi$ to oscillate sinusoidally:
+% \begin{equation}
+% \Theta_0 + \Psi \propto \cos\left(\frac{k\eta}{\sqrt{3}}\right),
+% \end{equation}
+% which corresponds to acoustic oscillations in the photon-baryon fluid. Though this is a rough approximation, it captures the expected oscillatory behavior. 
+% % More accurate approximations can be found in the literature (e.g. Hu \& Sugiyama 1995 \colorbox{Plum}{cite?}), and are typically accurate at the $\sim 10 - 20\%$ level. \colorbox{Plum}{rewrite?} TODO: include this?
+
+% We can also validate the evolution of the gravitational potential $\Phi$ by comparing to known results in matter and radiation-dominated regimes. A useful consistency check is to simulate a Universe with only matter and radiation and examine the behavior of $\Phi$ on large (super-horizon) scales. For modes satisfying $k \lesssim 0.001\,\text{Mpc}^{-1}$, we expect:
+% \begin{equation}
+% \Phi_\text{matter-era} = \frac{9}{10} \Phi_\text{radiation-era},
+% \end{equation}
+% which reflects the transition from radiation to matter domination. Furthermore, a useful form for the evolution of the potential on subhorizon scales ($k \gtrsim 0.1\,\text{Mpc}^{-1}$) in the radiation era is:
+% \begin{equation}
+% \Phi \simeq \Phi_\text{ini} \, \frac{\sin(y) - y \cos(y)}{y^3 / 3}, \quad y = \frac{k\eta}{\sqrt{3}}.
+% \end{equation}
+% Once inside the matter-dominated regime, the potential should become approximately constant in time, which can serve as another check.
+
+% Another important benchmark is the behavior of dark matter perturbations. On subhorizon scales during the matter era ($k \gg \mathcal{H}$), the Meszaros equation describes the growth of $\delta$:
+% \begin{equation}
+% \delta \propto a = e^x,
+% \end{equation}
+% while in the radiation era, where dark matter is not yet growing efficiently, we find $\delta \propto x$. An additional test is to compute the growth rate of perturbations, defined as:
+% \begin{equation}
+% f \equiv \frac{1}{\delta} \frac{d\delta}{dx} \simeq \Omega_m(x)^{0.55},
+% \end{equation}
+% which provides a useful reference in the matter-dominated epoch. \colorbox{Plum}{correct that this is CDM? add subscript}
+
+% \colorbox{Plum}{have this in implementation?}
+% These analytical forms do not replace the full numerical solution but serve as essential consistency checks. They help verify that the dynamics of key variables like $\Theta_0$, $\Phi$, and $\delta$ behave as expected in known limits, providing confidence in the overall correctness of our results.
+
+
+
+\subsection{Implementation details}\label{subsec: III methods}
+% \begin{enumerate}
+%   \item [-] Short section about which reionization and helium fraction parameters are used. Planck values? Check this.
+%   \item [-] Short paragraph about which files contain what (similar to milestone I). Mention which splines are made (specifically the weird ones, such as $x(\tau)$, and what it is used for). Maybe explain booleans.
+%   \item [-] Specify integration limits, number of points for splining, etc. mention that electron fraction and especially optical depth double derivative are somewhat unstable in Saha to Peebles regime and at reionization, so we use more points.
+%   \item [-] Own paragraph about tolerances etc., mention that we use $X_e = 0.9999$ as Saha limit, tolerance of $10^{-3}$ for Taylor expanding in Saha regime, adjust accuracy of ODE solver when solving for $T_b$, and use a tolerance for $x$ when solving for $y$ since it is very unstable in the beginning. Also mention how we iterately solve for $f_e$ and the tolerance used.
+%   \item [-] Mention test of integral of $\tilde{g}$, explain why we do this, and state result with relative error.
+% \end{enumerate}
+
+\subsubsection{Main program structure}
+The class \verb|Perturbations|, implemented in the corresponding source and header files, contains methods for solving all perturbation quantities—both in the tight-coupling regime and in the regime where the full Boltzmann equations apply. The results are stored using cubic 2D splines for efficient lookup, and can be retrieved via dedicated get-methods that take $x$ and $k$ as arguments. For the photon, polarization, and neutrino multipoles, the multipole number $\ell$ is required as a third argument. Additionally, this class computes and splines the source functions needed for the line-of-sight integration in the next milestone (see section \ref{subsubsec: IV theory LOS} for the relevant expressions).
+
+The number of photon multipoles included when solving the system is controlled by the constructor argument \verb|n_ell_Theta|. For the results presented in section \ref{subsec: III results}, I have set this to 11, corresponding to $\ell_{\max} = 10$. Inclusion of polarization and neutrino multipoles is governed by the arguments \verb|n_ell_Theta_P| and \verb|n_ell_Nu|, respectively: if either is set to zero, the associated boolean flags \verb|polarization| or \verb|neutrinos| are set to \verb|false|. I have used 11 multipoles for polarization and 13 for neutrinos to ensure adequate numerical accuracy. An additional boolean constructor argument \verb|lensing| determines whether the source function for the CMB lensing potential (see section \ref{subsubsec: IV theory lensing}) is computed.
+
+\colorbox{Plum}{maybe not mention source funcs before next milestone?}
+
+As before, the code uses the GSL-based ODE solver, though the system now contains many more components. Since the equations must be solved independently for each value of $k$, the runtime can be substantial. To address this, I have parallelized the $k$-loops using OpenMP, and enabled this feature by adding the compiler flag \verb|-fopenmp| to the \verb|Makefile| provided by Winther. Moreover, the results are written to file for a chosen value of $k$ using a single output-method, and visualized in \verb|perturbations.py|. 
+
+
+\subsubsection{Keeping track of indices}  
+In the class constructor, I define integer indices \verb|idx_var|, where \verb|var| refers to one of the scalar quantities we solve for: $\Phi$, $\delta_\text{CDM}$, $\delta_b$, $v_\text{CDM}$, and $v_b$. Their respective indices are set to 0, 1, 2, 3, and 4. These constants are used throughout the code to access variables when setting initial conditions, solving the system, and filling the 2D vector \verb|y_array| with the full solutions.
+
+For the photon, polarization, and neutrino multipoles, I define separate starting indices \verb|idx_start_var| corresponding to the positions of their respective monopoles. For photons, this index is given by \verb|idx_start_Theta = n_scalars|, where \verb|n_scalars = 5|. The starting indices for polarization and neutrinos depend on whether these components are included, so they are defined as:
+\begin{align*}
+  i_{\text{start},P} &= i_{\text{start},\Theta} + n_{\ell,\Theta} - (1 - b_P), \\
+  i_{\text{start},\nu} &= i_{\text{start},P} + n_{\ell,P} + (b_\nu - b_P).
+\end{align*}
+Here, $i_{\text{start},P}$ and $n_{\ell,P}$ correspond to the starting index and total number of polarization multipoles, while $b_P$ is the polarization bool. The same goes for photons (subscript $\Theta$) and neutrinos ($\nu$). For example, with 8 photon multipoles and we want to include neutrinos but not polarization, we get $i_{\text{start},P} = 5 + 8 - (1 - 0) = 12$ and $i_{\text{start},\nu} = 12 + 0 + (1 - 0) = 13$. This way, $\mathcal{N}_0$ correctly follows immediately after $\Theta_7$.
+
+When storing the ODE results, I declare \verb|y_array| with \verb|n_ell_tot + 2| components, where \verb|n_ell_tot| includes the 5 scalars and the total number of included multipoles. This extra space is reserved for storing the metric perturbation $\Psi(x, k)$ and the polarization source $\Pi(x, k)$, which are not solved directly but instead computed afterwards using eqs. \eqref{eq: Psi} and \eqref{eq: Pi}. These are appended at the end of \verb|y_array|, with $\Pi$ stored last.
+
+
+\subsubsection{Switching between regimes}
+As the Universe evolves and scattering between photons and electrons weakens, we eventually exit the tight-coupling regime. To determine when this transition occurs, it is necessary to define a set of conditions that must be met simultaneously: 
 \begin{enumerate}
   \item [] \vspace{-19pt}\begin{equation} \hspace{-12.3pt}1. \hspace{3.1pt}
     \left|\frac{d\tau}{dx}\right| > 10,
@@ -1779,56 +1851,215 @@ For each mode $k$, we start at the initial time and search forward to find when 
 \begin{equation}
 \left| \frac{d\tau}{dx} \right| = 10 \cdot \min\left(1, \frac{ck}{\mathcal{H}} \right).
 \end{equation}
-If the solution gives $x > -8.3$, we fix the end of tight coupling to $x = -8.3$ instead. In practice, this only affects the smallest scales ($k \gtrsim 0.15\,$Mpc$^{-1}$), where tight coupling breaks earlier due to faster photon decoupling. At this point, we switch to solving the full Boltzmann hierarchy to accurately track the evolution of anisotropies around recombination. 
+If the solution gives $x > -8.3$, I fix the end of tight coupling to $x = -8.3$ instead. In practice, this only affects the smallest scales ($k \gtrsim 0.15\,$Mpc$^{-1}$), where tight coupling breaks earlier due to faster photon decoupling. At this point, I switch to solving the full Boltzmann hierarchy to accurately track the evolution of anisotropies around recombination. 
 
-\colorbox{Plum}{rewrite? move to implementation?}
+\colorbox{Plum}{should I move this to theory?}
 
-% As the Universe expands and Compton scattering becomes inefficient, $\tau'$ rapidly drops and tight-coupling breaks down. Numerically, this occurs when the condition
-% \begin{equation}
-% \frac{1}{\tau'} \sim \text{few}
-% \end{equation}
-% is met. At this point, we smoothly switch from the tight-coupling approximation to evolving the full Boltzmann hierarchy, as described in the earlier sections. This transition is crucial for accurately capturing the onset of recombination, when photon decoupling allows anisotropies to develop and eventually form the primary CMB spectrum.
+I use the endpoints of the tight-coupling ODE solutions as initial conditions for the full system, with the exception of the multipoles $\Theta_{\ell \geq 2}$ and $\Theta^P_\ell$. Since these only start evolving dynamically after tight-coupling ends, their derivatives are set to zero in this regime, and they are instead determined from the initial conditions defined in section \ref{subsubsec: III theory inflation}. As a result, their values are small but non-zero at early times—particularly for large $k$. I therefore compute these multipoles separately using the inflationary initial conditions after retrieving the solutions for the dynamical quantities, and fill \verb|y_array| accordingly, since their values from the ODE solver will otherwise be zero.
 
 
-\subsubsection{Analytical approximations}
-While a numerical implementation is necessary for accurately solving the full system of cosmological perturbation equations, it's valuable to have analytical estimates to compare against. These approximations help ensure that the general trends in the evolution of our perturbations are physically reasonable and that no implementation errors have been made in the code. Even though we cannot solve the full Boltzmann hierarchy analytically, simplified solutions exist in specific limits and regimes.
+\colorbox{Plum}{should I explain that I find a tc-index?}
 
-One key check is to examine the evolution of the photon temperature monopole. Prior to recombination, when the photon-baryon fluid is tightly coupled, the evolution of the temperature perturbations can be approximated analytically. In the simplest case, we expect the combination $\Theta_0 + \Psi$ to oscillate sinusoidally:
-\begin{equation}
-\Theta_0 + \Psi \propto \cos\left(\frac{k\eta}{\sqrt{3}}\right),
-\end{equation}
-which corresponds to acoustic oscillations in the photon-baryon fluid. Though this is a rough approximation, it captures the expected oscillatory behavior. 
-% More accurate approximations can be found in the literature (e.g. Hu \& Sugiyama 1995 \colorbox{Plum}{cite?}), and are typically accurate at the $\sim 10 - 20\%$ level. \colorbox{Plum}{rewrite?} TODO: include this?
 
-We can also validate the evolution of the gravitational potential $\Phi$ by comparing to known results in matter and radiation-dominated regimes. A useful consistency check is to simulate a Universe with only matter and radiation and examine the behavior of $\Phi$ on large (super-horizon) scales. For modes satisfying $k \lesssim 0.001\,\text{Mpc}^{-1}$, we expect:
-\begin{equation}
-\Phi_\text{matter-era} = \frac{9}{10} \Phi_\text{radiation-era},
-\end{equation}
-which reflects the transition from radiation to matter domination. Furthermore, a useful form for the evolution of the potential on subhorizon scales ($k \gtrsim 0.1\,\text{Mpc}^{-1}$) in the radiation era is:
-\begin{equation}
-\Phi \simeq \Phi_\text{ini} \, \frac{\sin(y) - y \cos(y)}{y^3 / 3}, \quad y = \frac{k\eta}{\sqrt{3}}.
-\end{equation}
-Once inside the matter-dominated regime, the potential should become approximately constant in time, which can serve as another check.
+\subsubsection{Integration limits and points}\label{subsubsec: III methods limits}
+When integrating the perturbation equations, I used the range $x_\text{min} = -18.0$ to $x_\text{max} = 0.0$, with $1,000$ sampling points for computational efficiency. This resolution was found to give results nearly indistinguishable from those obtained using $10,000$ points, making it a reasonable trade-off between accuracy and runtime. Although large values of $k$ take significantly longer to solve than small ones, I opted to compute the solutions for $200$ logarithmically spaced $k$-modes between $k_\text{min} = 5.0 \times 10^{-5}\,\text{Mpc}^{-1}$ and $k_\text{max} = 1.0\,\text{Mpc}^{-1}$ to capture the full range of scale-dependent behaviors.
 
-Another important benchmark is the behavior of dark matter perturbations. On subhorizon scales during the matter era ($k \gg \mathcal{H}$), the Meszaros equation describes the growth of $\delta$:
-\begin{equation}
-\delta \propto a = e^x,
-\end{equation}
-while in the radiation era, where dark matter is not yet growing efficiently, we find $\delta \propto x$. An additional test is to compute the growth rate of perturbations, defined as:
-\begin{equation}
-f \equiv \frac{1}{\delta} \frac{d\delta}{dx} \simeq \Omega_m(x)^{0.55},
-\end{equation}
-which provides a useful reference in the matter-dominated epoch. \colorbox{Plum}{correct that this is CDM? add subscript}
-
-\colorbox{Plum}{have this in implementation?}
-% These analytical forms do not replace the full numerical solution but serve as essential consistency checks. They help verify that the dynamics of key variables like $\Theta_0$, $\Phi$, and $\delta$ behave as expected in known limits, providing confidence in the overall correctness of our results.
+For plotting purposes, I focused on a representative subset of modes: $k \in [0.001, 0.01, 0.1, 1.0]\,\text{Mpc}^{-1}$, as including more values would make the figures cluttered and harder to interpret. Modes with $k < 0.001\,\text{Mpc}^{-1}$ correspond to extremely large scales that do not enter the horizon until very late times and thus show limited evolution within the range of interest. For the output, I used the same $x$-range as in the integration and sampled $18,001$ points with spacing $\Delta x = 0.001$ to ensure smooth visualizations.
 
 
 
-\subsection{Implementation details}\label{subsec: III methods}
-% \colorbox{Plum}{TODO: mention tight-coupling time!}
+\subsubsection{Testing the code}
+Many of the quantities computed in this milestone are intricately linked through tight-coupling relations and Boltzmann hierarchies, meaning that even minor implementation errors can propagate and lead to incorrect results. Unfortunately, several of these quantities are also challenging to interpret physically. While there are many possible ways to test the code, I found it most instructive to compare against the reference plots provided by \cite{Course} \colorbox{Plum}{okay to cite this way?}  using the toy cosmology described in the previous milestones. In this setup, only 8 photon multipoles are included, and neutrinos, polarization, Helium, and reionization are all neglected.
+
+Figures \ref{appfig: Phi}, \ref{appfig: delta_and_v}, and \ref{appfig: Thetas} in appendix \ref{appsec: figures} show the plots I have made with this toy cosmology. Overall, the agreement is excellent. The only notable differences appear in the baryon velocity and photon multipoles for the smallest scale mode ($k=0.1\,\text{Mpc}^{-1}$). In the right subplot of figure \ref{appfig: delta_and_v}, the dashed green line shows that $v_b$ dips to much smaller values in my plot than in Winther's, and the relative depths of these dips also differs. However, since the figure uses logarithmic scaling and displays absolute values, these dips simply mark where the perturbation changes sign. This discrepancy likely results from different sampling densities.
+
+Similarly, small differences in the post-recombination oscillations of $\Theta_0$ and $\Theta_1$ for this same mode (see the green curve in figure \ref{appfig: Thetas}) are also likely due to differences in sampling. The fact that all other features match closely is a strong validation of the code's accuracy—at least when polarization and neutrinos are excluded from the system.
+
+\colorbox{Plum}{should I discuss more?}
+
+
 
 \subsection{Results and discussions}\label{subsec: III results}
+
+\subsubsection{Cold dark matter and baryons}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf}
+  \caption{Evolution of the CDM (purple shades) and baryon (orange shades) density (left) and velocity (right) perturbations. Darker lines correspond to larger scales (smaller $k$, given in units of $\text{Mpc}^{-1}$). An asinh-scaling is used to highlight variations across several orders of magnitude and sign changes. Dashed lines indicate approximate horizon entry times for different modes, while the yellow and red vertical lines mark radiation-matter and matter-dark energy equality, respectively. \colorbox{Plum}{should I explain the asinh scaling?}}\label{fig:CDM and baryons}
+\end{figure*}
+
+Figure \ref{fig:CDM and baryons} shows the evolution of the density contrasts $\delta_\text{CDM}$ and $\delta_b$ (left panel) and the corresponding velocity perturbations $v_\text{CDM}$ and $v_b$ (right panel), plotted as functions of $x = \log (a)$ for the four selected wavenumbers mentioned in section \ref{subsubsec: III methods limits}. Darker colors correspond to smaller $k$ (larger scales), and vertical dashed lines mark the approximate horizon entry for each mode, estimated by $ck/\mathcal{H} = 1$. \colorbox{Plum}{should I explain this?} The yellow and red lines indicate radiation-matter and matter-dark energy equality, respectively.
+
+Small-scale modes ($k = 1.0$, $0.1\,\text{Mpc}^{-1}$) enter the horizon during radiation domination, when the energy density is dominated by relativistic species that cannot cluster efficiently. As a result, gravitational potentials decay, suppressing the growth of matter overdensities—a phenomenon known as the Meszaros effect. In this regime, CDM perturbations grow only logarithmically until matter domination sets in. This suppression is driven indirectly by radiation pressure, which causes the decay of gravitational wells and weakens the gravitational pull that would otherwise enhance CDM growth. Since dark matter does not couple directly to photons, this suppression is slightly delayed compared to baryons. CDM overdensities continue to grow briefly after horizon entry, with velocity perturbations peaking slightly later (e.g., around $x \sim -11.5$ for $k = 1.0\,\text{Mpc}^{-1}$), before growth eventually stalls.
+
+For baryons, the behavior is markedly different prior to recombination. In addition to being affected by the decaying gravitational wells, they experience acoustic oscillations driven by photon pressure due to their tight coupling through Thomson scattering. This is visible in the velocity plot as rapid oscillations for the highest $k$-mode following horizon entry. The radiation pressure prevents effective baryon clustering, leading to oscillations in $\delta_b$ and preventing the growth observed in $\delta_\text{CDM}$. The onset of oscillations is slightly delayed by the gravitational pull from growing CDM overdensities, which initially drive the baryons into the same potential wells. However, the direct interaction with photons soon dominates, causing the velocity divergence to reverse and oscillate.
+
+The intermediate mode ($k = 0.01\,\text{Mpc}^{-1}$), which enters the horizon around the time of radiation-matter equality, displays a hybrid behavior. Initially, its growth is mildly suppressed by residual radiation pressure, causing the baryon overdensity to lag slightly behind that of dark matter. After recombination, however, the diminishing influence of photon scattering allows baryons to fall freely into CDM potential wells. This leads to the observed  convergence of the baryon and CDM perturbations, with any residual oscillations in the baryon velocity field decaying rapidly as pressure support fades. The largest mode ($k = 0.001\,\text{Mpc}^{-1}$) enters the horizon well after matter-radiation equality, and evolves in a regime where gravitational potentials are nearly constant. Consequently, both CDM and baryon overdensities grow roughly in proportion to the scale factor, with steadily increasing and closely aligned velocity perturbations, unaffected by oscillatory behavior.
+
+At late times, after matter-dark energy equality (marked by the red line), the accelerated expansion caused by dark energy suppresses the growth of all matter perturbations. This is reflected in the flattening of the density contrast curves and the gradual decrease of velocity perturbations for all modes, and is the result of decaying of gravitational potentials. This leads to a freeze-out in structure formation, and is closely related to the ISW effect mentioned in section \ref{subsubsec: III theory photons}. 
+% which leaves a significant imprint on the CMB power spectrum as we will see in the next milestone. \colorbox{Plum}{maybe rewrite/shorten}
+% as discussed in secton \ref{subsubsec: III results Phi and Psi}. 
+
+
+\subsubsection{Photons and neutrinos}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf}
+  \caption{Evolution of photon density $\delta_\gamma=4\Theta_0$ (left) and velocity $v_\gamma=-3\Theta_1$ (right) perturbations. 
+  %Darker lines represent larger scales, and the $k$-values are given in units of $\text{Mpc}^{-1}$. 
+  The photon perturbations grow and oscillate after horizon entry, with oscillations damping over time, especially for small-scale modes after matter-radiation equality.}\label{fig:photons}
+\end{figure*}
+
+Figure \ref{fig:photons} displays the evolution of the photon density perturbations $\delta_\gamma = 4\Theta_0$ (left panel) and velocity perturbations $v_\gamma = -3\Theta_1$ (right panel), for the same range of $k$-values as previously. Before horizon entry, all modes evolve slowly and remain nearly constant due to the absence of causal interactions. If a mode enters the horizon before or around the time of recombination, it begins to oscillate due to acoustic waves in the tightly coupled photon-baryon plasma, mimicking the behavior seen for baryons in figure \ref{fig:CDM and baryons}. These oscillations are governed by the interplay between gravitational compression and the restoring pressure of the photons, effectively behaving like a driven harmonic oscillator.
+
+For the modes that enter the horizon during radiation domination (e.g., $k=0.1$ and $1.0\,\text{Mpc}^{-1}$), oscillations begin early and with high frequency. However, their amplitude gradually decays over time due to diffusion damping (Silk damping), where photons scatter and diffuse out of overdense regions, erasing anisotropies on small scales. This leads to the observed rapid suppression of oscillations in both $\delta_\gamma$ and $v_\gamma$ for these high-$k$ modes after radiation-matter equality. In contrast, large-scale modes ($k=0.001$ and $0.01\,\text{Mpc}^{-1}$) enter the horizon later, during or after matter domination. As a result, they begin oscillating later and at lower frequencies, and their amplitudes are less affected by damping. 
+% This results in more sustained and coherent oscillatory behavior. Notably, the $k=0.01\,\text{Mpc}^{-1}$ mode maintains significant amplitude well into the matter-dominated era, reflecting continued gravitational driving before damping dominates.
+
+The velocity perturbations $v_\gamma$ track the same oscillation frequency as $\delta_\gamma$, but are phase-shifted by $\pi/2$, consistent with harmonic oscillator dynamics. Their amplitudes evolve similarly, decreasing with time due to the same damping mechanisms, with small-scale modes decaying more rapidly than large-scale ones. Their sign reflects the direction of bulk photon motion associated with compressions and rarefactions in the fluid.
+
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf}
+  \caption{Evolution of neutrino density $\delta_\nu=4\mathcal{N}_0$ (left) and velocity $v_\nu=-3\mathcal{N}_1$ (right) perturbations. 
+  %Darker lines show larger scales, with $k$-values stated in $\text{Mpc}^{-1}$ as before. \colorbox{Plum}{necessary to state every time?} 
+  Neutrino perturbations behave similarly to photons at early times but evolve differently due to free-streaming, with scale-dependent residuals emerging after horizon entry.}\label{fig:neutrinos}
+\end{figure*}
+
+Figure \ref{fig:neutrinos} shows the evolution of the neutrino density contrast $\delta_\nu = 4\mathcal{N}_0$ (left) and velocity perturbation $v_\nu = -3\mathcal{N}_1$ (right) for the same range of wavenumbers. Before horizon entry, all perturbations evolve slowly and remain nearly constant, consistent with the causal limitations imposed on superhorizon modes.
+
+Unlike photons, neutrinos decoupled at temperatures around $1\,$MeV and have been free-streaming ever since. As a result, their perturbations evolve collisionlessly, and begin to oscillate immediately after horizon crossing. However, because neutrinos do not participate in the tight-coupling dynamics of the photon-baryon fluid, they are not subject to the same restoring forces, and their perturbations are not sustained by acoustic oscillations. Consequently, we see that the velocity and density contrasts in neutrinos decay more rapidly than their photon counterparts. This damping is particularly strong for small-scale modes, where the free-streaming is most effective at erasing inhomogeneities.
+% unlike the sustained oscillations seen in photons, neutrino perturbations are quickly damped due to the rapid dispersion of neutrinos in momentum space. This damping is particularly strong for small-scale modes, where the free-streaming is most effective at erasing inhomogeneities.
+
+At late times, the accelerated expansion driven by dark energy suppresses the growth of all perturbations. For relativistic species like photons and neutrinos, whose energy densities dilute more rapidly with expansion ($\rho_r \propto a^{-4}$), this results in a gradual decline in their density contrasts. This behavior is evident in the intermediate-scale modes shown in figures \ref{fig:photons} and \ref{fig:neutrinos}, where the perturbations—following an extended period of near-constant oscillations—begin to decay as we approach matter-dark energy equality.
+
+% The different asymptotic values of $\delta_\nu$ for the various $k$-modes can be understood from the balance between gravitational driving and free-streaming. Larger-scale modes are affected by gravitational potentials for a longer time before horizon entry and can retain more of their initial amplitude, whereas small-scale modes are rapidly damped by free-streaming once they enter the horizon. This explains the downward trend in $\delta_\nu$ for increasing $k$ in the late-time Universe.
+
+
+\subsubsection{Quadrupole moments}\label{subsubsec: III results quadrupoles}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf}
+  \caption{Evolution of the photon quadrupole $\Theta_2$ (left) and the neutrino quadrupole $\mathcal{N}_2$ (right). 
+  %Darker curves correspond to larger scales, and $k$ is given in units of $\text{Mpc}^{-1}$. 
+  The photon quadrupole remains suppressed until tight-coupling breaks down, while the neutrino quadrupole freely grows after horizon crossing.}\label{fig:quadrupoles}
+\end{figure*}
+
+Figure \ref{fig:quadrupoles} shows the evolution of the photon (left) and neutrino (right) quadrupoles. In the left panel, the $x$-axis is cropped to exclude most of the tight-coupling era, during which $\Theta_2$ is heavily suppressed due to rapid Thomson scattering. After tight-coupling breaks down near recombination, a non-zero photon quadrupole rapidly develops, though its evolution varies strongly with scale. For the largest $k$-mode, $\Theta_2$ begins oscillating shortly after horizon entry and is quickly damped by residual scattering and diffusion. In contrast, the second largest mode exhibits more pronounced and irregular oscillations that persist further into the matter-dominated era before gradually decaying—highlighting the continued interplay between acoustic driving and damping processes described earlier.
+
+The second smallest $k$-mode exhibits the most pronounced and sustained oscillations. Although the amplitude gradually decays following recombination, a significant growth is observable around $x \sim -2$, coinciding with the onset of reionization. This timing might suggest that renewed Thomson scattering off free electrons reintroduced during reionization may allow for temporary amplification of the quadrupole through new anisotropic photon scattering. \colorbox{Plum}{is this reasonable?}
+
+Turning to $\mathcal{N}_2$, we observe a visibly different pattern, especially on small scales. Due to the very early neutrino decoupling, their quadrupole begins growing immediately after horizon entry for each mode, unimpeded by scattering. The smaller-scale modes peak at higher amplitudes due to more efficient free-streaming and earlier entry into the horizon, while the large-scale modes enter later and thus remain nearly flat until matter domination. In the radiation-dominated era, neutrinos contribute significantly to the anisotropic stress. Since they can develop a quadrupole immediately upon horizon entry, they also play an important role in the decay of the gravitational potential $\Phi$ on subhorizon scales.
+
+A noteworthy late-time feature is the gentle upward trend in both $\Theta_2$ and $\mathcal{N}_2$ for the large- and intermediate-scale modes after matter-dark energy equality. This can be attributed to the decay of gravitational potentials in the dark energy-dominated era, which acts as a source for anisotropies via the ISW effect. The fact that this trend appears in both the photon and neutrino quadrupoles suggests it is unlikely to be a consequence of reionization, as neutrinos are unaffected by scattering processes.
+
+\color{Plum}
+QUESTION: Could the increase towards $x=0$ be a numerical artifact caused by including too many multipoles? Or does it actually have a physical significance? It disappears if I reduce to 8 multipoles of each type. I'm honestly guessing a little here, because I think it's kinda difficult to interpret.
+\color{black}
+
+
+\subsubsection{Polarization multipoles}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf}
+  \caption{Evolution of the polarization monopole $\Theta^P_0$ (top), dipole $\Theta^P_1$ (middle), and quadrupole $\Theta^P_2$ (bottom). Polarization arises from the temperature quadrupole anisotropy, becoming significant only after tight-coupling ends.}\label{fig:polarization}
+\end{figure}
+
+
+Figure \ref{fig:polarization} shows the evolution of the photon polarization monopole $\Theta^P_{0}$ (top panel), dipole $\Theta^P_{1}$ (middle panel), and quadrupole $\Theta^P_{2}$ (bottom panel). In contrast to photon temperature perturbations, all the polarization multipoles are sourced by the anisotropic Thomson scattering that becomes effective only after photon decoupling. Consequently, they are vanishingly small in the early Universe, and the $x$-axis is cropped in the plot to highlight their relevant evolution.
+
+The smallest-scale mode, which enters the horizon deep in the radiation era, naturally begins oscillating first. Its polarization multipoles closely track the oscillatory pattern of $\Theta_2$ from figure \ref{fig:quadrupoles}, consistent with the fact that all polarization multipoles are algebraically related to the temperature quadrupole in the tight-coupling regime. Their oscillations also persist with decreasing amplitude after radiation-matter equality, echoing the damping seen for $\Theta_2$.
+
+The intermediate-scale modes show more irregular oscillatory behavior, with noticeable shifts and non-monotonic amplitudes. This may be partially influenced by reionization at $x \gtrsim -2$, which reintroduces Thomson scattering and allows the quadrupole to again source polarization. Interestingly, $\Theta^P_{0}$ and $\Theta^P_{2}$ for these modes appear to be consistently shifted slightly below zero, suggesting a net anisotropic distortion in one direction due to residual quadrupole contributions or asymmetric reionization effects. \colorbox{Plum}{or possibly a numerical artifact?}
+
+Finally, the largest-scale mode exhibits almost no oscillation in any of the polarization multipoles, despite the quadrupole $\Theta_2$ for this mode showing clear growth after horizon entry. This mismatch is a consequence of the limited causal interaction at such large scales: the polarization generation is inefficient due to the lack of significant Thomson scattering at late times and therefore insufficient anisotropy build-up.
+
+
+
+\subsubsection{Gravitational potentials}\label{subsubsec: III results Phi and Psi}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf}
+  \caption{Evolution of the gravitational potential $\Phi$ (left) and the anisotropic stress $\Phi + \Psi$ (right). 
+  %Darker lines show larger scales, with $k$-values stated in $\text{Mpc}^{-1}$ as before. 
+  Small-scale modes that enter the horizon during radiation domination exhibit decaying $\Phi$ and oscillatory $\Phi + \Psi$, while large-scale modes preserve nearly constant potentials until dark energy domination.
+  % as functions of $x = \log (a)$. Darker lines correspond to larger scales (smaller $k$, given in units of $\text{Mpc}^{-1}$). Dashed lines indicate approximate horizon entry times for different modes, while the yellow and red vertical lines mark radiation-matter and matter-dark energy equality, respectively.
+  }\label{fig:Phi and Psi}
+\end{figure*}
+
+Figure \ref{fig:Phi and Psi} shows the evolution of the gravitational potential $\Phi$ (left) and the anisotropic stress $\Phi + \Psi$ (right). During radiation domination, $\Phi$ remains nearly constant for superhorizon modes, consistent with the conservation of the comoving curvature perturbation $\mathcal{R}$. In contrast, for the smallest-scale modes that enter the horizon during this epoch, $\Phi$ decays rapidly. This occurs because the dominating radiation pressure prevents the sustain of stable gravitational potential wells and inhibits efficient matter clustering. As illustrated in figures \ref{fig:CDM and baryons} and \ref{fig:photons}, this decay contributes both to the onset of acoustic oscillations in the photon-baryon fluid and to the suppressed growth of CDM overdensities via the Meszaros effect.
+
+The intermediate mode $k = 0.01\,\text{Mpc}^{-1}$ enters the horizon around the time of radiation-matter equality, and its behavior reflects the transition between these two regimes. Its gravitational potential exhibits a modest decay while radiation still contributes significantly to the total energy density, but soon flattens as CDM begins to dominate and support stable potential wells. This pattern aligns with the sustained growth of matter perturbations seen for this mode and helps explain its prolonged oscillatory behavior in the photon and neutrino quadrupole plots (figure \ref{fig:quadrupoles}).
+
+For the largest scale, which enters well after matter domination, $\Phi$ remains nearly constant after horizon entry. Here, CDM clustering is fully efficient, and the lack of significant radiation pressure means potential wells remain effectively static. This reflects the standard Meszaros transition, where structure formation proceeds unimpeded by relativistic species. At late times, however, all modes exhibit a decline in $\Phi$ as dark energy becomes dominant. As mentioned briefly in the previous sections, this decay of potentials contributes to the late-time ISW effect, which sources large-scale temperature anisotropies in the CMB.
+
+The right panel of figure \ref{fig:Phi and Psi} illustrates how the anisotropic stress $\Phi + \Psi$ evolves across different scales and epochs. For high-$k$ modes entering the horizon during radiation domination, we observe a rapid decline from the initial positive value, followed by oscillations around zero with a decaying amplitude. This pattern reflects the onset of anisotropic stress caused by free-streaming neutrinos. As seen in figure \ref{fig:quadrupoles}, the neutrino quadrupole $\mathcal{N}_2$ grows rapidly once a mode enters the horizon, generating anisotropic stress that alters the Einstein equations by suppressing $\Psi$ relative to $\Phi$ (see eq. \eqref{eq: Psi}). This in turn causes $\Phi + \Psi$ to deviate from its initial value and oscillate.
+
+These oscillations also affect the evolution of $\Phi$, as both $\Psi$ and the neutrino quadrupole $\mathcal{N}_2$ enter its differential equation (eq. \eqref{eq: dPhidx}). On small scales, this coupling drives the rapid decay of the gravitational potentials. As the Universe transitions to matter domination, the impact of free-streaming relativistic species weakens, leading to a gradual decline in anisotropic stress. For the intermediate mode ($k = 0.01\,\text{Mpc}^{-1}$), this change appears as a brief dip in $\Phi + \Psi$ just after horizon entry, followed by a steady return toward zero, reflecting the residual but diminishing influence of radiation. In contrast, the largest-scale mode exhibits only a modest positive bump before smoothly flattening out. In both cases, $\Phi + \Psi$ approaches zero at late times, consistent with a pressureless fluid in which anisotropic stress vanishes and $\Phi = -\Psi$.
+
+\color{Plum}
+QUESTION: Is it okay to have this subsection at the end? I placed it here because I wanted to refer to the quadrupole plots when discussing the anisotropic stress, but I don't know if these things should be presented earlier.
+\color{black}
+
+
+
+
+
+% \subsubsection{Density perturbations}
+% \begin{figure*}
+%   \centering
+%   \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/densities.pdf}
+%   \caption{Evolution of the CDM (top left), baryon (top right), photon (bottom left) and neutrino (bottom right) overdensities. Darker lines correspond to larger scales (smaller $k$, given in units of $\text{Mpc}^{-1}$). The CDM and baryon plots use an asinh-scale to highlight variations across several orders of magnitude and sign changes. Dashed lines indicate approximate horizon entry times for different modes, while the yellow and red vertical lines mark radiation-matter and matter-dark energy equality, respectively. \colorbox{Plum}{TODO: maybe change, explain asinh?}}\label{fig:densities}
+% \end{figure*}
+
+% \color{Plum}
+% Figure \ref{fig:densities} shows the evolution of the density contrasts $\delta_i$ for cold dark matter (top left), baryons (top right), photons (bottom left), and neutrinos (bottom right) as functions of $x = \log (a)$ for the four selected wavenumbers mentioned in section \ref{subsubsec: III methods limits}. Darker curves correspond to larger spatial scales (smaller $k$), and the dashed vertical lines mark the approximate horizon entry times for each mode, estimated by the condition $ck/\mathcal{H} = 1$. \colorbox{Plum}{should I explain this?} The yellow and red vertical lines indicate radiation-matter and matter-dark energy equality, respectively.
+
+% In the top two panels, we see that CDM and baryons share similar growth behavior on large scales, as well as on smaller scales before horizon entry and well after after recombination. Prior to horizon entry, all matter perturbations grow slowly due to causal constraints. After entering the horizon, modes that do so during radiation domination (e.g. $k = 1.0$ and $0.1$ Mpc$^{-1}$) experience suppressed growth—a manifestation of the Meszaros effect. Here, radiation dominates the energy density and gravitational potentials decay, inhibiting efficient structure formation. These modes continue to grow only logarithmically until matter takes over, but not before the corresponding velocity contrasts have sufficiently decayed due to the rapid radiation-driven expansion. This is visible from 
+
+% By contrast, modes that enter the horizon after matter-radiation equality (e.g. $k = 0.001$ Mpc$^{-1}$) grow more efficiently upon horizon entry, as cold dark matter can now dominate and maintain gravitational potential wells. As expected, the largest-scale CDM perturbations reach the highest amplitudes by today. The intermediate mode ($k = 0.01$ Mpc$^{-1}$), which enters around equality, displays a transition between the two regimes, with some early suppression followed by linear growth—highlighting the gradual nature of equality.
+
+% Baryons closely follow the photon field before recombination due to tight coupling. As a result, $\delta_b$ exhibits oscillatory behavior prior to decoupling. After recombination, baryons decouple from photons and begin falling into CDM potential wells, causing $\delta_b$ to converge toward $\delta_\text{CDM}$. The convergence is slower for smaller-scale modes due to lingering pressure support and photon drag.
+
+% The bottom panels illustrate photon and neutrino density perturbations. Both species are relativistic and free-streaming after their respective decoupling epochs. After horizon entry, both $\delta_\gamma$ and $\delta_\nu$ undergo oscillations, though their behavior differs. Photons oscillate in the coupled photon-baryon fluid, forming acoustic waves with decaying amplitude due to Silk damping. Neutrinos, having decoupled much earlier, evolve collisionlessly and undergo free-streaming, which causes more rapid damping and smoothed perturbations. This distinction becomes evident at high $k$.
+
+% Unlike photons, neutrinos are unaffected by recombination, so their oscillations continue undisturbed until matter domination, after which their contribution becomes subdominant. Notably, $\delta_\nu$ settles at different asymptotic values for different $k$ due to the competing effects of free-streaming and gravitational driving prior to horizon entry.
+
+% Together, these panels highlight how different species respond to horizon crossing, coupling mechanisms, and the dominant energy component of the Universe. These density perturbations in turn source gravitational potentials and drive the evolution of velocity perturbations, which we discuss in the following subsection.
+% \color{black}
+
+
+% \subsubsection{Velocity perturbations}
+% \begin{figure*}
+%   \centering
+%   \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/velocities.pdf}
+%   \caption{Evolution of the CDM (upper left), baryon (upper right), photon (lower left) and neutrino (lower right) velocity perturbations. Darker lines indicate larger scales, and the values of $k$ are in units of $\text{Mpc}^{-1}$. The CDM and baryon plots use an asinh-scale to highlight variations across several orders of magnitude and sign changes. Key cosmological transitions are indicated as in the previous figure.}\label{fig:velocities}
+% \end{figure*}
+
+% \color{Plum}
+% Figure \ref{fig:velocities} displays the evolution of the velocity perturbations $v_i$ for cold dark matter (CDM), baryons, photons, and neutrinos. Each subplot shows $v_i$ as a function of $x = \log(a)$ for four representative wavenumbers $k = 0.001$, $0.01$, $0.1$, and $1.0,\text{Mpc}^{-1}$, with darker curves corresponding to larger spatial scales (smaller $k$). Vertical yellow and red lines denote radiation-matter equality and matter-dark energy equality, respectively.
+
+% Before horizon entry, all velocities remain close to zero due to the superhorizon nature of the perturbations—causal processes have not yet begun to operate. Upon horizon entry, each component begins to develop velocity perturbations, responding to gravitational potentials and pressure forces.
+
+% For CDM, which is pressureless and uncoupled from other species, the velocity perturbations increase monotonically after horizon entry and eventually freeze out during dark energy domination. This behavior reflects CDM's smooth infall into growing gravitational potentials, with no oscillatory motion due to the absence of pressure.
+
+% In contrast, baryon velocities initially track those of photons closely, displaying clear acoustic oscillations for high-$k$ modes. This behavior arises from the tight coupling between baryons and photons before recombination, where the photon pressure drives oscillations in the combined photon-baryon fluid. The amplitude and frequency of these oscillations are determined by the sound speed of the fluid and the wavenumber. After recombination, photons decouple and begin free-streaming, allowing baryons to fall more freely into gravitational wells. As a result, the baryon velocities start to align with the CDM velocities, and oscillations gradually damp out.
+
+% Photon and neutrino velocity perturbations also exhibit oscillatory behavior following horizon entry. For photons, the oscillations stem from the harmonic response of the tightly coupled photon-baryon fluid to gravitational compression and rarefaction. These oscillations are phase-shifted by $\pi/2$ relative to the density fluctuations, consistent with the harmonic oscillator model described in Milestone III. The amplitude of $v_\gamma$ decreases after matter-radiation equality due to Silk damping, which erases small-scale perturbations via photon diffusion.
+
+% Neutrinos, which decoupled early and have been free-streaming ever since, display qualitatively similar oscillations to photons but with key differences. Unlike photons, they are not subject to tight coupling or Silk damping, and thus their velocity perturbations exhibit broader oscillations with less damping. Nevertheless, the free-streaming nature of neutrinos causes their perturbations to spread out in phase space, leading to an overall suppression of small-scale modes after horizon entry.
+
+% Comparing all components, we see that photon and baryon velocities are initially synchronized due to tight coupling, while CDM and neutrinos evolve independently. The eventual alignment of baryon and CDM velocities after recombination reflects the transition to baryons behaving like a pressureless fluid. The distinct evolution of photon and neutrino velocities also highlights the impact of interactions (or lack thereof) on perturbation growth, which in turn affects the gravitational potentials that drive structure formation. These insights set the stage for the next subsections on higher-order multipoles and the evolution of $\Phi$ and $\Psi$.
+% \color{black}
+
+
+
+
 
 
 
@@ -1926,7 +2157,7 @@ which shows that the relative uncertainty is larger for small $\ell$. Importantl
 
 
 
-\subsubsection{Line-of-sight integration}
+\subsubsection{Line-of-sight integration}\label{subsubsec: IV theory LOS}
 To calculate the CMB angular power spectrum $C_\ell$, we need the temperature multipoles $\Theta_\ell(k)$ at present time. A naive approach would be to evolve the full Boltzmann hierarchy for each $\ell$ up to some large $\ell_{\text{max}} \sim 1000$, which would involve solving thousands of coupled differential equations for every mode $k$. While this is theoretically feasible, it is extremely computationally expensive. Fortunately, a clever method known as line-of-sight (LOS) integration (see \colorbox{Plum}{add citation!}) offers an elegant and much more efficient alternative.
 % This technique was introduced by Uros Seljak and Matias Zaldarriaga in 1996 in their influential paper ``A Line of Sight Approach to Cosmic Microwave Background Anisotropies'' \colorbox{Plum}{add cite!}. 
 Rather than evolving the entire Boltzmann hierarchy, this method instead solves for the monopole at all times and positions and then integrates over the photon path to determine the final anisotropies observed today. This drastically reduces the computational cost, requiring us to compute only a handful of lower multipoles, as mentioned in the previous milestone.
@@ -2012,14 +2243,14 @@ Once the $a_{\ell m}$'s are generated, the temperature map can be constructed us
 \colorbox{Plum}{move/rewrite/specify in implementation?}
 
 
-\subsubsection{Features in the CMB}
+\subsubsection{Features in the CMB}\label{subsubsec: IV theory features}
 \colorbox{Plum}{rename section? combine with previous?}
 
 The prominent peaks and troughs observed in the power spectrum arise from acoustic oscillations in the tightly coupled photon-baryon fluid before recombination. These oscillations are the result of competition between gravitational collapse and photon pressure in the early Universe. Overdense regions begin to collapse under gravity, but the intense radiation pressure from photons resists compression, resulting in oscillatory behavior analogous to sound waves.
 
 From figure \ref{fig:visibility function} presented in milestone II we know that the visibility function $\tilde{g}$ is sharply peaked around recombination. A rough approximation is thus $\tilde{g}\approx\delta(x-x_\text{rec})$, which according to eq. \eqref{eq: multipoles LOS} leads to
 \begin{equation}
-  \Theta^\text{today}_\ell(k) \approx \left[ \Theta_0+\Psi+\frac{\Pi}{4}\right]_\text{rec}j_\ell\big[k(\eta_0 - \eta_\text{rec})\big] \approx \left[ \Theta_0+\Psi\right]_\text{rec}\,j_\ell(k\eta_0).
+  \Theta^\text{today}_\ell(k) \approx \left[ \Theta_0+\Psi+\frac{\Pi}{4}\right]_\text{rec}\hspace{-6pt}j_\ell\big[k(\eta_0 - \eta_\text{rec})\big] \approx \left[ \Theta_0+\Psi\right]_\text{rec}\hspace{-1pt}j_\ell(k\eta_0).
 \end{equation}
 The second approximation follows from the fact that the anisotropy term is very small at recombination, and that $\eta_\text{rec}\ll\eta_0$. \colorbox{Plum}{word different?} Thus, we know that the dominant contribution to the observed anisotropies must come from the effective temperature perturbation at the time of recombination ($\left[ \Theta_0+\Psi\right]_\text{rec}$). 
 
@@ -2098,11 +2329,11 @@ F = \frac{2}{3}k^2 \Theta_2 - k \frac{d\tau}{d\eta} \left( \Theta_1 + \frac{v_b}
 
 % Each of these physical processes maps directly onto features in the CMB power spectrum:
 % \begin{itemize}
-%   \item [-] The first peak at \(\ell \sim 220\) corresponds to a mode that has completed one full compression cycle.
+%   \item [-] The first peak at $\ell \sim 220$ corresponds to a mode that has completed one full compression cycle.
 %   \item [-] Odd-numbered peaks are enhanced due to baryon loading, while even-numbered peaks are relatively suppressed.
 %   \item [-] The rising envelope of oscillations is driven by radiation potential decay.
-%   \item [-] The fall-off beyond \(\ell \sim 800\) reflects diffusion damping.
-%   \item [-] The relative heights of the first few peaks allow precise inference of \(\Omega_b\), \(\Omega_\text{CDM}\), and the total matter density.
+%   \item [-] The fall-off beyond $\ell \sim 800$ reflects diffusion damping.
+%   \item [-] The relative heights of the first few peaks allow precise inference of $\Omega_b$, $\Omega_\text{CDM}$, and the total matter density.
 % \end{itemize}
 % These oscillations thus encode a wealth of information about the early Universe's composition and dynamics, and their detailed structure provides one of the most powerful observational tests of modern cosmology.
 
@@ -2306,7 +2537,7 @@ F = \frac{2}{3}k^2 \Theta_2 - k \frac{d\tau}{d\eta} \left( \Theta_1 + \frac{v_b}
 
 
 % \subsubsection{Polarization and gravitational waves}
-\subsubsection{Polarization spectra}
+\subsubsection{Polarization spectra}\label{subsubsec: IV theory polarization}
 \colorbox{Plum}{TODO: write to fit milestone III}
 % \color{Plum}
 % Having now understood the temperature anisotropies in the CMB and the rich structure of the $C_\ell^\text{TT}$ power spectrum, we may turn to the polarization of the CMB, which encodes additional and complementary information. Linear polarization arises from Thomson scattering, provided there is a non-zero quadrupole moment in the incoming radiation field. Polarization gives rise to two distinct angular power spectra: the E-mode (gradient-like) and the B-mode (curl-like) spectra.
@@ -2335,9 +2566,9 @@ F = \frac{2}{3}k^2 \Theta_2 - k \frac{d\tau}{d\eta} \left( \Theta_1 + \frac{v_b}
 % \begin{equation}
 % \Theta_\ell^E \propto (\Theta_2)_{\text{rec}} j_\ell(k\eta_0).
 % \end{equation}
-% From this we can qualitatively understand the $C_\ell^{EE}$ spectrum: since $\Theta_2$ is out of phase with the monopole $\Theta_0$, the $C_\ell^{EE}$ spectrum shows peaks where the $C_\ell^{TT}$ spectrum has troughs, and vice versa. Due to the suppression by $1/\dot{\tau}$, the E-modes are smaller in amplitude than temperature anisotropies. The E-mode spectrum peaks around $\ell \sim 800$, with a damping tail at higher $\ell$ due to photon diffusion.
+% From this we can qualitatively understand the $C_\ell^\text{EE}$ spectrum: since $\Theta_2$ is out of phase with the monopole $\Theta_0$, the $C_\ell^\text{EE}$ spectrum shows peaks where the $C_\ell^\text{TT}$ spectrum has troughs, and vice versa. Due to the suppression by $1/\dot{\tau}$, the E-modes are smaller in amplitude than temperature anisotropies. The E-mode spectrum peaks around $\ell \sim 800$, with a damping tail at higher $\ell$ due to photon diffusion.
 
-% Additionally, reionization produces a large-scale quadrupole in the CMB photons at late times, generating a distinct bump at low $\ell \lesssim 20$ in the $C_\ell^{EE}$ spectrum. The amplitude of this bump is proportional to $\tau_{\text{reion}}^2$, and is used to constrain the ionization history:
+% Additionally, reionization produces a large-scale quadrupole in the CMB photons at late times, generating a distinct bump at low $\ell \lesssim 20$ in the $C_\ell^\text{EE}$ spectrum. The amplitude of this bump is proportional to $\tau_{\text{reion}}^2$, and is used to constrain the ionization history:
 % \begin{align}
 % \tau_{\text{reion}} &= 0.054 \pm 0.007, \\
 % z_{\text{reion}} &= 7.7 \pm 0.7.
@@ -2349,9 +2580,9 @@ F = \frac{2}{3}k^2 \Theta_2 - k \frac{d\tau}{d\eta} \left( \Theta_1 + \frac{v_b}
 
 % The polarization data gives us three important power spectra:
 % \begin{itemize}
-%   \item \textbf{TT} ($C_\ell^{TT}$): temperature anisotropies alone.
-%   \item \textbf{EE} ($C_\ell^{EE}$): auto-correlation of E-mode polarization.
-%   \item \textbf{TE} ($C_\ell^{TE}$): cross-correlation between temperature and E-mode polarization.
+%   \item \textbf{TT} ($C_\ell^\text{TT}$): temperature anisotropies alone.
+%   \item \textbf{EE} ($C_\ell^\text{EE}$): auto-correlation of E-mode polarization.
+%   \item \textbf{TE} ($C_\ell^\text{TE}$): cross-correlation between temperature and E-mode polarization.
 % \end{itemize}
 % The TE spectrum shows alternating positive and negative correlations due to the phase shift between the monopole and quadrupole. The combined information from TT, TE, and EE allows us to constrain cosmological parameters much more precisely.
 
@@ -2403,7 +2634,7 @@ F = \frac{2}{3}k^2 \Theta_2 - k \frac{d\tau}{d\eta} \left( \Theta_1 + \frac{v_b}
 
 
 
-\subsubsection{Effects of gravitational lensing}
+\subsubsection{Effects of gravitational lensing}\label{subsubsec: IV theory lensing}
 Gravitational lensing refers to the bending of light caused by the gravitational potential of massive structures between the source and the observer. As CMB photons from the last scattering surface travel through inhomogeneities in the large-scale structure on their way towards us, their paths are slightly deflected. This phenomenon introduces subtle distortions to the observed temperature and polarization anisotropies of the CMB. While the deflections are small, their cumulative effect leads to a measurable smoothing of the acoustic peaks in the observed angular power spectra by effectively redistributing power across multipoles. \colorbox{Plum}{word different?}
 
 In order to compute the effect of gravitational lensing, we first need the CMB lensing potential $C_\ell^\Psi$. This is found using LOS integration in the same way as the temperature multipoles (eq. \eqref{eq: multipoles LOS}), with the source function being
@@ -2491,7 +2722,7 @@ The structure of this equation clearly shows that the neutrino spectrum receives
 
 
 
-\subsubsection{The matter power spectrum}
+\subsubsection{The matter power spectrum}\label{subsubsec: IV theory matter}
 The matter power spectrum is a statistical tool that captures the distribution of matter density fluctuations across scales. It tells us how matter is clumped in the Universe at different spatial wavelengths, or equivalently, how different Fourier modes $k$ contribute to the overall structure. The shape of this spectrum is determined by the primordial power spectrum generated during inflation, as well as the growth (or suppression) of structure depending on whether a mode is inside or outside the horizon. The latter also depends onwhether the Universe is radiation or matter dominated, as we will see. \colorbox{Plum}{word different?}
 
 The general form of the matter power spectrum is given by
@@ -2575,15 +2806,163 @@ A particularly significant feature in the correlation function is a bump at the 
 
 
 
-
-
-
-
-
-
 \subsection{Implementation details}\label{subsec: IV methods}
+\subsubsection{Main program structure}
+\colorbox{Plum}{TODO: maybe explain source funcs here}
+
+% \color{Plum}
+% The free electron fraction, electron density, optical depths with derivatives, visibility functions with derivatives, sound horizon, and baryon temperature are all computed in the class \verb|RecombinationHistory|, implemented in the source code and header files of the same name. The same GSL-based ODE solver used previously is also used when solving for $X_e$ (in the Peebles regime), $\tau$, $\tau_b$, $\tilde{g}$, $\tilde{g}_b$, $s$ and $T_b$, and all of these solutions are interpolated using cubic splines. The results are written to file and visualized in \verb|recombination.py|. 
+% \color{black}
+
+\subsubsection{Initial conditions}
+\colorbox{Plum}{TODO: short section, maybe merge into next}
+
+\subsubsection{Integration limits and points}
+\colorbox{Plum}{TODO: mention sampling criteria}
+
+% \color{Plum}
+% When integrating to solve for the different quantities, I used $x_\text{min}=-13.0$ and $x_\text{max}=0.0$ as integration limits, since the evolutions beyond this region are of little physical significance. \colorbox{Plum}{correct to say?} Also, using $x_\text{max}=0.0$ as endpoint was most convenient, since the ``initial condition'' for the optical depth is $\tau(x=0)=0$. Furthermore, I used $1\,000$ points when solving the system using only the Saha approximation, and $10\,000$ points when solving with both Saha and Peebles, to ensure a smoother transition between the two. 
+
+% When splining the results I used $x_\text{min}=-12.0$ to avoid the more unstable starting point, and $x_\text{max}=0.0$, since this endpoint is important to include in the analyzes. To ensure smooth visualization I used $12\,001$ points, corresponding to $\Delta x = 0.001$.
+% \color{black}
+
+\subsubsection{Tolerances}
+\colorbox{Plum}{TODO: explain polarization and lensing}
+
+
+\subsubsection{Testing the code}
+\colorbox{Plum}{TODO}
+
 
 \subsection{Results and discussions}\label{subsec: IV results}
+
+\subsubsection{The transfer function}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf}
+  \caption{The transfer function $\Theta_\ell(k)$ (left) and the integrand $|\Theta_\ell(k)|^2/k$ (right) for selected multipoles $\ell$. The transfer function describes the projection of primordial perturbations onto angular scales today, while the integrand determines the contribution of each mode $k$ to the angular power spectrum $C_\ell$. \colorbox{Plum}{TODO: maybe change}}\label{fig:transfer function}
+\end{figure*}
+
+Figure \ref{fig:transfer function} presents the transfer function $\Theta_\ell(k)$ (left panel) and the integrand of the CMB angular power spectrum integral $|\Theta_\ell(k)|^2 / k$ (right panel), evaluated for a range of multipoles $\ell$. For clarity and better comparison across $\ell$, the left panel is scaled by $\sqrt{\ell(\ell+1)}$ and the right panel by $\ell(\ell+1)$, making the relative contributions more visually apparent.
+
+% The transfer functions $\Theta_\ell(k)$ describe how primordial perturbations at wavenumber $k$ are projected onto angular scale $\ell$. These oscillatory structures reflect acoustic oscillations in the photon-baryon fluid prior to recombination, and their frequency increases with $\ell$, corresponding to finer angular scales. As expected, we see that higher $\ell$-values are sensitive to smaller physical scales (higher $k$) due to their tighter angular resolution on the sky.
+
+% The right panel shows the quantity $\ell(\ell+1)|\Theta_\ell(k)|^2 / k$, which appears in the integral for $C_\ell$. 
+In both subplots, the curves reveal where in $k$-space the dominant contributions to the temperature anisotropies arise. We see that as $\ell$ increases, the peak of the integrand shifts to higher $k$, confirming that small-scale modes predominantly source high-$\ell$ power. This is consistent with the approximate projection relation $k \sim \ell/\eta_0$, and illustrates the relationship between spatial and angular scales in cosmological perturbation theory. It also highlights key features that shape the observed spectrum $C_\ell$, such as the oscillatory structure and damping at small scales. \colorbox{Plum}{TODO: maybe change}
+% where $\eta_0$ is the comoving distance to the surface of last scattering.
+
+
+\subsubsection{The CMB temperature power spectrum}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf}
+  \caption{The CMB temperature power spectrum $C_\ell^\text{TT}$ (black) compared with Planck low-$\ell$ (orange) and high-$\ell$ (purple) data points. The inset highlights a zoom on the high-$\ell$ region. The first three peaks are clearly visible, and the agreement with data is overall good, though the computed peaks are slightly higher, likely due to the absence of gravitational lensing smoothing. \colorbox{Plum}{TODO: maybe change}}\label{fig:CMB}
+\end{figure*}
+
+Figure \ref{fig:CMB} presents the final CMB temperature power spectrum $C_\ell^\text{TT}$ computed using the line-of-sight formalism discussed in section \ref{subsubsec: IV theory LOS}, plotted with conventional normalization in units of $\mu\text{K}^2$. Superimposed are the observational data from the Planck satellite, with orange error bars representing low-$\ell$ data and purple bars corresponding to high-$\ell$ measurements. The inset in the top-left corner shows a magnified view of the high-$\ell$ region.
+
+The spectrum exhibits the well-known acoustic peak structure, arising from oscillations in the tightly coupled photon-baryon plasma prior to recombination (see section \ref{subsubsec: IV theory features}). The first peak at $\ell \sim 220$ corresponds to modes that underwent a full compression phase, while subsequent peaks correspond to higher harmonics. As expected, the odd-numbered peaks are amplified due to baryon loading, and the relative suppression of even-numbered peaks encodes the baryon-to-photon ratio. These features are direct consequences of the physics described by the harmonic oscillator formulation of the photon monopole perturbation in the presence of gravity and baryons.
+
+% \color{Plum}
+% Additionally, the rising envelope of the acoustic peaks is shaped by radiation driving—an enhancement in oscillation amplitude for modes that enter the horizon during radiation domination, due to the decay of the gravitational potential $\Psi$. This mechanism is detailed in the oscillator analysis in section~5.4 and leads to greater power at higher $\ell$.
+
+% Beyond $\ell \gtrsim 800$, the spectrum exhibits an exponential decline due to diffusion damping (or Silk damping), caused by photon diffusion erasing anisotropies on small angular scales. The suppression is well captured by the damping envelope $D(k) \sim \exp[-(k/k_D)^2]$, where the damping scale $k_D$ depends sensitively on the baryon density and ionization history.
+
+% At large scales ($\ell \lesssim 50$), the spectrum approaches the Sachs-Wolfe plateau, reflecting temperature anisotropies from photons climbing out of static gravitational potential wells on super-horizon scales. The fluctuations here are mostly due to gravitational redshift and are nearly scale-invariant, consistent with a primordial spectrum with $n_s \approx 1$. As noted in section~5.1, this regime suffers from large uncertainties due to cosmic variance, which arises from the limited number of independent modes available on large angular scales. This intrinsic statistical limitation explains the significant spread in the low-$\ell$ Planck data points, despite high instrumental precision.
+
+% The computed spectrum generally agrees well with the Planck data across all scales. However, the zoomed-in subplot reveals that the theoretical peaks are somewhat sharper and taller than observed. This discrepancy is likely due to our neglect of gravitational lensing, which was not included in the current computation. As discussed in section~5.7, lensing deflects CMB photons along their trajectories, smoothing the acoustic peaks by transferring power between neighboring multipoles. Including lensing in the calculation would slightly suppress the peak heights and reduce their sharpness, improving the agreement with observational data.
+
+% Overall, the successful reproduction of the CMB power spectrum—including its peak structure, damping tail, and large-scale behavior—confirms the accuracy of the underlying physical model and numerical implementation. The small discrepancies provide a useful indication of secondary effects, such as lensing, that become important for high-precision cosmology.
+% \color{black}
+
+\colorbox{Plum}{TODO: we treat neutrinos as massless?}
+
+\colorbox{Plum}{TODO: truncating the hierarchy too early?}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf}
+  \caption{Breakdown of the individual contributions to the CMB temperature power spectrum. The Sachs-Wolfe term (orange) dominates on large scales, the Doppler term (blue) modulates intermediate scales, and the ISW term (green) adds power at low $\ell$. The polarization contribution (red) is subdominant. The full spectrum (black) reflects the coherent sum of all these effects. \colorbox{Plum}{TODO: maybe change}}\label{fig:CMB contributions}
+\end{figure}
+
+% \color{Plum}
+% Figure \ref{fig:CMB contributions} shows how the total temperature power spectrum is built up from individual physical effects encoded in the source function $\tilde{S}(k,x)$, as defined in section~5.2. Each colored curve corresponds to a spectrum computed using only one component of the source function, allowing us to isolate their impact on the observed CMB anisotropies.
+
+% The Sachs-Wolfe (SW) contribution (orange) dominates the low-$\ell$ (large angular scale) portion of the spectrum, generating the Sachs-Wolfe plateau discussed in section~5.3. This effect arises from the gravitational redshifting of photons climbing out of potential wells at the last scattering surface and is responsible for most of the signal for $\ell \lesssim 30$.
+
+% The integrated Sachs-Wolfe (ISW) term (green) adds to this low-$\ell$ signal and slightly boosts power on the largest angular scales. This term arises due to time variations in the gravitational potentials along the line of sight, particularly relevant during periods of radiation domination and dark energy domination when potential wells evolve. The ISW effect is especially pronounced at very low $\ell$, consistent with the expectations from evolving $\Phi$ and $\Psi$ after matter-radiation and matter-dark energy equality.
+
+% The Doppler contribution (blue), arising from velocity gradients in the photon-baryon fluid at recombination, contributes most strongly at intermediate $\ell$ (around the first few peaks), helping to lift troughs between acoustic peaks. While it does not by itself produce sharp peak structure, it modulates the amplitude of oscillations and adds to the overall spectrum in a scale-dependent way.
+
+% The polarization contribution (red) is generally small, but becomes more important at higher multipoles. It originates from anisotropic Thomson scattering during recombination and reionization, affecting the quadrupole of the photon distribution and hence contributes to both temperature and polarization anisotropies.
+
+% Finally, the full spectrum (black) is obtained by summing over all terms in the source function. It exhibits the complete series of acoustic peaks, with precise structure arising from the interplay of all contributing effects. The difference in magnitude between the full spectrum and any single component underscores the necessity of including all physical contributions to accurately model the CMB anisotropies.
+
+% This decomposition clearly shows how different physical mechanisms contribute across scales: gravitational effects dominate large scales, velocity effects modulate the intermediate range, and polarization and damping features become more relevant at small angular scales. It also highlights the importance of each term in shaping the structure of $C_\ell^\text{TT}$, as explored throughout milestone IV.
+% \color{black}
+
+
+\subsubsection{TE and EE polarization power spectra}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf}
+  \caption{The CMB TE (left) and EE (right) polarization spectra compared with high-$\ell$ data. The computed spectra reproduce the oscillatory features seen in the data, though the amplitude is somewhat larger and the TE peaks slightly shifted in $\ell$, likely due to the neglect of gravitational lensing. \colorbox{Plum}{TODO: maybe change}}\label{fig:polarization spectra}
+\end{figure*}
+
+% \color{Plum}
+% In figure \ref{fig:polarization spectra}, I present the CMB temperature-polarization cross-power spectrum ($C_\ell^\text{TE}$, left) and the E-mode polarization auto-power spectrum ($C_\ell^\text{EE}$, right). Both spectra are shown with high-$\ell$ Planck data points overlaid with error bars. These polarization spectra complement the temperature (TT) spectrum by providing additional constraints on the early Universe physics and breaking degeneracies between cosmological parameters.
+
+% As discussed in section \colorbox{Plum}{TODO: theory ref}, the E-mode polarization arises primarily from the quadrupole anisotropy in the photon distribution at the time of recombination, induced by velocity gradients in the photon-baryon fluid. The TE spectrum measures the correlation between these polarization patterns and temperature fluctuations, while the EE spectrum quantifies the variance of the polarization signal itself.
+
+% The TE spectrum exhibits a characteristic oscillatory pattern that is out of phase with the TT spectrum due to the different sources of temperature and polarization fluctuations. In the left panel, the computed $C_\ell^\text{TE}$ spectrum agrees qualitatively with the Planck data across the full multipole range, showing alternating peaks and troughs consistent with acoustic oscillations. However, the theoretical prediction appears to be slightly shifted toward lower $\ell$ compared to the data, especially around the peak regions. This shift may suggest a minor mismatch in the acoustic scale, possibly due to simplified assumptions in the background evolution or missing physical effects such as gravitational lensing.
+
+% In the EE spectrum (right panel), the predicted peak structure again aligns well with the general trend in the data. Nevertheless, as with the TT and TE spectra, the computed EE spectrum exhibits slightly higher peak amplitudes compared to observations. One plausible explanation, as discussed in the previous section, is the omission of gravitational lensing effects. Lensing redistributes power by smoothing out the acoustic peaks in all CMB spectra, including TT, TE, and EE. This effect leads to slightly lower and broader peaks in the observed spectra, an effect clearly seen in the high-$\ell$ Planck data and absent in our unlensed predictions.
+
+% Other possible contributors to these discrepancies include inaccuracies in the ionization history (e.g., assumptions in the reionization model), numerical inaccuracies in the Boltzmann hierarchy integration, or simplifications in the polarization source function. Overall, however, the spectra reproduce the expected physical features with good qualitative agreement and capture the core signatures of the polarization anisotropies.
+% \color{black}
+
+
+\subsubsection{The neutrino power spectrum}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf}
+  \caption{The neutrino angular power spectrum $C_\ell^\nu$, computed using the same conventions as the CMB temperature spectrum. Although unobservable, the spectrum illustrates the effects of free-streaming relativistic particles and includes only Sachs-Wolfe and ISW contributions. \colorbox{Plum}{TODO: spectrum looks wrong}}\label{fig:neutrino spectrum}
+\end{figure}
+
+% \color{Plum}
+% Figure \ref{fig:neutrino spectrum} shows the angular power spectrum of the cosmic neutrino background (CNB) temperature anisotropies, $C_\ell^\nu$, calculated using the same normalization as for the CMB spectrum—except using the neutrino temperature instead of the photon temperature. Although this spectrum is not observable in practice due to the extremely weak interactions of neutrinos, it still provides valuable theoretical insights.
+
+% As discussed in section \colorbox{Plum}{TODO: theory ref}, the evolution of neutrino perturbations is simpler than that of photons, owing to their decoupling in the very early Universe. The neutrino source function includes only two terms: a Sachs-Wolfe term, $\Theta_0^\nu + \Psi$, and an integrated Sachs-Wolfe term, $\Psi' - \Phi'$. This simplicity leads to a much smoother and featureless spectrum compared to the CMB temperature spectrum, which exhibits pronounced acoustic peaks due to the photon-baryon interactions prior to recombination.
+
+% The overall shape of $C_\ell^\nu$ is determined primarily by free-streaming behavior. Since neutrinos decouple while still relativistic, they stream out of overdense regions, suppressing power on small scales (high $\ell$) and leading to the smooth decay seen in the spectrum. The lack of oscillatory features reflects the absence of acoustic oscillations in the neutrino perturbations.
+
+% Furthermore, the relative amplitude of the spectrum is lower than that of the CMB, consistent with the fact that gravitational potentials decay less effectively in a radiation-dominated Universe, and neutrinos contribute only passively to the potential evolution. Unlike the CMB, there is no Doppler or polarization term to modulate the angular structure of $C_\ell^\nu$, and thus its contributions are limited to broader features.
+% \color{black}
+
+
+\subsubsection{The matter power spectrum}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf}
+  \caption{Matter power spectrum $P(k)$ in units of (Mpc/$h$)$^3$. Theoretical prediction is compared to WMAP+ACT (blue) and SDSS DR7 LRG (green) data. The model reproduces the overall shape and amplitude well, especially around the BAO feature at $k \sim 0.1\,h$/Mpc. \colorbox{Plum}{TODO: maybe change}}\label{fig:P_k}
+\end{figure}
+
+Figure \ref{fig:P_k} shows the matter power spectrum $P(k)$ today, plotted in units of $(\text{Mpc}/h)^3$ as a function of the wavenumber $k$ in $h/\text{Mpc}$. The black curve represents the theoretically computed spectrum, while blue and green error bars show observational data from CMB measurements by the Wilkinson Microwave Anisotropy Probe (WMAP) and the Acatama Cosmology Telescope (ACT), and the Sloan Digital Sky Survey (SDSS) DR7 Luminous Red Galaxies (LRGs), respectively. \colorbox{Plum}{TODO: rephrase}
+
+As detailed in section \ref{subsubsec: IV theory matter}, the shape of the matter power spectrum reflects both the primordial spectrum seeded during inflation and the subsequent growth of perturbations across spatial scales. In particular, the turnover near the scale $k_\text{eq}$ (marked on the plot) corresponds to the mode that entered the horizon at matter-radiation equality. Modes with $k \ll k_\text{eq}$ entered the horizon during matter domination and grew efficiently due to gravitational instability. Conversely, modes with $k \gg k_\text{eq}$ entered during radiation domination, when the rapid expansion and pressure support from relativistic species suppressed growth, resulting in the $\propto k^{-3}$ decline of $P(k)$ at large $k$. 
+
+\colorbox{Plum}{TODO: discuss how the primordial spectrum is visible}
+
+The plot also marks the baryon acoustic oscillation (BAO) scale $2\pi/r_\text{drag}$, which arises from sound waves in the early Universe's photon-baryon fluid and appears as a characteristic scale in both the matter and CMB power spectra. Although the BAO wiggles are less pronounced in the matter power spectrum due to the smoothing effect of nonlinear evolution, they are still visible. \colorbox{Plum}{TODO: change/remove this}
+
+The agreement between the computed spectrum and observational data is generally good across a wide range of scales. On large scales ($k \lesssim 0.1\,h/\text{Mpc}$), the model accurately matches both the CMB and galaxy data, confirming the consistency of the perturbation evolutions with initial inflationary conditions. \colorbox{Plum}{TODO: word different} On smaller scales ($k \gtrsim 0.1\,h/\text{Mpc}$), the slight deviations likely stem from nonlinear clustering effects not captured in our linear treatment. Additionally, galaxy bias and redshift-space distortions introduce observational systematics in the SDSS measurements, which may also contribute to discrepancies. \colorbox{Plum}{TODO: add source}
+
+
 
 
 \section{Conclusions}\label{sec: conclusions}
@@ -2591,5 +2970,97 @@ A particularly significant feature in the correlation function is a bump at the 
 \bibliographystyle{aa} % style aa.bst
 \bibliography{references} % your references Yourfile.bib
 
+\appendix
+
+\onecolumn
+
+\section{Toy cosmology figures}\label{appsec: figures}
+% \subsection{Milestone I}\label{appsubsec: fig I}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf}
+  \caption{Evolution of the conformal Hubble parameter $\mathcal{H}$ (left) and the conformal time $\eta$ (right) in Winther's toy cosmological model. The parameters used are $h=0.7$, $\Omega_{\text{CDM}0}=0.45$, $\Omega_{b0}=0.05$ and $N_\text{eff}=0$. $\Omega_{k0}$ and $T_\text{CMB0}$ are the same as for the fiducial cosmology.}\label{appfig: Hp_and_eta}
+  \vspace{-15pt}
+\end{figure}
+
+\begin{figure}[h!]
+  \begin{minipage}{0.5\textwidth}
+  % \begin{figure}[h!]
+    % \vspace{-11pt}
+    \centering
+    \includegraphics[width=0.95\linewidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf}
+    \caption{Evolution of the ratio $\eta\mathcal{H}/c$ in Winther's toy cosmological\\ model ($h=0.7$, $\Omega_{\text{CDM}0}=0.45$, $\Omega_{b0}=0.05$ and $N_\text{eff}=0$).}\label{appfig: eta_Hp_over_c}
+  % \end{figure}
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+  % \begin{figure}[h!]
+    % \centering
+    \includegraphics[width=0.95\linewidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf}
+    % \vspace{-11pt}
+    \caption{Evolution of the density parameters $\Omega_r$ (green), $\Omega_m$ (orange) and $\Omega_\Lambda$ (purple) in Winther's toy cosmological model ($h=0.7$, $\Omega_{\text{CDM}0}=0.45$, $\Omega_{b0}=0.05$ and $N_\text{eff}=0$).}\label{appfig: Omega_i}
+  % \end{figure}
+  \end{minipage}
+\vspace{-5pt}
+\end{figure}
+
+
+\begin{figure}[h!]
+  % \subsection{Milestone II}\label{appsubsec: fig II}
+  \centering
+  \includegraphics[width=0.95\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf}
+  \caption{Evolution of the free electron fraction with (right) and without (left) Helium in Winther's toy cosmological model. The Hydrogen reionization parameters used are $z_\text{reion}=11.0$ and $\Delta z_\text{reion}=0.5$. When including Helium, $Y_p=0.24$ is used as the primordial abundance, and $z_\text{He,reion}=3.5$ and $\Delta z_\text{He,reion}=0.5$ as Helium reionization parameters.}\label{appfig: Xe}
+  \vspace{-20pt}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf}
+  \caption{Evolution of the optical depth $\tau$ and derivatives $-\tau'$ and $\tau''$ with (right) and without (left) reionization included in Winther's toy cosmological model. Helium is not included, and the reionization parameters used are $z_\text{reion}=11.0$ and $\Delta z_\text{reion}=0.5$.}\label{appfig: tau}
+  \vspace{-10pt}
+\end{figure}
+
+\begin{figure}[h!]
+  % \vspace{-10pt}
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\linewidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf}
+    \caption{The visibility function $\tilde{g}$ (top) and its first (middle) and second (bottom) derivatives $\tilde{g}'$ and $\tilde{g}''$ in Winther's toy cosmological model, plotted with (pink) and without (red) reionization. Helium is not included, and the reionization parameters are $z_\text{reion}=11.0$ and $\Delta z_\text{reion}=0.5$.}\label{appfig: g_tilde}
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+    % \subsection{Milestone III}\label{appsubsec: fig III}
+    \centering
+    \includegraphics[width=0.98\linewidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf}
+    \caption{Evolution of the gravitational potential $\Phi$ on small (green), intermediate (red) and large (blue) scales in Winther's toy cosmological model. Polarization and neutrinos are not included.}\label{appfig: Phi}
+  \end{minipage}
+  \vspace{-20pt}
+\end{figure}
+
+% \newpage
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf}
+  \caption{Evolution of the CDM and baryon density (left) and velocity (right) perturbations on small (green), intermediate (red) and large (blue) scales in Winther's toy cosmological model. Dashed lines are used for baryons. The absolute values are plotted, since they can be negative and a logarithmic $y$-axis is used. Polarization and neutrinos are not included.}\label{appfig: delta_and_v}
+\end{figure}
+
+\begin{figure}[h!]
+  \vspace{5pt}
+  \centering
+  \includegraphics[width=0.95\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf}
+  \caption{Evolution of the photon monopole $\Theta_0$ (left) and dipole $\Theta_1$ (right) on small (green), intermediate (red) and large (blue) scales in Winther's toy cosmological model. Polarization and neutrinos are not included.}\label{appfig: Thetas}
+\end{figure}
+
+
+\begin{figure}[h!]
+  \vspace{5pt}
+  % \subsection{Milestone IV}\label{appsubsec: fig IV}
+  \centering
+  \includegraphics[width=0.95\textwidth]{/Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf}
+  \caption{The CMB power spectrum $\ell(\ell+1)C_\ell/2\pi$ (left) and matter power spectrum $P(k)$ (right) in Winther's toy cosmological model. Helium, reionization, polarization and neutrinos are not included. The parameters used for the primordial power spectrum are $A_s=10^{-9}$, $n_s=0.965$ and $k_\text{pivot}=0.05\,\text{Mpc}^{-1}$.}\label{appfig: C_ell_and_P_k}
+\end{figure}
+
+\twocolumn
 
 \end{document}

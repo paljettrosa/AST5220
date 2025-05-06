@@ -40,9 +40,9 @@ void BackgroundCosmology::solve(
     const double x_start, 
     const double x_end, 
     const int npts, 
-    bool eta, 
-    bool t, 
-    bool timing)
+    const bool eta, 
+    const bool t, 
+    const bool timing)
 {
   ODESolver ode;
   
@@ -95,7 +95,7 @@ void BackgroundCosmology::solve(
 //====================================================
 // Get methods
 //====================================================
-double BackgroundCosmology::H_of_x(double x) const{
+double BackgroundCosmology::H_of_x(const double x) const{
   double H = H_0 * 
              sqrt((Omega_b0 + Omega_CDM0)*exp(-3.0*x) + 
              (Omega_gamma0 + Omega_nu0)*exp(-4.0*x) + 
@@ -104,7 +104,7 @@ double BackgroundCosmology::H_of_x(double x) const{
   return H;
 }
 
-double BackgroundCosmology::Hp_of_x(double x) const{
+double BackgroundCosmology::Hp_of_x(const double x) const{
   double Hp = H_0 * 
               sqrt((Omega_b0 + Omega_CDM0)*exp(-x) + 
                    (Omega_gamma0 + Omega_nu0)*exp(-2.0*x) + 
@@ -113,7 +113,7 @@ double BackgroundCosmology::Hp_of_x(double x) const{
   return Hp;
 }
 
-double BackgroundCosmology::dHpdx_of_x(double x) const{
+double BackgroundCosmology::dHpdx_of_x(const double x) const{
   double Hp    = Hp_of_x(x);
   double dHpdx = - pow(H_0, 2)/(2.0*Hp) * 
                  ((Omega_b0 + Omega_CDM0)*exp(-x) + 
@@ -122,7 +122,7 @@ double BackgroundCosmology::dHpdx_of_x(double x) const{
   return dHpdx;
 }
 
-double BackgroundCosmology::ddHpddx_of_x(double x) const{
+double BackgroundCosmology::ddHpddx_of_x(const double x) const{
   double Hp      = Hp_of_x(x);
   double dHpdx   = dHpdx_of_x(x);
   double ddHpddx = pow(H_0, 2)/Hp *
@@ -133,56 +133,56 @@ double BackgroundCosmology::ddHpddx_of_x(double x) const{
   return ddHpddx;
 }
 
-double BackgroundCosmology::get_Omega_b(double x) const{ 
+double BackgroundCosmology::get_Omega_b(const double x) const{ 
   if(x == 0.0) return Omega_b0;
   double H       = H_of_x(x);
   double Omega_b = Omega_b0 / (exp(3.0*x) * pow(H/H_0, 2));
   return Omega_b;
 }
 
-double BackgroundCosmology::get_Omega_gamma(double x) const{ 
+double BackgroundCosmology::get_Omega_gamma(const double x) const{ 
   if(x == 0.0) return Omega_gamma0;
   double H           = H_of_x(x);
   double Omega_gamma = Omega_gamma0 / (exp(4.0*x) * pow(H/H_0, 2));
   return Omega_gamma;
 }
 
-double BackgroundCosmology::get_Omega_nu(double x) const{ 
+double BackgroundCosmology::get_Omega_nu(const double x) const{ 
   if(x == 0.0) return Omega_nu0;
   double H        = H_of_x(x);
   double Omega_nu = Omega_nu0 / (exp(4.0*x) * pow(H/H_0, 2));
   return Omega_nu;
 }
 
-double BackgroundCosmology::get_Omega_CDM(double x) const{ 
+double BackgroundCosmology::get_Omega_CDM(const double x) const{ 
   if(x == 0.0) return Omega_CDM0;
   double H         = H_of_x(x);
   double Omega_CDM = Omega_CDM0 / (exp(3.0*x) * pow(H/H_0, 2));
   return Omega_CDM;
 }
 
-double BackgroundCosmology::get_Omega_Lambda(double x) const{ 
+double BackgroundCosmology::get_Omega_Lambda(const double x) const{ 
   if(x == 0.0) return Omega_Lambda0;
   double H            = H_of_x(x);
   double Omega_Lambda = Omega_Lambda0 / pow(H/H_0, 2);
   return Omega_Lambda;
 }
 
-double BackgroundCosmology::get_Omega_k(double x) const{ 
+double BackgroundCosmology::get_Omega_k(const double x) const{ 
   if(x == 0.0) return Omega_k0;
   double H       = H_of_x(x);
   double Omega_k = Omega_k0 / (exp(2.0*x) * pow(H/H_0, 2));
   return Omega_k;
 }
 
-double BackgroundCosmology::get_comoving_distance_of_x(double x) const{
+double BackgroundCosmology::get_comoving_distance_of_x(const double x) const{
   double eta_0 = eta_of_x(0.0);
   double eta   = eta_of_x(x);
   double chi   = eta_0 - eta;
   return chi;
 }
 
-double BackgroundCosmology::get_r_of_x(double x) const{
+double BackgroundCosmology::get_r_of_x(const double x) const{
   double chi = get_comoving_distance_of_x(x);
   double r;
   if (Omega_k0 == 0.0) {
@@ -201,29 +201,29 @@ double BackgroundCosmology::get_r_of_x(double x) const{
   return r;
 }
     
-double BackgroundCosmology::get_luminosity_distance_of_x(double x) const{
+double BackgroundCosmology::get_luminosity_distance_of_x(const double x) const{
   double a   = exp(x);
   double r   = get_r_of_x(x);
   double d_L = r/a;
   return d_L;
 }
 
-double BackgroundCosmology::get_angular_diameter_distance_of_x(double x) const{
+double BackgroundCosmology::get_angular_diameter_distance_of_x(const double x) const{
   double a   = exp(x);
   double r   = get_r_of_x(x);
   double d_A = a*r;
   return d_A;
 }
 
-double BackgroundCosmology::eta_of_x(double x) const{
+double BackgroundCosmology::eta_of_x(const double x) const{
   return eta_of_x_spline(x);
 }
 
-double BackgroundCosmology::detadx_of_x(double x) const{
+double BackgroundCosmology::detadx_of_x(const double x) const{
   return eta_of_x_spline.deriv_x(x);
 }
 
-double BackgroundCosmology::t_of_x(double x) const{
+double BackgroundCosmology::t_of_x(const double x) const{
   return t_of_x_spline(x);
 }
 
@@ -239,7 +239,7 @@ double BackgroundCosmology::get_N_eff() const{
   return N_eff; 
 }
 
-double BackgroundCosmology::get_T_CMB(double x) const{ 
+double BackgroundCosmology::get_T_CMB(const double x) const{ 
   if(x == 0.0) return T_CMB0;
   return T_CMB0 * exp(-x); 
 }
@@ -254,9 +254,9 @@ void BackgroundCosmology::info() const{
   std::cout << "Omega_b0:      " << Omega_b0      << "\n";
   std::cout << "Omega_CDM0:    " << Omega_CDM0    << "\n";
   std::cout << "Omega_Lambda0: " << Omega_Lambda0 << "\n";
-  std::cout << "Omega_k0:      " << Omega_k0      << "\n";
-  std::cout << "Omega_nu0:     " << Omega_nu0     << "\n";
   std::cout << "Omega_gamma0:  " << Omega_gamma0  << "\n";
+  std::cout << "Omega_nu0:     " << Omega_nu0     << "\n";
+  std::cout << "Omega_k0:      " << Omega_k0      << "\n";
   std::cout << "N_eff:         " << N_eff         << "\n";
   std::cout << "T_CMB0:        " << T_CMB0        << "\n";
   std::cout << std::endl;
@@ -298,10 +298,10 @@ void BackgroundCosmology::output(
     const double x_min, 
     const double x_max, 
     const std::string filename, 
-    bool t, 
-    bool detadx, 
-    bool distances, 
-    bool T_CMB) const
+    const bool t, 
+    const bool detadx, 
+    const bool distances, 
+    const bool T_CMB) const
 {
   const int npts = static_cast<int>(x_max - x_min)*100 + 1; 
   Vector x_array = Utils::linspace(x_min, x_max, npts);

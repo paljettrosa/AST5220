@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  25 MAR 2025 20:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  6 MAY 2025 22:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -745,246 +745,425 @@ File: t1txtt.fd 2000/12/15 v3.1
 Package hyperref Warning: Suppressing link with empty target on input line 486.
 
 [5]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf, id=422, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf, id=502, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf>
 Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf  used on input line 490.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 LaTeX Font Info:    Font shape `T1/txr/b/n' in size <9> not available
 (Font)              Font shape `T1/txr/bx/n' tried instead on input line 491.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf, id=424, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf, id=510, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf  used on input line 504.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf  used on input line 506.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf, id=426, 1156.32pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf, id=512, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf  used on input line 513.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf  used on input line 515.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 
 Package hyperref Warning: Suppressing link with empty target on input line 522.
 
 [6 </Users/paljettrosa/Documents/GitHub/AST5220/figs/numerical_stability.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime.pdf>]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf, id=485, 1156.32pt x 867.24pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf, id=574, 1156.32pt x 867.24pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf  used on input line 525.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf  used on input line 527.
 (pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf, id=493, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf, id=582, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf  used on input line 563.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf  used on input line 565.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf, id=498, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf, id=587, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf  used on input line 615.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf  used on input line 617.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 620.
+Package hyperref Warning: Suppressing link with empty target on input line 622.
 
 [7 </Users/paljettrosa/Documents/GitHub/AST5220/figs/H_prime_derivatives.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf, id=526, 578.16pt x 433.62pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 622.
+
+[8 </Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf, id=634, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf  used on input line 624.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf  used on input line 626.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf, id=636, 1156.32pt x 867.24pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf  used on input line 639.
+(pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 646.
+
+[9 </Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 709.
+
+[10 </Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>]
+
+Package hyperref Warning: Suppressing link with empty target on input line 816.
+
+[11]
+
+Package hyperref Warning: Suppressing link with empty target on input line 909.
+
+[12]
+
+Package hyperref Warning: Suppressing link with empty target on input line 970.
+
+[13]
+Underfull \hbox (badness 1067) in paragraph at lines 1069--1070
+\T1/txr/m/n/10 To en-sure nu-mer-i-cal ac-cu-racy in later mile-stones, I be-gan
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1070.
+
+[14]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf, id=814, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf  used on input line 1114.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1131.
+
+[15]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf, id=828, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf  used on input line 1138.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf, id=836, 578.16pt x 1011.78pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf  used on input line 1162.
+(pdftex.def)             Requested size: 256.0748pt x 448.11789pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1172.
+
+[16 </Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf>]
+Underfull \vbox (badness 3579) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 1220--1221
+[]\T1/txr/m/n/10 The dif-fer-ence in sound hori-zons be-tween the two ap-
+ []
+
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf, id=866, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf  used on input line 1227.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+Package hyperref Warning: Suppressing link with empty target on input line 1234.
+
+[17 </Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf, id=894, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf  used on input line 1245.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+Underfull \hbox (badness 5119) in paragraph at lines 1268--1269
+[]\T1/txr/m/n/10 In this mile-stone, I nu-mer-i-cally solve the Einstein-
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1270.
+
+[18]
+Underfull \vbox (badness 6364) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1348.
+
+[19 </Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>]
+Underfull \hbox (badness 3977) in paragraph at lines 1365--1367
+[]\T1/txr/m/n/10 Eq. [] en-codes two key ef-fects that shape CMB
+ []
+
+
+Underfull \hbox (badness 1092) in paragraph at lines 1416--1426
+\T1/txr/m/n/10 accounts for the an-gu-lar de-pen-dence of Tom-son scat-ter-ing
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1433.
+
+[20]
+
+Package hyperref Warning: Suppressing link with empty target on input line 1522.
+
+[21]
+
+Package hyperref Warning: Suppressing link with empty target on input line 1614.
+
+[22]
+
+Package hyperref Warning: Suppressing link with empty target on input line 1727.
+
+[23]
+
+Package hyperref Warning: Suppressing link with empty target on input line 1836.
+
+[24]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf, id=1079, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf  used on input line 1888.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1895.
+
+[25]
+Underfull \vbox (badness 4531) has occurred while \output is active []
+
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf, id=1095, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf  used on input line 1909.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf, id=1098, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf  used on input line 1925.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+
+Underfull \vbox (badness 6542) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1933.
+
+[26 </Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf, id=1127, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf  used on input line 1945.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+
+Underfull \vbox (badness 1831) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1954.
+
+[27 </Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf, id=1161, 578.16pt x 1156.32pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf  used on input line 1968.
+(pdftex.def)             Requested size: 256.0748pt x 512.13474pt.
+
+Underfull \hbox (badness 1142) in paragraph at lines 1973--1974
+\T1/txr/m/n/10 Figure [][]4.5[][] shows the evo-lu-tion of the pho-ton po-lar-iza-tion
+ []
+
+
+Underfull \hbox (badness 1571) in paragraph at lines 1973--1974
+\T1/txr/m/n/10 monopole $\OT1/txr/m/n/10 ^^B[]$ \T1/txr/m/n/10 (top panel), dipole $\OT1/txr/m/n/10 ^^B[]$ \T1/txr/m/n/10 (mid-dle panel), and
+ []
+
+
+Underfull \vbox (badness 6078) has occurred while \output is active []
+
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf, id=1164, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf  used on input line 1987.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1998.
+
+[28 </Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 2076.
+
+[29 </Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf>]
+
+Package hyperref Warning: Suppressing link with empty target on input line 2165.
+
+[30 </Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf>]
+Underfull \hbox (badness 1701) in paragraph at lines 2254--2256
+\T1/txr/m/n/10 The sec-ond ap-prox-i-ma-tion fol-lows from the fact that the
+ []
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 2265.
+
+[31]
+
+Package hyperref Warning: Suppressing link with empty target on input line 2727.
+
+[32]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf, id=1279, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf  used on input line 2843.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf, id=1281, 1156.32pt x 578.16pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf  used on input line 2860.
+(pdftex.def)             Requested size: 523.5307pt x 261.76637pt.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 2865.
+
+[33]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf, id=1297, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf  used on input line 2886.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf, id=1298, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf  used on input line 2911.
+(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf, id=1299, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf  used on input line 2932.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf, id=1300, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf  used on input line 2951.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 629.
+Package hyperref Warning: Suppressing link with empty target on input line 2953.
 
-[8 </Users/paljettrosa/Documents/GitHub/AST5220/figs/eta_and_t.pdf>]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf, id=546, 1156.32pt x 867.24pt>
-File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf Graphic file (type pdf)
-<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf  used on input line 637.
-(pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
+[34 </Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf>] (out/main.bbl)
 
-Underfull \vbox (badness 1137) has occurred while \output is active []
+Package hyperref Warning: Suppressing link with empty target on input line 2973.
 
+[35 </Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf>]
 
+Package hyperref Warning: Suppressing link with empty target on input line 2973.
 
-Package hyperref Warning: Suppressing link with empty target on input line 651.
+[36 </Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf, id=1456, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf  used on input line 2981.
+(pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf, id=1457, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf  used on input line 2991.
+(pdftex.def)             Requested size: 248.67627pt x 186.50589pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf, id=1458, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf  used on input line 2998.
+(pdftex.def)             Requested size: 248.67627pt x 186.50589pt.
 
-[9 </Users/paljettrosa/Documents/GitHub/AST5220/figs/density_parameters.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/luminosity_distance.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/MCMC_fits.pdf>]
-
-Package hyperref Warning: Suppressing link with empty target on input line 712.
-
-[10 </Users/paljettrosa/Documents/GitHub/AST5220/figs/distributions.pdf>]
-
-Package hyperref Warning: Suppressing link with empty target on input line 819.
-
-[11]
-
-Package hyperref Warning: Suppressing link with empty target on input line 912.
-
-[12]
-
-Package hyperref Warning: Suppressing link with empty target on input line 996.
-
-[13]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1074.
-
-[14]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf, id=715, 1156.32pt x 433.62pt>
-File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf Graphic file (type pdf)
-<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf  used on input line 1109.
-(pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf, id=717, 1156.32pt x 867.24pt>
-File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf Graphic file (type pdf)
-<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf  used on input line 1133.
-(pdftex.def)             Requested size: 523.5307pt x 392.64957pt.
-LaTeX Font Info:    Font shape `T1/txr/b/n' in size <10> not available
-(Font)              Font shape `T1/txr/bx/n' tried instead on input line 1143.
-
-
-Package natbib Warning: Citation `Helium' on page 15 undefined on input line 1143.
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1144.
-
-[15]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1144.
-
-[16 </Users/paljettrosa/Documents/GitHub/AST5220/figs/Xe_and_ne.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/optical_depth.pdf>]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf, id=766, 578.16pt x 867.24pt>
-File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf Graphic file (type pdf)
-<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf  used on input line 1155.
-(pdftex.def)             Requested size: 256.0748pt x 384.10106pt.
-
-Underfull \vbox (badness 1158) has occurred while \output is active []
-
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1172.
-
-[17 </Users/paljettrosa/Documents/GitHub/AST5220/figs/visibility_function.pdf>]
-Underfull \hbox (badness 1052) in paragraph at lines 1215--1216
-[]\T1/txr/m/n/10 The dif-fer-ence in sound hori-zons be-tween the two ap-
+Overfull \hbox (1.90001pt too wide) in paragraph at lines 2987--3004
+[]$[]$ $[]$
  []
 
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf, id=793, 578.16pt x 433.62pt>
-File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf Graphic file (type pdf)
-<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf  used on input line 1222.
-(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf, id=799, 578.16pt x 433.62pt>
-File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf Graphic file (type pdf)
-<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf  used on input line 1241.
-(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf, id=1459, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf  used on input line 3010.
+(pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
-Package hyperref Warning: Suppressing link with empty target on input line 1249.
+Package hyperref Warning: Suppressing link with empty target on input line 3015.
 
-[18 </Users/paljettrosa/Documents/GitHub/AST5220/figs/sound_horizon.pdf>]
-Underfull \vbox (badness 4859) has occurred while \output is active []
+[37
 
 
-Underfull \hbox (badness 5119) in paragraph at lines 1264--1265
-[]\T1/txr/m/n/10 In this mile-stone, I nu-mer-i-cally solve the Einstein-
+ </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf>]
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf, id=1526, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf  used on input line 3019.
+(pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf, id=1527, 578.16pt x 1011.78pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf  used on input line 3028.
+(pdftex.def)             Requested size: 248.67627pt x 435.18042pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf, id=1528, 578.16pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf  used on input line 3034.
+(pdftex.def)             Requested size: 256.52892pt x 192.39458pt.
+
+Overfull \hbox (1.90001pt too wide) in paragraph at lines 3026--3038
+[]$[]$ $[]$
  []
 
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf, id=1529, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf  used on input line 3044.
+(pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
-Underfull \vbox (badness 4181) has occurred while \output is active []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf, id=1530, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf  used on input line 3051.
+(pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package hyperref Warning: Suppressing link with empty target on input line 1336.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf, id=1531, 1156.32pt x 433.62pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf  used on input line 3060.
+(pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
-[19 </Users/paljettrosa/Documents/GitHub/AST5220/figs/photon_baryon_temp.pdf>]
-Underfull \hbox (badness 3977) in paragraph at lines 1373--1377
-[]\T1/txr/m/n/10 Eq. [] en-codes two key ef-fects that shape CMB
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1417.
-
-[20]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1487.
-
-[21]
-Underfull \hbox (badness 1297) in paragraph at lines 1554--1556
-\T1/txr/m/n/10 This equa-tion closely re-sem-bles the fluid con-ti-nu-ity equa-
- []
-
-
-Underfull \hbox (badness 2922) in paragraph at lines 1554--1556
-\T1/txr/m/n/10 tion, with ad-di-tional terms ac-count-ing for the ex-pan-sion
- []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 1554--1556
-\T1/txr/m/n/10 of the Uni-verse and the ef-fect of grav-i-ta-tional po-ten-tials.
- []
+Package hyperref Warning: Suppressing link with empty target on input line 3064.
 
+[38 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf>]
 
-Package hyperref Warning: Suppressing link with empty target on input line 1586.
+Package hyperref Warning: Suppressing link with empty target on input line 3064.
 
-[22]
-Underfull \hbox (badness 1062) in paragraph at lines 1658--1659
-\T1/txr/m/n/10 To nu-mer-i-cally solve the evo-lu-tion of per-tur-ba-tions in the
- []
+[39 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf>] (out/main.aux
 
+Package natbib Warning: Citation `Helium' multiply defined.
 
-Package hyperref Warning: Suppressing link with empty target on input line 1706.
-
-[23]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1799.
-
-[24]
-Underfull \hbox (badness 1033) in paragraph at lines 1820--1822
-\T1/txr/m/n/10 which pro-vides a use-ful ref-er-ence in the matter-dominated
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1917.
-
-[25]
-
-Package hyperref Warning: Suppressing link with empty target on input line 2019.
-
-[26]
-Overfull \hbox (4.11177pt too wide) detected at line 2023
-$\OT1/txr/m/n/10 ^^B[](\OML/txmi/m/it/10 k\OT1/txr/m/n/10 ) \OMS/txsy/m/n/10 ^^Y [][] \OML/txmi/m/it/10 j[][]k\OT1/txr/m/n/10 (\OML/txmi/m/it/10 ^^Q[] \OMS/txsy/m/n/10 ^^@ \OML/txmi/m/it/10 ^^Q[]\OT1/txr/m/n/10 )[] \OMS/txsy/m/n/10 ^^Y [][]  \OML/txmi/m/it/10 j[]\OT1/txr/m/n/10 (\OML/txmi/m/it/10 k^^Q[]\OT1/txr/m/n/10 )\OML/txmi/m/it/10 :$  
- []
-
-
-Underfull \hbox (badness 1701) in paragraph at lines 2023--2025
-\T1/txr/m/n/10 The sec-ond ap-prox-i-ma-tion fol-lows from the fact that the
- []
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 2453.
-
-[27] (out/main.bbl
-
-Package hyperref Warning: Suppressing link with empty target on input line 15.
-
-[28])
-
-Package hyperref Warning: Suppressing link with empty target on input line 2595.
-
-[29
-
-] (out/main.aux
 
 Package natbib Warning: Citation `tensions' multiply defined.
 
@@ -1011,18 +1190,18 @@ Package natbib Warning: Citation `Course' multiply defined.
 
 ) ) 
 Here is how much of TeX's memory you used:
- 17111 strings out of 474116
- 278366 string characters out of 5743682
+ 17403 strings out of 474116
+ 292638 string characters out of 5743682
  1973187 words of memory out of 5000000
- 38815 multiletter control sequences out of 15000+600000
- 657339 words of font info for 196 fonts, out of 8000000 for 9000
+ 39062 multiletter control sequences out of 15000+600000
+ 654290 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,16n,93p,1448b,630s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (29 pages, 837634 bytes).
+ 87i,16n,93p,1448b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on out/main.pdf (39 pages, 1582563 bytes).
 PDF statistics:
- 1199 PDF objects out of 1200 (max. 8388607)
- 1104 compressed objects within 12 object streams
- 366 named destinations out of 1000 (max. 500000)
- 650 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1794 PDF objects out of 2073 (max. 8388607)
+ 1634 compressed objects within 17 object streams
+ 413 named destinations out of 1000 (max. 500000)
+ 920 words of extra memory for PDF output out of 10000 (max. 10000000)
 

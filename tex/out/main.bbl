@@ -1,5 +1,8 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{9}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Basu {et~al.}(2024)Basu, Garaldi, \& Ciardi}]{Helium}
+Basu, A., Garaldi, E., \& Ciardi, B. 2024, \href{https://doi.org/10.1093/mnras/stae1488}{Monthly Notices of the Royal Astronomical Society}, 532, 841
 
 \bibitem[{Cortês \& Liddle(2024)}]{tensions}
 Cortês, M. \& Liddle, A.~R. 2024, \href{https://doi.org/10.1093/mnrasl/slae030}{Monthly Notices of the Royal Astronomical Society}, 531, L52
@@ -22,7 +25,7 @@ Reiss, A.~G., Scolnic, D., Anand, G.~S., \& {et al.} 2024, \href{https://doi.org
 \bibitem[{Tumlinson {et~al.}(2017)Tumlinson, Peeples, \& Werk}]{tumlinson2017circumgalactic}
 Tumlinson, J., Peeples, M.~S., \& Werk, J.~K. 2017, \href{https://doi.org/10.1146/annurev-astro-091916-055240}{Annual Review of Astronomy and Astrophysics}, 55, 389
 
-\bibitem[{Winther {et~al.}(Accessed: February 2025)Winther, Eriksen, Øystein Elgarøy, Mota, \& Ihle}]{Course}
-Winther, H.~A., Eriksen, H.~K., Øystein Elgarøy, Mota, D.~F., \& Ihle, H. Accessed: February 2025, {Cosmology II - A course on the formation of the cosmic microwave background and structures in the Universe}, \url{https://cmb.wintherscoming.no/index.php}
+\bibitem[{Winther {et~al.}(Accessed: June 2025)Winther, Eriksen, Øystein Elgarøy, Mota, \& Ihle}]{Course}
+Winther, H.~A., Eriksen, H.~K., Øystein Elgarøy, Mota, D.~F., \& Ihle, H. Accessed: June 2025, {Cosmology II - A course on the formation of the cosmic microwave background and structures in the Universe}, \url{https://cmb.wintherscoming.no/index.php}
 
 \end{thebibliography}

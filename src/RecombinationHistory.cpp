@@ -36,25 +36,25 @@ void RecombinationHistory::solve(
     const double x_start, 
     const double x_end, 
     const int npts,
-    bool tau_g, 
-    bool sound_horizon, 
-    bool baryon_temp,
-    double x_tol, 
-    bool baryon_tau, 
-    bool only_Saha,
-    bool timing)
+    const double Xe_Saha_limit,
+    const bool tau_g, 
+    const bool sound_horizon, 
+    const bool baryon_temp,
+    const double x_tol, 
+    const bool baryon_tau, 
+    const bool only_Saha)
 {
   // Compute and spline Xe, ne
-  solve_number_density_electrons(x_start, x_end, npts, baryon_temp, x_tol, only_Saha, timing);
+  solve_number_density_electrons(x_start, x_end, npts, Xe_Saha_limit, baryon_temp, x_tol, only_Saha);
   
   if (tau_g) {
     // Compute and spline tau, dtaudx, ddtauddx, g, dgdx, ddgddx (also for baryons if baryon_tau is true)
-    solve_optical_depth_tau(x_start, x_end, npts, baryon_tau, only_Saha, timing);
+    solve_optical_depth_tau(x_start, x_end, npts, baryon_tau, only_Saha);
   }
 
   if (sound_horizon) {
     // Compute and spline s
-    solve_sound_horizon_s(x_start, x_end, npts, timing);
+    solve_sound_horizon_s(x_start, x_end, npts);
   }
 }
 
@@ -66,12 +66,12 @@ void RecombinationHistory::solve_number_density_electrons(
     const double x_start, 
     const double x_end, 
     const int npts,
-    bool baryon_temp,
-    double x_tol,
-    bool only_Saha,
-    bool timing)
+    const double Xe_Saha_limit,
+    const bool baryon_temp,
+    const double x_tol,
+    const bool only_Saha)
 {
-  if (timing) Utils::StartTiming("Xe and ne");
+  Utils::StartTiming("Xe and ne");
   
   // Set up x-array and make arrays to store X_e(x) and n_e(x) (and y(x) in case we want this)
   Vector x_array = Utils::linspace(x_start, x_end, npts);
@@ -112,7 +112,7 @@ void RecombinationHistory::solve_number_density_electrons(
     // Are we still in the Saha regime?
     if (Xe_current < Xe_Saha_limit && !only_Saha) {
       Saha_regime = false;
-      if (!switched_regimes && timing) {
+      if (!switched_regimes) {
         std::cout << "Switched to Peebles regime at x = " << x_array[i] << "\n";
         switched_regimes = true;
       }
@@ -217,7 +217,7 @@ void RecombinationHistory::solve_number_density_electrons(
   }
   if (baryon_temp && !only_Saha) y_of_x_spline.create(x_array, y_array, "y_of_x");
 
-  if (timing) Utils::EndTiming("Xe and ne");
+  Utils::EndTiming("Xe and ne");
 }
 
 
@@ -283,7 +283,6 @@ std::pair<double,double> RecombinationHistory::electron_fraction_from_Saha_equat
     const double tol = 1e-3;
 
     // Compute Xe and ne from the Saha equation
-    Xe;
     if (4.0/b < tol) Xe = 1.0;
     else             Xe = b/2.0 * (-1.0 + sqrt(1.0 + 4.0/b));
     ne = Xe*nH;
@@ -300,8 +299,8 @@ int RecombinationHistory::rhs_Peebles_ode(
     double x, 
     const double *Xe, 
     double *dXedx, 
-    bool baryon_temp,
-    double x_tol)
+    const bool baryon_temp,
+    const double x_tol)
 {
   // Current value of Xe
   const double Xe_current   = Xe[0]; 
@@ -364,11 +363,10 @@ void RecombinationHistory::solve_optical_depth_tau(
     const double x_start, 
     const double x_end, 
     const int npts, 
-    bool baryon_tau, 
-    bool only_Saha,
-    bool timing)
+    const bool baryon_tau, 
+    const bool only_Saha)
 {
-  if (timing) Utils::StartTiming("tau and g_tilde");
+  Utils::StartTiming("tau and g_tilde");
 
   // Physical constants in SI units
   const double c       = Constants.c;
@@ -475,7 +473,7 @@ void RecombinationHistory::solve_optical_depth_tau(
 
   }
 
-  if (timing) Utils::EndTiming("tau and g_tilde");
+  Utils::EndTiming("tau and g_tilde");
 }
 
 
@@ -485,10 +483,9 @@ void RecombinationHistory::solve_optical_depth_tau(
 void RecombinationHistory::solve_sound_horizon_s(
     const double x_start, 
     const double x_end, 
-    const int npts, 
-    bool timing)
+    const int npts)
 {
-  if (timing) Utils::StartTiming("s");
+  Utils::StartTiming("s");
 
   // Physical constants in SI units
   const double c      = Constants.c;
@@ -531,24 +528,24 @@ void RecombinationHistory::solve_sound_horizon_s(
   // Make spline
   s_of_x_spline.create(x_array, s_array, "s_of_x");
 
-  if (timing) Utils::EndTiming("s");
+  Utils::EndTiming("s");
 }
 
 
 //====================================================
 // Get methods
 //====================================================
-double RecombinationHistory::Xe_of_x(double x, bool no_reionization) const{
+double RecombinationHistory::Xe_of_x(const double x, const bool no_reionization) const{
   if (no_reionization) return Xe_noreion_of_x_spline(x);
   else                 return Xe_of_x_spline(x);
 }
 
-double RecombinationHistory::ne_of_x(double x, bool no_reionization) const{
+double RecombinationHistory::ne_of_x(const double x, const bool no_reionization) const{
   if (no_reionization) return exp(log_ne_noreion_of_x_spline(x));
   else                 return exp(log_ne_of_x_spline(x));
 }
 
-double RecombinationHistory::nb_of_x(double x) const{
+double RecombinationHistory::nb_of_x(const double x) const{
   // Physical constants in SI units
   const double G   = Constants.G;
   const double m_H = Constants.m_H;
@@ -563,46 +560,46 @@ double RecombinationHistory::nb_of_x(double x) const{
   return nb;
 }
 
-double RecombinationHistory::tau_of_x(double x, bool baryon_tau) const{
+double RecombinationHistory::tau_of_x(const double x, const bool baryon_tau) const{
   if (baryon_tau) return tau_b_of_x_spline(x);
   else            return tau_of_x_spline(x);
 }
 
-double RecombinationHistory::dtaudx_of_x(double x, bool baryon_tau) const{
+double RecombinationHistory::dtaudx_of_x(const double x, const bool baryon_tau) const{
   if (baryon_tau) return tau_b_of_x_spline.deriv_x(x);
   else            return tau_of_x_spline.deriv_x(x);
 }
 
-double RecombinationHistory::ddtauddx_of_x(double x, bool baryon_tau) const{
+double RecombinationHistory::ddtauddx_of_x(const double x, const bool baryon_tau) const{
   if (baryon_tau) return tau_b_of_x_spline.deriv_xx(x);
   else            return tau_of_x_spline.deriv_xx(x); 
 }
 
-double RecombinationHistory::x_of_tau(double tau, bool baryon_tau) const{
+double RecombinationHistory::x_of_tau(const double tau, const bool baryon_tau) const{
   if (baryon_tau) return x_of_tau_b_spline(tau);
   else            return x_of_tau_spline(tau);
 }
 
-double RecombinationHistory::g_tilde_of_x(double x, bool baryon_tau) const{
+double RecombinationHistory::g_tilde_of_x(const double x, const bool baryon_tau) const{
   if (baryon_tau) return g_tilde_b_of_x_spline(x);
   else            return g_tilde_of_x_spline(x);
 }
 
-double RecombinationHistory::dgdx_tilde_of_x(double x, bool baryon_tau) const{
+double RecombinationHistory::dgdx_tilde_of_x(const double x, const bool baryon_tau) const{
   if (baryon_tau) return g_tilde_b_of_x_spline.deriv_x(x);
   else            return g_tilde_of_x_spline.deriv_x(x);
 }
 
-double RecombinationHistory::ddgddx_tilde_of_x(double x, bool baryon_tau) const{
+double RecombinationHistory::ddgddx_tilde_of_x(const double x, const bool baryon_tau) const{
   if (baryon_tau) return g_tilde_b_of_x_spline.deriv_xx(x);
   else            return g_tilde_of_x_spline.deriv_xx(x);
 }
 
-double RecombinationHistory::s_of_x(double x) const{
+double RecombinationHistory::s_of_x(const double x) const{
   return s_of_x_spline(x);
 }
 
-double RecombinationHistory::T_b_of_x(double x, bool baryon_temp) const{
+double RecombinationHistory::T_b_of_x(const double x, const bool baryon_temp) const{
   double T_CMB = cosmo->get_T_CMB(x);
   if (baryon_temp) return (y_of_x_spline(x) + 1.0)*T_CMB;
   else             return T_CMB;
@@ -663,7 +660,7 @@ void RecombinationHistory::print_freeze_out_abundance() const{
 //====================================================
 // Print out optical(s) debth at reionization
 //====================================================
-void RecombinationHistory::print_tau_reionization(bool baryon_tau) const{
+void RecombinationHistory::print_tau_reionization(const bool baryon_tau) const{
   double x_reion = log(1.0 / (z_reion + 1.0));
 
   std::cout << "\n";
@@ -676,7 +673,7 @@ void RecombinationHistory::print_tau_reionization(bool baryon_tau) const{
 // Print out times and horizon sizes at decoupling 
 // and recombination
 //====================================================
-void RecombinationHistory::print_decoupling_and_recombination(bool drag, bool Saha) const{
+void RecombinationHistory::print_decoupling_and_recombination(const bool drag, const bool Saha) const{
   double x_decoup;
   double x_drag;
   double x_recomb;
@@ -769,10 +766,10 @@ void RecombinationHistory::output(
     const double x_min, 
     const double x_max, 
     const std::string filename, 
-    bool tau_g, 
-    bool sound_horizon, 
-    bool baryon_temp, 
-    bool baryon_tau) const
+    const bool tau_g, 
+    const bool sound_horizon, 
+    const bool baryon_temp, 
+    const bool baryon_tau) const
 {
   std::ofstream fp(filename.c_str());
   const int npts = static_cast<int>(x_max - x_min)*10000 + 1;

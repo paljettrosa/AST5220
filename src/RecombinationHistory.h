@@ -36,9 +36,6 @@ class RecombinationHistory{
 
     // x at recombination (determined when solving for Xe)
     double x_recombination        = 0.0;
-  
-    // Xe for when to switch between Saha and Peebles
-    const double Xe_Saha_limit    = 0.99; //TODO: change back to 0.9999
 
     // Xe at recombination
     const double Xe_recombination = 0.1;
@@ -56,18 +53,18 @@ class RecombinationHistory{
         double x, 
         const double *y, 
         double *dydx, 
-        bool baryon_temp,
-        double x_tol);
+        const bool baryon_temp,
+        const double x_tol);
     
     // Solve for Xe and ne
     void solve_number_density_electrons(
         const double x_start, 
         const double x_end, 
-        const int npts, 
-        bool baryon_temp,
-        double x_tol,
-        bool only_Saha,
-        bool timing);
+        const int npts,
+        const double Xe_Saha_limit, 
+        const bool baryon_temp,
+        const double x_tol,
+        const bool only_Saha);
   
 
     //===============================================================
@@ -77,9 +74,8 @@ class RecombinationHistory{
         const double x_start, 
         const double x_end, 
         const int npts, 
-        bool baryon_tau, 
-        bool only_Saha,
-        bool timing);
+        const bool baryon_tau, 
+        const bool only_Saha);
 
 
     //===============================================================
@@ -88,8 +84,7 @@ class RecombinationHistory{
     void solve_sound_horizon_s(
         const double x_start, 
         const double x_end, 
-        const int npts, bool 
-        timing);
+        const int npts);
 
 
     // Splines contained in this class
@@ -123,27 +118,27 @@ class RecombinationHistory{
         const double x_start, 
         const double x_end, 
         const int npts, 
-        bool tau_g = true, 
-        bool sound_horizon = false, 
-        bool baryon_temp = false, 
-        double x_tol = -7.0,
-        bool baryon_tau = false, 
-        bool only_Saha = false,
-        bool timing = true);
+        const double Xe_Saha_limit = 0.9999,
+        const bool tau_g = true, 
+        const bool sound_horizon = false, 
+        const bool baryon_temp = false, 
+        const double x_tol = -7.0,
+        const bool baryon_tau = false, 
+        const bool only_Saha = false);
 
     // Get functions
-    double Xe_of_x(double x, bool no_reionization = false) const;
-    double ne_of_x(double x, bool no_reionization = false) const;
-    double nb_of_x(double x) const;
-    double tau_of_x(double x, bool baryon_tau = false) const;
-    double dtaudx_of_x(double x, bool baryon_tau = false) const;
-    double ddtauddx_of_x(double x, bool baryon_tau = false) const;
-    double x_of_tau(double tau, bool baryon_tau = false) const;
-    double g_tilde_of_x(double x, bool baryon_tau = false) const;
-    double dgdx_tilde_of_x(double x, bool baryon_tau = false) const;
-    double ddgddx_tilde_of_x(double x, bool baryon_tau = false) const;
-    double s_of_x(double x) const;
-    double T_b_of_x(double x, bool baryon_temp = false) const;
+    double Xe_of_x(const double x, const bool no_reionization = false) const;
+    double ne_of_x(const double x, const bool no_reionization = false) const;
+    double nb_of_x(const double x) const;
+    double tau_of_x(const double x, const bool baryon_tau = false) const;
+    double dtaudx_of_x(const double x, const bool baryon_tau = false) const;
+    double ddtauddx_of_x(const double x, const bool baryon_tau = false) const;
+    double x_of_tau(const double tau, const bool baryon_tau = false) const;
+    double g_tilde_of_x(const double x, const bool baryon_tau = false) const;
+    double dgdx_tilde_of_x(const double x, const bool baryon_tau = false) const;
+    double ddgddx_tilde_of_x(const double x, const bool baryon_tau = false) const;
+    double s_of_x(const double x) const;
+    double T_b_of_x(const double x, const bool baryon_temp = false) const;
     double get_Yp() const;
     double get_z_reion() const;
     double get_Delta_z_reion() const;
@@ -158,20 +153,20 @@ class RecombinationHistory{
     void print_freeze_out_abundance() const;
 
     // Print the optical debth(s) at reionization
-    void print_tau_reionization(bool baryon_tau = false) const;
+    void print_tau_reionization(const bool baryon_tau = false) const;
 
     // Print the times and horizon sizes for decoupling (also for baryons if drag = true) and recombination
-    void print_decoupling_and_recombination(bool drag = false, bool Saha = false) const;
+    void print_decoupling_and_recombination(const bool drag = false, const bool Saha = false) const;
 
     // Output some data to file
     void output(
         const double x_min, 
         const double x_max, 
         const std::string filename, 
-        bool tau_g = true,
-        bool sound_horizon = false, 
-        bool baryon_temp = false, 
-        bool baryon_tau = false) const;
+        const bool tau_g = true,
+        const bool sound_horizon = false, 
+        const bool baryon_temp = false, 
+        const bool baryon_tau = false) const;
 };
 
 #endif

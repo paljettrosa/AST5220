@@ -7,6 +7,8 @@
 #include <chrono>
 #include <map>
 #include <gsl/gsl_sf_bessel.h>
+#include <gsl/gsl_sf_legendre.h>
+#include <gsl/gsl_sf_gamma.h>
 #ifdef _COMPLEX_BESSEL
 #include <complex_bessel.h>
 #endif
@@ -46,19 +48,6 @@ extern struct ConstantsAndUnits {
   const double epsilon_0   = 13.605693122994 * eV;        // Ionization energy for the ground state of hydrogen
   const double chi_0       = 24.587387 * eV;              // Ionization energy for neutral Helium
   const double chi_1       = 4.0 * epsilon_0;             // Ionization energy for singly ionized Helium
-
-  // For integration of perturbations (number of equations and positions in arrays)
-  const int n_scalars           = 5;
-  const int n_ell_Theta         = 8;
-  const int n_ell_Thetap        = 8;
-  const int n_ell_Nu            = 8;
-  const int idx_Phi             = 0;
-  const int idx_deltaCDM        = 1; 
-  const int idx_deltab          = 2;
-  const int idx_vCDM            = 3;
-  const int idx_vb              = 4;
-  const int idx_start_Theta     = n_scalars;
-
 } Constants;
 
 namespace Utils {

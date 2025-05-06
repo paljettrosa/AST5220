@@ -20,30 +20,32 @@ class Perturbations{
     BackgroundCosmology *cosmo = nullptr;
     RecombinationHistory *rec  = nullptr;
 
-    // Include polarization and/or neutrinos?
-    bool polarization;
-    bool neutrinos;
+    // Number of multipoles
+    int n_ell_Theta;
+    int n_ell_Theta_P;
+    int n_ell_Nu;
 
     // Compute source function for lensing potential?
     bool lensing;
+
+    // Include polarization and/or neutrinos?
+    bool polarization = false;
+    bool neutrinos    = false;
     
-    // Number of scalars and multipoles
-    int n_scalars        = Constants.n_scalars;
-    int n_ell_Theta      = Constants.n_ell_Theta;
-    int n_ell_Thetap     = Constants.n_ell_Thetap;
-    int n_ell_Nu         = Constants.n_ell_Nu;
+    // Number of scalars 
+    int n_scalars = 5;
 
     // Indices
-    int idx_Phi          = Constants.idx_Phi;
-    int idx_deltaCDM     = Constants.idx_deltaCDM; 
-    int idx_deltab       = Constants.idx_deltab;
-    int idx_vCDM         = Constants.idx_vCDM;
-    int idx_vb           = Constants.idx_vb;
-    int idx_start_Theta  = Constants.idx_start_Theta;
+    int idx_Phi         = 0;
+    int idx_delta_CDM   = 1; 
+    int idx_delta_b     = 2;
+    int idx_v_CDM       = 3;
+    int idx_v_b         = 4;
+    int idx_start_Theta = n_scalars;
 
-    // Set by booleans
+    // Set by input parameters
     int n_ell_tot;
-    int idx_start_Thetap;
+    int idx_start_Theta_P;
     int idx_start_Nu;
     
     // Neutrino fraction
@@ -54,8 +56,8 @@ class Perturbations{
         const double x_start, 
         const double x_end,
         const int npts_x,
-        const double k_start,
-        const double k_end,
+        const double k_min,
+        const double k_max,
         const int npts_k);
     
     // Compute source functions and spline the result
@@ -63,9 +65,13 @@ class Perturbations{
         const double x_start, 
         const double x_end,
         const int npts_x,
-        const double k_start,
-        const double k_end,
-        const int npts_k);
+        const double k_min,
+        const double k_max,
+        const int npts_k,
+        const bool SW,
+        const bool ISW,
+        const bool Doppler,
+        const bool pol);
     
     // Set the initial conditions in the very beginning
     Vector set_ic(
@@ -108,14 +114,14 @@ class Perturbations{
 
     // Splines of mulipole quantities
     std::vector<Spline2D> Theta_spline;
-    std::vector<Spline2D> Theta_p_spline;
+    std::vector<Spline2D> Theta_P_spline;
     std::vector<Spline2D> Nu_spline;
    
     // Splines of source functions
-    Spline2D ST_spline{"ST_spline"};    // Temperature
-    Spline2D SE_spline{"SE_spline"};    // Polarization
-    Spline2D SN_spline{"SN_spline"};    // Neutrinos
-    Spline2D SL_spline{"SL_spline"};    // Lensing
+    Spline2D source_T_spline{"source_T_spline"};      // Temperature
+    Spline2D source_E_spline{"source_E_spline"};      // Polarization
+    Spline2D source_nu_spline{"source_nu_spline"};    // Neutrinos
+    Spline2D source_Psi_spline{"source_Psi_spline"};  // Lensing
 
   public:
 
@@ -124,8 +130,9 @@ class Perturbations{
     Perturbations(
         BackgroundCosmology *cosmo, 
         RecombinationHistory *rec,
-        bool polarization,
-        bool neutrinos,
+        int n_ell_Theta,
+        int n_ell_Theta_P,
+        int n_ell_Nu,
         bool lensing); 
 
     // Do all the solving
@@ -133,9 +140,13 @@ class Perturbations{
         const double x_start, 
         const double x_end,
         const int npts_x,
-        const double k_start,
-        const double k_end,
-        const int npts_k);
+        const double k_min,
+        const double k_max,
+        const int npts_k,
+        const bool SW = true,
+        const bool ISW = true,
+        const bool Doppler = true,
+        const bool pol = true);
 
     // Get the quantities we have integrated
     double get_Phi(const double x, const double k) const;
@@ -152,14 +163,14 @@ class Perturbations{
     double get_v_b(const double x, const double k) const;
     double get_dv_bdx(const double x, const double k) const;
     double get_Theta(const double x, const double k, const int ell) const;
-    double get_Theta_p(const double x, const double k, const int ell) const;
+    double get_Theta_P(const double x, const double k, const int ell) const;
     double get_Nu(const double x, const double k, const int ell) const;
 
     // Get the source functions
-    double get_Source_T(const double x, const double k) const;
-    double get_Source_E(const double x, const double k) const;
-    double get_Source_N(const double x, const double k) const;
-    double get_Source_L(const double x, const double k) const;
+    double get_source_T(const double x, const double k) const;
+    double get_source_E(const double x, const double k) const;
+    double get_source_nu(const double x, const double k) const;
+    double get_source_Psi(const double x, const double k) const;
 
     // Get the class parameters
     bool get_polarization_bool() const;
@@ -170,12 +181,19 @@ class Perturbations{
     // Print some useful info about the class
     void info() const;
 
+    // Compute and print the end of the tight-coupling regime for a given mode
+    void print_tight_coupling_time(const double k) const;
+
+    // Print the time when a mode enters the horizon
+    void print_horizon_entry_time(const double k) const;
+
     // Output info to file
     void output(
         const double x_min, 
         const double x_max, 
         const double k, 
-        const std::string filename) const;
+        const std::string filename,
+        const bool source = false) const;
 };
 
 #endif

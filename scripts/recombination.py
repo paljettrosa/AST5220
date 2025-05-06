@@ -119,66 +119,29 @@ plt.show()
 """
 Plot of tau, -dtaudx and ddtauddx
 """
-#TODO maybe have zoom-ins around important time stamps instead of only photons / only baryons
-fig = plt.figure(layout = "constrained", figsize = (16, 12))
-subfigs = fig.subfigures(2, 1, hspace = 0.02, height_ratios = [1.5, 1])
-axs = list(subfigs[1].subplots(1, 2))
-axs.append(subfigs[0].subplots(1, 1))
+fig, axs = plt.subplots(ncols = 2, layout = "constrained", figsize = (16, 6))
 
-# titles = ["Photons", "Baryons", "Photons + Baryons"]
-# for i in range(3):
-#     if i != 1:
-#         axs[i].plot(data["x"], data["tau"], color = "royalblue", label = r"$\tau(x)$", zorder = 1)
-#         axs[i].plot(data["x"], -data["dtaudx"], color = "mediumvioletred", label = r"-$\tau'(x)$", zorder = 3)
-#         axs[i].plot(data["x"], data["ddtauddx"], color = "olivedrab", label = r"$\tau''(x)$", zorder = 5)
-    
-#     axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles", zorder = 6)
-#     if i != 1: 
-#         axs[i].axvline(x_decoup, color = "#fc95c7", label = "Photon decoupling", zorder = 7)
-#         axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 7)
-#     if i != 0: 
-#         axs[i].axvline(x_drag, color = "gold", label = "Baryon decoupling", zorder = 8)
-#         axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 8)
-
-#     if i != 0:
-#         axs[i].plot(data["x"], data["tau_b"], color = "cornflowerblue", label = r"$\tau_b(x)$", zorder = 0)
-#         axs[i].plot(data["x"], -data["dtau_bdx"], color = "palevioletred", label = r"$-\tau_b'(x)$", zorder = 2)
-#         axs[i].plot(data["x"], data["ddtau_bddx"], color = "yellowgreen", label = r"$\tau_b''(x)$", zorder = 4)
-    
-#     axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
-#     axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
-#     axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
-#     axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization")
-    
-#     axs[i].set_title(titles[i])
-#     axs[i].set_xlim(x_min, x_max)
-#     axs[i].set_ylim(bottom = 1e-8)
-#     axs[i].set_yscale("log") 
-xlims = [[-9, -6], [-3.5, -0.5], [x_min, x_max]]
-ylims = [[1e-3, 1e5], [1e-7, 1], [1e-8, np.max(data["ddtau_bddx"])]]
-for i in range(3):
-    axs[i].plot(data["x"], data["tau"], color = "royalblue", label = r"$\tau(x)$", linewidth = 2, zorder = 1)
-    axs[i].plot(data["x"], -data["dtaudx"], color = "mediumvioletred", label = r"-$\tau'(x)$", linewidth = 2, zorder = 3)
-    axs[i].plot(data["x"], data["ddtauddx"], color = "olivedrab", label = r"$\tau''(x)$", linewidth = 2, zorder = 5)  
-    axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles", zorder = 6)
-    axs[i].axvline(x_decoup, color = "#fc95c7", label = "Photon decoupling", zorder = 7)
-    axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 7)
-    axs[i].axvline(x_drag, color = "gold", label = "Baryon decoupling", zorder = 8)
-    axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 8)
-    axs[i].plot(data["x"], data["tau_b"], color = "cornflowerblue", label = r"$\tau_b(x)$", linewidth = 2, zorder = 0)
-    axs[i].plot(data["x"], -data["dtau_bdx"], color = "palevioletred", label = r"$-\tau_b'(x)$", linewidth = 2, zorder = 2)
-    axs[i].plot(data["x"], data["ddtau_bddx"], color = "yellowgreen", label = r"$\tau_b''(x)$", linewidth = 2, zorder = 4)
-    axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
+quantities = [[data["tau"], -data["dtaudx"], data["ddtauddx"]], [data["tau_b"], -data["dtau_bdx"], data["ddtau_bddx"]]]
+titles = ["Photon optical depth", "Baryon optical depth"]
+for i in range(2): 
+    axs[i].plot(data["x"], quantities[i][0], color = "cornflowerblue", label = r"$\tau(x)$" if i == 0 else None, linewidth = 2)
+    axs[i].plot(data["x"], quantities[i][1], color = "palevioletred", label = r"$-\tau'(x)$" if i == 0 else None, linewidth = 2)
+    axs[i].plot(data["x"], quantities[i][2], color = "yellowgreen", label = r"$\tau''(x)$" if i == 0 else None, linewidth = 2)
+    axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles" if i == 1 else None)
+    axs[i].axvline(x_decoup, color = "#fc95c7", label = "Photon decoupling" if i == 1 else None)
+    axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--")
+    axs[i].axvline(x_drag, color = "gold", label = "Baryon decoupling" if i == 1 else None)
+    axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--")
+    axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination" if i == 1 else None)
     axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
-    axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
-    axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization")
-    
-    axs[i].set_xlim(xlims[i])
-    axs[i].set_ylim(ylims[i])
+    axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization" if i == 1 else None)
+    axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization" if i == 1 else None)
+    axs[i].legend(loc = "upper right", framealpha = 1)
+    axs[i].set_title(titles[i])
+    axs[i].set_xlim(x_min, x_max)
+    axs[i].set_ylim(1e-6 if i == 0 else 1e-8, np.max(quantities[i][2]))
     axs[i].set_yscale("log") 
 
-
-axs[2].legend(ncols = 2, framealpha = 1)
 fig.supxlabel(r"$x=\log(a)$")
 fig.supylabel(r"Optical depth and derivatives")
 fig.savefig("figs/optical_depth.pdf")
@@ -186,23 +149,55 @@ plt.show()
 
 
 
+# fig = plt.figure(layout = "constrained", figsize = (16, 12))
+# subfigs = fig.subfigures(2, 1, hspace = 0.02, height_ratios = [1.5, 1])
+# axs = list(subfigs[1].subplots(1, 2))
+# axs.append(subfigs[0].subplots(1, 1))
+
+# xlims = [[-9, -6], [-3.5, -0.5], [x_min, x_max]]
+# ylims = [[1e-3, 1e5], [1e-7, 1], [1e-8, np.max(data["ddtau_bddx"])]]
+# for i in range(3):
+#     axs[i].plot(data["x"], data["tau"], color = "royalblue", label = r"$\tau(x)$", linewidth = 2, zorder = 1)
+#     axs[i].plot(data["x"], -data["dtaudx"], color = "mediumvioletred", label = r"-$\tau'(x)$", linewidth = 2, zorder = 3)
+#     axs[i].plot(data["x"], data["ddtauddx"], color = "olivedrab", label = r"$\tau''(x)$", linewidth = 2, zorder = 5)  
+#     axs[i].axvline(x_Peebles, color = "slategrey", label = r"Saha$\,\to\,$Peebles", zorder = 6)
+#     axs[i].axvline(x_decoup, color = "#fc95c7", label = "Photon decoupling", zorder = 7)
+#     axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--", zorder = 7)
+#     axs[i].axvline(x_drag, color = "gold", label = "Baryon decoupling", zorder = 8)
+#     axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--", zorder = 8)
+#     axs[i].plot(data["x"], data["tau_b"], color = "cornflowerblue", label = r"$\tau_b(x)$", linewidth = 2, zorder = 0)
+#     axs[i].plot(data["x"], -data["dtau_bdx"], color = "palevioletred", label = r"$-\tau_b'(x)$", linewidth = 2, zorder = 2)
+#     axs[i].plot(data["x"], data["ddtau_bddx"], color = "yellowgreen", label = r"$\tau_b''(x)$", linewidth = 2, zorder = 4)
+#     axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination")
+#     axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--")
+#     axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
+#     axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization")
+    
+#     axs[i].set_xlim(xlims[i])
+#     axs[i].set_ylim(ylims[i])
+#     axs[i].set_yscale("log") 
+
+# axs[2].legend(ncols = 2, framealpha = 1)
+# fig.supxlabel(r"$x=\log(a)$")
+# fig.supylabel(r"Optical depth and derivatives")
+# fig.savefig("figs/optical_depth.pdf")
+# plt.show()
+
+
+
 """
 Plot of g_tilde, dgdx_tilde and ddgddx_tilde
 """
-#TODO include visibility functions computed from tau_b also?
-fig, axs = plt.subplots(nrows = 3, layout = "constrained", figsize = (8, 12))
+fig, axs = plt.subplots(nrows = 3, layout = "constrained", figsize = (8, 14))
 
-quantities = [data["g_tilde"], data["dgdx_tilde"], data["ddgddx_tilde"], data["g_tilde_b"], data["dgdx_tilde_b"], data["ddgddx_tilde_b"]]
+quantities = [data["g_tilde"], data["dgdx_tilde"], data["ddgddx_tilde"]]
 titles = [r"$\tilde{g}(x)$", r"$\tilde{g}'(x)$", r"$\tilde{g}''(x)$"]
 for i in range(3):
-    axs[i].plot(data["x"], quantities[i], "k", label = "Photons", linewidth = 2, zorder = 1)
-    axs[i].plot(data["x"], quantities[i+3], "slategrey", label = "Baryons", linewidth = 2, zorder = 0)
+    axs[i].plot(data["x"], quantities[i], "k", label = "Computed evolution", linewidth = 2, zorder = 1)
     axs[i].axvline(x_decoup, color = "#fc95c7", label = r"Photon decoupling") 
     axs[i].axvline(x_decoup_Saha, color = "#fc95c7", linestyle = "--")
-    axs[i].axvline(x_drag, color = "gold", label = r"Baryon decoupling") #TODO include this?
-    axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--") #TODO include this?
-    # axs[i].axvline(x_recomb, color = "skyblue", label = r"Recombination") #TODO include this?
-    # axs[i].axvline(x_recomb_Saha, color = "skyblue", linestyle = "--") #TODO include this?
+    # axs[i].axvline(x_drag, color = "gold", label = r"Baryon decoupling") 
+    # axs[i].axvline(x_drag_Saha, color = "gold", linestyle = "--") 
     axs[i].axvline(x_reion, color = "orange", label = "Hydrogen reionization")
     axs[i].axvline(x_Hereion, color = "plum", label = "Helium reionization")
     axs[i].set_title(titles[i])

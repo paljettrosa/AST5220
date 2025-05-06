@@ -23,9 +23,9 @@ class PowerSpectrum {
     Perturbations *pert        = nullptr;
 
     // Parameters defining the primordial power-spectrum
-    double A_s        = 2.1e-9;
-    double n_s        = 0.965;
-    double kpivot_Mpc = 0.05;
+    double A_s;
+    double n_s;
+    double kpivot_Mpc;
     
     // The ells's we will compute quantities for
     Vector ells{ 
@@ -56,7 +56,9 @@ class PowerSpectrum {
     // Do LOS integration for all ells and all k's in the given k_array
     void line_of_sight_integration(
         Vector &x_array,
-        Vector &k_array);
+        const double k_min,
+        const double k_max,
+        const bool only_TT);
   
     // Do the line of sight integration for a single quantity
     Vector2D line_of_sight_integration_single(
@@ -68,23 +70,56 @@ class PowerSpectrum {
     std::vector<Spline> ThetaT_ell_of_k_spline;
     std::vector<Spline> ThetaE_ell_of_k_spline;
     std::vector<Spline> Nu_ell_of_k_spline;
-    std::vector<Spline> ThetaL_ell_of_k_spline;
+    std::vector<Spline> Psi_ell_of_k_spline;
     
     //=====================================================================
     // [3] Integrate to get power-spectrum
     //=====================================================================
 
     Vector solve_for_C_ell(
-        Vector & logk_array,
         std::vector<Spline> & f_ell, 
-        std::vector<Spline> & g_ell);
+        std::vector<Spline> & g_ell,
+        const double k_min,
+        const double k_max);
 
     // Splines with the power-spectra
     Spline C_ell_TT_spline{"C_ell_TT_spline"};
     Spline C_ell_TE_spline{"C_ell_TE_spline"};
     Spline C_ell_EE_spline{"C_ell_EE_spline"};
-    Spline C_ell_Nu_spline{"C_ell_Nu_spline"};
-    Spline C_ell_lens_spline{"C_ell_lens_spline"};
+    Spline C_ell_nu_spline{"C_ell_nu_spline"};
+    Spline C_ell_Psi_spline{"C_ell_Psi_spline"};
+
+
+    //=====================================================================
+    // [4] Compute the angular correlation functions
+    //=====================================================================
+    void compute_angular_correlation(Vector &theta_array);
+    void compute_lensed_angular_correlation(Vector &theta_array);
+    
+    // Spline with the angular correlation functions
+    Spline C_of_theta_spline{"C_of_theta_spline"};
+    Spline C_of_theta_lensed_spline{"C_of_theta_lensed_spline"};
+
+
+    //=====================================================================
+    // [5] Compute the lensed CMB spectrum
+    //=====================================================================
+    void solve_lensed_spectrum(const int npts);
+    
+    // Spline with the lensed TT power-spectrum
+    Spline C_ell_Theta_spline{"C_ell_Theta_spline"};
+
+
+    //=====================================================================
+    // [6] Compute the correlation function
+    //=====================================================================
+    void solve_correlation_function(
+        Vector &r_array,
+        const double k_min,
+        const double k_max);
+    
+    // Spline with the correlation function
+    Spline xi_spline{"xi_spline"};
 
   public:
 
@@ -103,36 +138,78 @@ class PowerSpectrum {
         const double x_start,
         const double x_end,
         const int npts_x,
-        const double k_start,
-        const double k_end,
-        const int npts_k);  // TODO: reasonable?
+        const double k_min,
+        const double k_max,
+        const bool only_TT = false,
+        const bool angular_correlation = false,
+        const bool lensed_TT = false,
+        const bool correlation_function = false,
+        const double r_min = Constants.Mpc,
+        const double r_max = 500.0*Constants.Mpc,
+        const int npts_r = 1000);  // TODO: reasonable?
 
     // The dimensionless primordial power-spectrum Delta = 2pi^2/k^3 P(k) TODO which one is this? make private?
     double primordial_power_spectrum(const double k_Mpc) const;
 
-    // Get P(k, x) for a given x in units of (Mpc)^3
-    double get_matter_power_spectrum(const double x, const double k_Mpc) const;
+    // Get P(k, x) for a given x in units of (Mpc)^3 (or dimensionless)
+    double get_matter_power_spectrum(
+        const double x, 
+        const double k_Mpc, 
+        const bool dimensionful = true,
+        const bool total = true,
+        const int component = 0) const;
 
-    // Get the quantities we have computed TODO: int ell instead?
+    // Get the quantities we have computed 
+    double get_ThetaT_ell(const double k, const int ell_idx) const;
+    double get_ThetaE_ell(const double k, const int ell_idx) const;
+    double get_Nu_ell(const double k, const int ell_idx) const;
+    double get_Psi_ell(const double k, const int ell_idx) const;
+    double get_C_of_theta(const double theta) const;
+    double get_C_of_theta_lensed(const double theta) const;
     double get_C_ell_TT(const double ell) const;
     double get_C_ell_TE(const double ell) const;
     double get_C_ell_EE(const double ell) const;
-    double get_C_ell_Nu(const double ell) const;
-    double get_C_ell_lens(const double ell) const;
-
-    //TODO: get_k_eq / print_k_eq?
+    double get_C_ell_nu(const double ell) const;
+    double get_C_ell_Psi(const double ell) const;
+    double get_C_ell_Theta(const double ell) const;
+    double get_xi(const double r) const;
 
     // Print some useful info about the class
     void info() const;
 
-    // Output matter power spectrum with conventional normalization
-    void output_P_k(
-        const double k_Mpc_min, 
-        const double k_Mpc_max, 
-        const std::string filename) const;
+    // Print the equality scale
+    void print_equality_scale() const;    
+
+    // Output the transfer functions
+    void output_transfer_functions(
+        const double k_min, 
+        const double k_max,
+        const int ell,
+        const std::string filename) const; 
+    
+    // Output angular correlation functions
+    void output_C_of_theta(
+        const std::string filename,
+        const bool lensed_C = false) const; 
 
     // Output C_ells with conventional normalizations
-    void output_C_ells(std::string filename) const;
+    void output_C_ells(
+        std::string filename,
+        const bool only_TT = false,
+        const bool lensed_TT = false) const;
+
+    // Output the matter power spectrum with conventional normalization
+    void output_P_k(
+        const double k_Mpc_min, 
+        const double k_Mpc_max,
+        const std::string filename,
+        const bool components = false) const; 
+    
+    // Output correlation function with conventional normalization
+    void output_xi(
+        const double r_Mpc_min, 
+        const double r_Mpc_max,
+        const std::string filename) const; 
 
     //TODO: correlation functions, CMB map, etc.
 };
