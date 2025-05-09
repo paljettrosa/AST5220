@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  6 MAY 2025 22:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  8 MAY 2025 21:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -933,11 +933,11 @@ Package hyperref Warning: Suppressing link with empty target on input line 1836.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf, id=1079, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf  used on input line 1888.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf  used on input line 1889.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 1895.
+Package hyperref Warning: Suppressing link with empty target on input line 1896.
 
 [25]
 Underfull \vbox (badness 4531) has occurred while \output is active []
@@ -945,15 +945,15 @@ Underfull \vbox (badness 4531) has occurred while \output is active []
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf, id=1095, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf  used on input line 1909.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/photons.pdf  used on input line 1910.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf, id=1098, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf  used on input line 1925.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrinos.pdf  used on input line 1926.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
 
-Underfull \vbox (badness 6542) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -962,13 +962,13 @@ Package hyperref Warning: Suppressing link with empty target on input line 1933.
 [26 </Users/paljettrosa/Documents/GitHub/AST5220/figs/CDM_and_baryons.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf, id=1127, 1156.32pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf, id=1126, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf  used on input line 1945.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf  used on input line 1946.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
 
-Underfull \vbox (badness 1831) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -978,32 +978,28 @@ Package hyperref Warning: Suppressing link with empty target on input line 1954.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf, id=1161, 578.16pt x 1156.32pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf  used on input line 1968.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf  used on input line 1969.
 (pdftex.def)             Requested size: 256.0748pt x 512.13474pt.
 
-Underfull \hbox (badness 1142) in paragraph at lines 1973--1974
+Underfull \hbox (badness 1142) in paragraph at lines 1974--1975
 \T1/txr/m/n/10 Figure [][]4.5[][] shows the evo-lu-tion of the pho-ton po-lar-iza-tion
  []
 
 
-Underfull \hbox (badness 1571) in paragraph at lines 1973--1974
+Underfull \hbox (badness 1571) in paragraph at lines 1974--1975
 \T1/txr/m/n/10 monopole $\OT1/txr/m/n/10 ^^B[]$ \T1/txr/m/n/10 (top panel), dipole $\OT1/txr/m/n/10 ^^B[]$ \T1/txr/m/n/10 (mid-dle panel), and
  []
-
-
-Underfull \vbox (badness 6078) has occurred while \output is active []
 
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf, id=1164, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf  used on input line 1987.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf  used on input line 1988.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
 
-
-Package hyperref Warning: Suppressing link with empty target on input line 1998.
+Package hyperref Warning: Suppressing link with empty target on input line 1997.
 
 [28 </Users/paljettrosa/Documents/GitHub/AST5220/figs/quadrupoles.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1205) has occurred while \output is active []
 
 
 
@@ -1011,99 +1007,99 @@ Package hyperref Warning: Suppressing link with empty target on input line 2076.
 
 [29 </Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization.pdf>]
 
-Package hyperref Warning: Suppressing link with empty target on input line 2165.
+Package hyperref Warning: Suppressing link with empty target on input line 2154.
 
 [30 </Users/paljettrosa/Documents/GitHub/AST5220/figs/Phi_and_Psi.pdf>]
-Underfull \hbox (badness 1701) in paragraph at lines 2254--2256
+Underfull \hbox (badness 1701) in paragraph at lines 2243--2245
 \T1/txr/m/n/10 The sec-ond ap-prox-i-ma-tion fol-lows from the fact that the
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 2265.
+Package hyperref Warning: Suppressing link with empty target on input line 2250.
 
 [31]
 
-Package hyperref Warning: Suppressing link with empty target on input line 2727.
+Package hyperref Warning: Suppressing link with empty target on input line 2701.
 
 [32]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf, id=1279, 1156.32pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf, id=1278, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf  used on input line 2843.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf  used on input line 2832.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf, id=1281, 1156.32pt x 578.16pt>
-File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf Graphic file (type pdf)
-<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf  used on input line 2860.
-(pdftex.def)             Requested size: 523.5307pt x 261.76637pt.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 2865.
+Package hyperref Warning: Suppressing link with empty target on input line 2843.
 
 [33]
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf, id=1297, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf, id=1292, 1156.32pt x 578.16pt>
+File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf Graphic file (type pdf)
+<use /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf>
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf  used on input line 2849.
+(pdftex.def)             Requested size: 523.5307pt x 261.76637pt.
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf, id=1296, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf  used on input line 2886.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf  used on input line 2875.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf, id=1298, 1156.32pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf, id=1297, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf  used on input line 2911.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf  used on input line 2900.
 (pdftex.def)             Requested size: 523.5307pt x 196.32478pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf, id=1299, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf, id=1298, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf  used on input line 2932.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf  used on input line 2921.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-</Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf, id=1300, 578.16pt x 433.62pt>
+</Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf, id=1299, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf  used on input line 2951.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf  used on input line 2940.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-
+ (out/main.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 2953.
+Package hyperref Warning: Suppressing link with empty target on input line 7.
 
-[34 </Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf>] (out/main.bbl)
+[34 </Users/paljettrosa/Documents/GitHub/AST5220/figs/transfer_function.pdf>])
 
-Package hyperref Warning: Suppressing link with empty target on input line 2973.
+Package hyperref Warning: Suppressing link with empty target on input line 2962.
 
-[35 </Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf>]
+[35 </Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/CMB_contributions.pdf>]
 
-Package hyperref Warning: Suppressing link with empty target on input line 2973.
+Package hyperref Warning: Suppressing link with empty target on input line 2962.
 
 [36 </Users/paljettrosa/Documents/GitHub/AST5220/figs/polarization_spectra.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/neutrino_spectrum.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/P_k.pdf>]
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf, id=1456, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf  used on input line 2981.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Hp_and_eta.pdf  used on input line 2970.
 (pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf, id=1457, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf  used on input line 2991.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/eta_Hp_over_c.pdf  used on input line 2980.
 (pdftex.def)             Requested size: 248.67627pt x 186.50589pt.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf, id=1458, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf  used on input line 2998.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Omega_i.pdf  used on input line 2987.
 (pdftex.def)             Requested size: 248.67627pt x 186.50589pt.
 
-Overfull \hbox (1.90001pt too wide) in paragraph at lines 2987--3004
+Overfull \hbox (1.90001pt too wide) in paragraph at lines 2976--2993
 []$[]$ $[]$
  []
 
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf, id=1459, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf  used on input line 3010.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Xe.pdf  used on input line 2999.
 (pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
-Package hyperref Warning: Suppressing link with empty target on input line 3015.
+Package hyperref Warning: Suppressing link with empty target on input line 3004.
 
 [37
 
@@ -1112,27 +1108,27 @@ Package hyperref Warning: Suppressing link with empty target on input line 3015.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf, id=1526, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf  used on input line 3019.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf  used on input line 3008.
 (pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf, id=1527, 578.16pt x 1011.78pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf  used on input line 3028.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf  used on input line 3017.
 (pdftex.def)             Requested size: 248.67627pt x 435.18042pt.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf, id=1528, 578.16pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf  used on input line 3034.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf  used on input line 3023.
 (pdftex.def)             Requested size: 256.52892pt x 192.39458pt.
 
-Overfull \hbox (1.90001pt too wide) in paragraph at lines 3026--3038
+Overfull \hbox (1.90001pt too wide) in paragraph at lines 3015--3027
 []$[]$ $[]$
  []
 
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf, id=1529, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf  used on input line 3044.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf  used on input line 3033.
 (pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1140,7 +1136,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf, id=1530, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf  used on input line 3051.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf  used on input line 3040.
 (pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1148,17 +1144,17 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf, id=1531, 1156.32pt x 433.62pt>
 File: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf Graphic file (type pdf)
 <use /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf>
-Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf  used on input line 3060.
+Package pdftex.def Info: /Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf  used on input line 3049.
 (pdftex.def)             Requested size: 497.35255pt x 186.50589pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 3064.
+Package hyperref Warning: Suppressing link with empty target on input line 3053.
 
 [38 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/tau.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/g_tilde.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Phi.pdf>]
 
-Package hyperref Warning: Suppressing link with empty target on input line 3064.
+Package hyperref Warning: Suppressing link with empty target on input line 3053.
 
 [39 </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/delta_and_v.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/Thetas.pdf> </Users/paljettrosa/Documents/GitHub/AST5220/figs/toy/C_ell_and_P_k.pdf>] (out/main.aux
 
@@ -1190,15 +1186,15 @@ Package natbib Warning: Citation `Course' multiply defined.
 
 ) ) 
 Here is how much of TeX's memory you used:
- 17403 strings out of 474116
- 292638 string characters out of 5743682
+ 17405 strings out of 474116
+ 292707 string characters out of 5743682
  1973187 words of memory out of 5000000
- 39062 multiletter control sequences out of 15000+600000
+ 39064 multiletter control sequences out of 15000+600000
  654290 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,16n,93p,1448b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,16n,93p,1448b,624s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (39 pages, 1582563 bytes).
+Output written on out/main.pdf (39 pages, 1582115 bytes).
 PDF statistics:
  1794 PDF objects out of 2073 (max. 8388607)
  1634 compressed objects within 17 object streams

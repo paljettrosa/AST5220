@@ -1811,8 +1811,9 @@ Furthermore, the higher-order photon multipoles, as well as all of the polarizat
 %   \item [-] Own paragraph about tolerances etc., mention that we use $X_e = 0.9999$ as Saha limit, tolerance of $10^{-3}$ for Taylor expanding in Saha regime, adjust accuracy of ODE solver when solving for $T_b$, and use a tolerance for $x$ when solving for $y$ since it is very unstable in the beginning. Also mention how we iterately solve for $f_e$ and the tolerance used.
 %   \item [-] Mention test of integral of $\tilde{g}$, explain why we do this, and state result with relative error.
 % \end{enumerate}
+\colorbox{Plum}{TODO: maybe mention k thing}
 
-\subsubsection{Main program structure}
+\subsubsection{Main program structure}\label{subsubsec: III methods program}
 The class \verb|Perturbations|, implemented in the corresponding source and header files, contains methods for solving all perturbation quantities—both in the tight-coupling regime and in the regime where the full Boltzmann equations apply. The results are stored using cubic 2D splines for efficient lookup, and can be retrieved via dedicated get-methods that take $x$ and $k$ as arguments. For the photon, polarization, and neutrino multipoles, the multipole number $\ell$ is required as a third argument. Additionally, this class computes and splines the source functions needed for the line-of-sight integration in the next milestone (see section \ref{subsubsec: IV theory LOS} for the relevant expressions).
 
 The number of photon multipoles included when solving the system is controlled by the constructor argument \verb|n_ell_Theta|. For the results presented in section \ref{subsec: III results}, I have set this to 11, corresponding to $\ell_{\max} = 10$. Inclusion of polarization and neutrino multipoles is governed by the arguments \verb|n_ell_Theta_P| and \verb|n_ell_Nu|, respectively: if either is set to zero, the associated boolean flags \verb|polarization| or \verb|neutrinos| are set to \verb|false|. I have used 11 multipoles for polarization and 13 for neutrinos to ensure adequate numerical accuracy. An additional boolean constructor argument \verb|lensing| determines whether the source function for the CMB lensing potential (see section \ref{subsubsec: IV theory lensing}) is computed.
@@ -2109,6 +2110,8 @@ By synthesizing the physics from all previous milestones, this milestone brings 
 % \item [18.] Explain why the effects of gravitational lensing are interesting, and how we expect it to affect the power spectrum.
 
 \subsubsection{Temperature fluctuations as spherical harmonics}
+\colorbox{Plum}{TODO: find better name}
+
 To begin understanding the CMB power spectrum, we must connect our theoretical results to the actual observable: the temperature fluctuations of the CMB across the sky. These are quantified by the temperature field $\Theta(t,\vec{x},\hat{p})$ introduced in the previous milestone, which we already know how to solve for in Fourier space. 
 % These are measured as small deviations from the average temperature $T(\hat{n})$ in different directions $\hat{n}$. After subtracting the mean temperature, the relative fluctuation is defined as  
 % \begin{equation}
@@ -2129,22 +2132,9 @@ The multipole index $\ell$ is inversely related to the angular scale: low $\ell$
 \begin{equation}
 C_\ell \equiv \langle |a_{\ell m}|^2 \rangle = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2.
 \end{equation}
-Thus, the CMB power spectrum $C_\ell$ provides the average amplitude of temperature fluctuations as a function of angular scale $\ell$, and is the primary quantity we compare to observations. \\ \colorbox{Plum}{redundant?}
+Thus, the CMB power spectrum $C_\ell$ provides the average amplitude of temperature fluctuations as a function of angular scale $\ell$, and is the primary quantity we compare to observations.
 
-% To quantify the strength of temperature fluctuations at each angular scale, we define the CMB power spectrum as:
-% \begin{equation}
-% C_\ell = \langle |a_{\ell m}|^2 \rangle.
-% \end{equation}
-% This measures the variance of the spherical harmonic coefficients over different realizations of the universe. In an isotropic universe, there is no preferred direction, so the expectation value is independent of $m$, leading to:
-% \begin{equation}
-% C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2.
-% \end{equation}
-% This result follows from the statistical isotropy of the CMB, which ensures that all $m$-modes for a given $\ell$ contain equal power on average.  
-% \colorbox{Plum}{choose paragraph!}
-
-A crucial point to emphasize is that we only observe one realization of the Universe. Theoretically, the average $\langle \cdot \rangle$ is meant to be an ensemble average over many universes with the same statistical properties. In practice, we must replace this ensemble average with an average over the $2\ell + 1$ available $m$-modes at each $\ell$, assuming ergodicity. 
-% \colorbox{Plum}{TODO: maybe remove} 
-This leads to a fundamental statistical limitation called cosmic variance. Since there are fewer $m$-modes at low $\ell$, our estimate of $C_\ell$ becomes increasingly uncertain on large angular scales. The cosmic variance is quantified by  
+A crucial point to emphasize is that we only observe one realization of the Universe. Theoretically, the average $\langle \cdot \rangle$ is meant to be an ensemble average over many universes with the same statistical properties. In practice, we must replace this ensemble average with an average over the $2\ell + 1$ available $m$-modes at each $\ell$, assuming ergodicity. \colorbox{Plum}{TODO: maybe fix redundancy} This leads to a fundamental statistical limitation called cosmic variance. Since there are fewer $m$-modes at low $\ell$, our estimate of $C_\ell$ becomes increasingly uncertain on large angular scales. The cosmic variance is quantified by  
 \begin{equation}
 \frac{\mathrm{Var}(C_\ell)}{C_\ell^2} = \frac{2}{2\ell + 1},
 \end{equation}
@@ -2160,14 +2150,13 @@ which shows that the relative uncertainty is larger for small $\ell$. Importantl
 \subsubsection{Line-of-sight integration}\label{subsubsec: IV theory LOS}
 To calculate the CMB angular power spectrum $C_\ell$, we need the temperature multipoles $\Theta_\ell(k)$ at present time. A naive approach would be to evolve the full Boltzmann hierarchy for each $\ell$ up to some large $\ell_{\text{max}} \sim 1000$, which would involve solving thousands of coupled differential equations for every mode $k$. While this is theoretically feasible, it is extremely computationally expensive. Fortunately, a clever method known as line-of-sight (LOS) integration (see \colorbox{Plum}{add citation!}) offers an elegant and much more efficient alternative.
 % This technique was introduced by Uros Seljak and Matias Zaldarriaga in 1996 in their influential paper ``A Line of Sight Approach to Cosmic Microwave Background Anisotropies'' \colorbox{Plum}{add cite!}. 
-Rather than evolving the entire Boltzmann hierarchy, this method instead solves for the monopole at all times and positions and then integrates over the photon path to determine the final anisotropies observed today. This drastically reduces the computational cost, requiring us to compute only a handful of lower multipoles, as mentioned in the previous milestone.
-% \colorbox{Plum}{TODO: word different?}
+Rather than evolving the entire Boltzmann hierarchy, this method instead solves for the monopole at all times and positions and then integrates over the photon path to determine the final anisotropies observed today. This drastically reduces the computational cost, requiring us to compute only a handful of lower multipoles, as mentioned in the previous milestone. \colorbox{Plum}{TODO: word different?}
 
-At the heart of the LOS approach lies the so-called source function, which captures all physical effects that contribute to the temperature anisotropies observed in the CMB. It is derived by formally integrating the photon temperature perturbation equation from the last milestone, and isolating the directional dependence through integration by parts and multipole expansion. The final expression for the temperature multipole at present time $x = 0$ is:
+At the heart of the LOS approach lies the source function $\tilde{S}(k, x)$, which captures all physical effects that contribute to the temperature anisotropies observed in the CMB. It is derived by formally integrating the photon temperature perturbation equation from the last milestone, and isolating the directional dependence through integration by parts and multipole expansion. The final expression for the temperature multipole at present time $x = 0$ is
 \begin{equation}
 \Theta_\ell(k, x=0) = \int_{-\infty}^{0} \tilde{S}(k, x) j_\ell\big[k(\eta_0 - \eta)\big]\, dx \label{eq: multipoles LOS}
 \end{equation}
-Here, $\tilde{S}(k, x)$ is the source function, and $j_\ell$ are spherical Bessel functions. Their appearance in the integral arises from the projection of three-dimensional spatial perturbations (characterized by wavevector magnitude $k$) onto the two-dimensional sky (characterized by angular multipole moment $\ell$). These functions emerge naturally when decomposing the plane wave $e^{i \vec{k} \cdot \vec{x}}$ into spherical harmonics and radial functions, and encode how fluctuations in a Fourier mode $k$ contribute to angular anisotropies at a given scale $\ell$. 
+where $j_\ell$ are the spherical Bessel functions. Their appearance in the integral arises from the projection of three-dimensional spatial perturbations (characterized by wavevector magnitude $k$) onto the two-dimensional sky (characterized by angular multipole moment $\ell$). These functions emerge naturally when decomposing the plane wave $e^{i \vec{k} \cdot \vec{x}}$ into spherical harmonics and radial functions, and encode how fluctuations in a Fourier mode $k$ contribute to angular anisotropies at a given scale $\ell$. 
 % \colorbox{Plum}{TODO: shorten?}
 % Mathematically, this is captured by the expansion:
 % \begin{equation}
@@ -2180,7 +2169,7 @@ One can show that the source function itself is given by:
 \tilde{S}(k, x) =\, &\tilde{g} \left[ \Theta_0 + \Psi + \frac{1}{4} \Pi \right] + e^{-\tau} (\Psi' - \Phi') - \frac{1}{ck} \frac{d}{dx}(\mathcal{H} \tilde{g} v_b) \\
 &+ \frac{3}{4 c^2 k^2} \frac{d}{dx} \left[ \mathcal{H} \frac{d}{dx} (\mathcal{H} \tilde{g} \Pi) \right], \numberthis
 \end{align*}
-Each term here has a specific physical interpretation: the first represents the monopole contribution (weighted by visibility), corrected by the gravitational redshift and polarization. Furthermore, $e^{-\tau}(\Psi' - \Phi')$ is simply the integrated Sachs-Wolfe (ISW) term, while the Doppler effect enters through the third term. The final term, involving $\Pi$, is a quadrupolar correction to the scattering due to anisotropic Thomson scattering, and includes polarization effects. In total, these terms encapsulate the full physics of how inhomogeneities in the early Universe source temperature anisotropies observed today. 
+Each term here has a specific physical interpretation: the first represents the monopole contribution (weighted by visibility), corrected by the gravitational redshift (Sachs-Wolfe effect) and polarization \colorbox{Plum}{part of the SW effect?}. Furthermore, $e^{-\tau}(\Psi' - \Phi')$ is simply the integrated Sachs-Wolfe (ISW) term, while the Doppler effect enters through the third term. The final term, involving $\Pi$, is a quadrupolar correction to the scattering due to anisotropic Thomson scattering, and includes polarization effects. In total, these terms encapsulate the full physics of how inhomogeneities in the early Universe source temperature anisotropies observed today. 
 % \colorbox{Plum}{TODO: don't make redundant}
 % The line-of-sight method allows us to compute $\Theta_\ell(k)$ efficiently via:
 % \begin{equation}

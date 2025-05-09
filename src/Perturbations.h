@@ -25,6 +25,10 @@ class Perturbations{
     int n_ell_Theta_P;
     int n_ell_Nu;
 
+    // Minimum and maximum k-value
+    double k_min;
+    double k_max;
+
     // Compute source function for lensing potential?
     bool lensing;
 
@@ -56,8 +60,6 @@ class Perturbations{
         const double x_start, 
         const double x_end,
         const int npts_x,
-        const double k_min,
-        const double k_max,
         const int npts_k);
     
     // Compute source functions and spline the result
@@ -65,8 +67,6 @@ class Perturbations{
         const double x_start, 
         const double x_end,
         const int npts_x,
-        const double k_min,
-        const double k_max,
         const int npts_k,
         const bool SW,
         const bool ISW,
@@ -133,6 +133,8 @@ class Perturbations{
         int n_ell_Theta,
         int n_ell_Theta_P,
         int n_ell_Nu,
+        double k_min,
+        double k_max,
         bool lensing); 
 
     // Do all the solving
@@ -140,8 +142,6 @@ class Perturbations{
         const double x_start, 
         const double x_end,
         const int npts_x,
-        const double k_min,
-        const double k_max,
         const int npts_k,
         const bool SW = true,
         const bool ISW = true,
@@ -171,6 +171,9 @@ class Perturbations{
     double get_source_E(const double x, const double k) const;
     double get_source_nu(const double x, const double k) const;
     double get_source_Psi(const double x, const double k) const;
+
+    // Get the minimum and maximum k-values accesible
+    std::pair<double,double> get_k_min_max() const;
 
     // Get the class parameters
     bool get_polarization_bool() const;

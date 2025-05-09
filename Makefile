@@ -44,7 +44,7 @@ all: $(TARGETS)
 
 # OBJECT FILES
 OUTDIR = out
-OBJS = $(OUTDIR)/Main.o $(OUTDIR)/Utils.o $(OUTDIR)/BackgroundCosmology.o $(OUTDIR)/RecombinationHistory.o $(OUTDIR)/Perturbations.o $(OUTDIR)/PowerSpectrum.o $(OUTDIR)/Spline.o $(OUTDIR)/ODESolver.o
+OBJS = $(OUTDIR)/Main.o $(OUTDIR)/Utils.o $(OUTDIR)/BackgroundCosmology.o $(OUTDIR)/RecombinationHistory.o $(OUTDIR)/Perturbations.o $(OUTDIR)/PowerSpectrum.o $(OUTDIR)/Spline.o $(OUTDIR)/ODESolver.o $(OUTDIR)/WignerDMatrices.o $(OUTDIR)/Combinatorics.o $(OUTDIR)/Quaternions.o $(OUTDIR)/QuaternionUtilities.o
 
 # DEPENDENCIES
 Main.o                  : BackgroundCosmology.h RecombinationHistory.h Perturbations.h PowerSpectrum.h
@@ -76,4 +76,3 @@ $(OUTDIR)/%.o: %.cpp | $(OUTDIR)
 # 	rm -rf $(TARGETS) *.o
 clean:
 	rm -rf $(TARGETS) $(OUTDIR)/*.o
-

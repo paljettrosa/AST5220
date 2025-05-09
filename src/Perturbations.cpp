@@ -9,12 +9,16 @@ Perturbations::Perturbations(
     int n_ell_Theta,
     int n_ell_Theta_P,
     int n_ell_Nu,
+    double k_min,
+    double k_max,
     bool lensing) : // TODO: maybe just have lensing in solve-func?
   cosmo(cosmo), 
   rec(rec),
   n_ell_Theta(n_ell_Theta),
   n_ell_Theta_P(n_ell_Theta_P),
   n_ell_Nu(n_ell_Nu),
+  k_min(k_min),
+  k_max(k_max),
   lensing(lensing)
 {
   // Compute total number of quantities
@@ -41,8 +45,6 @@ void Perturbations::solve(
     const double x_start, 
     const double x_end,
     const int npts_x,
-    const double k_min,
-    const double k_max,
     const int npts_k,
     const bool SW,
     const bool ISW,
@@ -50,10 +52,10 @@ void Perturbations::solve(
     const bool pol)
 {
   // Integrate all the perturbation equation and spline the result
-  integrate_perturbations(x_start, x_end, npts_x, k_min, k_max, npts_k);
+  integrate_perturbations(x_start, x_end, npts_x, npts_k);
 
   // Compute source functions and spline the result
-  compute_source_functions(x_start, x_end, npts_x, k_min, k_max, npts_k, SW, ISW, Doppler, pol);
+  compute_source_functions(x_start, x_end, npts_x, npts_k, SW, ISW, Doppler, pol);
 }
 
 //====================================================
@@ -63,8 +65,6 @@ void Perturbations::integrate_perturbations(
     const double x_start, 
     const double x_end,
     const int npts_x,
-    const double k_min,
-    const double k_max,
     const int npts_k)
 {
   Utils::StartTiming("integrateperturbation");
@@ -220,8 +220,6 @@ void Perturbations::compute_source_functions(
     const double x_start, 
     const double x_end,
     const int npts_x,
-    const double k_min,
-    const double k_max,
     const int npts_k,
     const bool SW,
     const bool ISW,
@@ -300,7 +298,7 @@ void Perturbations::compute_source_functions(
       // Polarization source
       if(polarization){
         if (x > -3.0) //TODO: Hans used -0.01
-          source_E_array[ix + npts_x*ik] = source_E_array[ix-1 + npts_x*ik]; //TODO: zero?
+          source_E_array[ix + npts_x*ik] = source_E_array[ix-1 + npts_x*ik]; 
         else
           source_E_array[ix + npts_x*ik] = 3.0/4.0 * g_tilde*Pi / pow(k*chi, 2.0);
       }
@@ -309,22 +307,23 @@ void Perturbations::compute_source_functions(
       if (neutrinos)
         source_nu_array[ix + npts_x*ik] = dPsidx - dPhidx;
 
-      // Lensing potential source TODO: correct definition of S_k? 
+      // Lensing potential source
       if (lensing) {
-        if (x > -1.5) //TODO: correct? fix this, some normalization problem here maybe
-          source_Psi_array[ix + npts_x*ik] = source_Psi_array[ix-1 + npts_x*ik]; //TODO: zero?
-        else {
-          double W = 0.0;
-          if (x >= x_rec) {
-            if (Omega_k0 == 0)
-              W = (chi -  chi_rec) / chi;
-            else if (Omega_k0 <= 0) //TODO: double check
-              W = sin(chi - chi_rec) / sin(chi);
-            else
-              W = sinh(chi - chi_rec) / sinh(chi);
-          }
-          source_Psi_array[ix + npts_x*ik] = - 2.0*c*Psi / (Hp*chi) * W;
+        double source_Psi; 
+        double W = 0.0;
+        if (x >= x_rec) {
+          if (Omega_k0 == 0)
+            W = (chi -  chi_rec) / chi_rec;
+          else if (Omega_k0 < 0)
+            W = sin(chi - chi_rec) / sin(chi_rec);
+          else
+            W = sinh(chi - chi_rec) / sinh(chi_rec);
         }
+        source_Psi = - 2.0*c*Psi / (Hp*chi) * W;
+        if (std::isfinite(source_Psi)) 
+          source_Psi_array[ix + npts_x*ik] = source_Psi;
+        else
+          source_Psi_array[ix + npts_x*ik] = source_Psi_array[ix-1 + npts_x*ik]; 
       }
     }
   }
@@ -769,6 +768,10 @@ double Perturbations::get_source_Psi(const double x, const double k) const{
   return source_Psi_spline(x, k);
 }
 
+std::pair<double,double> Perturbations::get_k_min_max() const{
+  return std::pair<double,double>(k_min, k_max);
+}
+
 bool Perturbations::get_polarization_bool() const{
   return polarization;
 }
@@ -800,6 +803,7 @@ void Perturbations::info() const{
     std::cout << "We compute the lensing potential source\n";
   else
     std::cout << "We do not compute the lensing potential source\n";
+  std::cout << "We solve from k_min = " << k_min*Constants.Mpc << "/Mpc to k_max = " << k_max*Constants.Mpc << "/Mpc\n";
 
   std::cout << "Information about the perturbation system:\n";
   std::cout << "idx_Phi:            " << idx_Phi              << "\n";
@@ -852,7 +856,7 @@ void Perturbations::print_horizon_entry_time(const double k) const{
   for (int i = 0; i < 10000; i++) {
     x_enter = x_array[i];
     Hp = cosmo->Hp_of_x(x_enter);
-    if (Constants.c*k/Hp >= 1.0)
+    if (Constants.c*k/Hp >= 1.0)  // TODO: maybe change to k*eta instead
       break;
   }
 

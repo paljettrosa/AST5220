@@ -11,6 +11,7 @@
 #include "BackgroundCosmology.h"
 #include "RecombinationHistory.h"
 #include "Perturbations.h"
+#include "WignerDMatrices.hpp"
 
 using Vector   = std::vector<double>;
 using Vector2D = std::vector<Vector>;
@@ -26,16 +27,19 @@ class PowerSpectrum {
     double A_s;
     double n_s;
     double kpivot_Mpc;
+
+    // The largest ell-value and number of ells
+    int ell_max;
+    int n_ells;
     
-    // The ells's we will compute quantities for
-    Vector ells{ 
+    // The vector of ells's we will compute quantities for
+    Vector ells;
+
+    // The first ell-values are sampled tighter
+    Vector first_ells{ 
         2,    3,    4,    5,    6,    7,    8,    10,   12,   15,   
         20,   25,   30,   40,   50,   60,   70,   80,   90,   100,  
-        120,  140,  160,  180,  200,  225,  250,  275,  300,  350,  
-        400,  450,  500,  550,  600,  650,  700,  750,  800,  850,  
-        900,  950,  1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 
-        1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 
-        1900, 1950, 2000};
+        120,  140,  160,  180,  200,  225,  250,  275,  300};
    
     //=====================================================================
     // [1] Create bessel function splines needed for the LOS integration
@@ -45,9 +49,7 @@ class PowerSpectrum {
     std::vector<Spline> j_ell_spline;
     
     // Generate splines of bessel-functions for each ell
-    void generate_bessel_function_splines(
-        const double z_max, 
-        const int npts_z); 
+    void generate_bessel_function_splines(const double z_max); 
     
     //=====================================================================
     // [2] Do the line of sight integration and spline the result
@@ -64,7 +66,8 @@ class PowerSpectrum {
     Vector2D line_of_sight_integration_single(
         Vector &x_array,
         Vector &k_array, 
-        std::function<double(double,double)> &source_function);
+        std::function<double(double,double)> &source_function,
+        std::string source);
     
     // Splines of the reusult of the LOS integration
     std::vector<Spline> ThetaT_ell_of_k_spline;
@@ -80,7 +83,8 @@ class PowerSpectrum {
         std::vector<Spline> & f_ell, 
         std::vector<Spline> & g_ell,
         const double k_min,
-        const double k_max);
+        const double k_max,
+        std::string spectrum);
 
     // Splines with the power-spectra
     Spline C_ell_TT_spline{"C_ell_TT_spline"};
@@ -107,16 +111,14 @@ class PowerSpectrum {
     void solve_lensed_spectrum(const int npts);
     
     // Spline with the lensed TT power-spectrum
-    Spline C_ell_Theta_spline{"C_ell_Theta_spline"};
+    Spline C_ell_lensed_spline{"C_ell_lensed_spline"};
 
 
     //=====================================================================
     // [6] Compute the correlation function
     //=====================================================================
     void solve_correlation_function(
-        Vector &r_array,
-        const double k_min,
-        const double k_max);
+        Vector &r_array);
     
     // Spline with the correlation function
     Spline xi_spline{"xi_spline"};
@@ -131,7 +133,8 @@ class PowerSpectrum {
         Perturbations *pert,
         double A_s,
         double n_s,
-        double kpivot_Mpc);
+        double kpivot_Mpc,
+        int ell_max);
     
     // Do all the solving: bessel functions, LOS integration and then compute C_ells
     void solve(
@@ -146,18 +149,23 @@ class PowerSpectrum {
         const bool correlation_function = false,
         const double r_min = Constants.Mpc,
         const double r_max = 500.0*Constants.Mpc,
-        const int npts_r = 1000);  // TODO: reasonable?
+        const int npts_r = 1000);  
+        
 
-    // The dimensionless primordial power-spectrum Delta = 2pi^2/k^3 P(k) TODO which one is this? make private?
-    double primordial_power_spectrum(const double k_Mpc) const;
+    // The dimensionless primordial power-spectrum Delta = 2pi^2/k^3 P(k) 
+    double primordial_power_spectrum(const double k) const;
 
     // Get P(k, x) for a given x in units of (Mpc)^3 (or dimensionless)
     double get_matter_power_spectrum(
-        const double x, 
-        const double k_Mpc, 
-        const bool dimensionful = true,
-        const bool total = true,
-        const int component = 0) const;
+        double k, 
+        const double x = 0.0, 
+        const bool dimensionful = true) const;
+    
+    // Get C_gl(theta) and C_gl2(theta)
+    std::pair<double,double> get_C_gl(double theta);
+    
+    // Get d^l_{m,m'}(theta) for m,m' in {-1, 0, 1}
+    double get_reduced_Wigner_d(int ell, int m, int mp, double theta);
 
     // Get the quantities we have computed 
     double get_ThetaT_ell(const double k, const int ell_idx) const;
@@ -171,7 +179,7 @@ class PowerSpectrum {
     double get_C_ell_EE(const double ell) const;
     double get_C_ell_nu(const double ell) const;
     double get_C_ell_Psi(const double ell) const;
-    double get_C_ell_Theta(const double ell) const;
+    double get_C_ell_lensed(const double ell) const;
     double get_xi(const double r) const;
 
     // Print some useful info about the class
@@ -200,18 +208,16 @@ class PowerSpectrum {
 
     // Output the matter power spectrum with conventional normalization
     void output_P_k(
-        const double k_Mpc_min, 
-        const double k_Mpc_max,
+        const double k_min, 
+        const double k_max,
         const std::string filename,
-        const bool components = false) const; 
+        const double x = 0.0) const; 
     
     // Output correlation function with conventional normalization
     void output_xi(
-        const double r_Mpc_min, 
-        const double r_Mpc_max,
+        const double r_min, 
+        const double r_max,
         const std::string filename) const; 
-
-    //TODO: correlation functions, CMB map, etc.
 };
 
 #endif
