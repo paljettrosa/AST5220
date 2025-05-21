@@ -167,128 +167,128 @@ fig.savefig("figs/neutrinos.pdf")
 plt.show()
 
 
-"""
-Density and velocity perturbations
-"""
-fig, axs = plt.subplots(nrows = 3, ncols = 2, layout = "constrained", figsize = (16, 16))
+# """
+# Density and velocity perturbations
+# """
+# fig, axs = plt.subplots(nrows = 3, ncols = 2, layout = "constrained", figsize = (16, 16))
 
-lines = []
-labels = []
-for i, k in enumerate(k_vals):
-    """
-    CDM and baryons
-    """
-    l1 = axs[0][0].plot(data[k]["x"], data[k]["delta_b"], colors_b[i], linewidth = 1)[0]
-    l2 = axs[0][0].plot(data[k]["x"], data[k]["delta_CDM"], colors_CDM[i], linewidth = 1)[0]
-    lines.append((l1, l2))
-    labels.append(r"$k=\,$" + f"{k}")
-    axs[0][1].plot(data[k]["x"], data[k]["v_b"], colors_b[i], linewidth = 1)
-    axs[0][1].plot(data[k]["x"], data[k]["v_CDM"], colors_CDM[i], linewidth = 1)
-    for j in range(2):
-        axs[0][j].axvline(x_enter[i], color = colors_b[i], linewidth = 1)
-        axs[0][j].axvline(x_enter[i], color = colors_CDM[i], linestyle = "--", linewidth = 1)
+# lines = []
+# labels = []
+# for i, k in enumerate(k_vals):
+#     """
+#     CDM and baryons
+#     """
+#     l1 = axs[0][0].plot(data[k]["x"], data[k]["delta_b"], colors_b[i], linewidth = 1)[0]
+#     l2 = axs[0][0].plot(data[k]["x"], data[k]["delta_CDM"], colors_CDM[i], linewidth = 1)[0]
+#     lines.append((l1, l2))
+#     labels.append(r"$k=\,$" + f"{k}")
+#     axs[0][1].plot(data[k]["x"], data[k]["v_b"], colors_b[i], linewidth = 1)
+#     axs[0][1].plot(data[k]["x"], data[k]["v_CDM"], colors_CDM[i], linewidth = 1)
+#     for j in range(2):
+#         axs[0][j].axvline(x_enter[i], color = colors_b[i], linewidth = 1)
+#         axs[0][j].axvline(x_enter[i], color = colors_CDM[i], linestyle = "--", linewidth = 1)
 
-    """
-    Photons
-    """
-    axs[1][0].plot(data[k]["x"], 4*data[k]["Theta_0"], colors_gamma[i], label = r"$k=\,$" + f"{k}", linewidth = 1)
-    axs[1][1].plot(data[k]["x"], -3*data[k]["Theta_1"], colors_gamma[i], linewidth = 1)
-    axs[1][0].axvline(x_enter[i], color = colors_gamma[i], linestyle = "--", linewidth = 1)
-    axs[1][1].axvline(x_enter[i], color = colors_gamma[i], linestyle = "--", linewidth = 1)
+#     """
+#     Photons
+#     """
+#     axs[1][0].plot(data[k]["x"], 4*data[k]["Theta_0"], colors_gamma[i], label = r"$k=\,$" + f"{k}", linewidth = 1)
+#     axs[1][1].plot(data[k]["x"], -3*data[k]["Theta_1"], colors_gamma[i], linewidth = 1)
+#     axs[1][0].axvline(x_enter[i], color = colors_gamma[i], linestyle = "--", linewidth = 1)
+#     axs[1][1].axvline(x_enter[i], color = colors_gamma[i], linestyle = "--", linewidth = 1)
 
-    """
-    Neutrinos
-    """
-    axs[2][0].plot(data[k]["x"], 4*data[k]["Nu_0"], colors_nu[i], label = r"$k=\,$" + f"{k}", linewidth = 1)
-    axs[2][1].plot(data[k]["x"], -3*data[k]["Nu_1"], colors_nu[i], linewidth = 1)
-    axs[2][0].axvline(x_enter[i], color = colors_nu[i], linestyle = "--", linewidth = 1)
-    axs[2][1].axvline(x_enter[i], color = colors_nu[i], linestyle = "--", linewidth = 1)
+#     """
+#     Neutrinos
+#     """
+#     axs[2][0].plot(data[k]["x"], 4*data[k]["Nu_0"], colors_nu[i], label = r"$k=\,$" + f"{k}", linewidth = 1)
+#     axs[2][1].plot(data[k]["x"], -3*data[k]["Nu_1"], colors_nu[i], linewidth = 1)
+#     axs[2][0].axvline(x_enter[i], color = colors_nu[i], linestyle = "--", linewidth = 1)
+#     axs[2][1].axvline(x_enter[i], color = colors_nu[i], linestyle = "--", linewidth = 1)
 
-lines.append(axs[0][0].axvline(x_rm, color = "gold", linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()]))
-lines.append(axs[0][0].axvline(x_mLambda, color = "palevioletred", linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()]))
-labels.append(r"$(r,m)$-eq.")
-labels.append(r"$(\Lambda,m)$-eq.")
+# lines.append(axs[0][0].axvline(x_rm, color = "gold", linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()]))
+# lines.append(axs[0][0].axvline(x_mLambda, color = "palevioletred", linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()]))
+# labels.append(r"$(r,m)$-eq.")
+# labels.append(r"$(\Lambda,m)$-eq.")
 
-titles = [[r"Matter densities $\delta_{\small\textrm{CDM}}$ (purple) and $\delta_b$ (orange)", r"Matter velocities $v_{\small\textrm{CDM}}$ (purple) and $v_b$ (orange)"],
-          [r"Photon density $\delta_\gamma=4\Theta_0$", r"Photon velocity $v_\gamma=-3\Theta_1$"],
-          [r"Neutrino density $\delta_\nu=4\mathcal{N}_0$", r"Neutrino velocity $v_\nu=-3\mathcal{N}_1$"]]
-for i in range(3):
-    for j in range(2):
-        if not (i == 0 and j == 0):
-            axs[i][j].axvline(x_rm, color = "gold", label = r"$(r,m)$-eq." if i == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
-            axs[i][j].axvline(x_mLambda, color = "palevioletred", label = r"$(m,\Lambda)$-eq." if i == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
-        axs[i][j].set_xlim(x_min, x_max)
-        axs[i][j].set_title(titles[i][j])
+# titles = [[r"Matter densities $\delta_{\small\textrm{CDM}}$ (purple) and $\delta_b$ (orange)", r"Matter velocities $v_{\small\textrm{CDM}}$ (purple) and $v_b$ (orange)"],
+#           [r"Photon density $\delta_\gamma=4\Theta_0$", r"Photon velocity $v_\gamma=-3\Theta_1$"],
+#           [r"Neutrino density $\delta_\nu=4\mathcal{N}_0$", r"Neutrino velocity $v_\nu=-3\mathcal{N}_1$"]]
+# for i in range(3):
+#     for j in range(2):
+#         if not (i == 0 and j == 0):
+#             axs[i][j].axvline(x_rm, color = "gold", label = r"$(r,m)$-eq." if i == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
+#             axs[i][j].axvline(x_mLambda, color = "palevioletred", label = r"$(m,\Lambda)$-eq." if i == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
+#         axs[i][j].set_xlim(x_min, x_max)
+#         axs[i][j].set_title(titles[i][j])
 
-axs[0][0].legend(lines, labels, handler_map = {tuple: HandlerTuple(ndivide = None)}, loc = "upper left", framealpha = 1)
-axs[1][0].legend(loc = "lower left", framealpha = 1)
-axs[2][0].legend(loc = "lower left", framealpha = 1)
+# axs[0][0].legend(lines, labels, handler_map = {tuple: HandlerTuple(ndivide = None)}, loc = "upper left", framealpha = 1)
+# axs[1][0].legend(loc = "lower left", framealpha = 1)
+# axs[2][0].legend(loc = "lower left", framealpha = 1)
 
-axs[0][0].set_ylim(bottom = -8)
-axs[0][0].set_yscale("asinh")
-axs[0][1].set_yscale("asinh")
-axs[0][0].set_yticks([1e4, 1e3, 1e2, 1e1, 2, 0, -2], labels = [r"$10^4$", r"$10^3$", "100", "10", "2", "0", "-2"])
-axs[0][1].set_yticks([20, 10, 5, 2, 0.5, 0, -0.5, -2], labels = ["20", "10", "5", "2", "0.5", "0", "-0.5", "-2"])
-fig.supxlabel(r"$x=\log(a)$")
-fig.savefig("figs/density_and_velocity.pdf")
-plt.show()
-
-
-"""
-Density perturbations
-"""
-fig, axs = plt.subplots(nrows = 2, ncols = 2, layout = "constrained", figsize = (16, 11))
-
-quantities = [["delta_CDM", "delta_b"], ["Theta_0", "Nu_0"]]
-factors = [[1, 1], [4, 4]]
-colors = [[colors_CDM, colors_b], [colors_gamma, colors_nu]]
-locs = [["upper left", "upper left"], ["lower left", "lower left"]]
-titles = [[r"Cold dark matter $\delta_{\small\textrm{CDM}}$", r"Baryons $\delta_{b}$"], [r"Photons $\delta_\gamma=4\Theta_0$", r"Neutrinos $\delta_\nu=4\mathcal{N}_0$"]]
-for i in range(2):
-    for j in range(2):
-        for k, k_val in enumerate(k_vals):
-            axs[i][j].plot(data[k_val]["x"], factors[i][j]*data[k_val][quantities[i][j]], colors[i][j][k], label = r"$k=\,$" + f"{k_val}", linewidth = 1)
-            axs[i][j].axvline(x_enter[k], color = colors[i][j][k], linestyle = "--", linewidth = 1)
-        axs[i][j].axvline(x_rm, color = "gold", label = r"$(r,m)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
-        axs[i][j].axvline(x_mLambda, color = "palevioletred", label = r"$(m,\Lambda)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
-        axs[i][j].legend(loc = locs[i][j], framealpha = 1)
-        axs[i][j].set_xlim(x_min, x_max)
-        if i == 0:
-            axs[i][j].set_yscale("asinh")
-            axs[i][j].set_ylim(bottom = -8)
-            axs[i][j].set_yticks([1e4, 1e3, 1e2, 1e1, 2, 0, -2], labels = [r"$10^4$", r"$10^3$", "100", "10", "2", "0", "-2"])
-        axs[i][j].set_title(titles[i][j])
-
-fig.supxlabel(r"$x=\log(a)$")
-fig.savefig("figs/densities.pdf")
-plt.show()
+# axs[0][0].set_ylim(bottom = -8)
+# axs[0][0].set_yscale("asinh")
+# axs[0][1].set_yscale("asinh")
+# axs[0][0].set_yticks([1e4, 1e3, 1e2, 1e1, 2, 0, -2], labels = [r"$10^4$", r"$10^3$", "100", "10", "2", "0", "-2"])
+# axs[0][1].set_yticks([20, 10, 5, 2, 0.5, 0, -0.5, -2], labels = ["20", "10", "5", "2", "0.5", "0", "-0.5", "-2"])
+# fig.supxlabel(r"$x=\log(a)$")
+# fig.savefig("figs/density_and_velocity.pdf")
+# plt.show()
 
 
-"""
-Velocity perturbations
-"""
-fig, axs = plt.subplots(nrows = 2, ncols = 2, layout = "constrained", figsize = (16, 11))
+# """
+# Density perturbations
+# """
+# fig, axs = plt.subplots(nrows = 2, ncols = 2, layout = "constrained", figsize = (16, 11))
 
-quantities = [["v_CDM", "v_b"], ["Theta_1", "Nu_1"]]
-factors = [[1, 1], [-3, -3]]
-titles = [[r"Cold dark matter $v_{\small\textrm{CDM}}$", r"Baryons $v_{b}$"], [r"Photons $v_\gamma=-3\Theta_1$", r"Neutrinos $v_\nu=-3\mathcal{N}_1$"]]
-for i in range(2):
-    for j in range(2):
-        for k, k_val in enumerate(k_vals):
-            axs[i][j].plot(data[k_val]["x"], factors[i][j]*data[k_val][quantities[i][j]], colors[i][j][k], label = r"$k=\,$" + f"{k_val}", linewidth = 1)
-            axs[i][j].axvline(x_enter[k], color = colors[i][j][k], linestyle = "--", linewidth = 1)
-        axs[i][j].axvline(x_rm, color = "gold", label = r"$(r,m)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
-        axs[i][j].axvline(x_mLambda, color = "palevioletred", label = r"$(m,\Lambda)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
-        axs[i][j].legend(loc = locs[i][j], framealpha = 1)
-        axs[i][j].set_xlim(x_min, x_max)
-        if i == 0:
-            axs[i][j].set_yscale("asinh")
-            axs[i][j].set_yticks([20, 10, 5, 2, 0.5, 0, -0.5, -2], labels = ["20", "10", "5", "2", "0.5", "0", "-0.5", "-2"])
-        axs[i][j].set_title(titles[i][j])
+# quantities = [["delta_CDM", "delta_b"], ["Theta_0", "Nu_0"]]
+# factors = [[1, 1], [4, 4]]
+# colors = [[colors_CDM, colors_b], [colors_gamma, colors_nu]]
+# locs = [["upper left", "upper left"], ["lower left", "lower left"]]
+# titles = [[r"Cold dark matter $\delta_{\small\textrm{CDM}}$", r"Baryons $\delta_{b}$"], [r"Photons $\delta_\gamma=4\Theta_0$", r"Neutrinos $\delta_\nu=4\mathcal{N}_0$"]]
+# for i in range(2):
+#     for j in range(2):
+#         for k, k_val in enumerate(k_vals):
+#             axs[i][j].plot(data[k_val]["x"], factors[i][j]*data[k_val][quantities[i][j]], colors[i][j][k], label = r"$k=\,$" + f"{k_val}", linewidth = 1)
+#             axs[i][j].axvline(x_enter[k], color = colors[i][j][k], linestyle = "--", linewidth = 1)
+#         axs[i][j].axvline(x_rm, color = "gold", label = r"$(r,m)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
+#         axs[i][j].axvline(x_mLambda, color = "palevioletred", label = r"$(m,\Lambda)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
+#         axs[i][j].legend(loc = locs[i][j], framealpha = 1)
+#         axs[i][j].set_xlim(x_min, x_max)
+#         if i == 0:
+#             axs[i][j].set_yscale("asinh")
+#             axs[i][j].set_ylim(bottom = -8)
+#             axs[i][j].set_yticks([1e4, 1e3, 1e2, 1e1, 2, 0, -2], labels = [r"$10^4$", r"$10^3$", "100", "10", "2", "0", "-2"])
+#         axs[i][j].set_title(titles[i][j])
 
-fig.supxlabel(r"$x=\log(a)$")
-fig.savefig("figs/velocities.pdf")
-plt.show()
+# fig.supxlabel(r"$x=\log(a)$")
+# fig.savefig("figs/densities.pdf")
+# plt.show()
+
+
+# """
+# Velocity perturbations
+# """
+# fig, axs = plt.subplots(nrows = 2, ncols = 2, layout = "constrained", figsize = (16, 11))
+
+# quantities = [["v_CDM", "v_b"], ["Theta_1", "Nu_1"]]
+# factors = [[1, 1], [-3, -3]]
+# titles = [[r"Cold dark matter $v_{\small\textrm{CDM}}$", r"Baryons $v_{b}$"], [r"Photons $v_\gamma=-3\Theta_1$", r"Neutrinos $v_\nu=-3\mathcal{N}_1$"]]
+# for i in range(2):
+#     for j in range(2):
+#         for k, k_val in enumerate(k_vals):
+#             axs[i][j].plot(data[k_val]["x"], factors[i][j]*data[k_val][quantities[i][j]], colors[i][j][k], label = r"$k=\,$" + f"{k_val}", linewidth = 1)
+#             axs[i][j].axvline(x_enter[k], color = colors[i][j][k], linestyle = "--", linewidth = 1)
+#         axs[i][j].axvline(x_rm, color = "gold", label = r"$(r,m)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
+#         axs[i][j].axvline(x_mLambda, color = "palevioletred", label = r"$(m,\Lambda)$-eq." if i == 0 and j == 0 else None, linewidth = 1, path_effects = [pe.Stroke(linewidth = 2, foreground = "black"), pe.Normal()])
+#         axs[i][j].legend(loc = locs[i][j], framealpha = 1)
+#         axs[i][j].set_xlim(x_min, x_max)
+#         if i == 0:
+#             axs[i][j].set_yscale("asinh")
+#             axs[i][j].set_yticks([20, 10, 5, 2, 0.5, 0, -0.5, -2], labels = ["20", "10", "5", "2", "0.5", "0", "-0.5", "-2"])
+#         axs[i][j].set_title(titles[i][j])
+
+# fig.supxlabel(r"$x=\log(a)$")
+# fig.savefig("figs/velocities.pdf")
+# plt.show()
 
 
 """

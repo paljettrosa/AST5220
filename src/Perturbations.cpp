@@ -11,7 +11,7 @@ Perturbations::Perturbations(
     int n_ell_Nu,
     double k_min,
     double k_max,
-    bool lensing) : // TODO: maybe just have lensing in solve-func?
+    bool lensing) : 
   cosmo(cosmo), 
   rec(rec),
   n_ell_Theta(n_ell_Theta),
@@ -22,7 +22,7 @@ Perturbations::Perturbations(
   lensing(lensing)
 {
   // Compute total number of quantities
-  n_ell_tot         = n_scalars + n_ell_Theta + n_ell_Theta_P + n_ell_Nu;
+  n_ell_tot = n_scalars + n_ell_Theta + n_ell_Theta_P + n_ell_Nu;
 
   // Booleans
   if (n_ell_Theta_P != 0) polarization = true;
@@ -96,8 +96,8 @@ void Perturbations::integrate_perturbations(
 
     // Set up x-arrays for the two regimes
     int idx_tight_end    = get_tight_coupling_index(x_array, k);
-    Vector x_array_tight = Vector(x_array.begin(), x_array.begin() + idx_tight_end+1);
-    Vector x_array_full  = Vector(x_array.begin() + idx_tight_end, x_array.end());
+    Vector x_array_tight = Vector(x_array.begin(), x_array.begin() + idx_tight_end+1); 
+    Vector x_array_full  = Vector(x_array.begin() + idx_tight_end, x_array.end()); 
 
     // The tight coupling ODE system
     ODESolver tight_ode;
@@ -201,11 +201,12 @@ void Perturbations::integrate_perturbations(
   for (int ell = 0; ell < n_ell_Theta; ell++)
     Theta_spline[ell].create(x_array, k_array, y_array[idx_start_Theta+ell], "Theta_" + std::to_string(ell) + "_spline");
 
-  if (polarization)
+  if (polarization) {
     Theta_P_spline = std::vector<Spline2D>(n_ell_Theta_P);
     for (int ell = 0; ell < n_ell_Theta_P; ell++)
       Theta_P_spline[ell].create(x_array, k_array, y_array[idx_start_Theta_P+ell], "Theta_P_" + std::to_string(ell) + "_spline");
-   
+  }
+
   if (neutrinos) {
     Nu_spline = std::vector<Spline2D>(n_ell_Nu);
     for (int ell = 0; ell < n_ell_Nu; ell++)
@@ -243,11 +244,11 @@ void Perturbations::compute_source_functions(
 
   // Fetch time-independent quantities
   double Omega_k0 = cosmo->get_Omega_k();
-  double x_rec    = rec->get_x_recombination();
+  double x_rec    = rec->get_x_recombination(); 
   double chi_rec  = cosmo->get_comoving_distance_of_x(x_rec);
 
   // Compute source functions
-  #pragma omp parallel for schedule(dynamic, 1)
+  #pragma omp parallel for schedule(dynamic, 1) 
   for(int ik = 0; ik < npts_k; ik++){
     // Fetch current value of k
     const double k = k_array[ik];
@@ -297,7 +298,7 @@ void Perturbations::compute_source_functions(
 
       // Polarization source
       if(polarization){
-        if (x > -3.0) //TODO: Hans used -0.01
+        if (x > -3.0) 
           source_E_array[ix + npts_x*ik] = source_E_array[ix-1 + npts_x*ik]; 
         else
           source_E_array[ix + npts_x*ik] = 3.0/4.0 * g_tilde*Pi / pow(k*chi, 2.0);
@@ -339,6 +340,7 @@ void Perturbations::compute_source_functions(
 
   Utils::EndTiming("source");
 }
+
 
 //====================================================
 // Set the initial conditions in the very beginning
@@ -481,7 +483,7 @@ int Perturbations::get_tight_coupling_index(
   double dtaudx = rec->dtaudx_of_x(x_array[0]);
 
   int i = 1;
-  while (fabs(dtaudx) > 10.0 * std::min(1.0, c*k/Hp) && x_array[i] < -8.3) {
+  while (std::abs(dtaudx) > 10.0 * std::max(1.0, c*k/Hp) && x_array[i] < -8.3) { //TODO: max or min?
     Hp     = cosmo->Hp_of_x(x_array[i]);
     dtaudx = rec->dtaudx_of_x(x_array[i]);
     i++;

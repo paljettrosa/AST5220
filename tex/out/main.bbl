@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{15}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Basu {et~al.}(2024)Basu, Garaldi, \& Ciardi}]{Helium}
@@ -7,14 +7,29 @@ Basu, A., Garaldi, E., \& Ciardi, B. 2024, \href{https://doi.org/10.1093/mnras/s
 \bibitem[{Cortês \& Liddle(2024)}]{tensions}
 Cortês, M. \& Liddle, A.~R. 2024, \href{https://doi.org/10.1093/mnrasl/slae030}{Monthly Notices of the Royal Astronomical Society}, 531, L52
 
+\bibitem[{Górski {et~al.}(2005)Górski, Hivon, Banday, \& {et al.}}]{Gorski2005}
+Górski, K.~M., Hivon, E., Banday, A.~J., \& {et al.} 2005, \href{https://doi.org/10.1086/427976}{The Astrophysical Journal}, 622, 759
+
+\bibitem[{Górski {et~al.}(Accessed: June 2025)Górski, Hivon, Banday, \& {et al.}}]{HEALPix}
+Górski, K.~M., Hivon, E., Banday, A.~J., \& {et al.} Accessed: June 2025, {HEALPix: Data Analysis, Simulations and Visualization on the Sphere}, \url{http://healpix.sourceforge.net}
+
+\bibitem[{Lewis \& Challinor(2006)}]{LewisChallinor}
+Lewis, A. \& Challinor, A. 2006, \href{https://doi.org/10.1016/j.physrep.2006.03.002}{Physics Reports}, 429, 1
+
 \bibitem[{Lewis {et~al.}(2000)Lewis, Challinor, \& Lasenby}]{camb2}
 Lewis, A., Challinor, A., \& Lasenby, A. 2000, \href{https://doi.org/10.1086/309179}{The Astrophysical Journal}, 538, 473
 
 \bibitem[{Nelson {et~al.}(2020)Nelson, Sharma, Pillepich, \& {et. al.}}]{nelson2020cold}
 Nelson, D., Sharma, P., Pillepich, A., \& {et. al.} 2020, \href{https://doi.org/10.1093/mnras/staa2419}{Monthly Notices of the Royal Astronomical Society}, 498, 2391
 
+\bibitem[{{Planck Collaboration}(2020)}]{PlanckPR3}
+{Planck Collaboration}. 2020, {Planck Public Data Release 3 Mission Ancillary Data}, \url{https://doi.org/10.26131/IRSA559}
+
 \bibitem[{{Planck Collaboration} {et~al.}(2020){Planck Collaboration}, Aghanim, Akrami, \& {et al.}}]{Planck}
 {Planck Collaboration}, Aghanim, N., Akrami, Y., \& {et al.} 2020, \href{https://doi.org/10.1051/0004-6361/201833910}{Astronomy \& Astrophysics}, 641
+
+\bibitem[{Prézeau \& Reinecke(2010)}]{Wigner}
+Prézeau, G. \& Reinecke, M. 2010, \href{https://doi.org/10.1088/0067-0049/190/2/267}{The Astrophysical Journal Supplement Series}, 190, 267
 
 \bibitem[{Reid(Accessed: February 2025)}]{Chi2}
 Reid, R. Accessed: February 2025, {Chi-squared distribution table with sigma values}, \url{https://www.reid.ai/2012/09/chi-squared-distribution-table-with.html}
@@ -22,10 +37,13 @@ Reid, R. Accessed: February 2025, {Chi-squared distribution table with sigma val
 \bibitem[{Reiss {et~al.}(2024)Reiss, Scolnic, Anand, \& {et al.}}]{JWST}
 Reiss, A.~G., Scolnic, D., Anand, G.~S., \& {et al.} 2024, \href{https://doi.org/10.3847/1538-4357/ad8c21}{The Astrophysical Journal}, 977, 120
 
+\bibitem[{Seljak \& Zaldarriaga(1996)}]{LOS}
+Seljak, U. \& Zaldarriaga, M. 1996, \href{https://doi.org/10.1086/177793}{The Astrophysical Journal}, 469, 437
+
 \bibitem[{Tumlinson {et~al.}(2017)Tumlinson, Peeples, \& Werk}]{tumlinson2017circumgalactic}
 Tumlinson, J., Peeples, M.~S., \& Werk, J.~K. 2017, \href{https://doi.org/10.1146/annurev-astro-091916-055240}{Annual Review of Astronomy and Astrophysics}, 55, 389
 
 \bibitem[{Winther {et~al.}(Accessed: June 2025)Winther, Eriksen, Øystein Elgarøy, Mota, \& Ihle}]{Course}
-Winther, H.~A., Eriksen, H.~K., Øystein Elgarøy, Mota, D.~F., \& Ihle, H. Accessed: June 2025, {Cosmology II - A course on the formation of the cosmic microwave background and structures in the Universe}, \url{https://cmb.wintherscoming.no/index.php}
+Winther, H.~A., Eriksen, H.~K., Øystein Elgarøy, Mota, D.~F., \& Ihle, H. Accessed: June 2025, {Cosmology II - A course on the formation of the cosmic microwave background and structures in the Universe}, \url{https://cmb.wintherscoming.no}
 
 \end{thebibliography}

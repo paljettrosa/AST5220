@@ -426,7 +426,7 @@ void RecombinationHistory::solve_optical_depth_tau(
     x_of_tau_spline.create(tau_noreion_array, x_array, "x_of_tau");
   }
   else
-    // x_of_tau_spline.create(tau_array, x_array, "x_of_tau"); //TODO: add back
+    x_of_tau_spline.create(tau_array, x_array, "x_of_tau"); 
 
   // Repeat process for x(tau_b_noreion) if we want to estime x_drag
   if (baryon_tau) {

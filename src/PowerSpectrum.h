@@ -11,7 +11,6 @@
 #include "BackgroundCosmology.h"
 #include "RecombinationHistory.h"
 #include "Perturbations.h"
-#include "WignerDMatrices.hpp"
 
 using Vector   = std::vector<double>;
 using Vector2D = std::vector<Vector>;
@@ -75,6 +74,7 @@ class PowerSpectrum {
     std::vector<Spline> Nu_ell_of_k_spline;
     std::vector<Spline> Psi_ell_of_k_spline;
     
+
     //=====================================================================
     // [3] Integrate to get power-spectrum
     //=====================================================================
@@ -95,14 +95,18 @@ class PowerSpectrum {
 
 
     //=====================================================================
-    // [4] Compute the angular correlation functions
+    // [4] Compute the angular correlation and reduced Wigner splines
     //=====================================================================
     void compute_angular_correlation(Vector &theta_array);
     void compute_lensed_angular_correlation(Vector &theta_array);
+    void generate_reduced_Wigner_d_splines(Vector &theta_array);
     
-    // Spline with the angular correlation functions
+    // Spline with the functions
     Spline C_of_theta_spline{"C_of_theta_spline"};
     Spline C_of_theta_lensed_spline{"C_of_theta_lensed_spline"};
+    Spline2D d_ell_pp_spline{"d_ell_pp_spline"};
+    Spline2D d_ell_pm_spline{"d_ell_pm_spline"};
+    Spline2D d_ell_mp_spline{"d_ell_mp_spline"};
 
 
     //=====================================================================
@@ -163,11 +167,9 @@ class PowerSpectrum {
     
     // Get C_gl(theta) and C_gl2(theta)
     std::pair<double,double> get_C_gl(double theta);
-    
-    // Get d^l_{m,m'}(theta) for m,m' in {-1, 0, 1}
-    double get_reduced_Wigner_d(int ell, int m, int mp, double theta);
 
     // Get the quantities we have computed 
+    double get_reduced_Wigner_d(const double ell, const int m, const int mp, const double theta) const;
     double get_ThetaT_ell(const double k, const int ell_idx) const;
     double get_ThetaE_ell(const double k, const int ell_idx) const;
     double get_Nu_ell(const double k, const int ell_idx) const;
@@ -193,7 +195,8 @@ class PowerSpectrum {
         const double k_min, 
         const double k_max,
         const int ell,
-        const std::string filename) const; 
+        const std::string filename,
+        const bool only_TT = false) const; 
     
     // Output angular correlation functions
     void output_C_of_theta(
@@ -208,15 +211,15 @@ class PowerSpectrum {
 
     // Output the matter power spectrum with conventional normalization
     void output_P_k(
-        const double k_min, 
-        const double k_max,
+        const double k_min_Mpc, 
+        const double k_max_Mpc,
         const std::string filename,
         const double x = 0.0) const; 
     
     // Output correlation function with conventional normalization
     void output_xi(
-        const double r_min, 
-        const double r_max,
+        const double r_min_Mpc, 
+        const double r_max_Mpc,
         const std::string filename) const; 
 };
 

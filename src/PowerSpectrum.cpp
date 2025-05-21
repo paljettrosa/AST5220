@@ -69,10 +69,10 @@ void PowerSpectrum::solve(
     exit(1);
   }
 
-  // Implement generate_bessel_function_splines
+  // Generate splines for the Bessel functions
   generate_bessel_function_splines(z_max);
 
-  // Line of sight integration to get Theta_ell(k)
+  // Line of sight integration to get the transfer functions Theta_ell(k)
   line_of_sight_integration(x_array, k_min, k_max, only_TT);
 
   // Integration to get C_ell 
@@ -100,18 +100,21 @@ void PowerSpectrum::solve(
     }
 
     if (angular_correlation) {
-      // Set up the theta-array
-      Vector theta_array = Utils::linspace(0.0, M_PI, 10000); //TODO: experiment with this, as well as ell
+      // Set up the theta-array 
+      Vector theta_array = Utils::linspace(0.0, M_PI, 10000); 
 
       // Compute the angular correlation function C(theta)
       compute_angular_correlation(theta_array);
 
       if (pert->get_lensing_bool() && lensed_TT) {
-        // Compute the lensed angular correlation function C^Theta(theta)
+        // Generate splines for the reduced Wigner functions
+        generate_reduced_Wigner_d_splines(theta_array);
+
+        // Compute the lensed angular correlation function C^lensed(theta)
         compute_lensed_angular_correlation(theta_array);
 
-        // Integrate to get the lensed TT-spectrum C^Theta_ell
-        solve_lensed_spectrum(100000); //TODO: experiment with this, as well as ell
+        // Integrate to get the lensed TT-spectrum C^lensed_ell
+        solve_lensed_spectrum(100000); 
       }
     }
   }
@@ -132,7 +135,7 @@ void PowerSpectrum::generate_bessel_function_splines(const double z_max){
   Utils::StartTiming("besselspline");
   
   // Set the z-array
-  double dz      = M_PI / (16.0); // TODO test 8
+  double dz      = M_PI / 16.0;
   int npts_z     = static_cast<int>(z_max/dz);
   Vector z_array = Utils::linspace(0.0, z_max, npts_z);
 
@@ -155,6 +158,7 @@ void PowerSpectrum::generate_bessel_function_splines(const double z_max){
 
   Utils::EndTiming("besselspline");
 }
+
 
 //=========================================================================
 // Do the line of sight integration for a single source function
@@ -195,7 +199,7 @@ Vector2D PowerSpectrum::line_of_sight_integration_single(
       // Set integral to zero
       integral = 0.0;
 
-      // // Compute the integral
+      // Compute the integral
       for (int ix = 0; ix < npts_x; ix++) {
         S_tilde = source_function(x_array[ix], k);
         eta     = cosmo->eta_of_x(x_array[ix]);
@@ -215,6 +219,7 @@ Vector2D PowerSpectrum::line_of_sight_integration_single(
   Utils::EndTiming(label);
   return result;
 }
+
 
 //====================================================
 // Do the line of sight integration
@@ -314,6 +319,7 @@ void PowerSpectrum::line_of_sight_integration(
   }
 }
 
+
 //====================================================
 // Solve for the power spectrum
 //====================================================
@@ -334,7 +340,7 @@ Vector PowerSpectrum::solve_for_C_ell(
   const double eta_0 = cosmo->eta_of_x(0.0);
 
   // Set the k-array
-  double dk  = M_PI / (64.0*eta_0); //TODO: maybe change back to 32
+  double dk  = M_PI / (64.0*eta_0); 
   int npts_k = static_cast<int>((k_max - k_min)/dk);
   Vector logk_array = Utils::linspace(log(k_min), log(k_max), npts_k);
 
@@ -342,9 +348,6 @@ Vector PowerSpectrum::solve_for_C_ell(
   double dlogk = logk_array[1] - logk_array[0];
 
   for (int i = 0; i < n_ells; i++) {
-    // Fetch current ell
-    const int ell = ells[i];
-
     // Declare relevant quantities
     double k;
     double P_prim;
@@ -424,6 +427,101 @@ void PowerSpectrum::compute_angular_correlation(Vector &theta_array)
   Utils::EndTiming("angularcorrelation");
 }
 
+//====================================================
+// Generate splines for the reduced Wigner functions
+//====================================================
+void PowerSpectrum::generate_reduced_Wigner_d_splines(Vector &theta_array) {
+  // Lambda function to make the rest less repetitive
+  auto low_ell_Wigner_d = [=] (int ell, int m, int n, double theta) -> double {
+    // Precompute log(cos(theta/2)) and log(sin(theta/2))
+    const double log_cos_half = log(std::max(std::cos(theta / 2.0), 1e-15));
+    const double log_sin_half = log(std::max(std::sin(theta / 2.0), 1e-15));
+
+    // Precompute constant term
+    const double log_term = (std::lgamma(ell + m + 1) + std::lgamma(ell - m + 1) +
+                             std::lgamma(ell + n + 1) + std::lgamma(ell - n + 1)) / 2.0;
+    
+    // Declare relevant quantities
+    double d_contrib;
+    double d_pos = 0.0;
+    double d_neg = 0.0;
+
+    // Loop over summation index i with bounds depending on l, m, n
+    for (int i = std::max(0, m - n); i <= std::min(ell + m, ell - n); ++i) { 
+      d_contrib = exp(log_term -
+                      std::lgamma(i + 1) - 
+                      std::lgamma(ell + m - i + 1) -
+                      std::lgamma(ell - n - i + 1) - 
+                      std::lgamma(i + n - m + 1) +
+                      (2*ell + m - n - 2*i) * log_cos_half + 
+                      (2*i + n - m) * log_sin_half);
+
+      // Sum positive and negative contributions separately to avoid cancellation error
+      if (i % 2 == 0)
+        d_pos += d_contrib;
+      else
+        d_neg += d_contrib;
+    }
+    return d_pos - d_neg;    
+  };
+
+  Utils::StartTiming("reducedWigner");
+
+  // Set up arrays for computing the splines
+  Vector ell_array = Utils::linspace(2, ell_max, ell_max-1);
+  const int npts_theta = theta_array.size();
+  Vector2D d_array(3);
+  for (int i = 0; i < 3; i++)
+    d_array[i] = Vector(npts_theta * (ell_max-1));
+
+  // Maximum value of ell before we switch from log to recursion
+  const int ell_max_log = 50;
+
+  #pragma omp parallel for schedule(dynamic, 1) 
+  for (int it = 0; it < npts_theta; it++) {
+    // Fetch current theta and compute cosine
+    const double theta    = theta_array[it];
+    const double costheta = cos(theta);
+
+    // Declare private thread index 
+    int idx;
+
+    // Declare the recursion coefficients
+    double A;
+    double B;
+    double C;
+    for (int ell = 2; ell < ell_max+1; ell++) {
+      // Compute the index
+      idx = ell-2 + (ell_max-1)*it;
+
+      if (ell <= ell_max_log) {
+        // Log-norm
+        d_array[0][idx] = low_ell_Wigner_d(theta, ell, 1, 1);
+        d_array[1][idx] = low_ell_Wigner_d(theta, ell, 1, -1);
+        d_array[2][idx] = low_ell_Wigner_d(theta, ell, -1, 1);
+      }
+      else {
+        // Compute recursion coefficients
+        A = (ell*ell - 1.0) / (ell*(2.0*ell - 1.0));
+        B = 1.0 / (ell*(ell - 1.0));
+        C = ((ell - 1.0)*(ell - 1.0) - 1.0) / ((ell - 1.0)*(2.0*ell - 1.0));
+
+        // Fill the values (d_-11 and d_1-1 have m*n = -1, hence + in front of B)
+        d_array[0][idx] = ((costheta - B)*d_array[0][idx-1] - C*d_array[0][idx-2]) / A;
+        d_array[1][idx] = ((costheta + B)*d_array[1][idx-1] - C*d_array[1][idx-2]) / A;
+        d_array[2][idx] = ((costheta + B)*d_array[2][idx-1] - C*d_array[2][idx-2]) / A;
+      }
+    }
+  }
+
+  // Spline the results
+  d_ell_pp_spline.create(ell_array, theta_array, d_array[0], "d_ell_pp_spline");
+  d_ell_pm_spline.create(ell_array, theta_array, d_array[1], "d_ell_pm_spline");
+  d_ell_mp_spline.create(ell_array, theta_array, d_array[2], "d_ell_mp_spline");
+
+  Utils::EndTiming("reducedWigner");
+}
+
 
 //====================================================
 // Solve for the lensed angular correlation function
@@ -454,21 +552,23 @@ void PowerSpectrum::compute_lensed_angular_correlation(Vector &theta_array)
     double C_gl    = C_gl_pair.first;
     double C_gl2   = C_gl_pair.second;
     
-    // Compute sigma^2
+    // Compute sigma^2 
     double sigma_squared = C_gl_of_0 - C_gl;
     
     // Compute C(theta)
+    double C_ell_TT;
+    double P_ell;
+    double d_pm;
     double sum = 0.0;
     for (int ell = 2; ell < ell_max+1; ell++) {
       // Fetch the current value of the unlensed power spectrum
-      double C_ell_TT = get_C_ell_TT(ell);
+      C_ell_TT = get_C_ell_TT(ell);
 
       // Fetch the current value of the Legendre polynomial
-      double P_ell = gsl_sf_legendre_Pl(ell, costheta);
+      P_ell = gsl_sf_legendre_Pl(ell, costheta);
 
       // Fetch the reduced Wigner function
-      double d_pm = get_reduced_Wigner_d(ell, 1, -1, theta);
-      // std::cout << "d_pm(" << ell << ") = " << d_pm << std::endl;
+      d_pm = get_reduced_Wigner_d(ell, 1, -1, theta);
 
       // Add to the sum
       sum += (2.0*ell + 1.0)*C_ell_TT*exp(-ell*(ell + 1.0)*sigma_squared/2.0) *
@@ -493,7 +593,7 @@ void PowerSpectrum::solve_lensed_spectrum(const int npts)
 {
   Utils::StartTiming("lensedspectrum");
 
-  // Make theta_array
+  // Make array with thetas
   Vector theta_array = Utils::linspace(0.0, M_PI, npts);
 
   // Get dtheta
@@ -512,17 +612,17 @@ void PowerSpectrum::solve_lensed_spectrum(const int npts)
     // Compute the integral
     for (int it = 0; it < npts; it++) { 
       // Fetch current theta
-      double theta = theta_array[it];
+      double theta = theta_array[it]; //TODO
 
-      // Fetch the current values of C(theta) and P_ell(theta)
+      // Fetch the current values of C(theta) and P_ell(cos(theta))
       double C_of_theta = get_C_of_theta_lensed(theta);
-      double P_ell = gsl_sf_legendre_Pl(ell, cos(theta));
+      double P_ell = gsl_sf_legendre_Pl(ell, cos(theta)); 
 
       // Set the derivative
       if (it == 0 || it == npts-1)
         integral += C_of_theta * P_ell * sin(theta) / 2.0;
       else
-        integral += C_of_theta * P_ell * sin(theta);
+        integral += C_of_theta * P_ell * sin(theta) ;
     }
 
     // Store the result 
@@ -543,19 +643,20 @@ void PowerSpectrum::solve_correlation_function(Vector &r_array) {
   Utils::StartTiming("correlationfunction");
 
   // Cover a wide range of k's to avoid ringing
-  double k_min = 1e-7/Constants.Mpc;
+  double k_min = 1e-10/Constants.Mpc;
   double k_max = 1e2/Constants.Mpc;
 
   // Make storage for the results
   int npts_r = r_array.size();
   Vector xi_array(npts_r);
 
+  #pragma omp parallel for schedule(dynamic, 1)
   for (int ir = 0; ir < npts_r; ir++) {
     // Fetch current r
     const double r = r_array[ir];
 
     // Set the k-array
-    double dk  = M_PI / (64.0*r); //TODO: test 10.0
+    double dk  = M_PI / (64.0*r); 
     int npts_k = static_cast<int>((k_max - k_min)/dk);
     Vector logk_array = Utils::linspace(log(k_min), log(k_max), npts_k);
 
@@ -602,7 +703,6 @@ double PowerSpectrum::primordial_power_spectrum(const double k) const{
   return A_s * pow(k*Constants.Mpc/kpivot_Mpc, n_s - 1.0);
 }
 
-
 //====================================================
 // Get methods
 //====================================================
@@ -617,11 +717,10 @@ double PowerSpectrum::get_matter_power_spectrum(
   double k_max = k_pair.second;
 
   // Use min/max values if outside k-range
-  double ratio_min = k / k_min;
-  double ratio_max = k_max / k;
-  if (ratio_min < 1.0)
+  const double k_orig = k;
+  if (k < k_min)
     k = k_min;
-  else if (ratio_max < 1.0)
+  else if (k > k_max)
     k = k_max;
 
     // Fetch quantities
@@ -640,11 +739,14 @@ double PowerSpectrum::get_matter_power_spectrum(
   if (dimensionful)
     P_k *= 2.0*M_PI*M_PI * pow(k, -3.0);
   
-  // Approximate evolution as power laws beyond k-range
-  if (ratio_min < 1.0)
-    P_k *= pow(ratio_min, n_s);
-  else if (ratio_max < 1.0)
-    P_k *= pow(ratio_max, 4.0-n_s);
+  // Approximate extrapolations beyond k-range
+  if (k_orig < k_min)
+    P_k *= pow(k_orig / k_min, n_s); 
+  else if (k_orig > k_max) {
+    double P_k_prev = get_matter_power_spectrum(0.99*k_max, x, dimensionful);
+    double log_slope = log(P_k / P_k_prev) / log(1.0 / 0.99);
+    P_k *= pow(k_orig / k_max, log_slope);
+  }
   
   return P_k;
 }
@@ -658,10 +760,7 @@ std::pair<double,double> PowerSpectrum::get_C_gl(double theta) {
   double C_gl2 = 0.0;
 
   // Compute the sum
-  for (int ell = 2; ell < ell_max+1; ell++) { // TODO
-  // for (int i = 0; i < n_ells; i++) { 
-  //   int ell = ells[i];
-
+  for (int ell = 2; ell < ell_max+1; ell++) { 
     // Fetch the current value of the lensing potential power spectrum
     double C_ell_Psi = get_C_ell_Psi(ell); 
 
@@ -672,9 +771,16 @@ std::pair<double,double> PowerSpectrum::get_C_gl(double theta) {
     double d_pp = get_reduced_Wigner_d(ell, 1, 1, theta);
     double d_mp = get_reduced_Wigner_d(ell, -1, 1, theta);
 
+    double sgn_pp = 1.0;
+    if (d_pp < 0.0)
+      sgn_pp = -1.0;
+    double sgn_mp = 1.0;
+    if (d_mp < 0.0)
+      sgn_mp = -1.0;  
+
     // Add to the sums
     C_gl  += (2.0*ell + 1.0)*ell*(ell + 1.0) * C_ell_Psi * d_pp;
-    C_gl2 += (2.0*ell + 1.0)*ell*(ell + 1.0) * C_ell_Psi * d_mp;
+    C_gl2 += (2.0*ell + 1.0)*ell*(ell + 1.0) * C_ell_Psi * d_mp; 
   }
 
   // Divide by final factor
@@ -684,75 +790,15 @@ std::pair<double,double> PowerSpectrum::get_C_gl(double theta) {
   return std::pair(C_gl, C_gl2);
 }
 
-// TODO: ask Hans
-double PowerSpectrum::get_reduced_Wigner_d(int ell, int m, int n, double theta) {
-  // // Loop over summation index i with bounds depending on l, m, n
-  // for (int i = std::max(0, m - n); i <= std::min(ell + m, ell - n); ++i) { // TODO: maybe change to gsl function
-  //   double factor = exp((std::lgamma(ell + m + 1) + std::lgamma(ell - m + 1) + 
-  //                       std::lgamma(ell + n + 1) + std::lgamma(ell - n + 1)) / 2.0 -
-  //                       std::lgamma(i + 1) - std::lgamma(ell + m - i + 1) -
-  //                       std::lgamma(ell - n - i + 1) - std::lgamma(i + n - m + 1));
-  //   double factor = 1.0;
-  //   sum += pow(-1, i) * factor * pow(cos(theta/2.0), 2*ell + m - n - 2*i) * pow(sin(theta/2.0), 2*i + n - m);
-  // }
-  // Vector ell_plus_m  = Utils::linspace(1.0, ell + m, ell + m);
-  // Vector ell_minus_m = Utils::linspace(1.0, ell - m, ell - m);
-  // Vector ell_plus_n  = Utils::linspace(1.0, ell + n, ell + n);
-  // Vector ell_minus_n = Utils::linspace(1.0, ell - n, ell - n);
-  // int start = std::max(1, m - n); //TODO: correct? don't want to include 0?
-  // int stop  = std::min(ell + m, ell - n);
-  // Vector i  = Utils::linspace(start, stop, stop-start+1); //TODO: correct? 
-  // Vector i_plus_n_minus_m;
-  // if (m == n)
-  //   i_plus_n_minus_m = i;
-  // else if (m == -1)
-  //   i_plus_n_minus_m = Utils::linspace(start, stop, stop-start+1); //TODO write down
-
-
-  // return sum;
-
-
-
-  // Maximum ell we can use exact expression for
-  const int ell_max_exact = 50;
-
-  // Blending parameters TODO: experiment with these?
-  const double sintheta_min = 1e-10;
-  const double delta = 1e-11;
-
-  if (ell <= ell_max_exact) {
-    // Use the WignerDMatrix operator
-    Quaternions::Quaternion R = Quaternions::Quaternion(cos(theta/2.0), 0.0, sin(theta/2.0), 0.0); // y-axis rotation
-    SphericalFunctions::WignerDMatrix D(R);
-    return std::real(D(ell, n, m)); //TODO: n before m?
-  }
-  else {
-    double sintheta = sin(theta);
-    if (sintheta < 1e-14) {
-      // Approximate as 0 or pi
-      sintheta = theta;
-      Quaternions::Quaternion R = (theta < M_PI_2) ? Quaternions::Quaternion(1.0, 0.0, 0.0, 0.0) : Quaternions::Quaternion(-1.0, 0.0, 0.0, 0.0);
-      SphericalFunctions::WignerDMatrix D(R);
-      return std::real(D(ell, n, m)); //TODO: n before m?;
-    }
-    else {
-      // Use the Debye approximation //TODO: find source of this
-      double phi     = M_PI_4 * (2.0*m + 2.0*n + 1.0);        
-      double d_Debye = cos((ell + 1.0/2.0)*theta - phi) / sqrt(2.0*M_PI*(ell + 1.0/2.0)*sintheta);
-
-      if (sintheta > sintheta_min)
-        return d_Debye;
-      else {
-        // Blend with small-angle approximation
-        double blend   = 1.0 / (1.0 + exp((sintheta_min - abs(sintheta)) / delta)); //TODO where does this come from?
-        double d_small = (m == n) ? (1.0 - 0.5*ell*(ell + 1.0) * theta*theta) : 0.0; //TODO where does this come from?
-        return (1.0 - blend)*d_small + blend*d_Debye;
-      }
-    }
-  }
+double PowerSpectrum::get_reduced_Wigner_d(const double ell, const int m, const int n, const double theta) const{
+  if (m == n)
+    return d_ell_pp_spline(ell, theta);
+  else
+    if (m == 1)
+      return d_ell_pm_spline(ell, theta);
+    else
+      return d_ell_mp_spline(ell, theta);
 }
-
-
 double PowerSpectrum::get_ThetaT_ell(const double k, const int ell_idx) const{
   return ThetaT_ell_of_k_spline[ell_idx](k);
 }
@@ -796,7 +842,7 @@ double PowerSpectrum::get_xi(const double r) const{
 //====================================================
 // Print some useful info about the class
 //====================================================
-void PowerSpectrum::info() const{ //TODO: change?
+void PowerSpectrum::info() const{
   std::cout << "\n";
   std::cout << "Info about power spectrum class:\n";
   std::cout << "A_s:            " << A_s         << "\n";
@@ -831,13 +877,14 @@ void PowerSpectrum::print_equality_scale() const{
 
 
 //====================================================
-// Output transfer functions to file
+// Output methods
 //====================================================
 void PowerSpectrum::output_transfer_functions(
         const double k_min, 
         const double k_max, 
         const int ell,
-        const std::string filename) const
+        const std::string filename,
+        const bool only_TT) const
 {
   std::ofstream fp(filename.c_str());
   const double h = cosmo->get_h();
@@ -849,7 +896,7 @@ void PowerSpectrum::output_transfer_functions(
 
   // Fetch the correct index for ell
   int ell_idx = ells.size();
-  for (size_t i; i < ells.size(); i++) {
+  for (size_t i = 0; i < ells.size(); i++) {
     if (ell == ells[i]) {
       ell_idx = i;
       break;
@@ -864,20 +911,19 @@ void PowerSpectrum::output_transfer_functions(
     fp << k                            << " ";
     fp << k*eta_0                      << " ";
     fp << get_ThetaT_ell(k, ell_idx)   << " ";
-    if (pert->get_polarization_bool())
-      fp << get_ThetaE_ell(k, ell_idx) << " ";
-    if (pert->get_neutrinos_bool())
-      fp << get_Nu_ell(k, ell_idx)     << " ";
-    if (pert->get_lensing_bool())
-      fp << get_Psi_ell(k, ell_idx)    << " ";
+    if (!only_TT) {
+      if (pert->get_polarization_bool())
+        fp << get_ThetaE_ell(k, ell_idx) << " ";
+      if (pert->get_neutrinos_bool())
+        fp << get_Nu_ell(k, ell_idx)     << " ";
+      if (pert->get_lensing_bool())
+        fp << get_Psi_ell(k, ell_idx)    << " ";
+    }
     fp << "\n";
   };
   std::for_each(k_array.begin(), k_array.end(), print_data);
 }
 
-//====================================================
-// Output the angular correlation functions to file
-//====================================================
 void PowerSpectrum::output_C_of_theta(
         const std::string filename,
         const bool lensed_C) const
@@ -896,29 +942,27 @@ void PowerSpectrum::output_C_of_theta(
 }
 
 
-//====================================================
-// Output the C_ells to file
-//====================================================
 void PowerSpectrum::output_C_ells(
         std::string filename,
         const bool only_TT,
         const bool lensed_TT) const
 {
-  // Output in standard units of muK^2
   std::ofstream fp(filename.c_str());
   Vector ell_array = Utils::linspace(2, ell_max, ell_max-1);
 
   auto print_data = [&] (const double ell) {
-    double normfactor      = (ell * (ell+1.0)) / (2.0*M_PI) 
-                             * pow(1e6*cosmo->get_T_CMB(), 2.0);
-    double normfactor_TE   = sqrt((ell+2.0) * (ell+1.0) * ell * (ell-1.0)) * normfactor;
-    double normfactor_EE   = (ell+2.0) * (ell+1.0) * ell * (ell-1.0)
-                             * 1e5 * pow(1e6*cosmo->get_T_CMB(), 2.0);
-    double normfactor_nu   = pow(1e6*cosmo->get_T_CMB() * pow(4.0/11.0, 1.0/3.0), 2.0);
-    double normfactor_lens = 1e7 * (ell * (ell+1.0)) * (ell * (ell+1.0)) / (2.0*M_PI);
+    double normfactor     = (ell * (ell+1.0)) / (2.0*M_PI) 
+                            * pow(1e6*cosmo->get_T_CMB(), 2.0);
+    double normfactor_TE  = sqrt((ell+2.0) * (ell+1.0) * ell * (ell-1.0)) * normfactor;
+    double normfactor_EE  = (ell+2.0) * (ell+1.0) * ell * (ell-1.0)
+                            * 1e5 * pow(1e6*cosmo->get_T_CMB(), 2.0);
+    double normfactor_nu  = (ell * (ell+1.0)) / (2.0*M_PI)
+                            * pow(1e6*cosmo->get_T_CMB() * pow(4.0/11.0, 1.0/3.0), 2.0);
+    double normfactor_Psi = 1e7 * (ell * (ell+1.0)) * (ell * (ell+1.0)) / (2.0*M_PI);
     fp << ell                                         << " ";
     fp << C_ell_TT_spline(ell) * normfactor           << " ";
     if (!only_TT) {
+      // TODO comment
       if (pert->get_polarization_bool()) {
         fp << C_ell_TE_spline(ell) * normfactor_TE    << " ";
         fp << C_ell_EE_spline(ell) * normfactor_EE    << " ";
@@ -926,60 +970,53 @@ void PowerSpectrum::output_C_ells(
       if (pert->get_neutrinos_bool())
         fp << C_ell_nu_spline(ell) * normfactor_nu    << " ";
       if (pert->get_lensing_bool()) {
-        fp << C_ell_Psi_spline(ell) * normfactor_lens << " "; 
+        fp << C_ell_Psi_spline(ell) * normfactor_Psi  << " "; 
         if (lensed_TT)
           fp << C_ell_lensed_spline(ell) * normfactor << " "; 
       }
     }
+    fp << C_ell_lensed_spline(ell) * normfactor << " ";
     fp << "\n";
   };
   std::for_each(ell_array.begin(), ell_array.end(), print_data);
 }
 
 
-//====================================================
-// Output matter power spectrum to file
-//====================================================
 void PowerSpectrum::output_P_k(
-        const double k_min, 
-        const double k_max,  
+        const double k_min_Mpc, 
+        const double k_max_Mpc,  
         const std::string filename,
         const double x) const
 {
   // Output k in units of h/Mpc and P(k) in units of (Mpc/h)^3
   std::ofstream fp(filename.c_str());
   const double h = cosmo->get_h();
-  const int npts = static_cast<int>(log(k_max) - log(k_min))*10000 + 1; 
-  Vector k_array = exp(Utils::linspace(log(k_min), log(k_max), npts));
+  const int npts = static_cast<int>(log(k_max_Mpc) - log(k_min_Mpc))*10000 + 1; 
+  Vector k_Mpc_array = exp(Utils::linspace(log(k_min_Mpc), log(k_max_Mpc), npts));
 
-  auto print_data = [&] (const double k) {
-    fp << k*Constants.Mpc/h                                           << " ";
-    fp << get_matter_power_spectrum(k, x) * pow(h/Constants.Mpc, 3.0) << " ";
+  auto print_data = [&] (const double k_Mpc) {
+    fp << k_Mpc/h                                                                       << " ";
+    fp << get_matter_power_spectrum(k_Mpc/Constants.Mpc, x) * pow(h/Constants.Mpc, 3.0) << " ";
+    fp << "\n";
   };
-  std::for_each(k_array.begin(), k_array.end(), print_data);
+  std::for_each(k_Mpc_array.begin(), k_Mpc_array.end(), print_data);
 }
 
-
-//====================================================
-// Output correlation function to file
-//====================================================
 void PowerSpectrum::output_xi(
-        const double r_min, 
-        const double r_max, 
+        const double r_min_Mpc, 
+        const double r_max_Mpc, 
         const std::string filename) const
 {
   // Output r in units of Mpc/h and xi(r) in units of (Mpc/h)^2
   std::ofstream fp(filename.c_str());
   const double h = cosmo->get_h();
-  // const int npts = static_cast<int>(log(r_max) - log(r_min))*10000 + 1; 
-  // Vector r_array = exp(Utils::linspace(log(r_min), log(r_max), npts)); //TODO: maybe not log?
-  const int npts = static_cast<int>(r_max - r_min)*10000 + 1; 
-  Vector r_array = Utils::linspace(r_min, r_max, npts); //TODO: maybe not linear?
+  const int npts = static_cast<int>(r_max_Mpc - r_min_Mpc)*10000 + 1; 
+  Vector r_Mpc_array = Utils::linspace(r_min_Mpc, r_max_Mpc, npts); 
 
-  auto print_data = [&] (const double r) {
-    fp << r*h/Constants.Mpc                     << " "; 
-    fp << get_xi(r)*pow(r*h/Constants.Mpc, 2.0) << " "; 
+  auto print_data = [&] (const double r_Mpc) {
+    fp << r_Mpc*h                                       << " "; 
+    fp << get_xi(r_Mpc*Constants.Mpc)*pow(r_Mpc*h, 2.0) << " "; 
     fp << "\n";
   };
-  std::for_each(r_array.begin(), r_array.end(), print_data);
+  std::for_each(r_Mpc_array.begin(), r_Mpc_array.end(), print_data);
 }

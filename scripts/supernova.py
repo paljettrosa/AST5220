@@ -104,7 +104,7 @@ plt.show()
 Plot of posterior PDFs for H0, Omega_m0, Omega_k0 and Omega_Lambda0
 """
 variables = [[H0, Omega_m], [Omega_k, Omega_Lambda]]
-Planck = [[67.4, 0.315], [0, 0.685]]
+Planck = [[67.7, 0.311], [0.001, 0.689]]
 names = [["H0", "Omega_m0"], ["Omega_k0", "Omega_Lambda0"]]
 labels = [[r"$H_0$ [km/s/Mpc]", r"$\Omega_{m0}$"], [r"$\Omega_{k0}$", r"$\Omega_{\Lambda0}$"]]
 colors = [["#b9e2f5", "#f5b267"], ["#f2a2c1", "#ddabed"]]
